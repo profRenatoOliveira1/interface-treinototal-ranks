@@ -1,0 +1,9 @@
+.imgFundo {
+    height: 80%;
+    width: 80%;
+}
+
+.div-img {
+    justify-content: center;
+    align-items: center;
+}
