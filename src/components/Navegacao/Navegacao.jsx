@@ -6,7 +6,7 @@ import './Navegacao.css'
 import { Link } from 'react-router-dom';
 
 // Importa a imagem do logo da aplicação
-import imgLogo from '../../assets/imgLogoProSaude.jpeg'
+import imgLogo from '../../assets/imgLogoProSaude.png'
 
 // Define a função Navegacao, que é um componente React responsável pela barra de navegação
 function Navegacao() {

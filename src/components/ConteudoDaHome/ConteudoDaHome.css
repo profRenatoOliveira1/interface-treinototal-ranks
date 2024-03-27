@@ -1,0 +1,48 @@
+:root {
+    --azulEscuro: #46697C;
+    --azulClaro: #94A7AE;
+    --branco: #FFFFFF;
+    --azulMuitoEscuro: #102028;
+}
+
+
+.titulo {
+    text-align: center;
+    color: var(--azulMuitoEscuro);
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+.div-conteudo {
+    margin-left: 10%;
+    width: 80%;
+}
+.home {
+margin-top: 5%;
+
+}
+
+.paragrafo {
+    width: 95%;
+    font-size: 20px;
+    text-align: justify;
+    margin-left: 3%;
+    height: 80%;
+    color: var(--azulMuitoEscuro);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.botao {
+    color: var(--azulClaro);
+    background-color: var(--azulEscuro);
+    height: 50%;
+    width: 30%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.div-botao {
+    height: 100px;
+}
