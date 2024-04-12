@@ -5,6 +5,7 @@
     --azulClaro: #94A7AE;
     --branco: #FFFFFF;
     --azulMuitoEscuro: #102028;
+    --preto: #060F16;
 }
 
 
@@ -27,5 +28,5 @@
 }
 
 body {
-    background-color: var(--azulClaro)!important;
+    background-color: var(--preto)!important;
 }

@@ -3,7 +3,7 @@ import './Treinos.css'
 
 // Importa o componente Navegacao de um diretório específico
 import Navegacao from '../../components/Navegacao/Navegacao';
-
+import CadastroExercicio from '../../components/CadastroExercicio/CadastroExercicio';
 // Define a função Fotos, que é um componente React
 function Fotos() {
 
@@ -13,12 +13,7 @@ function Fotos() {
 
             {/* Renderiza o componente de navegação */}
             <Navegacao />
-
-            {/* 
-                Renderiza um parágrafo com o texto "NADA AQUI AINDA" e estiliza o texto com cor preta.
-                Este parágrafo serve como uma indicação visual de que ainda não há conteúdo nesta parte da página.
-            */}
-            <p style={{ color: "#000000" }}>NADA AQUI AINDA</p>
+            <CadastroExercicio />
         </>
 
     );

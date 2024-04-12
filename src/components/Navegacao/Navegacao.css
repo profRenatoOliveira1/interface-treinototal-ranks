@@ -1,25 +1,28 @@
 :root {
     --azulEscuro: #46697C;
-    --preto: #060F16;
     --azulClaro: #94A7AE;
-    --branco: #FFFFFF;
+    --branco: yellow;
     --azulMuitoEscuro: #0F2028;
-    ;
+        --preto: #1B2124;
+        --amarelo: #D7C99C;
+        --cinzaEscuro: #0E1A1F;
+        --cinzaClaro: #1f2029;
 }
+
 
 .botao-cdt {
     margin-top: -3%;
-    background-color: var(--azulClaro);
+    background-color: var(--preto);
     border-radius: 27px;
 }
 
 .cadastro {
-    color: var(--azulMuitoEscuro) !important;
+    color: var(--preto) !important;
 }
 
 .navbar-li {
-    color: var(--azulClaro);
-    font-size: 147%;
+    color: #ffeba7;
+    font-size: 107%;
     font-family: 'Archivo Black';
     font-weight: bold;
 }
@@ -30,11 +33,10 @@
     justify-content: space-between;
     width: 100%;
     align-items: center;
-    background-color: var(--azulMuitoEscuro);
-
+    background-color: var(--cinzaEscuro);
     font-family: "Caesar Dressing", system-ui;
-    height: 17%;
-
+    height: 100%;
+    max-height: 90px;
 }
 
 img.imgLogo {
@@ -43,11 +45,10 @@ img.imgLogo {
     color: white;
     border-radius: 50%;
     margin-right: 83%;
-
 }
 
 .navbar-opcoes {
-    width: 75%;
+    width: 100%;
     color: var(--preto);
     display: flex;
     margin-right: 2%;
@@ -59,7 +60,6 @@ img.imgLogo {
     flex-direction: row;
     list-style-type: none;
     justify-content: flex-end;
-    
     width: 100%;
 }
 

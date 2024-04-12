@@ -28,25 +28,27 @@ function Navegacao() {
                         {/* Renderiza um link para a página Home */}
                         <Link className='navbar-li' to="/"> Home</Link>
                     </li>
-
+                    <li>
+                        {/* Renderiza um link para a página Home */}
+                        <Link className='navbar-li' to="/Academia"> Academia</Link>
+                    </li>
                     <li>
                         {/* Renderiza um link para a página Treinos */}
-                        <Link className='navbar-li' to="/Treinos"> Treinos</Link>
+                        <Link className='navbar-li' to="/Treinos"> Exercicio</Link>
                     </li>
 
                     <li>
                         {/* Renderiza um link para a página Perfil */}
-                        <Link className='navbar-li' to="/Perfil" > Perfil</Link>
+                        <Link className='navbar-li' to="/Aparelho" > Aparelho</Link>
                     </li>
 
                     <li>
                         {/* Renderiza um link para a página Login */}
-                        <Link className='navbar-li' to="/Login"> Login</Link>
+                        <Link className='navbar-li' to="/Login"> Aluno</Link>
                     </li>
 
                     <li>
-                        {/* Renderiza um botão com um link para a página de cadastro */}
-                        <button className='botao-cdt'><Link to="/comecarAgora" className='navbar-li cadastro' >Começar agora </Link></button>
+                    <Link className='navbar-li' to="/Professor"> Professor</Link>
                     </li>
 
                 </ul>
