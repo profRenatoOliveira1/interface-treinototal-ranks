@@ -10,7 +10,7 @@ function CadastroAluno() {
                         <div className="section pb-5 pt-5 pt-sm-2 text-center">
 
                             <h2 className="mb-0 pb-3"><span className='espacamento-span'>Listar</span>
-                            <span className='espacamento-span'>Cadastro</span></h2>
+                                <span className='espacamento-span'>Cadastro</span></h2>
                             <input className="checkbox" type="checkbox" id="reg-log" name="reg-log" />
                             <label htmlFor="reg-log"></label>
                             <div className="card-3d-wrap mx-auto">
@@ -19,7 +19,7 @@ function CadastroAluno() {
                                         <div className="center-wrap">
                                             <div className="section text-center listar">
 
-                                            <h2 className="mb-4 pb-3">Listar Aluno</h2>
+                                                <h2 className="mb-4 pb-3">Listar Aluno</h2>
                                                 <div className="form-group mt-2 espacamento">
                                                     <input type="tel" className="form-style" placeholder="CPF" />
                                                     <i className="input-icon uil uil-phone"></i>
@@ -68,9 +68,9 @@ function CadastroAluno() {
                                                     <input type="number" className="form-style" placeholder="Peso" />
                                                     <i className="input-icon uil uil-lock-alt"></i>
                                                 </div>
-                                                    <a href="https://www.web-leb.com/code" className="btn mt-4">Cadastrar-se</a>
-                                               
-                                                
+                                                <a href="https://www.web-leb.com/code" className="btn mt-4">Cadastrar-se</a>
+
+
                                             </div>
                                         </div>
                                     </div>

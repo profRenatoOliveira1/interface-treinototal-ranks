@@ -6,15 +6,15 @@ import imgFundo from '../../assets/imgFundo.png'
 // Define a função Navegacao, que é um componente React responsável pela imagem da pagina home
 function ImgFundoHome() {
 
-    return (
-        <>
-        {/* Div para a imagem de fundo */}
-        <div className='div-img'>
+  return (
+    <>
+      {/* Div para a imagem de fundo */}
+      <div className='div-img'>
 
-          <img className="imgFundo" src={imgFundo} alt="ERRO" />
-        </div>
-        </>
-    );
+        <img className="imgFundo" src={imgFundo} alt="ERRO" />
+      </div>
+    </>
+  );
 
 
 

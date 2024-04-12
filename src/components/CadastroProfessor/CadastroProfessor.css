@@ -1,16 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+
 :root {
     --preto: #1B2124;
     --amarelo: #D7C99C;
     --cinzaEscuro: #0E1A1F;
     --cinzaClaro: #1f2029;
 }
+
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     line-height: 1.7;
     color: var(--amarelo);
-    background-color: #1f2029!important;
+    background-color: #1f2029 !important;
 }
 
 a:hover {
@@ -51,7 +53,7 @@ h6 span {
     position: relative;
     width: 80%;
     display: block;
-    
+
 }
 
 .full-height {
@@ -100,10 +102,12 @@ h6 span {
 .checkbox:checked+label:before {
     transform: translateX(44px) rotate(-270deg);
 }
+
 .espacamento {
     margin-bottom: 20%;
     margin-left: 7%;
 }
+
 .card-3d-wrap {
     position: relative;
     width: 540px;
@@ -137,7 +141,7 @@ h6 span {
 
 .card-back {
     transform: rotateY(180deg);
-  
+
 }
 
 .checkbox:checked~.card-3d-wrap .card-3d-wrapper {
@@ -231,24 +235,27 @@ h6 span {
     justify-content: center;
 }
 
-.textess{
-margin-right: 80%;
+.textess {
+    margin-right: 80%;
 }
-.botao{
+
+.botao {
     margin-right: 17%;
 }
 
-.mt-4{
-margin-right: 25%;
-margin-top: 5%;
+.mt-4 {
+    margin-right: 25%;
+    margin-top: 5%;
 }
-.pb-3{
+
+.pb-3 {
     margin-right: 25%;
 }
 
-.mb-0{
+.mb-0 {
     margin-left: 27%;
 }
+
 .ajuste {
     margin-left: 9%;
 }
@@ -256,25 +263,30 @@ margin-top: 5%;
 .espacamento-span {
     margin: 8%;
 }
+
 .mb-4 {
     margin-bottom: 5%;
 }
+
 .espacamento {
     margin-bottom: 80%;
     margin-left: -10px;
 }
+
 .listar {
     margin-top: -20%;
     margin-left: 30px;
 }
+
 .ajuste {
     margin-left: -10px;
 }
+
 .senha {
     position: absolute;
-    left: 0; top: 0;
+    left: 0;
+    top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-

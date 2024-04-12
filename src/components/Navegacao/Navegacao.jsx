@@ -48,7 +48,7 @@ function Navegacao() {
                     </li>
 
                     <li>
-                    <Link className='navbar-li' to="/Professor"> Professor</Link>
+                        <Link className='navbar-li' to="/Professor"> Professor</Link>
                     </li>
 
                 </ul>
