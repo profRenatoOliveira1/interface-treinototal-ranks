@@ -37,7 +37,7 @@ return (
                                                 <i className="input-icon uil uil-user"></i>
                                             </div>
                                             <div className="form-group mt-2">
-                                                <input type="tel" className="form-style" placeholder="Musculo ativado" />
+                                                <input type="text" className="form-style" placeholder="Musculo ativado" />
                                                 <i className="input-icon uil uil-phone"></i>
                                             </div>
                                             <a href="https://www.web-leb.com/code" className="btn mt-4">Cadastrar</a>

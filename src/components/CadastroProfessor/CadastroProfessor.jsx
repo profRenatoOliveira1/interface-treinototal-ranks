@@ -38,15 +38,15 @@ function CadastroProfessor() {
                                                     <i className="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="tel" className="form-style" placeholder="CPF" />
+                                                    <input type="number" className="form-style" placeholder="CPF" />
                                                     <i className="input-icon uil uil-phone"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="email" className="form-style" placeholder="Data de Nascimento" />
+                                                    <input type="text" className="form-style" placeholder="Data de Nascimento" />
                                                     <i className="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="password" className="form-style" placeholder="Telefone" />
+                                                    <input type="tel" className="form-style" placeholder="Telefone" />
                                                     <i className="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
@@ -62,7 +62,7 @@ function CadastroProfessor() {
                                                     <i className="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="date" className="form-style" placeholder="Data de contratação " />
+                                                    <input type="text" className="form-style" placeholder="Data de contratação " />
                                                     <i className="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div className="form-group mt-2">

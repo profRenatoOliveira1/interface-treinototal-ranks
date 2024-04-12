@@ -39,15 +39,15 @@ function CadastroExercicio() {
                                                     <i className="input-icon uil uil-user"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="tel" className="form-style" placeholder="Quantidade de carga" />
+                                                    <input type="number" className="form-style" placeholder="Quantidade de carga" />
                                                     <i className="input-icon uil uil-phone"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="email" className="form-style" placeholder="Quantidade de repetições" />
+                                                    <input type="number" className="form-style" placeholder="Quantidade de repetições" />
                                                     <i className="input-icon uil uil-at"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
-                                                    <input type="password" className="form-style" placeholder="Região do corpo trabalhada" />
+                                                    <input type="text" className="form-style" placeholder="Região do corpo trabalhada" />
                                                     <i className="input-icon uil uil-lock-alt"></i>
                                                 </div>
                                                     <a href="https://www.web-leb.com/code" className="btn mt-4">Cadastrar-se</a>
