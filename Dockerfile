@@ -18,7 +18,11 @@ RUN npm run build
 
 FROM nginx:alpine
 
+# copiando arquivos da página para pasta pública do NGINX
 COPY --from=build /app/dist /usr/share/nginx/html
+
+# copiando o arquivo de configuração do NGINX para a pasta de configuração
+COPY nginx.conf /etc/nginx/nginx.conf
 
 # Exponha a porta em que a aplicação será executada
 EXPOSE 80
