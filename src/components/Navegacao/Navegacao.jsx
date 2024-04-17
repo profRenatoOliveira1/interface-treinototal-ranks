@@ -34,7 +34,7 @@ function Navegacao() {
                     </li>
                     <li>
                         {/* Renderiza um link para a página Treinos */}
-                        <Link className='navbar-li' to="/Treinos"> Exercicio</Link>
+                        <Link className='navbar-li' to="/Exercicios"> Exercicio</Link>
                     </li>
 
                     <li>
@@ -44,7 +44,7 @@ function Navegacao() {
 
                     <li>
                         {/* Renderiza um link para a página Login */}
-                        <Link className='navbar-li' to="/Login"> Aluno</Link>
+                        <Link className='navbar-li' to="/Aluno"> Aluno</Link>
                     </li>
 
                     <li>
