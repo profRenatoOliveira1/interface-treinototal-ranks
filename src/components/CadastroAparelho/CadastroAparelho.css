@@ -262,6 +262,7 @@ h6 span {
 .ajuste {
     margin-left: -10px;
 }
+
 .card-3d-wrap {
     position: relative;
     width: 540px;
@@ -271,6 +272,6 @@ h6 span {
     perspective: 800px;
     margin-top: 40px;
     margin-left: 30%;
-    height: 140px!important;
+    height: 140px !important;
 
 }

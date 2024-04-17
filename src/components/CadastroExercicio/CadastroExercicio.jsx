@@ -73,7 +73,7 @@ function CadastroExercicio() {
                             <h2 className="mb-0 pb-3">
                                 <span className='espacamento-span'>Cadastro</span>
                                 <span className='espacamento-span'>Listar</span>
-                                </h2>
+                            </h2>
                             <input className="checkbox" type="checkbox" id="reg-log" name="reg-log" />
                             <label htmlFor="reg-log"></label>
                             <div className="card-3d-wrap mx-auto">
@@ -81,7 +81,7 @@ function CadastroExercicio() {
                                     <div className="card-front">
                                         <div className="center-wrap">
                                             <div className=" text-center ajuste-tamanho">
-                                            <h2 className="mb-3 pb-3">Cadastro de Exercício</h2>
+                                                <h2 className="mb-3 pb-3">Cadastro de Exercício</h2>
                                                 <div className="form-group">
                                                     <input
                                                         type="text"
@@ -139,9 +139,9 @@ function CadastroExercicio() {
                                     <div className="card-back">
                                         <div className="center-wrap">
                                             <div className="section text-center listar">
-                                            <h2 className="mb-4 pb-3">Listar Exercícios</h2>
-                                            
-                                              
+                                                <h2 className="mb-4 pb-3">Listar Exercícios</h2>
+
+
                                                 <div className="form-group espacamento">
                                                     <input
                                                         type="text"

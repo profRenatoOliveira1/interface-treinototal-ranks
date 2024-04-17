@@ -158,6 +158,7 @@ function CadastroProfessor() {
                                                         onChange={handleChange}
                                                         name="cpf"
                                                     />
+
                                                     <i className="input-icon uil uil-phone"></i>
                                                 </div>
                                                 <div className="form-group mt-2">
@@ -248,7 +249,7 @@ function CadastroProfessor() {
                                                     />
                                                     <i className="input-icon uil uil-at"></i>
                                                 </div>
-                                                
+
                                                 <button
                                                     type="submit"
                                                     className="btn mt-4"
