@@ -1,15 +1,14 @@
 import React from 'react';
-import Navegacao from '../../components/Navegacao/Navegacao';
 import CadastroAparelho from '../../components/CadastroAparelho/CadastroAparelho';
-import './Aparelho.css';
+import Navegacao from '../../components/Navegacao/Navegacao';
 
-function Aparelho() {
+function AparelhoCadastro() {
     return (
-        <>
+        <div>
             <Navegacao />
             <CadastroAparelho />
-        </>
+        </div>
     );
 }
 
-export default Aparelho;
+export default AparelhoCadastro;

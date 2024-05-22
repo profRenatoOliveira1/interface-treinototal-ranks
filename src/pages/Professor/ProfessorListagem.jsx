@@ -1,16 +1,15 @@
 
 import './Professor.css'
 import Navegacao from '../../components/Navegacao/Navegacao';
-import CadastroProfessor from '../../components/CadastroProfessor/CadastroProfessor';
+import ListarProfessor from '../../components/ListagemProfessor/ListagemProfessor';
 
 
 function cadastro() {
 
     return (
         <>
-
             <Navegacao />
-            <CadastroProfessor />
+            <ListarProfessor />
         </>
 
     );

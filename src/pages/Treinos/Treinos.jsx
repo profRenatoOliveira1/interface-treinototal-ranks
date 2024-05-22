@@ -11,7 +11,6 @@ function Fotos() {
     return (
         <>
 
-            {/* Renderiza o componente de navegação */}
             <Navegacao />
             <CadastroExercicio />
         </>
