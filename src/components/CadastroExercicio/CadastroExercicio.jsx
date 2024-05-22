@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import styles from './CadastroExercicio.module.css';
-import ExerciciosRequests from '../../fetch/ExercíciosRequests';
+import ExerciciosRequests from '../../fetch/ExerciciosRequests';
 
 function CadastroExercicio() {
     const [formData, setFormData] = useState({
-        nome: '',
-        descricao: '',
-        grupoMuscular: '',
-        dificuldade: ''
+        id_aparelho: '',
+        exercicio: '',
+        carga: '',
+        repeticoes: '',
+        regiao_corpo_ativa: ''
     });
 
     const handleChange = (e) => {
@@ -23,8 +24,17 @@ function CadastroExercicio() {
         try {
             const response = await ExerciciosRequests.cadastrarExercicio(formData);
             console.log('Exercício cadastrado com sucesso:', response);
+            window.alert( formData.exercicio + ': foi cadastrado com sucesso');
+            setFormData({
+                exercicio: '',
+                carga: '',
+                repeticoes: '',
+                regiao_corpo_ativa: ''
+            });
         } catch (error) {
             console.error('Erro ao cadastrar exercício:', error);
+            window.alert( 'Erro ao cadastrar exercício');
+
         }
     };
 
@@ -34,43 +44,53 @@ function CadastroExercicio() {
                 <h1 className={styles.h1}>Cadastro de Exercício</h1>
                 <form onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="number"
+                            className={styles.formStyle}
+                            placeholder="id_aparelho"
+                            value={formData.id_aparelho}
+                            onChange={handleChange}
+                            name="id_aparelho"
+                        />
+                    </div>
                         <input
                             type="text"
                             className={styles.formStyle}
-                            placeholder="Nome"
-                            value={formData.nome}
+                            placeholder="exercicio"
+                            value={formData.exercicio}
                             onChange={handleChange}
-                            name="nome"
+                            name="exercicio"
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="number"
+                            className={styles.formStyle}
+                            placeholder="carga"
+                            value={formData.carga}
+                            onChange={handleChange}
+                            name="carga"
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="number"
+                            className={styles.formStyle}
+                            placeholder="repeticoes"
+                            value={formData.repeticoes}
+                            onChange={handleChange}
+                            name="repeticoes"
                         />
                     </div>
                     <div className={styles.formGroup}>
                         <input
                             type="text"
                             className={styles.formStyle}
-                            placeholder="Descrição"
-                            value={formData.descricao}
+                            placeholder="regiaoCorpoAtiva"
+                            value={formData.regiao_corpo_ativa}
                             onChange={handleChange}
-                            name="descricao"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Grupo Muscular"
-                            value={formData.grupoMuscular}
-                            onChange={handleChange}
-                            name="grupoMuscular"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Dificuldade"
-                            value={formData.dificuldade}
-                            onChange={handleChange}
-                            name="dificuldade"
+                            name="regiao_corpo_ativa"
                         />
                     </div>
                     <button type="submit" className={styles.btn}>

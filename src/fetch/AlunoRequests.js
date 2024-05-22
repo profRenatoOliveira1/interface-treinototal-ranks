@@ -1,11 +1,11 @@
 class AlunoRequests {
     constructor() {
         this.serverUrl = 'http://localhost:3000'; 
-        this.routeListarAluno = '/listarAluno';
-        this.routeCadastrarAluno = '/cadastrarAluno';
+        this.routeListarAluno = '/listar-aluno';
+        this.routeCadastrarAluno = '/novo/aluno';
     }
 
-    async listarAluno() {
+    async listarAlunos() { // Corrigido o nome do método para "listarAlunos"
         try {
             const response = await fetch(`${this.serverUrl}${this.routeListarAluno}`);
             if (!response.ok) {
@@ -34,6 +34,10 @@ class AlunoRequests {
             if (!response.ok) {
                 throw new Error('Erro ao cadastrar aluno');
             }
+
+            // Se o cadastro for bem-sucedido, exibe uma mensagem no console
+            console.log('Aluno cadastrado com sucesso!');
+
             return await response.json();
         } catch (error) {
             console.error('Erro: ', error);

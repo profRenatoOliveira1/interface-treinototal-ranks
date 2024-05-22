@@ -6,13 +6,14 @@ function CadastroAluno() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        dataNascimento: '',
+        data_nascimento: '',
         telefone: '',
         endereco: '',
         email: '',
         senha: '',
         altura: '',
-        peso: ''
+        peso: '',
+        imc: ''
     });
 
     const handleChange = (e) => {
@@ -28,10 +29,11 @@ function CadastroAluno() {
         try {
             const response = await AlunoRequests.cadastrarAluno(formData);
             console.log('Aluno cadastrado com sucesso:', response);
-            // Aqui você pode redirecionar o usuário para outra página, exibir uma mensagem de sucesso, etc.
+            window.alert( formData.nome + ': foi cadastrado com sucesso');
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);
-            // Aqui você pode lidar com erros, exibir uma mensagem de erro para o usuário, etc.
+            window.alert('Ocorreu esse erro:' + error);
+
         }
     };
 
@@ -65,9 +67,9 @@ function CadastroAluno() {
                             type="date"
                             className={styles.formStyle}
                             placeholder="Data de Nascimento"
-                            value={formData.dataNascimento}
+                            value={formData.data_nascimento}
                             onChange={handleChange}
-                            name="dataNascimento"
+                            name="data_nascimento"
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -75,9 +77,9 @@ function CadastroAluno() {
                             type="tel"
                             className={styles.formStyle}
                             placeholder="Telefone"
-                            value={formData.telefone}
+                            value={formData.celular}
                             onChange={handleChange}
-                            name="telefone"
+                            name="celular"
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -112,7 +114,7 @@ function CadastroAluno() {
                     </div>
                     <div className={styles.formGroup}>
                         <input
-                            type="text"
+                            type="number"
                             className={styles.formStyle}
                             placeholder="Altura"
                             value={formData.altura}
@@ -122,12 +124,22 @@ function CadastroAluno() {
                     </div>
                     <div className={styles.formGroup}>
                         <input
-                            type="text"
+                            type="number"
                             className={styles.formStyle}
                             placeholder="Peso"
                             value={formData.peso}
                             onChange={handleChange}
                             name="peso"
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="number"
+                            className={styles.formStyle}
+                            placeholder="IMC"
+                            value={formData.imc}
+                            onChange={handleChange}
+                            name="imc"
                         />
                     </div>
                     <button type="submit" className={styles.btn}>

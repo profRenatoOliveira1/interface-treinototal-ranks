@@ -5,96 +5,92 @@
   font-weight: 400;
   font-style: normal;
   margin: 2% 0;
-  }
-  
-  .tabelaHeader {
-    background-color: #333 !important;
-    color: #fff !important;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #fff; /* Adiciona borda */
-  }
-  
-  .tabelaCorpo {
-    color: #333;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid #ccc; /* Adiciona borda */
-  }
-  
-  .cnt-tb {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-  
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    max-width: calc(100% - 40px);
-    overflow-x: auto;
-  }
-  
+}
+
+.tabelaHeader {
+  background-color: #333 !important;
+  color: #fff !important;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #fff; /* Adiciona borda */
+  position: sticky; /* Faz o cabeçalho ficar fixo */
+  top: 0; /* Fixa o cabeçalho no topo */
+  z-index: 1; /* Garante que o cabeçalho fique acima das linhas do corpo */
+}
+
+.tabelaCorpo {
+  color: #333;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid #ccc;
+  background-color: #f8f9fa;
+}
+
+.cntTb {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  max-width: calc(100% - 40px);
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination input {
+  width: 60px;
+  padding: 8px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
   .table th,
   .table td {
-    padding: 10px;
-    text-align: center;
-    border: 1px solid #ccc; /* Adiciona borda */
+      font-size: 14px;
   }
-  
-  .tabelaHeader {
-    background-color: #007bff;
-    color: #fff;
-  }
-  
-  .tabelaCorpo {
-    background-color: #f8f9fa;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-  }
-  
+
   .pagination button {
-    padding: 8px 16px;
-    margin: 0 5px;
-    border: 1px solid #007bff;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    border-radius: 4px;
+      padding: 6px 12px;
   }
-  
-  .pagination button:hover {
-    background-color: #0056b3;
-  }
-  
+
   .pagination input {
-    width: 60px;
-    padding: 8px;
-    margin: 0 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+      width: 50px;
+      padding: 6px;
   }
-  
-  @media (max-width: 768px) {
-    .table th,
-    .table td {
-        font-size: 14px;
-    }
-  
-    .pagination button {
-        padding: 6px 12px;
-    }
-  
-    .pagination input {
-        width: 50px;
-        padding: 6px;
-    }
-  }
-  
+}

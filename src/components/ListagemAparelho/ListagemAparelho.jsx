@@ -1,39 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ListarAparelho.module.css';
+import AparelhoRequests from '../../fetch/AparelhosRequests';
+import { FaTrash } from "react-icons/fa";
 
 function ListarAparelho() {
-    const [aparelhos] = useState([
-        {
-            nome: 'Smartphone X',
-            marca: 'Marca A',
-            modelo: 'X2020',
-            numeroSerie: '12345-ABC',
-            dataFabricacao: '2020-05-15',
-            dataAquisicao: '2021-03-10',
-            preco: '1500.00',
-            garantia: '2 anos'
-        },
-        {
-            nome: 'Notebook Y',
-            marca: 'Marca B',
-            modelo: 'YPro',
-            numeroSerie: '67890-DEF',
-            dataFabricacao: '2019-08-20',
-            dataAquisicao: '2020-01-15',
-            preco: '3500.00',
-            garantia: '3 anos'
-        },
-        {
-            nome: 'Tablet Z',
-            marca: 'Marca C',
-            modelo: 'ZTab',
-            numeroSerie: '11223-GHI',
-            dataFabricacao: '2021-02-10',
-            dataAquisicao: '2021-06-05',
-            preco: '1200.00',
-            garantia: '1 ano'
-        }
-    ]);
+    const [aparelhos, setAparelho] = useState([]);
+
+    useEffect(() => {
+        const fetchAparelho = async () => {
+            try {
+                const aparelhos = await AparelhoRequests.listarAparelho();
+                setAparelho(aparelhos);
+            } catch (error) {
+                console.error('Erro ao buscar aparelhos: ', error);
+            }
+        };
+
+        fetchAparelho();
+    }, []);
+
+    const deletar = () => {
+        window.alert('Não foi feito... ainda');
+    };
+
+    console.log(aparelhos);
 
     return (
         <>
@@ -53,27 +43,19 @@ function ListarAparelho() {
                 <table className={`${styles.table} ${styles.tabela}`}>
                     <thead>
                         <tr className={styles.tabelaHeader}>
+                            <th>ID</th>
                             <th>Nome</th>
-                            <th>Marca</th>
-                            <th>Modelo</th>
-                            <th>Número de Série</th>
-                            <th>Data de Fabricação</th>
-                            <th>Data de Aquisição</th>
-                            <th>Preço</th>
-                            <th>Garantia</th>
+                            <th>Músculo Ativado</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         {aparelhos.map(aparelho => (
-                            <tr key={aparelho.numeroSerie} className={styles.tabelaCorpo}>
-                                <td>{aparelho.nome}</td>
-                                <td>{aparelho.marca}</td>
-                                <td>{aparelho.modelo}</td>
-                                <td>{aparelho.numeroSerie}</td>
-                                <td>{aparelho.dataFabricacao}</td>
-                                <td>{aparelho.dataAquisicao}</td>
-                                <td>{aparelho.preco}</td>
-                                <td>{aparelho.garantia}</td>
+                            <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
+                                <td>{aparelho.id_aparelho}</td>
+                                <td>{aparelho.nome_aparelho}</td>
+                                <td>{aparelho.musculo_ativado}</td>
+                                <td onClick={deletar}><FaTrash /></td>
                             </tr>
                         ))}
                     </tbody>

@@ -1,8 +1,8 @@
 class ExerciciosRequests {
     constructor() {
-        this.serverUrl = 'http://localhost:3000'; 
-        this.routeListarExercicio = '/listarExercicio';
-        this.routeCadastrarExercicio = '/cadastrarExercicio';
+        this.serverUrl = 'http://localhost:3000'; // Altere para a URL correta do seu backend
+        this.routeListarExercicio = '/listar-exercicio';
+        this.routeCadastrarExercicio = '/novo/exercicio';
     }
 
     async listarExercicio() {
@@ -14,6 +14,7 @@ class ExerciciosRequests {
             return await response.json();
         } catch (error) {
             console.error('Erro: ', error);
+            throw error; // Propaga o erro para o código que chama esta função
         }
     }
 
@@ -32,6 +33,7 @@ class ExerciciosRequests {
             return await response.json();
         } catch (error) {
             console.error('Erro: ', error);
+            throw error; // Propaga o erro para o código que chama esta função
         }
     }
 }

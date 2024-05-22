@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './TabelaListagemAlunos.module.css';
 import AlunoRequests from '../../fetch/AlunoRequests';
+import { FaTrash } from "react-icons/fa";
 
 function ListarAluno() {
     const [alunos, setAlunos] = useState([]);
@@ -8,15 +9,33 @@ function ListarAluno() {
     useEffect(() => {
         const fetchAlunos = async () => {
             try {
-                const response = await AlunoRequests.listarAlunos();
-                setAlunos(response.data); // Supondo que o backend retorna um objeto com uma propriedade "data" contendo a lista de alunos
+                const aluno = await AlunoRequests.listarAlunos();
+                setAlunos(aluno);
             } catch (error) {
-                console.error('Erro ao listar alunos:', error);
+                console.error('Erro ao buscar alunos: ', error);
             }
         };
 
         fetchAlunos();
     }, []);
+    
+    const formatarData = (data) => {
+        return new Date(data).toLocaleDateString('pt-br');
+    };
+
+    const formatarCPF = (cpf) => {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    };
+
+    const formatarTelefone = (telefone) => {
+        return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    };
+
+    const deletar = () => {
+        window.alert('Não foi feito... ainda');
+    };
+
+    console.log(alunos);
 
     return (
         <>
@@ -33,40 +52,44 @@ function ListarAluno() {
             </div>
             
             <div className={styles.cntTb}>
-                <table className={`${styles.table} ${styles.tabela}`}>
-                    <thead>
-                        <tr className={styles.tabelaHeader}>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Data de Nascimento</th>
-                            <th>Telefone</th>
-                            <th>Endereço</th>
-                            <th>Email</th>
-                            <th>Senha</th>
-                            <th>Altura</th>
-                            <th>Peso</th>
-                            <th>IMC</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {alunos.map(aluno => (
-                            <tr key={aluno.id} className={styles.tabelaCorpo}>
-                                <td>{aluno.id}</td>
-                                <td>{aluno.nome}</td>
-                                <td>{aluno.cpf}</td>
-                                <td>{aluno.data_nascimento}</td>
-                                <td>{aluno.celular}</td>
-                                <td>{aluno.endereco}</td>
-                                <td>{aluno.email}</td>
-                                <td>{aluno.senha}</td>
-                                <td>{aluno.altura}</td>
-                                <td>{aluno.peso}</td>
-                                <td>{aluno.imc}</td>
+                {alunos.length > 0 ? (
+                    <table className={`${styles.table} ${styles.tabela}`}>
+                        <thead>
+                            <tr className={styles.tabelaHeader}>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Data de Nascimento</th>
+                                <th>Telefone</th>
+                                <th>Endereço</th>
+                                <th>Email</th>
+                                <th>Altura</th>
+                                <th>Peso</th>
+                                <th>IMC</th>
+                                <th>Ação</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {alunos.map(aluno => (
+                                <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
+                                    <td>{aluno.id_aluno}</td>
+                                    <td>{aluno.nome}</td>
+                                    <td>{formatarCPF(aluno.cpf)}</td>
+                                    <td>{formatarData(aluno.data_nascimento)}</td>
+                                    <td>{formatarTelefone(aluno.celular)}</td>
+                                    <td>{aluno.endereco}</td>
+                                    <td>{aluno.email}</td>
+                                    <td>{aluno.altura}</td>
+                                    <td>{aluno.peso}</td>
+                                    <td>{aluno.imc}</td>
+                                    <td onClick={deletar}><FaTrash /></td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p>Carregando...</p>
+                )}
             </div>
         </>
     );

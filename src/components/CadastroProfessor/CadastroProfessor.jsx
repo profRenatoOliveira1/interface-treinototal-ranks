@@ -6,11 +6,13 @@ function CadastroProfessor() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        dataNascimento: '',
-        telefone: '',
+        data_nascimento: '',
+        celular: '',
         endereco: '',
         email: '',
         senha: '',
+        data_contratacao: '',
+        formacao: '',
         especialidade: ''
     });
 
@@ -27,6 +29,7 @@ function CadastroProfessor() {
         try {
             const response = await ProfessoresRequests.cadastrarProfessor(formData);
             console.log('Professor cadastrado com sucesso:', response);
+            window.alert( formData.nome + ': foi cadastrado com sucesso');
         } catch (error) {
             console.error('Erro ao cadastrar professor:', error);
         }
@@ -62,19 +65,19 @@ function CadastroProfessor() {
                             type="date"
                             className={styles.formStyle}
                             placeholder="Data de Nascimento"
-                            value={formData.dataNascimento}
+                            value={formData.data_nascimento}
                             onChange={handleChange}
-                            name="dataNascimento"
+                            name="data_nascimento"
                         />
                     </div>
                     <div className={styles.formGroup}>
                         <input
-                            type="tel"
+                            type="number"
                             className={styles.formStyle}
                             placeholder="Telefone"
-                            value={formData.telefone}
+                            value={formData.celular}
                             onChange={handleChange}
-                            name="telefone"
+                            name="celular"
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -105,6 +108,26 @@ function CadastroProfessor() {
                             value={formData.senha}
                             onChange={handleChange}
                             name="senha"
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="date"
+                            className={styles.formStyle}
+                            placeholder="Data Contratacao"
+                            value={formData.data_contratacao}
+                            onChange={handleChange}
+                            name="data_contratacao"
+                        />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <input
+                            type="text"
+                            className={styles.formStyle}
+                            placeholder="Formacao"
+                            value={formData.formacao}
+                            onChange={handleChange}
+                            name="formacao"
                         />
                     </div>
                     <div className={styles.formGroup}>

@@ -1,8 +1,8 @@
 class ProfessoresRequests {
     constructor() {
         this.serverUrl = 'http://localhost:3000'; 
-        this.routeListarProfessor = '/listarProfessor';
-        this.routeCadastrarProfessor = '/cadastrarProfessor';
+        this.routeListarProfessor = '/listar-professor';
+        this.routeCadastrarProfessor = '/novo/professor';
     }
 
     async listarProfessor() {

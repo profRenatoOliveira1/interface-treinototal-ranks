@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import styles from './CadastroAparelho.module.css';
-import AparelhoRequests from '../../fetch/AparelhosRequests'
+import AparelhoRequests from '../../fetch/AparelhosRequests';
 
 function CadastroAparelho() {
     const [formData, setFormData] = useState({
-        nome: '',
-        tipo: '',
-        marca: '',
-        modelo: '',
-        anoFabricacao: ''
+        id_aparelho: '',
+        nome_aparelho: '',
+        musculo_ativado: ''
     });
 
     const handleChange = (e) => {
@@ -24,9 +22,9 @@ function CadastroAparelho() {
         try {
             const response = await AparelhoRequests.cadastrarAparelho(formData);
             console.log('Aparelho cadastrado com sucesso:', response);
+            window.alert( formData.nome_aparelho + ': foi cadastrado com sucesso');
         } catch (error) {
-            console.error('Erro ao cadastrar aparelho:', error);
-        }
+            console.error('Erro ao cadastrar aparelho:', error);        }
     };
 
     return (
@@ -39,49 +37,19 @@ function CadastroAparelho() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Nome"
-                            value={formData.nome}
+                            value={formData.nome_aparelho}
                             onChange={handleChange}
-                            name="nome"
+                            name="nome_aparelho"
                         />
                     </div>
                     <div className={styles.formGroup}>
                         <input
                             type="text"
                             className={styles.formStyle}
-                            placeholder="Tipo"
-                            value={formData.tipo}
+                            placeholder="Musculo Ativado"
+                            value={formData.musculo_ativado}
                             onChange={handleChange}
-                            name="tipo"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Marca"
-                            value={formData.marca}
-                            onChange={handleChange}
-                            name="marca"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Modelo"
-                            value={formData.modelo}
-                            onChange={handleChange}
-                            name="modelo"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Ano de Fabricação"
-                            value={formData.anoFabricacao}
-                            onChange={handleChange}
-                            name="anoFabricacao"
+                            name="musculo_ativado"
                         />
                     </div>
                     <button type="submit" className={styles.btn}>
