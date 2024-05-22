@@ -28,8 +28,10 @@ function CadastroAluno() {
         try {
             const response = await AlunoRequests.cadastrarAluno(formData);
             console.log('Aluno cadastrado com sucesso:', response);
+            // Aqui você pode redirecionar o usuário para outra página, exibir uma mensagem de sucesso, etc.
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);
+            // Aqui você pode lidar com erros, exibir uma mensagem de erro para o usuário, etc.
         }
     };
 

@@ -1,6 +1,6 @@
 class ExerciciosRequests {
     constructor() {
-        this.serverUrl = 'http://localhost:3000'; // Defina o URL do servidor aqui
+        this.serverUrl = 'http://localhost:3000'; 
         this.routeListarExercicio = '/listarExercicio';
         this.routeCadastrarExercicio = '/cadastrarExercicio';
     }

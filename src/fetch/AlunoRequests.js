@@ -1,8 +1,8 @@
 class AlunoRequests {
     constructor() {
-        this.serverUrl = 'http://localhost:3000'; // Defina o URL do servidor aqui
+        this.serverUrl = 'http://localhost:3000'; 
         this.routeListarAluno = '/listarAluno';
-        this.routeCadastrarAluno = '/cadastrarAluno'; // Defina a rota de cadastro aqui
+        this.routeCadastrarAluno = '/cadastrarAluno';
     }
 
     async listarAluno() {

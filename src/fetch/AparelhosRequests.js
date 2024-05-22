@@ -1,6 +1,6 @@
 class AparelhoRequests {
     constructor() {
-        this.serverUrl = 'http://localhost:3000'; // Defina o URL do servidor aqui
+        this.serverUrl = 'http://localhost:3000'; 
         this.routeListarAparelho = '/listarAparelho';
         this.routeCadastrarAparelho = '/cadastrarAparelho';
     }

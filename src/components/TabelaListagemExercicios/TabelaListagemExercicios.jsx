@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import styles from './TabelaListagemExercicios.module.css'; // Importe o módulo CSS corretamente
-
+import styles from './TabelaListagemExercicios.module.css'; 
 function TabelaListagemExercicios() {
  
     const [listarExercicio, setExercicios] = useState([]);
@@ -20,7 +19,7 @@ function TabelaListagemExercicios() {
         <div className={styles.cntTb}>
             <h1 className={styles.titulo}>Tabela de Exercícios</h1>
             {exercicios.length > 0 ? (
-                <table className={`${styles.table} ${styles.tabela}`}> {/* Utilize as classes do módulo CSS corretamente */}
+                <table className={`${styles.table} ${styles.tabela}`}> 
                     <thead>
                         <tr className={styles.tabelaHeader}>
                             <th>ID</th>
