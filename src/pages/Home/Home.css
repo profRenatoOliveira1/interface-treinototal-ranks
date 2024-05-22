@@ -1,32 +1,38 @@
+/* Importa a fonte 'Archivo Black' do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
 
+/* Define as variáveis de cor */
 :root {
     --azulEscuro: #46697C;
+    /* Define a cor azul escura */
     --azulClaro: #94A7AE;
+    /* Define a cor azul clara */
     --branco: #FFFFFF;
+    /* Define a cor branca */
     --azulMuitoEscuro: #102028;
+    /* Define a cor azul muito escura */
     --preto: #060F16;
+    /* Define a cor preta */
 }
 
-
-
-/*
-.imagem {
-    margin-top: 10%;
-    margin-right: -18%;
-    height: 50%;
-
-}
-*/
+/* Estilos para a div-mae */
 .div-mae {
     display: flex;
+    /* Utiliza um layout flexível */
     flex-direction: row-reverse;
+    /* Define a direção do eixo principal como de trás para frente */
     justify-content: space-between;
+    /* Distribui o espaço disponível entre os elementos */
     width: 100%;
+    /* Define a largura como 100% */
     align-items: center;
+    /* Alinha os itens verticalmente ao centro */
     flex-wrap: nowrap;
+    /* Impede a quebra de linha dos itens */
 }
 
+/* Estilos para o corpo do documento */
 body {
-    background-color: var(--preto)!important;
+    background-color: var(--preto) !important;
+    /* Define o fundo do corpo como preto */
 }

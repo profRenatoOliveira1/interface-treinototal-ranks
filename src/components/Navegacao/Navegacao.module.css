@@ -1,37 +1,51 @@
-/* Navegacao.module.css */
+/* Define o estilo para a barra de navegação */
 .CtnNavbar {
-  background-color: #343a40; /* Um tom de cinza escuro */
-  padding: 10px; /* Adiciona algum padding */
+  background-color: #343a40;
+  /* Um tom de cinza escuro */
+  padding: 10px;
+  /* Adiciona algum padding */
 }
 
+/* Define o estilo para o texto e links na barra de navegação */
 .logoAtividade {
   display: flex;
   align-items: center;
   color: #ffeba7;
+  /* Cor do texto */
   text-decoration: none;
-  font-size: 16px; /* Define o tamanho da fonte para todos os textos na barra de navegação */
+  /* Remove sublinhado dos links */
+  font-size: 16px;
+  /* Define o tamanho da fonte para todos os textos na barra de navegação */
   font-family: "Archivo Black", sans-serif;
-
+  /* Define a fonte */
 }
 
+/* Define o estilo para a imagem do logo */
 .logoImage {
-  width: 70px; /* Aumenta o tamanho da imagem */
-  height: 70px; /* Aumenta o tamanho da imagem */
-  border-radius: 50%; /* Torna a imagem circular */
-  margin-right: 10px; /* Espaçamento entre a imagem e o texto */
+  width: 70px;
+  /* Aumenta o tamanho da imagem */
+  height: 70px;
+  /* Aumenta o tamanho da imagem */
+  border-radius: 50%;
+  /* Torna a imagem circular */
+  margin-right: 10px;
+  /* Espaçamento entre a imagem e o texto */
 }
 
+/* Define o estilo para os links de navegação */
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-item,
 .navbar-brand {
-  color: #ffeba7 !important; /* Cor #ffeba7 para os links de navegação */
-  font-size: 16px; /* Define o tamanho da fonte para os links e itens do dropdown */
-
+  color: #ffeba7 !important;
+  /* Cor #ffeba7 para os links de navegação */
+  font-size: 16px;
+  /* Define o tamanho da fonte para os links e itens do dropdown */
 }
 
+/* Define o estilo para os links de navegação ao passar o mouse */
 .navbar-nav .nav-link:hover,
 .navbar-nav .dropdown-item:hover,
 .navbar-brand:hover {
-  color: #ffeba7 !important; /* Mantém a cor ao passar o mouse */
+  color: #ffeba7 !important;
+  /* Mantém a cor ao passar o mouse */
 }
-

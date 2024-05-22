@@ -1,76 +1,124 @@
+/* Importa a fonte 'Caesar Dressing' do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+
+/* Importa os estilos do Bootstrap */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* Define as variáveis de cores e estilos globais */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Define a fonte padrão */
   line-height: 1.5;
+  /* Define a altura da linha */
   font-weight: 400;
+  /* Define o peso da fonte */
   color-scheme: light dark;
+  /* Define a cor do esquema */
   color: yellow;
+  /* Define a cor de texto padrão */
   --preto: #1B2124;
+  /* Define uma variável de cor personalizada */
   --amarelo: #D7C99C;
+  /* Define uma variável de cor personalizada */
   --cinzaEscuro: #0E1A1F;
+  /* Define uma variável de cor personalizada */
   font-synthesis: none;
+  /* Evita a síntese de fontes */
   text-rendering: optimizeLegibility;
+  /* Otimiza a legibilidade do texto */
   -webkit-font-smoothing: antialiased;
+  /* Suaviza as bordas das fontes no WebKit */
   -moz-osx-font-smoothing: grayscale;
+  /* Suaviza as bordas das fontes no macOS */
 }
 
+/* Estilos para links */
 a {
   font-weight: 500;
+  /* Define o peso da fonte para links */
   color: #646cff;
+  /* Define a cor padrão dos links */
   text-decoration: inherit;
+  /* Herda a decoração de texto do elemento pai */
 }
 
+/* Estilos para links ao passar o mouse */
 a:hover {
   color: white;
+  /* Altera a cor dos links ao passar o mouse */
 }
 
+/* Estilos para o corpo do documento */
 body {
   margin: 0;
+  /* Remove as margens padrão */
   display: flex;
-
+  /* Usa um layout flexível */
   min-width: 320px;
+  /* Define a largura mínima do corpo */
   min-height: 100vh;
+  /* Define a altura mínima do corpo como 100% da altura da viewport */
 }
 
+/* Estilos para cabeçalhos */
 h1 {
   font-size: 3.2em;
+  /* Define o tamanho da fonte */
   line-height: 1.1;
+  /* Define a altura da linha */
 }
 
+/* Estilos para botões */
 button {
   border-radius: 8px;
+  /* Define o raio da borda */
   border: 1px solid transparent;
+  /* Define a borda */
   padding: 0.6em 1.2em;
+  /* Define o preenchimento */
   font-size: 1em;
+  /* Define o tamanho da fonte */
   font-weight: 500;
+  /* Define o peso da fonte */
   font-family: inherit;
+  /* Herda a fonte do elemento pai */
   background-color: #1a1a1a;
+  /* Define a cor de fundo */
   cursor: pointer;
+  /* Altera o cursor ao pairar sobre o botão */
   transition: border-color 0.25s;
+  /* Adiciona uma transição suave para a cor da borda */
 }
 
+/* Estilos para botões ao passar o mouse */
 button:hover {
   border-color: #646cff;
+  /* Altera a cor da borda ao passar o mouse */
 }
 
+/* Estilos para botões focados */
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+  /* Define um contorno quando o botão está focado */
 }
 
+/* Estilos para o esquema de cores claro */
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
+    /* Define a cor de texto para o esquema de cores claro */
     background-color: var(--amarelo);
+    /* Define a cor de fundo para o esquema de cores claro */
   }
 
   a:hover {
     color: #747bff;
+    /* Altera a cor dos links ao passar o mouse no esquema de cores claro */
   }
 
   button {
     background-color: var(--amarelo);
+    /* Define a cor de fundo dos botões no esquema de cores claro */
   }
 }

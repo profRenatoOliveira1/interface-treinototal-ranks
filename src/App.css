@@ -1,52 +1,82 @@
+/* Define o estilo para o contêiner principal */
 #root {
   width: 100%;
+  /* largura total */
   margin: 0 auto;
+  /* centralizado horizontalmente */
   text-align: center;
+  /* alinha o texto e elementos filhos ao centro */
 }
 
+/* Define o estilo para o logotipo */
 .logo {
   height: 6em;
+  /* altura do logotipo */
   padding: 1.5em;
+  /* preenchimento ao redor do logotipo */
   will-change: filter;
+  /* otimização para transições */
   transition: filter 300ms;
+  /* transição suave para o filtro */
 }
 
+/* Quando o mouse paira sobre o logotipo, aplica-se uma sombra */
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
+  /* sombra ao redor do logotipo */
 }
 
+/* Para elementos .logo que também têm a classe .react, uma sombra diferente é aplicada ao pairar */
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+  /* sombra de cor diferente */
 }
 
+/* Define a animação de rotação do logotipo */
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
+    /* rotação inicial */
   }
 
   to {
     transform: rotate(360deg);
+    /* rotação completa */
   }
 }
 
+/* Aplica a animação de rotação ao logotipo de acordo com as preferências de movimento do usuário */
 @media (prefers-reduced-motion: no-preference) {
+
+  /* Aplica a animação apenas ao segundo link que contém um logotipo */
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
+    /* animação infinita */
   }
 }
 
+/* Define o estilo para o cartão */
 .card {
   padding: 2em;
+  /* preenchimento ao redor do cartão */
 }
 
+/* Define o estilo para o texto 'read-the-docs' */
 .read-the-docs {
   color: #888;
+  /* cor do texto */
 }
 
+/* Define o estilo para o contêiner de atrações */
 .ctn-atracoes {
   display: flex;
+  /* layout flexível */
   flex-direction: row;
+  /* organiza os elementos em uma linha */
   justify-content: space-around;
+  /* distribui uniformemente os elementos com espaço ao redor */
   width: 75%;
+  /* largura do contêiner */
   margin: 2% auto;
+  /* margem superior e inferior, centralizado horizontalmente */
 }

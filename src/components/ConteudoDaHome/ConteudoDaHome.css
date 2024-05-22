@@ -1,49 +1,79 @@
+/* Define variáveis de cor para reutilização */
 :root {
     --azulEscuro: #46697C;
+    /* Azul escuro */
     --azulClaro: #94A7AE;
+    /* Azul claro */
     --branco: #FFFFFF;
+    /* Branco */
     --azulMuitoEscuro: #102028;
+    /* Azul muito escuro */
 }
 
-
+/* Estilos para um título genérico */
 .titulo {
     text-align: center;
+    /* Alinha o texto ao centro */
     color: #ffeba7;
+    /* Define a cor do texto */
     font-family: "Archivo Black", sans-serif;
+    /* Define a fonte */
     font-weight: 400;
+    /* Define o peso da fonte */
     font-style: normal;
-
+    /* Define o estilo da fonte */
 }
 
+/* Estilos para o conteúdo dentro de uma div */
 .div-conteudo {
     margin-left: 10%;
+    /* Define uma margem à esquerda */
     width: 80%;
+    /* Define a largura */
 }
 
+/* Estilos para a classe 'home' */
 .home {
     margin-top: 5%;
-
+    /* Define uma margem superior */
 }
 
+/* Estilos para parágrafos */
 .paragrafo {
     width: 95%;
+    /* Define a largura */
     font-size: 20px;
+    /* Define o tamanho da fonte */
     text-align: justify;
+    /* Justifica o texto */
     margin-left: 3%;
+    /* Define uma margem à esquerda */
     height: 80%;
+    /* Define a altura */
     color: #ffeba7;
+    /* Define a cor do texto */
     font-family: Arial, Helvetica, sans-serif;
+    /* Define a fonte */
 }
 
+/* Estilos para botões */
 .botao {
     color: #ffeba7;
+    /* Define a cor do texto */
     background-color: var(--azulEscuro);
+    /* Define a cor de fundo */
     height: 50%;
+    /* Define a altura */
     width: 30%;
+    /* Define a largura */
     font-size: 20px;
+    /* Define o tamanho da fonte */
     font-weight: bold;
+    /* Define o peso da fonte */
 }
 
+/* Estilos para a div de botões */
 .div-botao {
     height: 100px;
+    /* Define a altura */
 }

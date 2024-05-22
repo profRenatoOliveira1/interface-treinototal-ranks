@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import styles from './CadastroExercicio.module.css';
 import ExerciciosRequests from '../../fetch/ExerciciosRequests';
 
+// Componente funcional CadastroExercicio
 function CadastroExercicio() {
+    // Definição do estado inicial do formulário com useState
     const [formData, setFormData] = useState({
         id_aparelho: '',
         exercicio: '',
@@ -11,39 +13,47 @@ function CadastroExercicio() {
         regiao_corpo_ativa: ''
     });
 
+    // Função para lidar com mudanças nos campos do formulário
     const handleChange = (e) => {
         const { name, value } = e.target;
+        // Atualiza o estado com o novo valor do campo modificado
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão de recarregar a página
         try {
+            // Envia os dados do formulário para a API
             const response = await ExerciciosRequests.cadastrarExercicio(formData);
             console.log('Exercício cadastrado com sucesso:', response);
-            window.alert( formData.exercicio + ': foi cadastrado com sucesso');
+            // Mostra um alerta de sucesso para o usuário
+            window.alert(formData.exercicio + ': foi cadastrado com sucesso');
+            // Reseta os campos do formulário
             setFormData({
+                id_aparelho: '',
                 exercicio: '',
                 carga: '',
                 repeticoes: '',
                 regiao_corpo_ativa: ''
             });
         } catch (error) {
+            // Mostra um alerta de erro para o usuário em caso de falha
             console.error('Erro ao cadastrar exercício:', error);
-            window.alert( 'Erro ao cadastrar exercício');
-
+            window.alert('Erro ao cadastrar exercício');
         }
     };
 
+    // Renderização do formulário
     return (
         <div className={styles.section}>
             <div className={styles.container}>
                 <h1 className={styles.h1}>Cadastro de Exercício</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className={styles.formGroup}>
+                    {/* Campo para id_aparelho */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
@@ -54,6 +64,8 @@ function CadastroExercicio() {
                             name="id_aparelho"
                         />
                     </div>
+                    {/* Campo para nome do exercício */}
+                    <div className={styles.formGroup}>
                         <input
                             type="text"
                             className={styles.formStyle}
@@ -63,6 +75,7 @@ function CadastroExercicio() {
                             name="exercicio"
                         />
                     </div>
+                    {/* Campo para carga */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
@@ -73,6 +86,7 @@ function CadastroExercicio() {
                             name="carga"
                         />
                     </div>
+                    {/* Campo para repetições */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
@@ -83,16 +97,18 @@ function CadastroExercicio() {
                             name="repeticoes"
                         />
                     </div>
+                    {/* Campo para região do corpo ativa */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
                             className={styles.formStyle}
-                            placeholder="regiaoCorpoAtiva"
+                            placeholder="regiao_corpo_ativa"
                             value={formData.regiao_corpo_ativa}
                             onChange={handleChange}
                             name="regiao_corpo_ativa"
                         />
                     </div>
+                    {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>

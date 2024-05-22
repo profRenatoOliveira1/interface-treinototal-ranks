@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import styles from './CadastroProfessor.module.css';
 import ProfessoresRequests from '../../fetch/ProfessoresRequests';
 
+// Componente funcional CadastroProfessor
 function CadastroProfessor() {
+    // Definição do estado inicial do formulário com useState
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
@@ -16,30 +18,38 @@ function CadastroProfessor() {
         especialidade: ''
     });
 
+    // Função para lidar com mudanças nos campos do formulário
     const handleChange = (e) => {
         const { name, value } = e.target;
+        // Atualiza o estado com o novo valor do campo modificado
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão de recarregar a página
         try {
+            // Envia os dados do formulário para a API
             const response = await ProfessoresRequests.cadastrarProfessor(formData);
             console.log('Professor cadastrado com sucesso:', response);
-            window.alert( formData.nome + ': foi cadastrado com sucesso');
+            // Mostra um alerta de sucesso para o usuário
+            window.alert(formData.nome + ': foi cadastrado com sucesso');
         } catch (error) {
+            // Mostra um alerta de erro para o usuário em caso de falha
             console.error('Erro ao cadastrar professor:', error);
         }
     };
 
+    // Renderização do formulário
     return (
         <div className={styles.section}>
             <div className={styles.container}>
                 <h1 className={styles.h1}>Cadastro de Professor</h1>
                 <form onSubmit={handleSubmit}>
+                    {/* Campo para nome completo */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -50,6 +60,7 @@ function CadastroProfessor() {
                             name="nome"
                         />
                     </div>
+                    {/* Campo para CPF */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -60,6 +71,7 @@ function CadastroProfessor() {
                             name="cpf"
                         />
                     </div>
+                    {/* Campo para data de nascimento */}
                     <div className={styles.formGroup}>
                         <input
                             type="date"
@@ -70,6 +82,7 @@ function CadastroProfessor() {
                             name="data_nascimento"
                         />
                     </div>
+                    {/* Campo para número de celular */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
@@ -80,6 +93,7 @@ function CadastroProfessor() {
                             name="celular"
                         />
                     </div>
+                    {/* Campo para endereço */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -90,6 +104,7 @@ function CadastroProfessor() {
                             name="endereco"
                         />
                     </div>
+                    {/* Campo para email */}
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -100,6 +115,7 @@ function CadastroProfessor() {
                             name="email"
                         />
                     </div>
+                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -110,6 +126,7 @@ function CadastroProfessor() {
                             name="senha"
                         />
                     </div>
+                    {/* Campo para data de contratação */}
                     <div className={styles.formGroup}>
                         <input
                             type="date"
@@ -120,6 +137,7 @@ function CadastroProfessor() {
                             name="data_contratacao"
                         />
                     </div>
+                    {/* Campo para formação */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -130,6 +148,7 @@ function CadastroProfessor() {
                             name="formacao"
                         />
                     </div>
+                    {/* Campo para especialidade */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -140,6 +159,7 @@ function CadastroProfessor() {
                             name="especialidade"
                         />
                     </div>
+                    {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>

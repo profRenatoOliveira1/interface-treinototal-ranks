@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import styles from './CadastroAluno.module.css';
-import AlunoRequests from '../../fetch/AlunoRequests'
+import React, { useState } from 'react'; // Importa React e useState hook para gerenciar o estado do componente
+import styles from './CadastroAluno.module.css'; // Importa estilos CSS específicos para este componente
+import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API
 
 function CadastroAluno() {
+    // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
@@ -16,25 +17,38 @@ function CadastroAluno() {
         imc: ''
     });
 
+    // Função para atualizar o estado do formulário conforme o usuário digita
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setFormData(prevState => ({
-            ...prevState,
-            [name]: value
+            ...prevState, // Mantém os valores atuais do estado
+            [name]: value // Atualiza o valor do campo específico
         }));
     };
 
+    // Função para lidar com a submissão do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
+        // Validação básica para garantir que os campos obrigatórios estão preenchidos
+        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+            window.alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
         try {
+            // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(formData);
             console.log('Aluno cadastrado com sucesso:', response);
-            window.alert( formData.nome + ': foi cadastrado com sucesso');
+            window.alert(`${formData.nome} foi cadastrado com sucesso`); // Exibe uma mensagem de sucesso
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);
-            window.alert('Ocorreu esse erro:' + error);
-
+            window.alert('Ocorreu um erro: ' + error.message); // Exibe uma mensagem de erro
         }
+    };
+
+    // Função para capitalizar a primeira letra de cada palavra
+    const capitalize = (str) => {
+        return str.replace(/(?:^|\s)\S/g, (a) => a.toUpperCase());
     };
 
     return (
@@ -42,106 +56,25 @@ function CadastroAluno() {
             <div className={styles.container}>
                 <h1 className={styles.h1}>Cadastro de Aluno</h1>
                 <form onSubmit={handleSubmit}>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Nome completo"
-                            value={formData.nome}
-                            onChange={handleChange}
-                            name="nome"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="CPF"
-                            value={formData.cpf}
-                            onChange={handleChange}
-                            name="cpf"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="date"
-                            className={styles.formStyle}
-                            placeholder="Data de Nascimento"
-                            value={formData.data_nascimento}
-                            onChange={handleChange}
-                            name="data_nascimento"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="tel"
-                            className={styles.formStyle}
-                            placeholder="Telefone"
-                            value={formData.celular}
-                            onChange={handleChange}
-                            name="celular"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Endereço"
-                            value={formData.endereco}
-                            onChange={handleChange}
-                            name="endereco"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="email"
-                            className={styles.formStyle}
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            name="email"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="password"
-                            className={styles.formStyle}
-                            placeholder="Senha"
-                            value={formData.senha}
-                            onChange={handleChange}
-                            name="senha"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="Altura"
-                            value={formData.altura}
-                            onChange={handleChange}
-                            name="altura"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="Peso"
-                            value={formData.peso}
-                            onChange={handleChange}
-                            name="peso"
-                        />
-                    </div>
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="IMC"
-                            value={formData.imc}
-                            onChange={handleChange}
-                            name="imc"
-                        />
-                    </div>
+                    {/* Gera dinamicamente os campos do formulário */}
+                    {['nome', 'cpf', 'data_nascimento', 'telefone', 'endereco', 'email', 'senha', 'altura', 'peso', 'imc'].map(field => (
+                        <div className={styles.formGroup} key={field}>
+                            <input
+                                type={
+                                    field === 'email' ? 'email' :
+                                    field === 'senha' ? 'password' :
+                                    field === 'data_nascimento' ? 'date' :
+                                    ['altura', 'peso', 'imc'].includes(field) ? 'number' :
+                                    'text'
+                                }
+                                className={styles.formStyle}
+                                placeholder={capitalize(field.replace('_', ' '))} // Define o placeholder capitalizando o nome do campo
+                                value={formData[field]} // Define o valor do input com base no estado
+                                onChange={handleChange} // Define a função de mudança para atualizar o estado
+                                name={field} // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
+                            />
+                        </div>
+                    ))}
                     <button type="submit" className={styles.btn}>
                         Cadastrar-se
                     </button>
@@ -151,4 +84,4 @@ function CadastroAluno() {
     );
 }
 
-export default CadastroAluno;
+export default CadastroAluno; // Exporta o componente para ser utilizado em outras partes da aplicação
