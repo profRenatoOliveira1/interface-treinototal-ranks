@@ -89,20 +89,6 @@
   /* Adiciona borda */
 }
 
-/* Estilo para o cabeçalho da tabela */
-.tabelaHeader {
-  background-color: #007bff;
-  /* Cor de fundo do cabeçalho */
-  color: #fff;
-  /* Cor do texto do cabeçalho */
-}
-
-/* Estilo para o corpo da tabela */
-.tabelaCorpo {
-  background-color: #f8f9fa;
-  /* Cor de fundo do corpo */
-}
-
 /* Estilo para a paginação */
 .pagination {
   display: flex;

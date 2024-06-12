@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ListarProfessor.module.css';
-import ProfessoresRequests from '../../fetch/ProfessoresRequests';
+import ProfessoresRequests from '../../../fetch/ProfessoresRequests';
 import { FaTrash } from "react-icons/fa";
 
 function ListarProfessor() {

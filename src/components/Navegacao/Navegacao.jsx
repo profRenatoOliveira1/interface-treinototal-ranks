@@ -1,11 +1,11 @@
 // Importando estilos do módulo CSS local
-import styles from './Navegacao.module.css';
 
 // Importando componentes do React Bootstrap
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import styles from './Navegacao.module.css';
 
 // Importando a imagem do logo
 import imagemLogo from '../../assets/imgLogoProSaude.png';
@@ -28,32 +28,32 @@ function Navegacao() {
                     {/* Lista de links de navegação */}
                     <Nav>
                         {/* Link para a página inicial */}
-                        <Nav.Link href="/" className={styles.logoAtividade}>
+                        <Nav.Link href="/" className={styles.navbar}>
                             Home
                         </Nav.Link>
                         {/* Dropdown para a seção Aluno */}
-                        <NavDropdown title="Aluno" id="collapsible-nav-dropdown" className={styles.logoAtividade}>
+                        <NavDropdown title="Aluno" id="collapsible-nav-dropdown" className={styles.navbar}>
                             {/* Links para as páginas de cadastro e listagem de alunos */}
-                            <NavDropdown.Item href="/Cadastro/Aluno" className={styles.logoAtividade}>Cadastro</NavDropdown.Item>
-                            <NavDropdown.Item href="/Listagem/Aluno" className={styles.logoAtividade}>Listagem</NavDropdown.Item>
+                            <NavDropdown.Item href="/Cadastro/Aluno" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                            <NavDropdown.Item href="/Listagem/Aluno" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                         </NavDropdown>
                         {/* Dropdown para a seção Professor */}
-                        <NavDropdown title="Professor" id="collapsible-nav-dropdown" className={styles.logoAtividade}>
+                        <NavDropdown title="Professor" id="collapsible-nav-dropdown" className={styles.navbar}>
                             {/* Links para as páginas de cadastro e listagem de professores */}
-                            <NavDropdown.Item href="/Cadastro/Professor" className={styles.logoAtividade}>Cadastro</NavDropdown.Item>
-                            <NavDropdown.Item href="/Listagem/Professor" className={styles.logoAtividade}>Listagem</NavDropdown.Item>
+                            <NavDropdown.Item href="/Cadastro/Professor" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                            <NavDropdown.Item href="/Listagem/Professor" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                         </NavDropdown>
                         {/* Dropdown para a seção Exercício */}
-                        <NavDropdown title="Exercicio" id="collapsible-nav-dropdown" className={styles.logoAtividade}>
+                        <NavDropdown title="Exercicio" id="collapsible-nav-dropdown" className={styles.navbar}>
                             {/* Links para as páginas de cadastro e listagem de exercícios */}
-                            <NavDropdown.Item href="/Cadastro/Exercicio" className={styles.logoAtividade}>Cadastro</NavDropdown.Item>
-                            <NavDropdown.Item href="/Listagem/Exercicio" className={styles.logoAtividade}>Listagem</NavDropdown.Item>
+                            <NavDropdown.Item href="/Cadastro/Exercicio" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                            <NavDropdown.Item href="/Listagem/Exercicio" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                         </NavDropdown>
                         {/* Dropdown para a seção Aparelho */}
-                        <NavDropdown title="Aparelho" id="collapsible-nav-dropdown" className={styles.logoAtividade}>
+                        <NavDropdown title="Aparelho" id="collapsible-nav-dropdown" className={styles.navbar}>
                             {/* Links para as páginas de cadastro e listagem de aparelhos */}
-                            <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.logoAtividade}>Cadastro</NavDropdown.Item>
-                            <NavDropdown.Item href="/Listagem/Aparelho" className={styles.logoAtividade}>Listagem</NavDropdown.Item>
+                            <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                            <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>

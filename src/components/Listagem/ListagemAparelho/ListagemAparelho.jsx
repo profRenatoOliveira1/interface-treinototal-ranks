@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ListarAparelho.module.css';
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
+import AparelhoRequests from '../../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
 import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
 
 function ListarAparelho() {
@@ -54,7 +54,6 @@ function ListarAparelho() {
                 <table className={`${styles.table} ${styles.tabela}`}>
                     <thead>
                         <tr className={styles.tabelaHeader}>
-                            <th>ID</th>
                             <th>Nome</th>
                             <th>Músculo Ativado</th>
                             <th>Ação</th>
@@ -64,7 +63,6 @@ function ListarAparelho() {
                         {/* Mapeia os aparelhos e renderiza cada um como uma linha na tabela */}
                         {aparelhos.map(aparelho => (
                             <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
-                                <td>{aparelho.id_aparelho}</td>
                                 <td>{aparelho.nome_aparelho}</td>
                                 <td>{aparelho.musculo_ativado}</td>
                                 <td onClick={deletar}><FaTrash /></td> {/* Botão para deletar um aparelho */}

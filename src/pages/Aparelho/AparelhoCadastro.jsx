@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 
-import CadastroAparelho from '../../components/CadastroAparelho/CadastroAparelho';
+import CadastroAparelho from '../../components/Cadastro/CadastroAparelho/CadastroAparelho';
 // Importa o componente CadastroAparelho, que está localizado na pasta '../../components/CadastroAparelho/CadastroAparelho'.
 // Este componente é responsável pelo formulário ou funcionalidade de cadastro de aparelhos.
 

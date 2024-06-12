@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from './TabelaListagemAlunos.module.css';
-import AlunoRequests from '../../fetch/AlunoRequests';
+import styles from './ListagemAlunos.module.css';
+import AlunoRequests from '../../../fetch/AlunoRequests';
 import { FaTrash } from "react-icons/fa";
 
 function ListarAluno() {
@@ -71,7 +71,6 @@ function ListarAluno() {
                     <table className={`${styles.table} ${styles.tabela}`}>
                         <thead>
                             <tr className={styles.tabelaHeader}>
-                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>CPF</th>
                                 <th>Data de Nascimento</th>
@@ -88,7 +87,6 @@ function ListarAluno() {
                             {/* Mapeia os alunos e renderiza cada um como uma linha na tabela */}
                             {alunos.map(aluno => (
                                 <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
-                                    <td>{aluno.id_aluno}</td>
                                     <td>{aluno.nome}</td>
                                     <td>{formatarCPF(aluno.cpf)}</td>
                                     <td>{formatarData(aluno.data_nascimento)}</td>

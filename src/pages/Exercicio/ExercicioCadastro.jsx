@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 
-import CadastroExercicio from '../../components/CadastroExercicio/CadastroExercicio';
+import CadastroExercicio from '../../components/Cadastro/CadastroExercicio/CadastroExercicio';
 // Importa o componente CadastroExercicio, que está localizado na pasta '../../components/CadastroExercicio/CadastroExercicio'.
 // Este componente é responsável pelo formulário ou funcionalidade de cadastro de exercícios.
 

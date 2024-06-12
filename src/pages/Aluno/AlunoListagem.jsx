@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 
-import ListarAluno from '../../components/TabelaListagemAlunos/TabelaListagemAlunos';
+import ListarAluno from '../../components/Listagem/ListagemAlunos/ListagemAlunos';
 // Importa o componente ListarAluno, que está localizado na pasta '../../components/TabelaListagemAlunos/TabelaListagemAlunos'.
 // Este componente é responsável por exibir a tabela de listagem de alunos.
 

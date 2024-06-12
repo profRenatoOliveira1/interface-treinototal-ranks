@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './CadastroExercicio.module.css';
-import ExerciciosRequests from '../../fetch/ExerciciosRequests';
+import ExerciciosRequests from '../../../fetch/ExerciciosRequests';
 
 // Componente funcional CadastroExercicio
 function CadastroExercicio() {

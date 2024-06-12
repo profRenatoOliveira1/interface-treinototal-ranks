@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './CadastroProfessor.module.css';
-import ProfessoresRequests from '../../fetch/ProfessoresRequests';
+import ProfessoresRequests from '../../../fetch/ProfessoresRequests';
 
 // Componente funcional CadastroProfessor
 function CadastroProfessor() {

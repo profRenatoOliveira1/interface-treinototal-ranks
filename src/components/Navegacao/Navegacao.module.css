@@ -5,20 +5,11 @@
   padding: 10px;
   /* Adiciona algum padding */
 }
-
-/* Define o estilo para o texto e links na barra de navegação */
-.logoAtividade {
-  display: flex;
-  align-items: center;
+::after {
   color: #ffeba7;
-  /* Cor do texto */
-  text-decoration: none;
-  /* Remove sublinhado dos links */
-  font-size: 16px;
-  /* Define o tamanho da fonte para todos os textos na barra de navegação */
-  font-family: "Archivo Black", sans-serif;
-  /* Define a fonte */
 }
+/* Define o estilo para o texto e links na barra de navegação */
+
 
 /* Define o estilo para a imagem do logo */
 .logoImage {
@@ -36,16 +27,26 @@
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-item,
 .navbar-brand {
-  color: #ffeba7 !important;
+  color: #ffeba7 ;
   /* Cor #ffeba7 para os links de navegação */
   font-size: 16px;
   /* Define o tamanho da fonte para os links e itens do dropdown */
 }
 
 /* Define o estilo para os links de navegação ao passar o mouse */
-.navbar-nav .nav-link:hover,
-.navbar-nav .dropdown-item:hover,
-.navbar-brand:hover {
-  color: #ffeba7 !important;
-  /* Mantém a cor ao passar o mouse */
+
+.navbar, a {
+  display: flex;
+  align-items: center;
+  color: #ffeba7!important;
+  /* Cor do texto */
+  text-decoration: none;
+  /* Remove sublinhado dos links */
+  font-size: 16px;
+  /* Define o tamanho da fonte para todos os textos na barra de navegação */
+  font-family: "Archivo Black", sans-serif;
+  /* Define a fonte */
+}
+.navDropdown {
+  color: #343a40!important;
 }

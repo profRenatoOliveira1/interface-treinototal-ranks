@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importa React e useState hook para gerenciar o estado do componente
 import styles from './CadastroAparelho.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
+import AparelhoRequests from '../../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
 
 function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios

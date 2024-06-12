@@ -1,23 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importação do Bootstrap
-import styles from './TabelaListagemExercicios.module.css'; // Importação dos estilos CSS específicos para este componente
-import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
+import styles from './ListagemExercicios.module.css'; // Importação dos estilos CSS específicos para este componente
+import ExerciciosRequests from '../../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
+import AparelhosRequests from '../../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
 
 function TabelaListagemExercicios() {
     const [exercicios, setExercicios] = useState([]); // Estado para armazenar os exercícios
+    const [aparelhos, setAparelho] = useState([]);
 
     useEffect(() => {
-        const fetchExercicios = async () => {
+        const fetchDados = async () => {
             try {
                 const exercicios = await ExerciciosRequests.listarExercicio(); // Requisição para buscar os exercícios
-                setExercicios(exercicios); // Atualiza o estado com os exercícios obtidos
+                const aparelhos = await AparelhosRequests.listarAparelho(); // Requisição para buscar os aparelhos
+
+                // Mapeia aparelhos com os seus respectivos ids
+                const aparelhosMap = aparelhos.reduce((map, aparelho) => {
+                    map[aparelho.id_aparelho] = aparelho;
+                    return map;
+                }, {});
+
+                // Adiciona o nome do aparelho ao exercício correspondente
+                const exerciciosComAparelhos = exercicios.map(exercicio => ({
+                    ...exercicio,
+                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho || 'N/A'
+                }));
+
+                setExercicios(exerciciosComAparelhos); // Atualiza o estado com os exercícios obtidos
             } catch (error) {
-                console.error('Erro ao buscar exercícios: ', error); // Em caso de erro, exibe no console
+                console.error('Erro ao buscar dados: ', error); // Em caso de erro, exibe no console
             }
         };
 
-        fetchExercicios(); // Chama a função para buscar os exercícios ao montar o componente
+        fetchDados(); // Chama a função para buscar os dados ao montar o componente
     }, []);
 
     const deletar = () => {
@@ -39,8 +55,8 @@ function TabelaListagemExercicios() {
                     <table className={`${styles.table} ${styles.tabela}`}>
                         <thead>
                             <tr className={styles.tabelaHeader}>
-                                <th>ID</th>
                                 <th>Nome do Exercício</th>
+                                <th>Aparelho</th>
                                 <th>Repetições</th>
                                 <th>Carga</th>
                                 <th>Região do Corpo</th>
@@ -51,8 +67,8 @@ function TabelaListagemExercicios() {
                             {/* Mapeia os exercícios e renderiza cada um como uma linha na tabela */}
                             {exercicios.map(exercicio => (
                                 <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
-                                    <td>{exercicio.id_exercicio}</td>
                                     <td>{exercicio.exercicio}</td>
+                                    <td>{exercicio.nome_aparelho}</td>
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{exercicio.carga}</td>
                                     <td>{exercicio.regiao_corpo_ativa}</td>
