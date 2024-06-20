@@ -1,7 +1,7 @@
 class ExerciciosRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = 'http://localhost:3000'; // Altere para a URL correta do seu backend
+        this.serverUrl = import.meta.env.VITE_API_URL;
         this.routeListarExercicio = '/listar-exercicio';
         this.routeCadastrarExercicio = '/novo/exercicio';
     }
