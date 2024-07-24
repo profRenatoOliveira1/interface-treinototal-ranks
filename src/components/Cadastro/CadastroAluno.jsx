@@ -1,55 +1,55 @@
 import React, { useState } from 'react';
-import styles from './CadastroProfessor.module.css';
-import ProfessoresRequests from '../../../fetch/ProfessoresRequests';
+import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
+import AlunoRequests from '../../fetch/AlunoRequests';
+import InputMask from "react-input-mask";
 
-// Componente funcional CadastroProfessor
-function CadastroProfessor() {
-    // Definição do estado inicial do formulário com useState
+function CadastroAluno() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
         data_nascimento: '',
         celular: '',
         endereco: '',
-        email: '',
-        senha: '',
-        data_contratacao: '',
-        formacao: '',
-        especialidade: ''
+        // email: '',
+        // senha: '',
+        altura: '',
+        peso: ''
     });
 
-    // Função para lidar com mudanças nos campos do formulário
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // Atualiza o estado com o novo valor do campo modificado
         setFormData(prevState => ({
             ...prevState,
             [name]: value
         }));
     };
 
-    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Previne o comportamento padrão de recarregar a página
+        e.preventDefault();
+        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+            window.alert('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        const cleanCPF = formData.cpf.replace(/\D/g, ''); 
+        const cleanCelular = formData.celular.replace(/\D/g, ''); 
+        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
+
         try {
-            // Envia os dados do formulário para a API
-            const response = await ProfessoresRequests.cadastrarProfessor(formData);
-            console.log('Professor cadastrado com sucesso:', response);
-            // Mostra um alerta de sucesso para o usuário
-            window.alert(formData.nome + ': foi cadastrado com sucesso');
+            const response = await AlunoRequests.cadastrarAluno(cleanData);
+            console.log('Aluno cadastrado com sucesso:', response);
+            window.alert(`${formData.nome} foi cadastrado com sucesso`);
         } catch (error) {
-            // Mostra um alerta de erro para o usuário em caso de falha
-            console.error('Erro ao cadastrar professor:', error);
+            console.error('Erro ao cadastrar aluno:', error);
+            window.alert('Ocorreu um erro: ' + error.message);
         }
     };
 
-    // Renderização do formulário
     return (
         <div className={styles.section}>
             <div className={styles.container}>
-                <h1 className={styles.h1}>Cadastro de Professor</h1>
+                <h1 className={styles.h1}>Cadastro de Aluno</h1>
                 <form onSubmit={handleSubmit}>
-                    {/* Campo para nome completo */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -62,8 +62,9 @@ function CadastroProfessor() {
                     </div>
                     {/* Campo para CPF */}
                     <div className={styles.formGroup}>
-                        <input
+                        <InputMask
                             type="text"
+                            mask="999.999.999-99"
                             className={styles.formStyle}
                             placeholder="CPF"
                             value={formData.cpf}
@@ -74,9 +75,11 @@ function CadastroProfessor() {
                     {/* Campo para data de nascimento */}
                     <div className={styles.formGroup}>
                         <input
-                            type="date"
+                            type="text"
                             className={styles.formStyle}
                             placeholder="Data de Nascimento"
+                            onFocus={(e) => e.target.type = 'date'}
+                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
                             value={formData.data_nascimento}
                             onChange={handleChange}
                             name="data_nascimento"
@@ -84,8 +87,9 @@ function CadastroProfessor() {
                     </div>
                     {/* Campo para número de celular */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="number"
+                        <InputMask
+                            mask="(99) 99999-9999"
+                            type="text"
                             className={styles.formStyle}
                             placeholder="Telefone"
                             value={formData.celular}
@@ -126,42 +130,30 @@ function CadastroProfessor() {
                             name="senha"
                         />
                     </div>
-                    {/* Campo para data de contratação */}
+                    {/* Campo para altura */}
                     <div className={styles.formGroup}>
                         <input
-                            type="date"
+                            type="number"
                             className={styles.formStyle}
-                            placeholder="Data Contratacao"
-                            value={formData.data_contratacao}
+                            placeholder="Altura"
+                            value={formData.altura}
                             onChange={handleChange}
-                            name="data_contratacao"
+                            name="altura"
                         />
                     </div>
-                    {/* Campo para formação */}
+                    {/* Campo para peso */}
                     <div className={styles.formGroup}>
                         <input
-                            type="text"
+                            type="number"
                             className={styles.formStyle}
-                            placeholder="Formacao"
-                            value={formData.formacao}
+                            placeholder="Peso"
+                            value={formData.peso}
                             onChange={handleChange}
-                            name="formacao"
+                            name="peso"
                         />
                     </div>
-                    {/* Campo para especialidade */}
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Especialidade"
-                            value={formData.especialidade}
-                            onChange={handleChange}
-                            name="especialidade"
-                        />
-                    </div>
-                    {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
-                        Cadastrar
+                        Cadastrar-se
                     </button>
                 </form>
             </div>
@@ -169,4 +161,4 @@ function CadastroProfessor() {
     );
 }
 
-export default CadastroProfessor;
+export default CadastroAluno;

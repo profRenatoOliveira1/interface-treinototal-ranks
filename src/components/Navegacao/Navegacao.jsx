@@ -17,7 +17,7 @@ function Navegacao() {
         <Navbar collapseOnSelect expand="lg" className={styles.CtnNavbar}>
             <Container>
                 {/* Marca do Navbar com link para a página inicial */}
-                <Navbar.Brand href="/" className={styles.logoAtividade}>
+                <Navbar.Brand href="https://www.instagram.com/dev.rank.s" target="_blank" className={styles.logoAtividade}>
                     {/* Inserindo a imagem do logo */}
                     <img src={imagemLogo} alt="Logo" className={styles.logoImage} />
                 </Navbar.Brand>

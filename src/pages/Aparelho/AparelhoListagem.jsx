@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 
-import ListarAparelho from '../../components/Listagem/ListagemAparelho/ListagemAparelho';
+import ListarAparelho from '../../components/Listagem/ListagemAparelho';
 // Importa o componente ListarAparelho, que está localizado na pasta '../../components/ListagemAparelho/ListagemAparelho'.
 // Este componente é responsável por exibir a listagem de aparelhos.
 

@@ -4,6 +4,7 @@ class AparelhoRequests {
         this.serverUrl = 'http://localhost:3000';
         this.routeListarAparelho = '/listar-aparelho';
         this.routeCadastrarAparelho = '/novo/aparelho';
+        this.routeDeletarAparelho = '/remover/aparelho';
     }
 
     async listarAparelho() { // Método assíncrono para listar aparelhos
@@ -18,6 +19,7 @@ class AparelhoRequests {
         } catch (error) {
             // Em caso de erro, exibe o erro no console
             console.error('Erro: ', error);
+            return null; // Retorna null em caso de erro
         }
     }
 
@@ -39,6 +41,22 @@ class AparelhoRequests {
         } catch (error) {
             // Em caso de erro, exibe o erro no console
             console.error('Erro: ', error);
+            return null; // Retorna null em caso de erro
+        }
+    }
+
+    async deletarAparelho(id_aparelho) { // Método assíncrono para deletar um aparelho
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${id_aparelho}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao deletar aparelho');
+            }
+            return true; // Retorna true se a deleção for bem-sucedida
+        } catch (error) {
+            console.error('Erro: ', error);
+            return false; // Retorna false em caso de erro
         }
     }
 }

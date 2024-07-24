@@ -1,9 +1,11 @@
 .imgFundo {
     height: 80%;
     width: 80%;
+    box-shadow: 10px 7px 5px rgb(34, 41, 48);
 }
 
 .div-img {
     justify-content: center;
     align-items: center;
+    margin-top: 10%;
 }

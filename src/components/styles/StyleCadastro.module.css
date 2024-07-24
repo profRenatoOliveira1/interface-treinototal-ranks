@@ -1,18 +1,20 @@
-/* Definição das variáveis de cor */
+/* Define variáveis de cor para reutilização */
 :root {
-  --preto: #1B2124;
-  /* Cor preta */
-  --amarelo: #D7C99C;
-  /* Cor amarela */
-  --cinzaEscuro: #0E1A1F;
-  /* Cor cinza escura */
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
 }
 
 /* Estilos para uma seção genérica */
 .section {
   width: 100%;
   /* Largura total */
-  background-color: var(--cinzaEscuro);
+  background-color: var(--cinzaAzulado);
   /* Cor de fundo */
   padding: 50px 0;
   /* Preenchimento superior e inferior */
@@ -40,34 +42,35 @@
   /* Largura total */
   padding: 15px;
   /* Preenchimento */
-  border: 1px solid var(--preto);
+  border: 1px solid var(--cinzaEscuro);
   /* Borda */
-  border-radius: 5px;
+  border-radius: 15px;
   /* Raio da borda */
-  font-size: 16px;
-  /* Tamanho da fonte */
-  color: var(--preto);
-  /* Cor do texto */
-  background-color: var(--amarelo);
+  background-color: var(--amareloClaro);
   /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+
+::placeholder {
+  color: var(--preto);
 }
 
 /* Estilos para um botão genérico */
 .btn {
   display: inline-block;
   /* Exibe como bloco */
-  padding: 10px 20px;
+  padding: 15px 25px;
   /* Preenchimento */
-  background-color: var(--amarelo);
+  background-color: var(--amareloClaro);
   /* Cor de fundo */
+  font-size: 18px;
   color: var(--preto);
-  /* Cor do texto */
   border: none;
   /* Sem borda */
-  border-radius: 5px;
+  border-radius: 27px;
   /* Raio da borda */
-  font-size: 16px;
-  /* Tamanho da fonte */
   cursor: pointer;
   /* Cursor */
   transition: background-color 0.3s ease;
@@ -76,13 +79,13 @@
 
 /* Estilos de hover para um botão genérico */
 .btn:hover {
-  background-color: #b39f72;
+  background-color: var(--amareloEscuro);
   /* Cor de fundo ao pairar */
 }
 
 /* Estilos para um título genérico */
 .h1 {
-  color: white;
+  color: var(--branco);
   /* Cor do texto */
   text-align: center;
   /* Alinhamento do texto */

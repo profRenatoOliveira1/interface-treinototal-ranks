@@ -1,13 +1,26 @@
+:root {
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
+}
+
 /* Define o estilo para a barra de navegação */
 .CtnNavbar {
-  background-color: #343a40;
+  background-color: var(--cinzaEscuro);
   /* Um tom de cinza escuro */
   padding: 10px;
   /* Adiciona algum padding */
 }
+
 ::after {
-  color: #ffeba7;
+  color: var(--amareloClaro);
 }
+
 /* Define o estilo para o texto e links na barra de navegação */
 
 
@@ -27,7 +40,7 @@
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-item,
 .navbar-brand {
-  color: #ffeba7 ;
+  color: var(--amareloClaro);
   /* Cor #ffeba7 para os links de navegação */
   font-size: 16px;
   /* Define o tamanho da fonte para os links e itens do dropdown */
@@ -35,10 +48,11 @@
 
 /* Define o estilo para os links de navegação ao passar o mouse */
 
-.navbar, a {
+.navbar,
+a {
   display: flex;
   align-items: center;
-  color: #ffeba7!important;
+  color: var(--amareloClaro) !important;
   /* Cor do texto */
   text-decoration: none;
   /* Remove sublinhado dos links */
@@ -47,6 +61,7 @@
   font-family: "Archivo Black", sans-serif;
   /* Define a fonte */
 }
+
 .navDropdown {
-  color: #343a40!important;
+  color: var(--cinzaAzulado) !important;
 }
