@@ -10,8 +10,8 @@ function CadastroAluno() {
         data_nascimento: '',
         celular: '',
         endereco: '',
-        // email: '',
-        // senha: '',
+        email: '',
+        senha: '',
         altura: '',
         peso: ''
     });

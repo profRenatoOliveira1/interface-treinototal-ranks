@@ -7,8 +7,8 @@ function CadastroExercicio() {
     const [formData, setFormData] = useState({
         id_aparelho: '',
         exercicio: '',
-        // carga: '',
-        // repeticoes: '',
+        carga: '',
+        repeticoes: '',
         regiao_corpo_ativa: ''
     });
 
@@ -46,8 +46,8 @@ function CadastroExercicio() {
             setFormData({
                 id_aparelho: '',
                 exercicio: '',
-                // carga: '',
-                // repeticoes: '',
+                carga: '',
+                repeticoes: '',
                 regiao_corpo_ativa: ''
             });
         } catch (error) {
