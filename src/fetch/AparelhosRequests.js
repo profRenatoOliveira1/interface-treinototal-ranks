@@ -1,7 +1,7 @@
 class AparelhoRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = 'http://localhost:3000';
+        this.serverUrl = import.meta.env.VITE_API_URL;
         this.routeListarAparelho = '/listar-aparelho';
         this.routeCadastrarAparelho = '/novo/aparelho';
         this.routeDeletarAparelho = '/remover/aparelho';
