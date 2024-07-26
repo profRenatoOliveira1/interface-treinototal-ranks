@@ -12,8 +12,8 @@ function CadastroProfessor() {
         data_nascimento: '',
         celular: '',
         endereco: '',
-        email: '',
-        senha: '',
+        // email: '',
+        // senha: '',
         data_contratacao: '',
         formacao: '',
         especialidade: ''
@@ -108,7 +108,7 @@ function CadastroProfessor() {
                             name="endereco"
                         />
                     </div>
-                    {/* Campo para email */}
+                    {/* 
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -119,7 +119,6 @@ function CadastroProfessor() {
                             name="email"
                         />
                     </div>
-                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -130,6 +129,7 @@ function CadastroProfessor() {
                             name="senha"
                         />
                     </div>
+                    */}
                     {/* Campo para data de contratação */}
                     <div className={styles.formGroup}>
                         <input

@@ -10,8 +10,8 @@ function CadastroAluno() {
         data_nascimento: '',
         celular: '',
         endereco: '',
-        email: '',
-        senha: '',
+        // email: '',
+        // senha: '',
         altura: '',
         peso: ''
     });
@@ -26,7 +26,7 @@ function CadastroAluno() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+        if (!formData.nome || !formData.cpf ) {
             window.alert('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
@@ -108,7 +108,7 @@ function CadastroAluno() {
                             name="endereco"
                         />
                     </div>
-                    {/* Campo para email */}
+                    {/* 
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -119,7 +119,6 @@ function CadastroAluno() {
                             name="email"
                         />
                     </div>
-                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -130,6 +129,7 @@ function CadastroAluno() {
                             name="senha"
                         />
                     </div>
+                    */}
                     {/* Campo para altura */}
                     <div className={styles.formGroup}>
                         <input
