@@ -16,8 +16,6 @@ function CadastroAluno() {
         peso: ''
     });
 
-    const [errorMessage, setErrorMessage] = useState(''); // Estado para a mensagem de erro
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -158,9 +156,6 @@ function CadastroAluno() {
                             name="peso"
                         />
                     </div>
-
-                    {errorMessage && <p className={styles.error}>{errorMessage}</p>}
-
                     <button type="submit" className={styles.btn}>
                         Cadastrar-se
                     </button>

@@ -29,7 +29,7 @@ function CadastroAparelho() {
             window.alert(formData.nome_aparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
         } catch (error) {
             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro
-        }
+        } 
     };
 
     return (

@@ -137,7 +137,6 @@ function CadastroProfessor() {
                             name="endereco"
                         />
                     </div>
-                    {/* Campo para email */}
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -148,7 +147,6 @@ function CadastroProfessor() {
                             name="email"
                         />
                     </div>
-                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
