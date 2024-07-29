@@ -1,0 +1,140 @@
+/* Define variáveis de cor para reutilização */
+:root {
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
+}
+
+/* Estilos para uma seção genérica */
+.section {
+  width: 100%;
+  /* Largura total */
+  background-color: var(--cinzaAzulado);
+  /* Cor de fundo */
+  padding: 50px 0;
+  /* Preenchimento superior e inferior */
+}
+
+
+/* Estilos para um contêiner genérico */
+.container {
+  max-width: 1200px;
+  /* Largura máxima */
+  margin: 0 auto;
+  /* Centraliza horizontalmente */
+  padding: 0 15px;
+  /* Preenchimento lateral */
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilos para um grupo de formulário genérico */
+.formGroup {
+  margin-bottom: 20px;
+  /* Margem inferior */
+}
+
+/* Estilos para um estilo de formulário genérico */
+.formStyle {
+  width: 100%;
+  /* Largura total */
+  padding: 15px;
+  /* Preenchimento */
+  border: 1px solid var(--cinzaEscuro);
+  /* Borda */
+  border-radius: 15px;
+  /* Raio da borda */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+
+.formStyleEsquerda {
+  width: 49%;
+  /* Largura total */
+  margin-right: 1%;
+  padding: 15px;
+  /* Preenchimento */
+  border: 1px solid var(--cinzaEscuro);
+  /* Borda */
+  border-radius: 15px;
+  /* Raio da borda */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+form{
+  width: 70%;
+}
+.formStyleDireita {
+  width: 49%;
+  /* Largura total */
+  margin-left: 1%;
+
+  padding: 15px;
+  /* Preenchimento */
+  border: 1px solid var(--cinzaEscuro);
+  /* Borda */
+  border-radius: 15px;
+  /* Raio da borda */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+
+::placeholder {
+  color: var(--preto);
+}
+
+/* Estilos para um botão genérico */
+.btn {
+  display: inline-block;
+  width: 35%;
+  /* Exibe como bloco */
+  padding: 15px 25px;
+  /* Preenchimento */
+  background-color: var(--cinzaAzulado);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--amareloClaro);
+  border: 3px solid var(--amareloClaro);
+  /* Sem borda */
+  border-radius: 27px;
+  /* Raio da borda */
+  cursor: pointer;
+  /* Cursor */
+  transition: background-color 0.3s ease;
+  /* Transição suave */
+}
+
+/* Estilos de hover para um botão genérico */
+.btn:hover {
+  background-color: var(--amareloEscuro);
+  /* Cor de fundo ao pairar */
+}
+
+/* Estilos para um título genérico */
+.h1 {
+  color: var(--branco);
+  /* Cor do texto */
+  text-align: center;
+  /* Alinhamento do texto */
+  font-family: "Archivo Black", sans-serif;
+  /* Fonte */
+  font-weight: 400;
+  /* Peso da fonte */
+  font-style: normal;
+  /* Estilo da fonte */
+  margin-bottom: 2%;
+}

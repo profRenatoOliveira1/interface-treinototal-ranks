@@ -4,6 +4,7 @@ class AlunoRequests {
         this.serverUrl = 'http://localhost:3000';
         this.routeListarAluno = '/listar-aluno';
         this.routeCadastrarAluno = '/novo/aluno';
+        this.routeDeletarAluno = '/remover/aluno';
     }
 
     async listarAlunos() { // Método assíncrono para listar alunos
@@ -51,6 +52,20 @@ class AlunoRequests {
             // Em caso de erro, exibe e relança o erro
             console.error('Erro: ', error);
             throw error;
+        }
+    }
+    async deletarAluno(id_aluno) {
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${id_aluno}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            return false; 
         }
     }
 }

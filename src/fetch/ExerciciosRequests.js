@@ -4,6 +4,7 @@ class ExerciciosRequests {
         this.serverUrl = 'http://localhost:3000'; // Altere para a URL correta do seu backend
         this.routeListarExercicio = '/listar-exercicio';
         this.routeCadastrarExercicio = '/novo/exercicio';
+        this.routeDeletarExercicio = '/remover/exercicio';
     }
 
     async listarExercicio() { // Método assíncrono para listar exercícios
@@ -41,6 +42,21 @@ class ExerciciosRequests {
             // Em caso de erro, exibe e propaga o erro para o código que chama esta função
             console.error('Erro: ', error);
             throw error;
+        }
+    }
+    async deletarExercicio(id_exercicio) {
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${id_exercicio}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            window.alert('Erro ao deletar Exercicio');
+            return false;
         }
     }
 }

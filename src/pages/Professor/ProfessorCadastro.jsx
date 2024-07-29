@@ -1,7 +1,7 @@
 import './Professor.css';
 // Importa os estilos CSS específicos para a página.
 
-import CadastroProfessor from '../../components/Cadastro/CadastroProfessor/CadastroProfessor';
+import CadastroProfessor from '../../components/Cadastro/CadastroProfessor';
 // Importa o componente CadastroProfessor, localizado na pasta '../../components/CadastroProfessor/CadastroProfessor'.
 // Este componente é responsável pelo formulário ou funcionalidade de cadastro de professores.
 

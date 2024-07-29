@@ -3,17 +3,15 @@
 
 /* Define as variáveis de cor */
 :root {
-    --azulEscuro: #46697C;
-    /* Define a cor azul escura */
-    --azulClaro: #94A7AE;
-    /* Define a cor azul clara */
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --cinzaAvermelhado: #333;
     --branco: #FFFFFF;
-    /* Define a cor branca */
-    --azulMuitoEscuro: #102028;
-    /* Define a cor azul muito escura */
-    --preto: #060F16;
-    /* Define a cor preta */
-}
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
+  }
 
 /* Estilos para a div-mae */
 .div-mae {
@@ -31,8 +29,29 @@
     /* Impede a quebra de linha dos itens */
 }
 
-/* Estilos para o corpo do documento */
-body {
-    background-color: var(--preto) !important;
-    /* Define o fundo do corpo como preto */
+/* Estilos para telas pequenas */
+@media (max-width: 768px) {
+.div-mae {
+  flex-direction: column-reverse;
+  /* Altera a direção do eixo principal para coluna */
+  align-items: center;
+  /* Alinha os itens horizontalmente ao centro */
+  text-align: center;
+}
+
+.div-mae > * {
+  width: 100%;
+  /* Define a largura dos filhos como 100% */
+}
+
+.div-mae img {
+  max-width: 100%;
+  height: auto;
+  /* Garante que a imagem se ajuste corretamente */
+}
+
+.div-mae .conteudo-texto {
+  padding: 20px;
+  /* Adiciona um preenchimento para espaçamento */
+}
 }

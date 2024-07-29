@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importa React e useState hook para gerenciar o estado do componente
-import styles from './CadastroAparelho.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
+import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
+import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
 
 function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios
@@ -34,8 +34,8 @@ function CadastroAparelho() {
 
     return (
         <div className={styles.section}>
+            <h1 className={styles.h1}>Cadastro de Aparelho</h1>
             <div className={styles.container}>
-                <h1 className={styles.h1}>Cadastro de Aparelho</h1>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome do aparelho */}
                     <div className={styles.formGroup}>

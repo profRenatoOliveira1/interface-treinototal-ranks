@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importação do Bootstrap
-import styles from './ListagemExercicios.module.css'; // Importação dos estilos CSS específicos para este componente
-import ExerciciosRequests from '../../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
-import AparelhosRequests from '../../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
+import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
+import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
+import AparelhosRequests from '../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
 
 function TabelaListagemExercicios() {
     const [exercicios, setExercicios] = useState([]); // Estado para armazenar os exercícios
-    const [aparelhos, setAparelho] = useState([]);
+    // const [aparelhos, setAparelho] = useState([]);
 
     useEffect(() => {
         const fetchDados = async () => {
@@ -36,11 +36,17 @@ function TabelaListagemExercicios() {
         fetchDados(); // Chama a função para buscar os dados ao montar o componente
     }, []);
 
-    const deletar = () => {
-        window.alert('Não foi feito... ainda'); // Função para deletar um exercício (ainda não implementada)
+    const deletarExercicio = async (id_exercicio) => {
+        const confirmar = window.confirm(`Deseja deletar o Exercicio com id ${id_exercicio}?`);
+        if (confirmar) {
+            if (await ExerciciosRequests.deletarExercicio(id_exercicio)) {
+                window.alert('Exercicio deletado com sucesso');
+                setExercicios(exercicios.filter(exercicio => exercicio.id_exercicio !== id_exercicio));
+            } else {
+                window.alert('Erro ao deletar Exercicio');
+            }
+        }
     };
-
-    console.log(exercicios); // Exibe os exercícios no console para depuração
 
     // Renderização do componente
     return (
@@ -67,12 +73,12 @@ function TabelaListagemExercicios() {
                             {/* Mapeia os exercícios e renderiza cada um como uma linha na tabela */}
                             {exercicios.map(exercicio => (
                                 <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
-                                    <td>{exercicio.exercicio}</td>
-                                    <td>{exercicio.nome_aparelho}</td>
+                                    <td>{exercicio.exercicio.toUpperCase()}</td>
+                                    <td>{exercicio.nome_aparelho.toUpperCase()}</td>
                                     <td>{exercicio.repeticoes}</td>
-                                    <td>{exercicio.carga}</td>
-                                    <td>{exercicio.regiao_corpo_ativa}</td>
-                                    <td onClick={deletar}><FaTrash /></td> {/* Botão para deletar um exercício */}
+                                    <td>{`${exercicio.carga} Kg`}</td>
+                                    <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
+                                    <td onClick={() => deletarExercicio(exercicio.id_exercicio)}><FaTrash /></td> {/* Botão para deletar um exercício */}
                                 </tr>
                             ))}
                         </tbody>

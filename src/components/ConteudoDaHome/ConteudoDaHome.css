@@ -1,20 +1,20 @@
 /* Define variáveis de cor para reutilização */
 :root {
-    --azulEscuro: #46697C;
-    /* Azul escuro */
-    --azulClaro: #94A7AE;
-    /* Azul claro */
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --cinzaAvermelhado: #333;
     --branco: #FFFFFF;
-    /* Branco */
-    --azulMuitoEscuro: #102028;
-    /* Azul muito escuro */
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
 }
 
 /* Estilos para um título genérico */
 .titulo {
     text-align: center;
     /* Alinha o texto ao centro */
-    color: #ffeba7;
+    color: var(--amareloClaro);
     /* Define a cor do texto */
     font-family: "Archivo Black", sans-serif;
     /* Define a fonte */
@@ -42,7 +42,7 @@
 .paragrafo {
     width: 95%;
     /* Define a largura */
-    font-size: 20px;
+    font-size: 1.2rem;
     /* Define o tamanho da fonte */
     text-align: justify;
     /* Justifica o texto */
@@ -50,30 +50,8 @@
     /* Define uma margem à esquerda */
     height: 80%;
     /* Define a altura */
-    color: #ffeba7;
+    color: var(--amareloClaro);
     /* Define a cor do texto */
     font-family: Arial, Helvetica, sans-serif;
     /* Define a fonte */
-}
-
-/* Estilos para botões */
-.botao {
-    color: #ffeba7;
-    /* Define a cor do texto */
-    background-color: var(--azulEscuro);
-    /* Define a cor de fundo */
-    height: 50%;
-    /* Define a altura */
-    width: 30%;
-    /* Define a largura */
-    font-size: 20px;
-    /* Define o tamanho da fonte */
-    font-weight: bold;
-    /* Define o peso da fonte */
-}
-
-/* Estilos para a div de botões */
-.div-botao {
-    height: 100px;
-    /* Define a altura */
 }

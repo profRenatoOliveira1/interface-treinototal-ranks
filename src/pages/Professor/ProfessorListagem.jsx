@@ -5,7 +5,7 @@ import Navegacao from '../../components/Navegacao/Navegacao';
 // Importa o componente Navegacao, localizado na pasta '../../components/Navegacao/Navegacao'.
 // Este componente provavelmente contém a barra de navegação ou menu do aplicativo.
 
-import ListarProfessor from '../../components/Listagem/ListagemProfessor/ListagemProfessor';
+import ListarProfessor from '../../components/Listagem/ListagemProfessor';
 // Importa o componente ListarProfessor, localizado na pasta '../../components/ListagemProfessor/ListagemProfessor'.
 // Este componente é responsável por exibir a listagem de professores.
 

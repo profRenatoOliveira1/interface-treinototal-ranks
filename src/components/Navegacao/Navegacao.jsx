@@ -17,12 +17,12 @@ function Navegacao() {
         <Navbar collapseOnSelect expand="lg" className={styles.CtnNavbar}>
             <Container>
                 {/* Marca do Navbar com link para a página inicial */}
-                <Navbar.Brand href="/" className={styles.logoAtividade}>
+                <Navbar.Brand href="https://www.instagram.com/dev.rank.s" target="_blank" className={styles.logoAtividade}>
                     {/* Inserindo a imagem do logo */}
                     <img src={imagemLogo} alt="Logo" className={styles.logoImage} />
                 </Navbar.Brand>
                 {/* Botão de toggle para o Navbar em telas menores */}
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ backgroundColor: '#ffeba7'}}/>
                 {/* Componente de collapse do Navbar para agrupar links */}
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     {/* Lista de links de navegação */}

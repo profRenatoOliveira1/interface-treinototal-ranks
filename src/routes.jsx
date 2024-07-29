@@ -8,7 +8,6 @@ import CadastroAluno from './pages/Aluno/AlunoCadastro'; // Importa o componente
 import ListarAluno from './pages/Aluno/AlunoListagem'; // Importa o componente ListarAluno
 import CadastroProfessor from './pages/Professor/ProfessorCadastro'; // Importa o componente CadastroProfessor
 import ListarProfessor from './pages/Professor/ProfessorListagem'; // Importa o componente ListarProfessor
-
 // Componente de roteamento da aplicação
 export default function AppRouter() {
     return (

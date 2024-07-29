@@ -1,9 +1,9 @@
-import React, { useState } from 'react'; // Importa React e useState hook para gerenciar o estado do componente
-import styles from './CadastroAluno.module.css'; // Importa estilos CSS específicos para este componente
-import AlunoRequests from '../../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API
+import React, { useState } from 'react';
+import styles from '../styles/StyleCadastro.module.css';
+import AlunoRequests from '../../fetch/AlunoRequests';
+import InputMask from "react-input-mask";
 
 function CadastroAluno() {
-    // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
@@ -13,47 +13,61 @@ function CadastroAluno() {
         email: '',
         senha: '',
         altura: '',
-        peso: '',
-        imc: ''
+        peso: ''
     });
 
-    // Função para atualizar o estado do formulário conforme o usuário digita
+    const [errorMessage, setErrorMessage] = useState(''); // Estado para a mensagem de erro
+
     const handleChange = (e) => {
-        const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
+        const { name, value } = e.target;
         setFormData(prevState => ({
-            ...prevState, // Mantém os valores atuais do estado
-            [name]: value // Atualiza o valor do campo específico
+            ...prevState,
+            [name]: value
         }));
     };
 
-    // Função para lidar com a submissão do formulário
     const handleSubmit = async (e) => {
-        e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
-        // Validação básica para garantir que os campos obrigatórios estão preenchidos
-        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
-            window.alert('Por favor, preencha todos os campos obrigatórios.');
+        e.preventDefault();
+        const dt_nasc = new Date(formData.data_nascimento);
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+
+        if (dt_nasc > hoje) {
+            setErrorMessage('A data de nascimento não pode ser uma data futura.');
             return;
         }
 
+        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+            setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        const cleanCPF = formData.cpf.replace(/\D/g, '');
+        const cleanCelular = formData.celular.replace(/\D/g, '');
+        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
+
         try {
-            // Envia os dados do formulário para a API e aguarda a resposta
-            const response = await AlunoRequests.cadastrarAluno(formData);
+            const response = await AlunoRequests.cadastrarAluno(cleanData);
             console.log('Aluno cadastrado com sucesso:', response);
-            window.alert(`${formData.nome} foi cadastrado com sucesso`); // Exibe uma mensagem de sucesso
+            if (response) {
+                window.alert(`${formData.nome} foi cadastrado com sucesso`);
+            }
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);
-            window.alert('Ocorreu um erro: ' + error.message); // Exibe uma mensagem de erro
+            window.alert('Ocorreu um erro: ' + error.message);
         }
     };
 
-    // Função para capitalizar a primeira letra de cada palavra
+    const dt_nasc = new Date(formData.data_nascimento);
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
 
     return (
         <div className={styles.section}>
+            <h1 className={styles.h1}>Cadastro de Aluno</h1>
             <div className={styles.container}>
-                <h1 className={styles.h1}>Cadastro de Aluno</h1>
                 <form onSubmit={handleSubmit}>
-                <div className={styles.formGroup}>
+                    <div className={styles.formGroup}>
                         <input
                             type="text"
                             className={styles.formStyle}
@@ -63,32 +77,32 @@ function CadastroAluno() {
                             name="nome"
                         />
                     </div>
-                    {/* Campo para CPF */}
                     <div className={styles.formGroup}>
-                        <input
+                        <InputMask
                             type="text"
-                            className={styles.formStyle}
+                            mask="999.999.999-99"
+                            className={styles.formStyleEsquerda}
                             placeholder="CPF"
                             value={formData.cpf}
                             onChange={handleChange}
                             name="cpf"
                         />
-                    </div>
-                    {/* Campo para data de nascimento */}
-                    <div className={styles.formGroup}>
                         <input
-                            type="date"
-                            className={styles.formStyle}
+                            type="text"
+                            className={styles.formStyleDireita}
                             placeholder="Data de Nascimento"
+                            onFocus={(e) => e.target.type = 'date'}
+                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
                             value={formData.data_nascimento}
                             onChange={handleChange}
                             name="data_nascimento"
+                            max={hoje.toISOString().split('T')[0]}
                         />
                     </div>
-                    {/* Campo para número de celular */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="number"
+                        <InputMask
+                            mask="(99) 99999-9999"
+                            type="text"
                             className={styles.formStyle}
                             placeholder="Telefone"
                             value={formData.celular}
@@ -96,7 +110,6 @@ function CadastroAluno() {
                             name="celular"
                         />
                     </div>
-                    {/* Campo para endereço */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -107,7 +120,6 @@ function CadastroAluno() {
                             name="endereco"
                         />
                     </div>
-                    {/* Campo para email */}
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -118,7 +130,6 @@ function CadastroAluno() {
                             name="email"
                         />
                     </div>
-                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -129,39 +140,27 @@ function CadastroAluno() {
                             name="senha"
                         />
                     </div>
-                    {/* Campo para data de contratação */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
-                            className={styles.formStyle}
-                            placeholder="Altura"
+                            className={styles.formStyleEsquerda}
+                            placeholder="Altura/m"
                             value={formData.altura}
                             onChange={handleChange}
                             name="altura"
                         />
-                    </div>
-                    {/* Campo para formação */}
-                    <div className={styles.formGroup}>
                         <input
                             type="number"
-                            className={styles.formStyle}
-                            placeholder="Peso"
+                            className={styles.formStyleDireita}
+                            placeholder="Peso/Kg"
                             value={formData.peso}
                             onChange={handleChange}
                             name="peso"
                         />
                     </div>
-                    {/* Campo para especialidade */}
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="Imc"
-                            value={formData.imc}
-                            onChange={handleChange}
-                            name="imc"
-                        />
-                    </div>
+
+                    {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
                     <button type="submit" className={styles.btn}>
                         Cadastrar-se
                     </button>
@@ -171,4 +170,4 @@ function CadastroAluno() {
     );
 }
 
-export default CadastroAluno; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default CadastroAluno;

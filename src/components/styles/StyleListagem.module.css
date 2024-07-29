@@ -1,0 +1,102 @@
+:root {
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
+}
+
+.titulo {
+  text-align: center;
+  color: var(--amareloClaro);
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 2% 0;
+}
+
+.tabelaHeader {
+  background-color: var(--cinzaAvermelhado) !important;
+  color: var(--branco) !important;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid var(--branco);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.tabelaCorpo {
+  color: var(--preto);
+  text-align: center;
+  vertical-align: middle;
+  border: 1px solid var(--branco);
+  background-color: var(--branco);
+}
+
+.cntTb {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+  width: 100%;
+}
+
+.table {
+  width: 120%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid var(--cinzaClaro);
+  white-space: nowrap;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+td, th {
+  color: var(--amareloClaro) !important;
+  font-size: 1.2rem !important;
+  background-color: var(--cinzaAzulado) !important;
+  margin: 0;
+  border: 2px solid var(--amareloClaro) !important;
+}
+
+
+
+.table thead th, table {
+  color: var(--amareloClaro) !important;
+  font-size: 1.2rem !important;
+}
+
+
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 14px;
+  }
+
+  .pagination button {
+    padding: 6px 12px;
+  }
+
+  .pagination input {
+    width: 60px;
+    padding: 6px;
+  }
+}
+
+
+

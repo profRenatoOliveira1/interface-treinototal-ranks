@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import styles from './ListarProfessor.module.css';
-import ProfessoresRequests from '../../../fetch/ProfessoresRequests';
+import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
+import ProfessoresRequests from '../../fetch/ProfessoresRequests';
 import { FaTrash } from "react-icons/fa";
 
 function ListarProfessor() {
@@ -41,12 +41,24 @@ function ListarProfessor() {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     };
 
-    // Função para deletar um professor (ainda não implementada)
-    const deletar = () => {
-        window.alert('Não foi feito... ainda'); // Exibe um alerta temporário
+    const deletarProfessor = async (id_professor) => {
+        const confirmar = window.confirm(`Deseja deletar o Professor com id ${id_professor}?`);
+        if (confirmar) {
+            try {
+                const sucesso = await ProfessoresRequests.deletarProfessor(id_professor);
+                if (sucesso) {
+                    window.alert('Professor deletado com sucesso');
+                    setProfessor(professores.filter(professor => professor.id_professor !== id_professor));
+                } else {
+                    window.alert('Erro ao deletar Professor');
+                }
+            } catch (error) {
+                console.error('Erro ao deletar Professor: ', error);
+                window.alert('Erro ao deletar Professor');
+            }
+        }
     };
 
-    console.log(professores); // Exibe os professores no console para depuração
 
     // Renderização do componente
     return (
@@ -85,16 +97,16 @@ function ListarProfessor() {
                         {/* Mapeia os professores e renderiza cada um como uma linha na tabela */}
                         {professores.map(professor => (
                             <tr key={professor.id_professor} className={styles.tabelaCorpo}>
-                                <td>{professor.nome}</td>
+                                <td>{professor.nome.toUpperCase()}</td>
                                 <td>{formatarCPF(professor.cpf)}</td>
                                 <td>{formatarData(professor.data_nascimento)}</td>
                                 <td>{formatarTelefone(professor.celular)}</td>
-                                <td>{professor.endereco}</td>
-                                <td>{professor.email}</td>
+                                <td>{professor.endereco.toUpperCase()}</td>
+                                <td>{professor.email.toUpperCase()}</td>
                                 <td>{formatarData(professor.data_contratacao)}</td>
-                                <td>{professor.formacao}</td>
-                                <td>{professor.especialidade}</td>
-                                <td onClick={deletar}><FaTrash /></td> {/* Botão para deletar um professor */}
+                                <td>{professor.formacao.toUpperCase()}</td>
+                                <td>{professor.especialidade.toUpperCase()}</td>
+                                <td onClick={() => deletarProfessor(professor.id_professor)}><FaTrash /></td> {/* Botão para deletar um professor */}
                             </tr>
                         ))}
                     </tbody>

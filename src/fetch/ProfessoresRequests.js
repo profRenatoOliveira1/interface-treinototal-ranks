@@ -4,6 +4,7 @@ class ProfessoresRequests {
         this.serverUrl = 'http://localhost:3000';
         this.routeListarProfessor = '/listar-professor';
         this.routeCadastrarProfessor = '/novo/professor';
+        this.routeDeletarProfessor = '/remover/professor';
     }
 
     async listarProfessor() { // Método assíncrono para listar professores
@@ -39,6 +40,20 @@ class ProfessoresRequests {
         } catch (error) {
             // Em caso de erro, exibe o erro no console
             console.error('Erro: ', error);
+        }
+    }
+    async deletarProfessor(id_professor) {
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${id_professor}`, {
+                method: 'DELETE'
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao deletar professor');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            return false; // Retorna false em caso de erro
         }
     }
 }

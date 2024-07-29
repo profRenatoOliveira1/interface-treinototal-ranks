@@ -1,7 +1,7 @@
 import React from 'react';
 // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 
-import ListagemExercicio from '../../components/Listagem/ListagemExercicios/ListagemExercicios';
+import ListagemExercicio from '../../components/Listagem/ListagemExercicios';
 // Importa o componente ListagemExercicio, que está localizado na pasta '../../components/TabelaListagemExercicios/TabelaListagemExercicios'.
 // Este componente é responsável por exibir a tabela de listagem de exercícios.
 
