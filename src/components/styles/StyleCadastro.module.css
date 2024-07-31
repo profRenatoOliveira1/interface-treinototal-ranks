@@ -28,6 +28,8 @@
   /* Centraliza horizontalmente */
   padding: 0 15px;
   /* Preenchimento lateral */
+  display: flex;
+  justify-content: center;
 }
 
 /* Estilos para um grupo de formulário genérico */
@@ -53,6 +55,43 @@
 
 }
 
+.formStyleEsquerda {
+  width: 49%;
+  /* Largura total */
+  margin-right: 1%;
+  padding: 15px;
+  /* Preenchimento */
+  border: 1px solid var(--cinzaEscuro);
+  /* Borda */
+  border-radius: 15px;
+  /* Raio da borda */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+form{
+  width: 70%;
+}
+.formStyleDireita {
+  width: 49%;
+  /* Largura total */
+  margin-left: 1%;
+
+  padding: 15px;
+  /* Preenchimento */
+  border: 1px solid var(--cinzaEscuro);
+  /* Borda */
+  border-radius: 15px;
+  /* Raio da borda */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--preto);
+
+}
+
 ::placeholder {
   color: var(--preto);
 }
@@ -60,14 +99,15 @@
 /* Estilos para um botão genérico */
 .btn {
   display: inline-block;
+  width: 35%;
   /* Exibe como bloco */
   padding: 15px 25px;
   /* Preenchimento */
-  background-color: var(--amareloClaro);
+  background-color: var(--cinzaAzulado);
   /* Cor de fundo */
   font-size: 18px;
-  color: var(--preto);
-  border: none;
+  color: var(--amareloClaro);
+  border: 3px solid var(--amareloClaro);
   /* Sem borda */
   border-radius: 27px;
   /* Raio da borda */
@@ -95,4 +135,5 @@
   /* Peso da fonte */
   font-style: normal;
   /* Estilo da fonte */
+  margin-bottom: 2%;
 }

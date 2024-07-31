@@ -22,7 +22,7 @@ function Navegacao() {
                     <img src={imagemLogo} alt="Logo" className={styles.logoImage} />
                 </Navbar.Brand>
                 {/* Botão de toggle para o Navbar em telas menores */}
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" style={{ backgroundColor: '#ffeba7'}}/>
                 {/* Componente de collapse do Navbar para agrupar links */}
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     {/* Lista de links de navegação */}

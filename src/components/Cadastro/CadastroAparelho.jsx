@@ -35,8 +35,8 @@ function CadastroAparelho() {
 
     return (
         <div className={styles.section}>
+            <h1 className={styles.h1}>Cadastro de Aparelho</h1>
             <div className={styles.container}>
-                <h1 className={styles.h1}>Cadastro de Aparelho</h1>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome do aparelho */}
                     <div className={styles.formGroup}>

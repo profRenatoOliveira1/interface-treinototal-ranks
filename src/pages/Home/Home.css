@@ -28,3 +28,30 @@
     flex-wrap: nowrap;
     /* Impede a quebra de linha dos itens */
 }
+
+/* Estilos para telas pequenas */
+@media (max-width: 768px) {
+.div-mae {
+  flex-direction: column-reverse;
+  /* Altera a direção do eixo principal para coluna */
+  align-items: center;
+  /* Alinha os itens horizontalmente ao centro */
+  text-align: center;
+}
+
+.div-mae > * {
+  width: 100%;
+  /* Define a largura dos filhos como 100% */
+}
+
+.div-mae img {
+  max-width: 100%;
+  height: auto;
+  /* Garante que a imagem se ajuste corretamente */
+}
+
+.div-mae .conteudo-texto {
+  padding: 20px;
+  /* Adiciona um preenchimento para espaçamento */
+}
+}

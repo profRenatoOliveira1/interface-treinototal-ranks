@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
+import styles from '../styles/StyleCadastro.module.css';
 import AlunoRequests from '../../fetch/AlunoRequests';
 import InputMask from "react-input-mask";
 
@@ -11,8 +11,8 @@ function CadastroAluno() {
         data_nascimento: '',
         celular: '',
         endereco: '',
-        // email: '',
-        // senha: '',
+        email: '',
+        senha: '',
         altura: '',
         peso: ''
     });
@@ -29,29 +29,44 @@ function CadastroAluno() {
     // falta comentar
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!formData.nome || !formData.cpf ) {
-            window.alert('Por favor, preencha todos os campos obrigatórios.');
+        const dt_nasc = new Date(formData.data_nascimento);
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+
+        if (dt_nasc > hoje) {
+            setErrorMessage('A data de nascimento não pode ser uma data futura.');
             return;
         }
 
-        const cleanCPF = formData.cpf.replace(/\D/g, ''); 
-        const cleanCelular = formData.celular.replace(/\D/g, ''); 
+        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+            setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
+            return;
+        }
+
+        const cleanCPF = formData.cpf.replace(/\D/g, '');
+        const cleanCelular = formData.celular.replace(/\D/g, '');
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
 
         try {
             const response = await AlunoRequests.cadastrarAluno(cleanData);
             console.log('Aluno cadastrado com sucesso:', response);
-            window.alert(`${formData.nome} foi cadastrado com sucesso`);
+            if (response) {
+                window.alert(`${formData.nome} foi cadastrado com sucesso`);
+            }
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);
             window.alert('Ocorreu um erro: ' + error.message);
         }
     };
 
+    const dt_nasc = new Date(formData.data_nascimento);
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+
     return (
         <div className={styles.section}>
+            <h1 className={styles.h1}>Cadastro de Aluno</h1>
             <div className={styles.container}>
-                <h1 className={styles.h1}>Cadastro de Aluno</h1>
                 <form onSubmit={handleSubmit}>
                     <div className={styles.formGroup}>
                         <input
@@ -63,32 +78,28 @@ function CadastroAluno() {
                             name="nome"
                         />
                     </div>
-                    {/* Campo para CPF */}
                     <div className={styles.formGroup}>
                         <InputMask
                             type="text"
                             mask="999.999.999-99"
-                            className={styles.formStyle}
+                            className={styles.formStyleEsquerda}
                             placeholder="CPF"
                             value={formData.cpf}
                             onChange={handleChange}
                             name="cpf"
                         />
-                    </div>
-                    {/* Campo para data de nascimento */}
-                    <div className={styles.formGroup}>
                         <input
                             type="text"
-                            className={styles.formStyle}
+                            className={styles.formStyleDireita}
                             placeholder="Data de Nascimento"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
                             value={formData.data_nascimento}
                             onChange={handleChange}
                             name="data_nascimento"
+                            max={hoje.toISOString().split('T')[0]}
                         />
                     </div>
-                    {/* Campo para número de celular */}
                     <div className={styles.formGroup}>
                         <InputMask
                             mask="(99) 99999-9999"
@@ -100,7 +111,6 @@ function CadastroAluno() {
                             name="celular"
                         />
                     </div>
-                    {/* Campo para endereço */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -111,7 +121,6 @@ function CadastroAluno() {
                             name="endereco"
                         />
                     </div>
-                    {/* 
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -132,24 +141,19 @@ function CadastroAluno() {
                             name="senha"
                         />
                     </div>
-                    */}
-                    {/* Campo para altura */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
-                            className={styles.formStyle}
-                            placeholder="Altura"
+                            className={styles.formStyleEsquerda}
+                            placeholder="Altura/m"
                             value={formData.altura}
                             onChange={handleChange}
                             name="altura"
                         />
-                    </div>
-                    {/* Campo para peso */}
-                    <div className={styles.formGroup}>
                         <input
                             type="number"
-                            className={styles.formStyle}
-                            placeholder="Peso"
+                            className={styles.formStyleDireita}
+                            placeholder="Peso/Kg"
                             value={formData.peso}
                             onChange={handleChange}
                             name="peso"
