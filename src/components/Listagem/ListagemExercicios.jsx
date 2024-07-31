@@ -5,6 +5,7 @@ import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação
 import AparelhosRequests from '../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
 
+// fechar comentar
 function TabelaListagemExercicios() {
     const [exercicios, setExercicios] = useState([]); // Estado para armazenar os exercícios
     // const [aparelhos, setAparelho] = useState([]);
@@ -36,18 +37,6 @@ function TabelaListagemExercicios() {
         fetchDados(); // Chama a função para buscar os dados ao montar o componente
     }, []);
 
-    const deletarExercicio = async (id_exercicio) => {
-        const confirmar = window.confirm(`Deseja deletar o Exercicio com id ${id_exercicio}?`);
-        if (confirmar) {
-            if (await ExerciciosRequests.deletarExercicio(id_exercicio)) {
-                window.alert('Exercicio deletado com sucesso');
-                setExercicios(exercicios.filter(exercicio => exercicio.id_exercicio !== id_exercicio));
-            } else {
-                window.alert('Erro ao deletar Exercicio');
-            }
-        }
-    };
-
     // Renderização do componente
     return (
         <>
@@ -78,7 +67,7 @@ function TabelaListagemExercicios() {
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{`${exercicio.carga} Kg`}</td>
                                     <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
-                                    <td onClick={() => deletarExercicio(exercicio.id_exercicio)}><FaTrash /></td> {/* Botão para deletar um exercício */}
+                                    <td onClick={() => {console.log('deletar')}}><FaTrash /></td> {/* Botão para deletar um exercício */}
                                 </tr>
                             ))}
                         </tbody>

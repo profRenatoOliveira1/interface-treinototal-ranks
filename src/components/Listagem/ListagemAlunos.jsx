@@ -3,6 +3,7 @@ import styles from '../styles/StyleListagem.module.css';
 import AlunoRequests from '../../fetch/AlunoRequests';
 import { FaTrash } from "react-icons/fa";
 
+// falta comentar
 function ListarAluno() {
     const [alunos, setAlunos] = useState([]);
 
@@ -21,20 +22,6 @@ function ListarAluno() {
     const formatarData = (data) => new Date(data).toLocaleDateString('pt-br');
     const formatarCPF = (cpf) => cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     const formatarTelefone = (telefone) => telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-
-    const deletarAluno = async (id_aluno) => {
-        const confirmar = window.confirm(`Deseja deletar o aluno com id ${id_aluno}?`);
-        if (confirmar) {
-            if(await AlunoRequests.deletarAluno(id_aluno)) {
-                window.alert('Aluno deletado com sucesso');
-                window.location.reload();
-            } else {
-                window.alert('Erro ao deletar Aluno');
-            }
-        } else {
-            window.alert('Aluno não deletado');
-        }
-    };
 
     return (
         <>
@@ -79,7 +66,7 @@ function ListarAluno() {
                                         <td>{`${aluno.altura} m`}</td>
                                         <td>{`${aluno.peso} kg`}</td>
                                         <td>{aluno.imc}</td>
-                                        <td onClick={() => deletarAluno(aluno.id_aluno)}><FaTrash /></td>
+                                        <td onClick={() => console.log('deeltar')}><FaTrash /></td>
                                     </tr>
                                 ))}
                             </tbody>

@@ -3,6 +3,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests';
 import InputMask from "react-input-mask";
 
+// falta comentar
 function CadastroAluno() {
     const [formData, setFormData] = useState({
         nome: '',
@@ -16,6 +17,7 @@ function CadastroAluno() {
         peso: ''
     });
 
+    // falta comentar
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -24,6 +26,7 @@ function CadastroAluno() {
         }));
     };
 
+    // falta comentar
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!formData.nome || !formData.cpf ) {

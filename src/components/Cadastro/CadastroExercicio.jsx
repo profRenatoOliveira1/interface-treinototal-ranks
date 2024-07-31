@@ -3,6 +3,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import ExerciciosRequests from '../../fetch/ExerciciosRequests';
 import AparelhoRequests from '../../fetch/AparelhosRequests';
 
+// falta comentar
 function CadastroExercicio() {
     const [formData, setFormData] = useState({
         id_aparelho: '',
@@ -29,6 +30,7 @@ function CadastroExercicio() {
         fetchAparelhos();
     }, []);
 
+    // falta comentar
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prevState => ({
@@ -37,6 +39,8 @@ function CadastroExercicio() {
         }));
     };
 
+    // falta comentar
+    /** */
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

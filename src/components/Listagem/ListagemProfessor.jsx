@@ -3,6 +3,7 @@ import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS 
 import ProfessoresRequests from '../../fetch/ProfessoresRequests';
 import { FaTrash } from "react-icons/fa";
 
+// falta comentar
 function ListarProfessor() {
     // Define o estado inicial para armazenar os professores
     const [professores, setProfessor] = useState([]);
@@ -39,24 +40,6 @@ function ListarProfessor() {
     // Função para formatar o número de telefone
     const formatarTelefone = (telefone) => {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-    };
-
-    const deletarProfessor = async (id_professor) => {
-        const confirmar = window.confirm(`Deseja deletar o Professor com id ${id_professor}?`);
-        if (confirmar) {
-            try {
-                const sucesso = await ProfessoresRequests.deletarProfessor(id_professor);
-                if (sucesso) {
-                    window.alert('Professor deletado com sucesso');
-                    setProfessor(professores.filter(professor => professor.id_professor !== id_professor));
-                } else {
-                    window.alert('Erro ao deletar Professor');
-                }
-            } catch (error) {
-                console.error('Erro ao deletar Professor: ', error);
-                window.alert('Erro ao deletar Professor');
-            }
-        }
     };
 
 
@@ -106,7 +89,7 @@ function ListarProfessor() {
                                 <td>{formatarData(professor.data_contratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
-                                <td onClick={() => deletarProfessor(professor.id_professor)}><FaTrash /></td> {/* Botão para deletar um professor */}
+                                <td onClick={() => console.log('deletar')}><FaTrash /></td> {/* Botão para deletar um professor */}
                             </tr>
                         ))}
                     </tbody>

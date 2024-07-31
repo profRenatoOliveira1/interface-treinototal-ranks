@@ -3,6 +3,7 @@ import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS 
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
 import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
 
+// falta comnetar
 function ListarAparelho() {
     // Define o estado inicial para armazenar os aparelhos
     const [aparelhos, setAparelhos] = useState([]);
@@ -26,25 +27,6 @@ function ListarAparelho() {
         fetchAparelho();
     }, []); // O array vazio como segundo parâmetro garante que useEffect seja executado apenas uma vez, após a montagem do componente
 
-    const deletarAparelho = async (id_aparelho) => {
-        const confirmar = window.confirm(`Deseja deletar o Aparelho com id ${id_aparelho}?`);
-        if (confirmar) {
-            try {
-                const sucesso = await AparelhoRequests.deletarAparelho(id_aparelho);
-                if (sucesso) {
-                    window.alert('Aparelho deletado com sucesso');
-                    setAparelhos(aparelhos.filter(aparelho => aparelho.id_aparelho !== id_aparelho));
-                } else {
-                    window.alert('Erro ao deletar Aparelho');
-                }
-            } catch (error) {
-                window.alert('Erro ao deletar Aparelho');
-                console.error('Erro ao deletar aparelho: ', error);
-            }
-        } else {
-            window.alert('Aparelho não deletado');
-        }
-    };
 
     // Renderização do componente
     return (
@@ -78,7 +60,7 @@ function ListarAparelho() {
                             <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
                                 <td>{aparelho.nome_aparelho.toUpperCase()}</td>
                                 <td>{aparelho.musculo_ativado.toUpperCase()}</td>
-                                <td onClick={() => deletarAparelho(aparelho.id_aparelho)} className={styles.deleteButton}>
+                                <td onClick={() => {console.log('deletar');}} className={styles.deleteButton}>
                                     <FaTrash />
                                 </td> {/* Botão para deletar um aparelho */}
                             </tr>

@@ -20,6 +20,7 @@ function CadastroProfessor() {
     });
 
     // Função para lidar com mudanças nos campos do formulário
+    /** */
     const handleChange = (e) => {
         const { name, value } = e.target;
         // Atualiza o estado com o novo valor do campo modificado

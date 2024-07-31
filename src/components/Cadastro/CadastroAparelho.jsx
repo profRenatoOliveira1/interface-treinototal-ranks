@@ -2,6 +2,7 @@ import React, { useState } from 'react'; // Importa React e useState hook para g
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
 
+// falta comentar
 function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
