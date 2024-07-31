@@ -18,16 +18,7 @@
   margin: 2% 0;
 }
 
-.tabelaHeader {
-  background-color: var(--cinzaAvermelhado) !important;
-  color: var(--branco) !important;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid var(--branco);
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
+
 
 .tabelaCorpo {
   color: var(--preto);
@@ -66,6 +57,7 @@
   align-items: center;
   margin-top: 20px;
 }
+
 td, th {
   color: var(--amareloClaro) !important;
   font-size: 1.2rem !important;
@@ -75,8 +67,18 @@ td, th {
 }
 
 
+.tabelaHeader, th {
+  background-color: var(--cinzaAzulado) !important;
+  color: var(--branco) !important;
+  text-align: center;
+  vertical-align: middle;
+  position: sticky;
+  top: 0;
+  margin: 0;
+  z-index: 1;
+}
 
-.table thead th, table {
+.table thead, table {
   color: var(--amareloClaro) !important;
   font-size: 1.2rem !important;
 }
