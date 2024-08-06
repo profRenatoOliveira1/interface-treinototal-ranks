@@ -55,6 +55,9 @@ function Navegacao() {
                             <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                             <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                         </NavDropdown>
+                        <Nav.Link href="/imc" className={styles.navbar}>
+                            Imc
+                        </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>

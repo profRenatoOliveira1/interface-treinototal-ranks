@@ -1,0 +1,115 @@
+:root {
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
+}
+
+
+.formImc {
+  background-color: var(--cinzaAzulado);
+  color: var(--branco);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: auto auto;
+  margin-top: 4%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+::-webkit-input-placeholder {
+color: var(--branco);
+}
+
+h1 {
+  text-align: center;
+  color: var(--amareloClaro);
+}
+
+.radioGroup {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.radioGroup label {
+  font-weight: bold;
+}
+
+.radioGroup input {
+  margin-right: 5px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--amareloClaro);
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--cinzaClaro);
+  border-radius: 4px;
+  background-color: var(--cinzaAvermelhado);
+  color: var(--branco);
+}
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--amareloClaro);
+  color: var(--cinzaEscuro);
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: var(--amareloEscuro);
+}
+
+.resultado {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: var(--cinzaAvermelhado);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.tabelaIMC {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.tabelaIMC table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--cinzaAzulado);
+  color: var(--branco);
+}
+
+.tabelaIMC th,
+.tabelaIMC td {
+  padding: 10px;
+  border: 1px solid var(--cinzaEscuro);
+  text-align: center;
+}
+
+.tabelaIMC th {
+  background-color: var(--cinzaAvermelhado);
+}
+
+.highlight {
+  background-color: var(--amareloClaro) !important;
+  color: var(--cinzaEscuro) !important;
+}
