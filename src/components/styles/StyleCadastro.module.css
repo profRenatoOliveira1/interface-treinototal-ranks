@@ -71,9 +71,11 @@
   color: var(--preto);
 
 }
-form{
+
+form {
   width: 70%;
 }
+
 .formStyleDireita {
   width: 49%;
   /* Largura total */

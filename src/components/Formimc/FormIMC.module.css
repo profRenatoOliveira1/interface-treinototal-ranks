@@ -22,12 +22,29 @@
   max-width: 600px;
   margin: auto auto;
   margin-top: 4%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 4px 5px 30px 2px rgb(34, 41, 48);
 }
 
-h1 {
+.h1 {
+  color: var(--branco);
+  /* Cor do texto */
   text-align: center;
-  color: var(--amareloClaro);
+  /* Alinhamento do texto */
+  font-family: "Archivo Black", sans-serif;
+  /* Fonte */
+  font-weight: 400;
+  /* Peso da fonte */
+  font-style: normal;
+  /* Estilo da fonte */
+  margin-bottom: 2%;
+}
+
+
+input[type=radio], input[type=checkbox]  {
+  border: 0px;
+  width: 20px;
+  height: 25px;
+  vertical-align: middle;
 }
 
 .radioGroup {
@@ -46,12 +63,15 @@ h1 {
 
 .formGroup {
   margin-bottom: 15px;
+  font-family: "Archivo Black", sans-serif;
+  /* Fonte */
 }
 
 .formGroup label {
   display: block;
   margin-bottom: 5px;
   color: var(--amareloClaro);
+  font-size: 20px;
 }
 
 .formGroup input {
@@ -73,6 +93,8 @@ h1 {
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: "Archivo Black", sans-serif;
+  /* Fonte */
 }
 
 .button:hover {

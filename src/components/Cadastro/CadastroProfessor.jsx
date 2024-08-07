@@ -186,8 +186,7 @@ function CadastroProfessor() {
                             name="especialidade"
                         />
                     </div>
-                    {/* Mensagem de erro */}
-                    {errorMessage && <p className={styles.error}>{errorMessage}</p>}
+
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastrar

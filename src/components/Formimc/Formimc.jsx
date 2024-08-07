@@ -64,16 +64,16 @@ function FormIMC() {
         faixaIMC = 'Abaixo do Normal';
         highlightClass = styles.highlight;
       } else if (imc >= 20 && imc < 24.9) {
-        faixaIMC = 'Normal';
+        faixaIMC = ' com peso Normal';
         highlightClass = styles.highlight;
       } else if (imc >= 25 && imc < 29.9) {
-        faixaIMC = 'Obesidade Leve';
+        faixaIMC = 'em Obesidade Leve';
         highlightClass = styles.highlight;
       } else if (imc >= 30 && imc < 39.9) {
-        faixaIMC = 'Obesidade Moderada';
+        faixaIMC = 'em Obesidade Moderada';
         highlightClass = styles.highlight;
       } else {
-        faixaIMC = 'Obesidade Mórbida';
+        faixaIMC = 'em Obesidade Mórbida';
         highlightClass = styles.highlight;
       }
     } else {
@@ -113,7 +113,7 @@ function FormIMC() {
 
   return (
     <div className={styles.formImc}>
-      <h1>Calculo IMC</h1>
+      <h1 className={styles.h1}>Cálculo IMC</h1>
       <div className={styles.radioGroup}>
         <label>
           <input
