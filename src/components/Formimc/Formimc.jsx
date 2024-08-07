@@ -138,7 +138,7 @@ function FormIMC() {
         <label htmlFor="peso">Peso (kg):</label>
         <input
           type="text"
-          id="peso"
+          className={styles.peso}
           value={peso}
           onChange={handlePesoChange}
           placeholder="Exemplo: 65.30"
@@ -148,7 +148,7 @@ function FormIMC() {
         <label htmlFor="altura">Altura (m):</label>
         <input
           type="text"
-          id="altura"
+          className={styles.altura}
           value={altura}
           onChange={handleAlturaChange}
           placeholder="Exemplo: 1.60"

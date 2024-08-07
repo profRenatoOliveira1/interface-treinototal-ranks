@@ -1,16 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
-import ProfessoresRequests from '../../fetch/ProfessoresRequests';
-import { FaTrash } from "react-icons/fa";
+import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importação do módulo responsável por fazer as requisições dos professores
+import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
 
-// falta comentar
+/**
+ * Componente para listar professores
+ * @returns {JSX.Element} Componente JSX para listagem de professores
+ */
 function ListarProfessor() {
     // Define o estado inicial para armazenar os professores
     const [professores, setProfessor] = useState([]);
 
-    // useEffect para carregar os professores quando o componente é montado
+    /**
+     * Hook useEffect para carregar os professores quando o componente é montado
+     */
     useEffect(() => {
-        // Função assíncrona para buscar os professores da API
+        /**
+         * Função assíncrona para buscar os professores da API
+         */
         const fetchProfessor = async () => {
             try {
                 // Realiza a requisição para buscar os professores
@@ -27,21 +34,32 @@ function ListarProfessor() {
         fetchProfessor();
     }, []); // O array vazio como segundo parâmetro garante que useEffect seja executado apenas uma vez, após a montagem do componente
 
-    // Função para formatar a data no formato brasileiro
+    /**
+     * Formata a data no formato brasileiro
+     * @param {string} data - A data a ser formatada
+     * @returns {string} A data formatada no padrão brasileiro
+     */
     const formatarData = (data) => {
         return new Date(data).toLocaleDateString('pt-br');
     }
 
-    // Função para formatar o CPF
+    /**
+     * Formata o CPF
+     * @param {string} cpf - O CPF a ser formatado
+     * @returns {string} O CPF formatado
+     */
     const formatarCPF = (cpf) => {
         return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
     };
 
-    // Função para formatar o número de telefone
+    /**
+     * Formata o número de telefone
+     * @param {string} telefone - O telefone a ser formatado
+     * @returns {string} O telefone formatado
+     */
     const formatarTelefone = (telefone) => {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     };
-
 
     // Renderização do componente
     return (

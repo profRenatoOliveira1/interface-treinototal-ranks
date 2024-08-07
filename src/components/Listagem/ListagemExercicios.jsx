@@ -5,12 +5,20 @@ import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação
 import AparelhosRequests from '../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
 
-// fechar comentar
+/**
+ * Componente para listar exercícios
+ * @returns {JSX.Element} Componente JSX para listagem de exercícios
+ */
 function TabelaListagemExercicios() {
     const [exercicios, setExercicios] = useState([]); // Estado para armazenar os exercícios
-    // const [aparelhos, setAparelho] = useState([]);
 
+    /**
+     * Hook useEffect para carregar os dados dos exercícios e aparelhos quando o componente é montado
+     */
     useEffect(() => {
+        /**
+         * Função assíncrona para buscar os exercícios e aparelhos da API
+         */
         const fetchDados = async () => {
             try {
                 const exercicios = await ExerciciosRequests.listarExercicio(); // Requisição para buscar os exercícios

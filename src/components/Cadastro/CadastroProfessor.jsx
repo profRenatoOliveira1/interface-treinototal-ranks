@@ -77,7 +77,7 @@ function CadastroProfessor() {
                             placeholder="Nome completo"
                             value={formData.nome}
                             onChange={handleChange}
-                            name="nome"
+                            name="nome"required
                         />
                     </div>
                     {/* Campo para CPF */}
@@ -90,6 +90,7 @@ function CadastroProfessor() {
                             value={formData.cpf}
                             onChange={handleChange}
                             name="cpf"
+                            required
                         />
                         <input
                             type="text"
@@ -101,6 +102,7 @@ function CadastroProfessor() {
                             onChange={handleChange}
                             name="data_nascimento"
                             max={hoje.toISOString().split('T')[0]} 
+                            required
                         />
                     </div>
                     {/* Campo para número de celular */}
@@ -113,6 +115,7 @@ function CadastroProfessor() {
                             value={formData.celular}
                             onChange={handleChange}
                             name="celular"
+                            required
                         />
                         <input
                             type="text"
@@ -124,6 +127,7 @@ function CadastroProfessor() {
                             onChange={handleChange}
                             name="data_contratacao"
                             max={hoje.toISOString().split('T')[0]} 
+                            required
                         />
                     </div>
                     {/* Campo para endereço */}
@@ -135,6 +139,7 @@ function CadastroProfessor() {
                             value={formData.endereco}
                             onChange={handleChange}
                             name="endereco"
+                            required
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -145,6 +150,7 @@ function CadastroProfessor() {
                             value={formData.email}
                             onChange={handleChange}
                             name="email"
+                            required
                         />
                     </div>
                     <div className={styles.formGroup}>
@@ -155,6 +161,7 @@ function CadastroProfessor() {
                             value={formData.senha}
                             onChange={handleChange}
                             name="senha"
+                            required
                         />
                     </div>
                     {/* Campo para formação */}

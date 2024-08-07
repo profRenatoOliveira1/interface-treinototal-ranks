@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import styles from '../styles/StyleCadastro.module.css';
-import AlunoRequests from '../../fetch/AlunoRequests';
-import InputMask from "react-input-mask";
+import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
+import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
+import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
+import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 
-// falta comentar
+/**
+ * Componente funcional para o cadastro de alunos
+ */
 function CadastroAluno() {
+    // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
@@ -17,37 +20,47 @@ function CadastroAluno() {
         peso: ''
     });
 
-    // falta comentar
+    /**
+     * Função para atualizar o estado do formulário conforme o usuário digita
+     * @param {Object} e - O evento de mudança do input
+     */
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setFormData(prevState => ({
-            ...prevState,
-            [name]: value
+            ...prevState, // Mantém os valores atuais do estado
+            [name]: value // Atualiza o valor do campo específico
         }));
     };
 
-    // falta comentar
+    /**
+     * Função para lidar com a submissão do formulário
+     * @param {Object} e - O evento de submissão do formulário
+     */
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         const dt_nasc = new Date(formData.data_nascimento);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
+        // Verifica se a data de nascimento não é futura
         if (dt_nasc > hoje) {
             setErrorMessage('A data de nascimento não pode ser uma data futura.');
             return;
         }
 
+        // Verifica se os campos obrigatórios estão preenchidos
         if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
             setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
 
+        // Limpa os campos de CPF e celular para remover qualquer formatação
         const cleanCPF = formData.cpf.replace(/\D/g, '');
         const cleanCelular = formData.celular.replace(/\D/g, '');
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
 
         try {
+            // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(cleanData);
             console.log('Aluno cadastrado com sucesso:', response);
             if (response) {
@@ -68,6 +81,7 @@ function CadastroAluno() {
             <h1 className={styles.h1}>Cadastro de Aluno</h1>
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
+                    {/* Campo para o nome completo */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -76,8 +90,10 @@ function CadastroAluno() {
                             value={formData.nome}
                             onChange={handleChange}
                             name="nome"
+                            required
                         />
                     </div>
+                    {/* Campo para CPF e data de nascimento */}
                     <div className={styles.formGroup}>
                         <InputMask
                             type="text"
@@ -87,6 +103,7 @@ function CadastroAluno() {
                             value={formData.cpf}
                             onChange={handleChange}
                             name="cpf"
+                            required
                         />
                         <input
                             type="text"
@@ -98,8 +115,10 @@ function CadastroAluno() {
                             onChange={handleChange}
                             name="data_nascimento"
                             max={hoje.toISOString().split('T')[0]}
+                            required
                         />
                     </div>
+                    {/* Campo para telefone */}
                     <div className={styles.formGroup}>
                         <InputMask
                             mask="(99) 99999-9999"
@@ -109,8 +128,10 @@ function CadastroAluno() {
                             value={formData.celular}
                             onChange={handleChange}
                             name="celular"
+                            required
                         />
                     </div>
+                    {/* Campo para endereço */}
                     <div className={styles.formGroup}>
                         <input
                             type="text"
@@ -119,8 +140,10 @@ function CadastroAluno() {
                             value={formData.endereco}
                             onChange={handleChange}
                             name="endereco"
+                            required
                         />
                     </div>
+                    {/* Campo para email */}
                     <div className={styles.formGroup}>
                         <input
                             type="email"
@@ -129,8 +152,10 @@ function CadastroAluno() {
                             value={formData.email}
                             onChange={handleChange}
                             name="email"
+                            required
                         />
                     </div>
+                    {/* Campo para senha */}
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -139,8 +164,10 @@ function CadastroAluno() {
                             value={formData.senha}
                             onChange={handleChange}
                             name="senha"
+                            required
                         />
                     </div>
+                    {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
                         <input
                             type="number"
@@ -149,6 +176,7 @@ function CadastroAluno() {
                             value={formData.altura}
                             onChange={handleChange}
                             name="altura"
+                            required
                         />
                         <input
                             type="number"
@@ -157,6 +185,7 @@ function CadastroAluno() {
                             value={formData.peso}
                             onChange={handleChange}
                             name="peso"
+                            required
                         />
                     </div>
                     <button type="submit" className={styles.btn}>
@@ -168,4 +197,4 @@ function CadastroAluno() {
     );
 }
 
-export default CadastroAluno;
+export default CadastroAluno; // Exporta o componente para ser utilizado em outras partes da aplicação

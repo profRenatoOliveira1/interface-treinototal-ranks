@@ -9,6 +9,10 @@
   --preto: #000000;
 }
 
+.peso::placeholder, .altura::placeholder {
+  color: var(--branco);
+}
+
 
 .formImc {
   background-color: var(--cinzaAzulado);
@@ -19,9 +23,6 @@
   margin: auto auto;
   margin-top: 4%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-::-webkit-input-placeholder {
-color: var(--branco);
 }
 
 h1 {

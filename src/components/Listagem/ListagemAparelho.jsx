@@ -3,14 +3,21 @@ import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS 
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
 import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
 
-// falta comnetar
+/**
+ * Componente funcional para listar aparelhos
+ * @returns {JSX.Element} Componente JSX para listagem de aparelhos
+ */
 function ListarAparelho() {
     // Define o estado inicial para armazenar os aparelhos
     const [aparelhos, setAparelhos] = useState([]);
 
-    // useEffect para carregar os aparelhos quando o componente é montado
+    /**
+     * Hook useEffect para carregar os aparelhos quando o componente é montado
+     */
     useEffect(() => {
-        // Função assíncrona para buscar os aparelhos da API
+        /**
+         * Função assíncrona para buscar os aparelhos da API
+         */
         const fetchAparelho = async () => {
             try {
                 // Realiza a requisição para buscar os aparelhos
@@ -26,7 +33,6 @@ function ListarAparelho() {
         // Chama a função para buscar os aparelhos
         fetchAparelho();
     }, []); // O array vazio como segundo parâmetro garante que useEffect seja executado apenas uma vez, após a montagem do componente
-
 
     // Renderização do componente
     return (
