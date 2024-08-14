@@ -7,12 +7,12 @@ function CadastroProfessor() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        data_nascimento: '',
+        dataNascimento: '',
         celular: '',
         endereco: '',
         email: '',
         senha: '',
-        data_contratacao: '',
+        dataContratacao: '',
         formacao: '',
         especialidade: ''
     });
@@ -30,8 +30,8 @@ function CadastroProfessor() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const dt_nasc = new Date(formData.data_nascimento);
-        const dt_cont = new Date(formData.data_contratacao);
+        const dt_nasc = new Date(formData.dataNascimento);
+        const dt_cont = new Date(formData.dataContratacao);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
@@ -98,9 +98,9 @@ function CadastroProfessor() {
                             placeholder="Data de Nascimento"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.data_nascimento}
+                            value={formData.dataNascimento}
                             onChange={handleChange}
-                            name="data_nascimento"
+                            name="dataNascimento"
                             max={hoje.toISOString().split('T')[0]} 
                             required
                         />
@@ -123,9 +123,9 @@ function CadastroProfessor() {
                             placeholder="Data de Contratação"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.data_contratacao}
+                            value={formData.dataContratacao}
                             onChange={handleChange}
-                            name="data_contratacao"
+                            name="dataContratacao"
                             max={hoje.toISOString().split('T')[0]} 
                             required
                         />

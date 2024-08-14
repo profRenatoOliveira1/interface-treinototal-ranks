@@ -13,7 +13,7 @@ function CadastroExercicio() {
         exercicio: '',
         carga: '',
         repeticoes: '',
-        regiao_corpo_ativa: ''
+        regiaoCorpoAtiva: ''
     });
 
     // Define o estado inicial para a lista de aparelhos
@@ -65,7 +65,7 @@ function CadastroExercicio() {
                 exercicio: '',
                 carga: '',
                 repeticoes: '',
-                regiao_corpo_ativa: ''
+                regiaoCorpoAtiva: ''
             }); // Reseta o estado do formulário após submissão bem-sucedida
         } catch (error) {
             console.error('Erro ao cadastrar exercício:', error);
@@ -90,7 +90,7 @@ function CadastroExercicio() {
                             <option value="">Selecione o Aparelho</option>
                             {aparelhos.map(aparelho => (
                                 <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
-                                    {aparelho.nome_aparelho}
+                                    {aparelho.nomeAparelho}
                                 </option>
                             ))}
                         </select>
@@ -137,9 +137,9 @@ function CadastroExercicio() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Região do corpo ativada"
-                            value={formData.regiao_corpo_ativa}
+                            value={formData.regiaoCorpoAtiva}
                             onChange={handleChange}
-                            name="regiao_corpo_ativa"
+                            name="regiaoCorpoAtiva"
                             required
                         />
                     </div>

@@ -116,11 +116,11 @@ function ListarProfessor() {
                             <tr key={professor.id_professor} className={styles.tabelaCorpo}>
                                 <td>{professor.nome.toUpperCase()}</td>
                                 <td>{formatarCPF(professor.cpf)}</td>
-                                <td>{formatarData(professor.data_nascimento)}</td>
+                                <td>{formatarData(professor.dataNascimento)}</td>
                                 <td>{formatarTelefone(professor.celular)}</td>
                                 <td>{professor.endereco.toUpperCase()}</td>
                                 <td>{professor.email.toUpperCase()}</td>
-                                <td>{formatarData(professor.data_contratacao)}</td>
+                                <td>{formatarData(professor.dataContratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
                                 <td onClick={() => deletar(professor.id_professor, professor.nome)}>

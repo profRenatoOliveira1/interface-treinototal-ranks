@@ -83,8 +83,8 @@ function ListarAparelho() {
                         {/* Mapeia os aparelhos e renderiza cada um como uma linha na tabela */}
                         {aparelhos.map(aparelho => (
                             <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
-                                <td>{aparelho.nome_aparelho.toUpperCase()}</td>
-                                <td>{aparelho.musculo_ativado.toUpperCase()}</td>
+                                <td>{aparelho.nomeAparelho.toUpperCase()}</td>
+                                <td>{aparelho.musculoAtivado.toUpperCase()}</td>
                                 <td>
                                     <FaTrash onClick={() => deletarAparelho(aparelho.id_aparelho)} style={{ color: '#DB0135' }} />
                                 </td>

@@ -9,8 +9,8 @@ function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
         id_aparelho: '',
-        nome_aparelho: '',
-        musculo_ativado: ''
+        nomeAparelho: '',
+        musculoAtivado: ''
     });
 
     /**
@@ -35,7 +35,7 @@ function CadastroAparelho() {
             // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AparelhoRequests.cadastrarAparelho(formData);
             console.log('Aparelho cadastrado com sucesso:', response);
-            window.alert(formData.nome_aparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
+            window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
         } catch (error) {
             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro
         } 
@@ -52,9 +52,9 @@ function CadastroAparelho() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Nome"
-                            value={formData.nome_aparelho} // Define o valor do input com base no estado
+                            value={formData.nomeAparelho} // Define o valor do input com base no estado
                             onChange={handleChange} // Define a função de mudança para atualizar o estado
-                            name="nome_aparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
+                            name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                             required
                             />
                     </div>
@@ -64,9 +64,9 @@ function CadastroAparelho() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Músculo Ativado"
-                            value={formData.musculo_ativado} // Define o valor do input com base no estado
+                            value={formData.musculoAtivado} // Define o valor do input com base no estado
                             onChange={handleChange} // Define a função de mudança para atualizar o estado
-                            name="musculo_ativado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
+                            name="musculoAtivado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                             required
                         />
                     </div>

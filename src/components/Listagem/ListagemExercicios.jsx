@@ -33,7 +33,7 @@ function TabelaListagemExercicios() {
                 // Adiciona o nome do aparelho ao exercício correspondente
                 const exerciciosComAparelhos = exercicios.map(exercicio => ({
                     ...exercicio,
-                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho || 'N/A'
+                    nomeAparelho: aparelhosMap[exercicio.id_aparelho]?.nomeAparelho || 'N/A'
                 }));
 
                 setExercicios(exerciciosComAparelhos); // Atualiza o estado com os exercícios obtidos
@@ -84,10 +84,10 @@ function TabelaListagemExercicios() {
                             {exercicios.map(exercicio => (
                                 <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
                                     <td>{exercicio.exercicio.toUpperCase()}</td>
-                                    <td>{exercicio.nome_aparelho.toUpperCase()}</td>
+                                    <td>{exercicio.nomeAparelho.toUpperCase()}</td>
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{`${exercicio.carga} Kg`}</td>
-                                    <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
+                                    <td>{exercicio.regiaoCorpoAtiva.toUpperCase()}</td>
                                     <td>
                                         <FaTrash onClick={() => deletar(exercicio)} style={{ color: '#DB0135' }} />
                                     </td> {/* Botão para deletar um exercício */}
