@@ -33,7 +33,7 @@ function TabelaListagemExercicios() {
                 // Adiciona o nome do aparelho ao exercício correspondente
                 const exerciciosComAparelhos = exercicios.map(exercicio => ({
                     ...exercicio,
-                    nomeAparelho: aparelhosMap[exercicio.id_aparelho]?.nomeAparelho || 'N/A'
+                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho 
                 }));
 
                 setExercicios(exerciciosComAparelhos); // Atualiza o estado com os exercícios obtidos
@@ -44,19 +44,6 @@ function TabelaListagemExercicios() {
 
         fetchDados(); // Chama a função para buscar os dados ao montar o componente
     }, []);
-
-    const deletar = (exercicio) => {
-        const deletar = window.confirm(`Tem certeza que deseja remover o exercício ${exercicio.exercicio}?`);
-
-        if (deletar) {
-            if (ExerciciosRequests.deletarExercicio(exercicio.id_exercicio)) {
-                window.location.reload();
-                window.alert('Exercicio removido com sucesso');
-            } else {
-                window.alert('Erro ao remover exercicio');
-            }
-        }
-    };
 
     // Renderização do componente
     return (
@@ -84,13 +71,11 @@ function TabelaListagemExercicios() {
                             {exercicios.map(exercicio => (
                                 <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
                                     <td>{exercicio.exercicio.toUpperCase()}</td>
-                                    <td>{exercicio.nomeAparelho.toUpperCase()}</td>
+                                    <td>{exercicio.nome_aparelho.toUpperCase()}</td>
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{`${exercicio.carga} Kg`}</td>
-                                    <td>{exercicio.regiaoCorpoAtiva.toUpperCase()}</td>
-                                    <td>
-                                        <FaTrash onClick={() => deletar(exercicio)} style={{ color: '#DB0135' }} />
-                                    </td> {/* Botão para deletar um exercício */}
+                                    <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
+                                    <td onClick={() => {console.log('deletar')}}><FaTrash /></td> {/* Botão para deletar um exercício */}
                                 </tr>
                             ))}
                         </tbody>

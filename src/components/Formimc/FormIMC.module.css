@@ -10,7 +10,7 @@
 }
 
 .peso::placeholder, .altura::placeholder {
-  color: var(--branco);
+  color: var(--cinzaClaro);
 }
 
 
@@ -51,6 +51,7 @@ input[type=radio], input[type=checkbox]  {
   display: flex;
   justify-content: space-around;
   margin-bottom: 15px;
+  
 }
 
 .radioGroup label {
@@ -63,7 +64,7 @@ input[type=radio], input[type=checkbox]  {
 
 .formGroup {
   margin-bottom: 15px;
-  font-family: "Archivo Black", sans-serif;
+  font-family: "Archivo ", sans-serif;
   /* Fonte */
 }
 

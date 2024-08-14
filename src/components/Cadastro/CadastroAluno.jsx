@@ -11,7 +11,7 @@ function CadastroAluno() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        dataNascimento: '',
+        data_nascimento: '',
         celular: '',
         endereco: '',
         email: '',
@@ -38,7 +38,7 @@ function CadastroAluno() {
      */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
-        const dt_nasc = new Date(formData.dataNascimento);
+        const dt_nasc = new Date(formData.data_nascimento);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
@@ -72,7 +72,7 @@ function CadastroAluno() {
         }
     };
 
-    const dt_nasc = new Date(formData.dataNascimento);
+    const dt_nasc = new Date(formData.data_nascimento);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -111,9 +111,9 @@ function CadastroAluno() {
                             placeholder="Data de Nascimento"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.dataNascimento}
+                            value={formData.data_nascimento}
                             onChange={handleChange}
-                            name="dataNascimento"
+                            name="data_nascimento"
                             max={hoje.toISOString().split('T')[0]}
                             required
                         />
@@ -189,7 +189,7 @@ function CadastroAluno() {
                         />
                     </div>
                     <button type="submit" className={styles.btn}>
-                        Cadastrar-se
+                        Cadastrar
                     </button>
                 </form>
             </div>

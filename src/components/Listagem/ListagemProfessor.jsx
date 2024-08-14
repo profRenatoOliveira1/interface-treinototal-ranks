@@ -21,9 +21,9 @@ function ListarProfessor() {
         const fetchProfessor = async () => {
             try {
                 // Realiza a requisição para buscar os professores
-                const professores = await ProfessoresRequests.listarProfessor();
+                const professor = await ProfessoresRequests.listarProfessor();
                 // Atualiza o estado com os professores obtidos da API
-                setProfessor(professores);
+                setProfessor(professor);
             } catch (error) {
                 // Em caso de erro, exibe o erro no console
                 console.error('Erro ao buscar professores: ', error);
@@ -61,23 +61,6 @@ function ListarProfessor() {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     };
 
-    /**
-     * Função para deletar um professor
-     * @param {number} id_professor - O ID do professor a ser deletado
-     * @param {string} nome - O nome do professor a ser exibido na confirmação
-     */
-    const deletar = async (id_professor, nome) => {
-        const confirmar = window.confirm(`Deseja deletar o Professor ${nome}?`);
-        if (confirmar) {
-            if (await ProfessoresRequests.deletarProfessor(id_professor)) {
-                window.alert('Professor deletado com sucesso');
-                setProfessor(professores.filter(professor => professor.id_professor !== id_professor));
-            } else {
-                window.alert('Erro ao deletar Professor');
-            }
-        }
-    };
-    
     // Renderização do componente
     return (
         <>
@@ -93,7 +76,7 @@ function ListarProfessor() {
                     </div>
                 </div>
             </div>
-    
+
             {/* Tabela para listar os professores */}
             <div className={styles.cntTb}>
                 <table className={`${styles.table} ${styles.tabela}`}>
@@ -112,20 +95,19 @@ function ListarProfessor() {
                         </tr>
                     </thead>
                     <tbody>
+                        {/* Mapeia os professores e renderiza cada um como uma linha na tabela */}
                         {professores.map(professor => (
                             <tr key={professor.id_professor} className={styles.tabelaCorpo}>
                                 <td>{professor.nome.toUpperCase()}</td>
                                 <td>{formatarCPF(professor.cpf)}</td>
-                                <td>{formatarData(professor.dataNascimento)}</td>
+                                <td>{formatarData(professor.data_nascimento)}</td>
                                 <td>{formatarTelefone(professor.celular)}</td>
                                 <td>{professor.endereco.toUpperCase()}</td>
                                 <td>{professor.email.toUpperCase()}</td>
-                                <td>{formatarData(professor.dataContratacao)}</td>
+                                <td>{formatarData(professor.data_contratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
-                                <td onClick={() => deletar(professor.id_professor, professor.nome)}>
-                                    <FaTrash style={{ color: '#DB0135' }} />
-                                </td> {/* Passando o ID e o Nome */}
+                                <td onClick={() => deletarProfessor(professor.id_professor)}><FaTrash /></td> {/* Botão para deletar um professor */}
                             </tr>
                         ))}
                     </tbody>
@@ -133,7 +115,6 @@ function ListarProfessor() {
             </div>
         </>
     );
-    
 }
 
 export default ListarProfessor;

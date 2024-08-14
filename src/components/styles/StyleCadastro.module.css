@@ -119,6 +119,12 @@ form {
   /* Transição suave */
 }
 
+@media (max-width: 768px) {
+  .btn {
+    width: 60%;
+  }
+}
+
 /* Estilos de hover para um botão genérico */
 .btn:hover {
   background-color: var(--amareloEscuro);

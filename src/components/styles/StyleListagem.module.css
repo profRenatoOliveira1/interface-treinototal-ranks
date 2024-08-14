@@ -18,8 +18,6 @@
   margin: 2% 0;
 }
 
-
-
 .tabelaCorpo {
   color: var(--preto);
   text-align: center;
@@ -38,7 +36,7 @@
 }
 
 .table {
-  width: 120%;
+  width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
