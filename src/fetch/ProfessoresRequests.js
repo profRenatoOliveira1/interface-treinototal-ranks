@@ -2,7 +2,7 @@ class ProfessoresRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarProfessor = '/listar-professor';
+        this.routeListarProfessor = '/listar/professor';
         this.routeCadastrarProfessor = '/novo/professor';
         this.routeDeletarProfessor = '/remover/professor';
     }

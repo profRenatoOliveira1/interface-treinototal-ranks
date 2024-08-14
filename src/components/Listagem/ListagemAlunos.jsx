@@ -48,6 +48,20 @@ function ListarAluno() {
      * @returns {string} - Telefone formatado
      */
     const formatarTelefone = (telefone) => telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    
+    const deletar = (aluno) => {
+        //window.alert('Não foi feito... ainda'); // Exibe um alerta temporário
+        const deletar = window.confirm(`Tem certeza que deseja remover o aluno ${aluno.nome}?`);
+
+        if (deletar) {
+            if (AlunoRequests.deletarAluno(aluno.id_aluno)) {
+                window.location.reload();
+                window.alert('Aluno removido com sucesso!');
+            } else {
+                window.alert('Erro ao remover aluno!');
+            }
+        }
+    };
 
     return (
         <>
@@ -92,7 +106,9 @@ function ListarAluno() {
                                         <td>{`${aluno.altura} m`}</td> {/* Exibe a altura com a unidade 'm' */}
                                         <td>{`${aluno.peso} kg`}</td> {/* Exibe o peso com a unidade 'kg' */}
                                         <td>{aluno.imc}</td> {/* Exibe o IMC */}
-                                        <td onClick={() => console.log('deletar')}><FaTrash /></td> {/* Ícone de lixeira para ação de deletar */}
+                                        <td>
+                                        <FaTrash onClick={() => deletar(aluno)} style={{ color: '#DB0135' }}/>
+                                        </td> {/* Ícone de lixeira para ação de deletar */}
                                     </tr>
                                 ))}
                             </tbody>

@@ -2,7 +2,7 @@ class AlunoRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAluno = '/listar-aluno';
+        this.routeListarAluno = '/listar/aluno';
         this.routeCadastrarAluno = '/novo/aluno';
         this.routeDeletarAluno = '/remover/aluno';
     }

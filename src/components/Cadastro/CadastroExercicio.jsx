@@ -25,6 +25,7 @@ function CadastroExercicio() {
             try {
                 const aparelhosData = await AparelhoRequests.listarAparelho();
                 if (aparelhosData) {
+                    console.log(aparelhosData);
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
             } catch (error) {
@@ -42,6 +43,7 @@ function CadastroExercicio() {
 
     const handleChange = (e) => {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
+        console.log(name, value);
         setFormData(prevState => ({
             ...prevState, // Mantém os valores atuais do estado
             [name]: value // Atualiza o valor do campo específico

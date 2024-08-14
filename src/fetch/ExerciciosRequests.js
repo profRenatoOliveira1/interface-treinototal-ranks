@@ -2,7 +2,7 @@ class ExerciciosRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarExercicio = '/listar-exercicio';
+        this.routeListarExercicio = '/listar/exercicio';
         this.routeCadastrarExercicio = '/novo/exercicio';
         this.routeDeletarExercicio = '/remover/exercicio';
     }
