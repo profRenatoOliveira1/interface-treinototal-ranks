@@ -1,10 +1,10 @@
 class AlunoRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAluno = '/listar/aluno';
-        this.routeCadastrarAluno = '/novo/aluno';
-        this.routeDeletarAluno = '/remover/aluno';
+        this.serverUrl = import.meta.env.VITE_API_URL;  // Atribui a URL base da API, obtida das variáveis de ambiente, à propriedade serverUrl
+        this.routeListarAluno = '/listar/aluno';  // Define a rota para listar alunos e atribui à propriedade routeListarAluno
+        this.routeCadastrarAluno = '/novo/aluno';  // Define a rota para cadastrar um novo aluno e atribui à propriedade routeCadastrarAluno
+        this.routeDeletarAluno = '/remover/aluno';  // Define a rota para deletar um aluno e atribui à propriedade routeDeletarAluno
     }
 
     async listarAlunos() { // Método assíncrono para listar alunos
@@ -54,18 +54,18 @@ class AlunoRequests {
             throw error;
         }
     }
-    async deletarAluno(id_aluno) {
+    async deletarAluno(id_aluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${id_aluno}`, {
-                method: 'DELETE'
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${id_aluno}`, {  // Faz uma requisição HTTP do tipo DELETE para a URL gerada dinamicamente
+                method: 'DELETE'  // Define o método HTTP como DELETE
             });
-            if (!response.ok) {
-                throw new Error('Erro ao enviar formulário');
+            if (!response.ok) {  // Verifica se a resposta da requisição não foi bem-sucedida
+                throw new Error('Erro ao enviar formulário');  // Lança um erro se a resposta não for OK
             }
-            return true;
-        } catch (error) {
-            console.error('Erro: ', error);
-            return false; 
+            return true;  // Retorna true se a exclusão for bem-sucedida
+        } catch (error) {  // Captura qualquer erro que ocorrer durante a execução do bloco try
+            console.error('Erro: ', error);  // Loga o erro no console para fins de depuração
+            return false;  // Retorna false se ocorrer um erro
         }
     }
 }

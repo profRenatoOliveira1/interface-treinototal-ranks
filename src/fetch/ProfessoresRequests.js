@@ -1,10 +1,10 @@
 class ProfessoresRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarProfessor = '/listar/professor';
-        this.routeCadastrarProfessor = '/novo/professor';
-        this.routeDeletarProfessor = '/remover/professor';
+        this.serverUrl = import.meta.env.VITE_API_URL; // Atribui a URL base da API, obtida das variáveis de ambiente, à propriedade serverUrl
+        this.routeListarProfessor = '/listar/professor'; // Define a rota para listar professores e atribui à propriedade routeListarProfessor
+        this.routeCadastrarProfessor = '/novo/professor'; // Define a rota para cadastrar um novo professores e atribui à propriedade routeCadastrarProfessor
+        this.routeDeletarProfessor = '/remover/professor'; // Define a rota para deletar um professores e atribui à propriedade routeDeletarProfessor
     }
 
     async listarProfessor() { // Método assíncrono para listar professores

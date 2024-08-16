@@ -1,10 +1,10 @@
 class ExerciciosRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarExercicio = '/listar/exercicio';
-        this.routeCadastrarExercicio = '/novo/exercicio';
-        this.routeDeletarExercicio = '/remover/exercicio';
+        this.serverUrl = import.meta.env.VITE_API_URL; // Atribui a URL base da API, obtida das variáveis de ambiente, à propriedade serverUrl
+        this.routeListarExercicio = '/listar/exercicio'; // Define a rota para listar exercícios e atribui à propriedade routeListarExercicios
+        this.routeCadastrarExercicio = '/novo/exercicio'; // Define a rota para cadastrar um novo exercício e atribui à propriedade routeCadastrarExercicio
+        this.routeDeletarExercicio = '/remover/exercicio'; // Define a rota para deletar um exercício e atribui à propriedade routeDeletarExercicio
     }
 
     async listarExercicio() { // Método assíncrono para listar exercícios

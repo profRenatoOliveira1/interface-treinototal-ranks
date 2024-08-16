@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
+import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API de Aparelhos
 
 /**
  * Componente funcional para o cadastro de aparelhos
@@ -8,9 +8,9 @@ import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módu
 function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        id_aparelho: '',
-        nomeAparelho: '',
-        musculoAtivado: ''
+        id_aparelho: '',        // Campo para o ID do aparelho (opcional, dependendo da implementação)
+        nomeAparelho: '',       // Campo para o nome do aparelho
+        musculoAtivado: ''      // Campo para o músculo ativado pelo aparelho
     });
 
     /**
@@ -37,13 +37,13 @@ function CadastroAparelho() {
             console.log('Aparelho cadastrado com sucesso:', response);
             window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
         } catch (error) {
-            console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro
+            console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
         } 
     };
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Cadastro de Aparelho</h1>
+            <h1 className={styles.h1}>Cadastro de Aparelho</h1> {/* Título da seção */}
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome do aparelho */}
@@ -56,7 +56,7 @@ function CadastroAparelho() {
                             onChange={handleChange} // Define a função de mudança para atualizar o estado
                             name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                             required
-                            />
+                        />
                     </div>
                     {/* Campo para o músculo ativado */}
                     <div className={styles.formGroup}>
@@ -72,7 +72,7 @@ function CadastroAparelho() {
                     </div>
                     <button type="submit" className={styles.btn}>
                         Cadastrar
-                    </button>
+                    </button> {/* Botão para submeter o formulário */}
                 </form>
             </div>
         </div>

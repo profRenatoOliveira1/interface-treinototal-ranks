@@ -15,10 +15,6 @@ function ImgFundoHome() {
       </div>
     </>
   );
-
-
-
-
 }
 // Exporta a função ImgFundoHome para que possa ser utilizada em outras partes do código
 export default ImgFundoHome;

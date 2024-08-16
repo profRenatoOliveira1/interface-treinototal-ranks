@@ -1,10 +1,10 @@
 class AparelhoRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
-        this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAparelho = '/listar/aparelho';
-        this.routeCadastrarAparelho = '/novo/aparelho';
-        this.routeDeletarAparelho = '/remover/aparelho';
+        this.serverUrl = import.meta.env.VITE_API_URL; // Atribui a URL base da API, obtida das variáveis de ambiente, à propriedade serverUrl
+        this.routeListarAparelho = '/listar/aparelho'; // Define a rota para listar aparelhos e atribui à propriedade routeListarAparelho
+        this.routeCadastrarAparelho = '/novo/aparelho'; // Define a rota para cadastrar um novo aparelho e atribui à propriedade routeCadastrarAparelho
+        this.routeDeletarAparelho = '/remover/aparelho'; // Define a rota para deletar um aparelho e atribui à propriedade routeDeletarAparelho
     }
 
     async listarAparelho() { // Método assíncrono para listar aparelhos
