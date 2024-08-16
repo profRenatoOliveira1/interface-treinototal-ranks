@@ -33,7 +33,7 @@ function TabelaListagemExercicios() {
                 // Adiciona o nome do aparelho ao exercício correspondente
                 const exerciciosComAparelhos = exercicios.map(exercicio => ({
                     ...exercicio,
-                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho 
+                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho
                 }));
 
                 setExercicios(exerciciosComAparelhos); // Atualiza o estado com os exercícios obtidos
@@ -45,6 +45,18 @@ function TabelaListagemExercicios() {
         fetchDados(); // Chama a função para buscar os dados ao montar o componente
     }, []);
 
+    const deletarExercicio = (exercicio) => {
+        const deletar = window.confirm(`Tem certeza que deseja remover o exercício ${exercicio.exercicio}?`);
+        
+        if(deletar) {
+            if(ExerciciosRequests.deletarExercicio(exercicio.id_exercicio)) {
+                window.location.reload();
+                window.alert('Exercicio removido com sucesso');
+            } else {
+                window.alert('Erro ao remover exercicio');
+            }
+        }
+    };
     // Renderização do componente
     return (
         <>
@@ -75,7 +87,9 @@ function TabelaListagemExercicios() {
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{`${exercicio.carga} Kg`}</td>
                                     <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
-                                    <td onClick={() => {console.log('deletar')}}><FaTrash /></td> {/* Botão para deletar um exercício */}
+                                    <td >
+                                        <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135' }} />
+                                    </td> {/* Botão para deletar um exercício */}
                                 </tr>
                             ))}
                         </tbody>

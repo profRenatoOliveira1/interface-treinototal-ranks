@@ -60,7 +60,18 @@ function ListarProfessor() {
     const formatarTelefone = (telefone) => {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     };
+    const deletarProfessor = (professor) => {
+        const deletar = window.confirm(`Tem certeza que deseja remover o professor ${professor.nome}?`);
 
+        if(deletar) {
+            if(ProfessoresRequests.deletarProfessor(professor.id_professor)) {
+                window.location.reload();
+                window.alert('Professor removido com sucesso!');
+            } else {
+                window.alert('Erro ao remover professor!');
+            }
+        }
+    };
     // Renderização do componente
     return (
         <>
@@ -107,7 +118,7 @@ function ListarProfessor() {
                                 <td>{formatarData(professor.data_contratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
-                                <td onClick={() => deletarProfessor(professor.id_professor)}><FaTrash /></td> {/* Botão para deletar um professor */}
+                                <td onClick={() => deletarProfessor(professor)}><FaTrash style={{ color: '#DB0135' }}/></td> {/* Botão para deletar um professor */}
                             </tr>
                         ))}
                     </tbody>

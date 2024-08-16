@@ -11,7 +11,7 @@ function CadastroAluno() {
     const [formData, setFormData] = useState({
         nome: '',
         cpf: '',
-        data_nascimento: '',
+        dataNascimento: '',
         celular: '',
         endereco: '',
         email: '',
@@ -38,12 +38,12 @@ function CadastroAluno() {
      */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
-        const dt_nasc = new Date(formData.data_nascimento);
+        const dtNasc = new Date(formData.dataNascimento);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
         // Verifica se a data de nascimento não é futura
-        if (dt_nasc > hoje) {
+        if (dtNasc > hoje) {
             setErrorMessage('A data de nascimento não pode ser uma data futura.');
             return;
         }
@@ -72,7 +72,7 @@ function CadastroAluno() {
         }
     };
 
-    const dt_nasc = new Date(formData.data_nascimento);
+    const dtNasc = new Date(formData.dataNascimento);
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -111,9 +111,9 @@ function CadastroAluno() {
                             placeholder="Data de Nascimento"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.data_nascimento}
+                            value={formData.dataNascimento}
                             onChange={handleChange}
-                            name="data_nascimento"
+                            name="dataNascimento"
                             max={hoje.toISOString().split('T')[0]}
                             required
                         />

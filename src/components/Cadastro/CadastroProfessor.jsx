@@ -30,17 +30,17 @@ function CadastroProfessor() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const dt_nasc = new Date(formData.dataNascimento);
-        const dt_cont = new Date(formData.dataContratacao);
+        const dtNasc = new Date(formData.dataNascimento);
+        const dtCont = new Date(formData.dataContratacao);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
 
         // Verificação das datas
-        if (dt_nasc > hoje) {
+        if (dtNasc > hoje) {
             setErrorMessage('A data de nascimento não pode ser uma data futura.');
             return;
         }
-        if (dt_cont > hoje) {
+        if (dtCont > hoje) {
             setErrorMessage('A data de contratação não pode ser uma data futura.');
             return;
         }

@@ -9,7 +9,7 @@ import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módu
 function CadastroExercicio() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        id_aparelho: '',
+        idAparelho: '',
         exercicio: '',
         carga: '',
         repeticoes: '',
@@ -25,7 +25,6 @@ function CadastroExercicio() {
             try {
                 const aparelhosData = await AparelhoRequests.listarAparelho();
                 if (aparelhosData) {
-                    console.log(aparelhosData);
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
             } catch (error) {
@@ -43,7 +42,6 @@ function CadastroExercicio() {
 
     const handleChange = (e) => {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
-        console.log(name, value);
         setFormData(prevState => ({
             ...prevState, // Mantém os valores atuais do estado
             [name]: value // Atualiza o valor do campo específico
@@ -61,7 +59,7 @@ function CadastroExercicio() {
             console.log('Exercício cadastrado com sucesso:', response);
             window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
             setFormData({
-                id_aparelho: '',
+                idAparelho: '',
                 exercicio: '',
                 carga: '',
                 repeticoes: '',
@@ -82,15 +80,15 @@ function CadastroExercicio() {
                     <div className={styles.formGroup}>
                         <select
                             className={styles.formStyle}
-                            value={formData.id_aparelho}
+                            value={formData.idAparelho}
                             onChange={handleChange}
-                            name="id_aparelho"
+                            name="idAparelho"
                             required
                         >
                             <option value="">Selecione o Aparelho</option>
                             {aparelhos.map(aparelho => (
                                 <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
-                                    {aparelho.nomeAparelho}
+                                    {aparelho.nome_aparelho}
                                 </option>
                             ))}
                         </select>

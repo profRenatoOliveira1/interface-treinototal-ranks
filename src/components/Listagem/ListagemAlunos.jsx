@@ -99,7 +99,7 @@ function ListarAluno() {
                                     <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
                                         <td>{aluno.nome.toUpperCase()}</td> {/* Exibe o nome em letras maiúsculas */}
                                         <td>{formatarCPF(aluno.cpf)}</td> {/* Formata e exibe o CPF */}
-                                        <td>{formatarData(aluno.dataNascimento)}</td> {/* Formata e exibe a data de nascimento */}
+                                        <td>{formatarData(aluno.data_nascimento)}</td> {/* Formata e exibe a data de nascimento */}
                                         <td style={{width: 200}}>{formatarTelefone(aluno.celular)}</td> {/* Formata e exibe o telefone */}
                                         <td>{aluno.endereco.toUpperCase()}</td> {/* Exibe o endereço em letras maiúsculas */}
                                         <td>{aluno.email.toUpperCase()}</td> {/* Exibe o email em letras maiúsculas */}
