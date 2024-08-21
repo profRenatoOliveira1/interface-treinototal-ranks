@@ -38,7 +38,7 @@ function CadastroAparelho() {
             window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
         } catch (error) {
             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
-        } 
+        }
     };
 
     return (
@@ -73,6 +73,10 @@ function CadastroAparelho() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button> {/* Botão para submeter o formulário */}
+                    <a style={{textDecoration: "none"}} href="http://localhost:5173/Listagem/Aparelho" className={styles.btn}>
+                        Listagem
+                    </a>
+
                 </form>
             </div>
         </div>

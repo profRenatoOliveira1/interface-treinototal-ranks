@@ -191,6 +191,9 @@ function CadastroAluno() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button> {/* Botão para submeter o formulário */}
+                    <a style={{textDecoration: "none"}} href="http://localhost:5173/Listagem/Aluno" className={styles.btn}>
+                        Listagem
+                    </a>
                 </form>
             </div>
         </div>

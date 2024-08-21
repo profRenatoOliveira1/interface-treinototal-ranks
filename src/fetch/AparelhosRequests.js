@@ -45,9 +45,9 @@ class AparelhoRequests {
         }
     }
 
-    async deletarAparelho(id_aparelho) { // Método assíncrono para deletar um aparelho
+    async deletarAparelho(idAparelho) { // Método assíncrono para deletar um aparelho
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${id_aparelho}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${idAparelho}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {

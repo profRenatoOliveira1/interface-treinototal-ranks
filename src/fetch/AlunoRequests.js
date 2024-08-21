@@ -54,9 +54,9 @@ class AlunoRequests {
             throw error;
         }
     }
-    async deletarAluno(id_aluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
+    async deletarAluno(idAluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${id_aluno}`, {  // Faz uma requisição HTTP do tipo DELETE para a URL gerada dinamicamente
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {  // Faz uma requisição HTTP do tipo DELETE para a URL gerada dinamicamente
                 method: 'DELETE'  // Define o método HTTP como DELETE
             });
             if (!response.ok) {  // Verifica se a resposta da requisição não foi bem-sucedida

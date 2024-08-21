@@ -44,9 +44,9 @@ class ExerciciosRequests {
             throw error;
         }
     }
-    async deletarExercicio(id_exercicio) {
+    async deletarExercicio(idExercicio) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${id_exercicio}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {

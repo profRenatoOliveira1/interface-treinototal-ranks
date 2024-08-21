@@ -42,9 +42,9 @@ class ProfessoresRequests {
             console.error('Erro: ', error);
         }
     }
-    async deletarProfessor(id_professor) {
+    async deletarProfessor(idProfessor) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${id_professor}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${idProfessor}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {

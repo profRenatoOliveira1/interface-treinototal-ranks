@@ -201,6 +201,9 @@ function CadastroProfessor() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
+                    <a style={{textDecoration: "none"}} href="http://localhost:5173/Listagem/Professor" className={styles.btn}>
+                        Listagem
+                    </a>
                 </form>
             </div>
         </div>

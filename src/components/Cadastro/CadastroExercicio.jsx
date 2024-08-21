@@ -144,6 +144,9 @@ function CadastroExercicio() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
+                    <a style={{ textDecoration: "none"}} href="http://localhost:5173/Listagem/Exercicio" className={styles.btn}>
+                        Listagem
+                    </a>
                 </form>
             </div>
         </div>
