@@ -5,6 +5,7 @@ class AlunoRequests {
         this.routeListarAluno = '/listar/aluno';
         this.routeCadastrarAluno = '/novo/aluno';
         this.routeDeletarAluno = '/remover/aluno';
+        this.routeAtualizarAluno = '/update/aluno';
     }
 
     async listarAlunos() { // Método assíncrono para listar alunos
@@ -54,9 +55,9 @@ class AlunoRequests {
             throw error;
         }
     }
-    async deletarAluno(id_aluno) {
+    async deletarAluno(idAluno) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${id_aluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -65,7 +66,27 @@ class AlunoRequests {
             return true;
         } catch (error) {
             console.error('Erro: ', error);
-            return false; 
+            return false;
+        }
+    }
+    async atualizarAluno(aluno) {
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?id_aluno=${aluno.id_aluno}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(aluno)
+                });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            window.alert('Erro ao atualizar aluno');
+            return null;
         }
     }
 }

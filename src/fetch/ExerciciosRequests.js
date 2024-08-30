@@ -5,6 +5,7 @@ class ExerciciosRequests {
         this.routeListarExercicio = '/listar/exercicio';
         this.routeCadastrarExercicio = '/novo/exercicio';
         this.routeDeletarExercicio = '/remover/exercicio';
+        this.routeAtualizarExercicio = '/update/exercicio';
     }
 
     async listarExercicio() { // Método assíncrono para listar exercícios
@@ -44,9 +45,10 @@ class ExerciciosRequests {
             throw error;
         }
     }
-    async deletarExercicio(id_exercicio) {
+
+    async deletarExercicio(idExercicio) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${id_exercicio}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -57,6 +59,36 @@ class ExerciciosRequests {
             console.error('Erro: ', error);
             window.alert('Erro ao deletar Exercicio');
             return false;
+        }
+    }
+
+    async atualizarExercicio(exercicio) {
+        try {
+            // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
+
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?id_exercicio=${exercicio.id_exercicio}`,
+                {
+                    // Informa o verbo a ser acessado
+                    method: 'PUT',
+                    // informa os cabeçalhos da requisição
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    // informa o corpo da requisição, contendo as informações do aluno
+                    body: JSON.stringify(exercicio)
+                });
+            // Verifica se a resposta não foi bem sucedida ...
+            if (!response.ok) {
+                // ... lança um erro
+                throw new Error('Erro ao enviar formulário');
+            }
+            // retorna true caso a resposta seja bem sucedida
+            return true;
+        } catch (error) {
+            // caso ocorra algum erro na comunicação
+            console.error('Erro: ', error);
+            window.alert('Erro ao atualizar Exercicio');
+            return null;
         }
     }
 }

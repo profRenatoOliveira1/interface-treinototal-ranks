@@ -68,7 +68,10 @@ a {
 
 /* styles.css ou qualquer outro nome do seu arquivo CSS */
 .navbar-toggler {
-  color: white; /* Cor do texto */
-  background-color: white; /* Cor de fundo */
-  border: none; /* Se você quiser remover a borda */
+  color: white;
+  /* Cor do texto */
+  background-color: white;
+  /* Cor de fundo */
+  border: none;
+  /* Se você quiser remover a borda */
 }

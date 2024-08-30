@@ -2,86 +2,72 @@ import React, { useState } from 'react';
 import styles from '../styles/StyleCadastro.module.css';
 import ProfessoresRequests from '../../fetch/ProfessoresRequests';
 import InputMask from "react-input-mask";
+import { formatarData } from "../../../util/Utilitarios";
+import { useLocation, useNavigate } from "react-router-dom";
+
+
+
 
 function CadastroProfessor() {
-    const [formData, setFormData] = useState({
-        nome: '',
-        cpf: '',
-        dataNascimento: '',
-        celular: '',
-        endereco: '',
-        email: '',
-        senha: '',
-        dataContratacao: '',
-        formacao: '',
-        especialidade: ''
-    });
+    const navigate = useNavigate();
+    // usado para pegar os dados da página anterior (as informações do usuário que foram passadas pela componente ListAlunos)
+    const location = useLocation();
+    // recupera as informações que vieram da página anterior e armazena na variável objProfessor
+    const objProfessor = location.state.objeto;
 
-    // Função para lidar com mudanças nos campos do formulário
-    /** */
+    // const { dia, mes, ano } = formatarData(new Date(objProfessor.data_nascimento));
+
+    // Cria um estado para armazenar os dados do aluno e já preenche com as informações recebidas da página anterior
+    const [professor, setProfessor] = useState({
+        id_professor: objProfessor.id_professor,
+        nome: objProfessor.nome,
+        cpf: objProfessor.cpf,
+        dataNascimento: formatarData(new Date(objProfessor.data_nascimento)),
+        celular: objProfessor.celular,
+        endereco: objProfessor.endereco,
+        email: objProfessor.email,
+        senha: objProfessor.senha,
+        dataContratacao: formatarData(new Date(objProfessor.data_contratacao)),
+        formacao: objProfessor.formacao,
+        especialidade: objProfessor.especialidade
+    })
+
+    // Função para atualizar os valores conforme os inputs do formulário são preenchidos
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
+        setProfessor(prevState => ({
             ...prevState,
             [name]: value
         }));
-    };
+    }
 
-    const clearForm = () => {
-        setFormData({
-            nome: '',
-            cpf: '',
-            dataNascimento: '',
-            celular: '',
-            endereco: '',
-            email: '',
-            senha: '',
-            dataContratacao: '',
-            formacao: '',
-            especialidade: ''
-        });
-    };
-
+    // Função para atualizar os dados do aluno no banco de dados
     const handleSubmit = async (e) => {
+        // evita o recarregamento da página
         e.preventDefault();
+        const cleanCPF = professor.cpf.replace(/\D/g, '');
+        const cleanCelular = professor.celular.replace(/\D/g, '');
+        const cleanData = { ...professor, cpf: cleanCPF, celular: cleanCelular };
 
-        const dtNasc = new Date(formData.dataNascimento);
-        const dtCont = new Date(formData.dataContratacao);
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
+        // chama a função atualizarAluno do arquivo AlunoAPIService
+        if (await ProfessoresRequests.atualizarProfessor(cleanData)) {
+            // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
+            window.alert(`Professor ${professor.nome} atualizado com sucesso`);
+            // redireciona o usuário para a página de listagem de alunos
+            navigate(`/Listagem/Professor`, { replace: true });
+        } else {
+            // caso a funçao atualizarAluno retorne algum erro, é exibido um log
+            console.log('Erro ao atualizar dados do aluno');
+        }
+    }
 
-        // Verificação das datas
-        if (dtNasc > hoje) {
-            setErrorMessage('A data de nascimento não pode ser uma data futura.');
-            return;
-        }
-        if (dtCont > hoje) {
-            setErrorMessage('A data de contratação não pode ser uma data futura.');
-            return;
-        }
- 
-        // Limpeza dos campos de CPF e celular
-        const cleanCPF = formData.cpf.replace(/\D/g, '');
-        const cleanCelular = formData.celular.replace(/\D/g, '');
-        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
-
-        try {
-            const response = await ProfessoresRequests.cadastrarProfessor(cleanData);
-            console.log('Professor cadastrado com sucesso:', response);
-            clearForm();
-            window.alert(formData.nome + ': foi cadastrado com sucesso');
-        } catch (error) {
-            console.error('Erro ao cadastrar professor:', error);
-            setErrorMessage('Ocorreu um erro: ' + error.message);
-        }
-    };
 
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Cadastro de Professor</h1>
+            <h1 className={styles.h1}>Arualizar de Professor</h1>
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para nome completo */}
@@ -90,7 +76,7 @@ function CadastroProfessor() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Nome completo"
-                            value={formData.nome}
+                            value={professor.nome}
                             onChange={handleChange}
                             name="nome" required
                         />
@@ -102,7 +88,7 @@ function CadastroProfessor() {
                             mask="999.999.999-99"
                             className={styles.formStyleEsquerda}
                             placeholder="CPF"
-                            value={formData.cpf}
+                            value={professor.cpf}
                             onChange={handleChange}
                             name="cpf"
                             required
@@ -113,7 +99,7 @@ function CadastroProfessor() {
                             placeholder="Data de Nascimento"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.dataNascimento}
+                            value={professor.dataNascimento}
                             onChange={handleChange}
                             name="dataNascimento"
                             max={hoje.toISOString().split('T')[0]}
@@ -127,7 +113,7 @@ function CadastroProfessor() {
                             type="text"
                             className={styles.formStyleEsquerda}
                             placeholder="Telefone"
-                            value={formData.celular}
+                            value={professor.celular}
                             onChange={handleChange}
                             name="celular"
                             required
@@ -138,7 +124,7 @@ function CadastroProfessor() {
                             placeholder="Data de Contratação"
                             onFocus={(e) => e.target.type = 'date'}
                             onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={formData.dataContratacao}
+                            value={professor.dataContratacao}
                             onChange={handleChange}
                             name="dataContratacao"
                             max={hoje.toISOString().split('T')[0]}
@@ -151,7 +137,7 @@ function CadastroProfessor() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Endereço"
-                            value={formData.endereco}
+                            value={professor.endereco}
                             onChange={handleChange}
                             name="endereco"
                             required
@@ -162,7 +148,7 @@ function CadastroProfessor() {
                             type="email"
                             className={styles.formStyle}
                             placeholder="Email"
-                            value={formData.email}
+                            value={professor.email}
                             onChange={handleChange}
                             name="email"
                             required
@@ -173,7 +159,7 @@ function CadastroProfessor() {
                             type="password"
                             className={styles.formStyle}
                             placeholder="Senha"
-                            value={formData.senha}
+                            value={professor.senha}
                             onChange={handleChange}
                             name="senha"
                             required
@@ -185,7 +171,7 @@ function CadastroProfessor() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Formação"
-                            value={formData.formacao}
+                            value={professor.formacao}
                             onChange={handleChange}
                             name="formacao"
                         />
@@ -196,7 +182,7 @@ function CadastroProfessor() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Especialidade"
-                            value={formData.especialidade}
+                            value={professor.especialidade}
                             onChange={handleChange}
                             name="especialidade"
                         />
@@ -206,9 +192,6 @@ function CadastroProfessor() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
-                    <a style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Professor" className={styles.btn}>
-                        Listagem
-                    </a>
                 </form>
             </div>
         </div>

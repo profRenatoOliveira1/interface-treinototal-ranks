@@ -5,6 +5,7 @@ class AparelhoRequests {
         this.routeListarAparelho = '/listar/aparelho';
         this.routeCadastrarAparelho = '/novo/aparelho';
         this.routeDeletarAparelho = '/remover/aparelho';
+        this.routeUpdateAparelho = '/update/aparelho';
     }
 
     async listarAparelho() { // Método assíncrono para listar aparelhos
@@ -45,9 +46,9 @@ class AparelhoRequests {
         }
     }
 
-    async deletarAparelho(id_aparelho) { // Método assíncrono para deletar um aparelho
+    async deletarAparelho(idAparelho) { // Método assíncrono para deletar um aparelho
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${id_aparelho}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${idAparelho}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -57,6 +58,32 @@ class AparelhoRequests {
         } catch (error) {
             console.error('Erro: ', error);
             return false; // Retorna false em caso de erro
+        }
+    }
+    /**
+ * Atualiza o registro de um aparelho no servidor
+ * 
+ * @param {*} aparelho animal Objeto com as informações do animal
+ * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
+ */
+    async atualizarAparelho(aparelho) {
+        try {
+            const response = await fetch(`${this.serverUrl}${this.routeUpdateAparelho}?id_aparelho=${aparelho.id_aparelho}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(aparelho)
+                });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            window.alert('Erro ao atualizar aparelho');
+            return null;
         }
     }
 }

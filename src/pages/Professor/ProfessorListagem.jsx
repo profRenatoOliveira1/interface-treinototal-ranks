@@ -1,6 +1,3 @@
-import './Professor.css';
-// Importa os estilos CSS específicos para a página.
-
 import Navegacao from '../../components/Navegacao/Navegacao';
 // Importa o componente Navegacao, localizado na pasta '../../components/Navegacao/Navegacao'.
 // Este componente provavelmente contém a barra de navegação ou menu do aplicativo.

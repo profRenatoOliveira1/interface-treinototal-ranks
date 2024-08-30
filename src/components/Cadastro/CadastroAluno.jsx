@@ -31,13 +31,27 @@ function CadastroAluno() {
             [name]: value // Atualiza o valor do campo específico
         }));
     };
-
+    const clearForm = () => {
+        setFormData({
+            nome: '',
+            cpf: '',
+            dataNascimento: '',
+            celular: '',
+            endereco: '',
+            email: '',
+            senha: '',
+            altura: '',
+            peso: ''
+        });
+    };
     /**
      * Função para lidar com a submissão do formulário
      * @param {Object} e - O evento de submissão do formulário
      */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
+        // const { name, value } = e.target;
+
         const dtNasc = new Date(formData.dataNascimento);
         const hoje = new Date();
         hoje.setHours(0, 0, 0, 0);
@@ -58,12 +72,11 @@ function CadastroAluno() {
         const cleanCPF = formData.cpf.replace(/\D/g, '');
         const cleanCelular = formData.celular.replace(/\D/g, '');
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
-
         try {
             // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(cleanData);
-            console.log('Aluno cadastrado com sucesso:', response);
             if (response) {
+                clearForm();
                 window.alert(`${formData.nome} foi cadastrado com sucesso`);
             }
         } catch (error) {
@@ -191,6 +204,9 @@ function CadastroAluno() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
+                    <a style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aluno" className={styles.btn}>
+                        Listagem
+                    </a>
                 </form>
             </div>
         </div>

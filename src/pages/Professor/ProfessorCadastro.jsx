@@ -1,6 +1,3 @@
-import './Professor.css';
-// Importa os estilos CSS específicos para a página.
-
 import CadastroProfessor from '../../components/Cadastro/CadastroProfessor';
 // Importa o componente CadastroProfessor, localizado na pasta '../../components/CadastroProfessor/CadastroProfessor'.
 // Este componente é responsável pelo formulário ou funcionalidade de cadastro de professores.
@@ -13,7 +10,7 @@ import Navegacao from '../../components/Navegacao/Navegacao';
 function cadastro() {
     // Define um componente funcional chamado cadastro.
     return (
-        <> {/* Fragmento React para envolver múltiplos elementos */}
+        <> {/* Fragmento React para envolver múltiplosty elementos */}
             <Navegacao /> {/* Renderiza o componente de navegação */}
             <CadastroProfessor /> {/* Renderiza o componente de cadastro de professores */}
         </>

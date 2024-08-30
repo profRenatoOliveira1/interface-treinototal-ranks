@@ -48,6 +48,16 @@ function CadastroExercicio() {
         }));
     };
 
+    const clearForm = () => {
+        setFormData({
+            idAparelho: '',
+            exercicio: '',
+            carga: '',
+            repeticoes: '',
+            regiaoCorpoAtiva: ''
+        });
+    };
+
     /**
      * Função para lidar com a submissão do formulário
      * @param {Object} e - O evento de submissão do formulário
@@ -57,14 +67,8 @@ function CadastroExercicio() {
         try {
             const response = await ExerciciosRequests.cadastrarExercicio(formData); // Envia os dados do formulário para a API e aguarda a resposta
             console.log('Exercício cadastrado com sucesso:', response);
+            clearForm();
             window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
-            setFormData({
-                idAparelho: '',
-                exercicio: '',
-                carga: '',
-                repeticoes: '',
-                regiaoCorpoAtiva: ''
-            }); // Reseta o estado do formulário após submissão bem-sucedida
         } catch (error) {
             console.error('Erro ao cadastrar exercício:', error);
             window.alert('Erro ao cadastrar exercício');
@@ -145,6 +149,9 @@ function CadastroExercicio() {
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
+                    <a style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Exercicio" className={styles.btn}>
+                        Listagem
+                    </a>
                 </form>
             </div>
         </div>

@@ -9,6 +9,10 @@ import ListarAluno from './pages/Aluno/AlunoListagem'; // Importa o componente L
 import CadastroProfessor from './pages/Professor/ProfessorCadastro'; // Importa o componente CadastroProfessor
 import ListarProfessor from './pages/Professor/ProfessorListagem'; // Importa o componente ListarProfessor
 import Imc from './pages/imc/imc'; // Importa o componente ListarProfessor
+import UpdateAluno from './pages/Update/UpdateAluno';
+import UpdateAparelho from './pages/Update/UpdateAparelho';
+import UpdateExercicio from './pages/Update/UpdateExercicio';
+import UpdateProfessor from './pages/Update/UpdateProfessor';
 
 // Componente de roteamento da aplicação
 export default function AppRouter() {
@@ -25,6 +29,10 @@ export default function AppRouter() {
                 <Route path="/Cadastro/Aparelho" element={<CadastroAparelho />} /> {/* Rota para o cadastro de aparelho */}
                 <Route path="/Listagem/Aparelho" element={<ListarAparelho />} /> {/* Rota para listar aparelhos */}
                 <Route path="/Imc" element={<Imc />} /> {/* Rota para listar aparelhos */}
+                <Route path="/update/aluno" element={<UpdateAluno />} /> {/* Rota para listar aparelhos */}
+                <Route path="/update/aparelho" element={<UpdateAparelho />} /> {/* Rota para listar aparelhos */}
+                <Route path="/update/exercicio" element={<UpdateExercicio />} /> {/* Rota para listar aparelhos */}
+                <Route path="/update/professor" element={<UpdateProfessor />} />
             </Routes>
         </BrowserRouter>
     );

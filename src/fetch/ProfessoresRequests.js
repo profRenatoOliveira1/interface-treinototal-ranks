@@ -5,6 +5,7 @@ class ProfessoresRequests {
         this.routeListarProfessor = '/listar/professor';
         this.routeCadastrarProfessor = '/novo/professor';
         this.routeDeletarProfessor = '/remover/professor';
+        this.routeAtualizarProfessor = '/update/professor';
     }
 
     async listarProfessor() { // Método assíncrono para listar professores
@@ -42,9 +43,9 @@ class ProfessoresRequests {
             console.error('Erro: ', error);
         }
     }
-    async deletarProfessor(id_professor) {
+    async deletarProfessor(idProfessor) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${id_professor}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${idProfessor}`, {
                 method: 'DELETE'
             });
             if (!response.ok) {
@@ -56,6 +57,35 @@ class ProfessoresRequests {
             return false; // Retorna false em caso de erro
         }
     }
+    /**
+ * Atualiza o registro de um professor no servidor
+ * 
+ * @param {*} professor animal Objeto com as informações do animal
+ * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
+ */
+    async atualizarProfessor(professor) {
+        try {
+
+            // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?id_professor=${professor.id_professor}`,
+                {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(professor)
+                });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
+            window.alert('Erro ao atualizar professor');
+            return null;
+        }
+    }
+
 }
 
 // Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código

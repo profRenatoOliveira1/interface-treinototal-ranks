@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
 import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importação do módulo responsável por fazer as requisições dos professores
 import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
+import { FaRegEdit } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 /**
  * Componente para listar professores
@@ -10,6 +12,7 @@ import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira d
 function ListarProfessor() {
     // Define o estado inicial para armazenar os professores
     const [professores, setProfessor] = useState([]);
+    const navigate = useNavigate();
 
     /**
      * Hook useEffect para carregar os professores quando o componente é montado
@@ -63,8 +66,8 @@ function ListarProfessor() {
     const deletarProfessor = (professor) => {
         const deletar = window.confirm(`Tem certeza que deseja remover o professor ${professor.nome}?`);
 
-        if(deletar) {
-            if(ProfessoresRequests.deletarProfessor(professor.id_professor)) {
+        if (deletar) {
+            if (ProfessoresRequests.deletarProfessor(professor.id_professor)) {
                 window.location.reload();
                 window.alert('Professor removido com sucesso!');
             } else {
@@ -72,6 +75,12 @@ function ListarProfessor() {
             }
         }
     };
+
+    const UpdateProfessor = (professor) => {
+        // redireciona o usuário para a página de alteração de dados (componente AtualizarAlunos), passando como parâmetro um objeto com as informações do aluno
+        navigate(`/update/professor`, { state: { objeto: professor }, replace: true });
+    }
+
     // Renderização do componente
     return (
         <>
@@ -82,6 +91,9 @@ function ListarProfessor() {
                         <div className={styles.col}>
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Professor</h1>
+                                <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Professor" className={styles.btn}>
+                                    Cadastrar Professor
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -93,6 +105,7 @@ function ListarProfessor() {
                 <table className={`${styles.table} ${styles.tabela}`}>
                     <thead>
                         <tr className={styles.tabelaHeader}>
+                            <th hidden>ID</th>
                             <th>Nome</th>
                             <th>CPF</th>
                             <th>Data de Nascimento</th>
@@ -102,7 +115,7 @@ function ListarProfessor() {
                             <th>Data de Contratação</th>
                             <th>Formação</th>
                             <th>Especialidade</th>
-                            <th>Ação</th>
+                            <th colSpan={2}>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +131,10 @@ function ListarProfessor() {
                                 <td>{formatarData(professor.data_contratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
-                                <td onClick={() => deletarProfessor(professor)}><FaTrash style={{ color: '#DB0135' }}/></td> {/* Botão para deletar um professor */}
+                                <td onClick={() => deletarProfessor(professor)}><FaTrash style={{ color: '#DB0135' }} /></td> {/* Botão para deletar um professor */}
+                                <td>
+                                    <FaRegEdit onClick={() => UpdateProfessor(professor)} style={{ color: '#FFFFFF' }} />
+                                </td> {/* Ícone de lixeira para ação de deletar */}
                             </tr>
                         ))}
                     </tbody>

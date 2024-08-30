@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
 import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
+import { FaRegEdit } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 
 /**
  * Componente funcional para listar aparelhos
@@ -10,6 +13,7 @@ import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da bibl
 function ListarAparelho() {
     // Define o estado inicial para armazenar os aparelhos
     const [aparelhos, setAparelhos] = useState([]);
+    const navigate = useNavigate();
 
     /**
      * Hook useEffect para carregar os aparelhos quando o componente é montado
@@ -54,6 +58,11 @@ function ListarAparelho() {
             window.alert('Aparelho não deletado');
         }
     };
+
+    const UpdateAparelho = (aparelho) => {
+        // redireciona o usuário para a página de alteração de dados (componente AtualizarAlunos), passando como parâmetro um objeto com as informações do aluno
+        navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true });
+    }
     // Renderização do componente
     return (
         <>
@@ -64,6 +73,9 @@ function ListarAparelho() {
                         <div className={styles.col}>
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Aparelhos</h1>
+                                <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho" className={styles.btn}>
+                                    Cadastrar aparelho
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -75,20 +87,25 @@ function ListarAparelho() {
                 <table className={`${styles.table} ${styles.tabela}`}>
                     <thead>
                         <tr className={styles.tabelaHeader}>
+                            <th hidden>ID</th>
                             <th>Nome</th>
                             <th>Músculo Ativado</th>
-                            <th>Ação</th>
+                            <th colSpan={2}>Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         {/* Mapeia os aparelhos e renderiza cada um como uma linha na tabela */}
                         {aparelhos.map(aparelho => (
                             <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
+                                <td hidden>{aparelho.id_aparelho}</td>
                                 <td>{aparelho.nome_aparelho.toUpperCase()}</td>
                                 <td>{aparelho.musculo_ativado.toUpperCase()}</td>
                                 <td>
                                     <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135' }} />
                                 </td>
+                                <td>
+                                    <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF' }} />
+                                </td> {/* Ícone de lixeira para ação de deletar */}
                             </tr>
                         ))}
                     </tbody>
