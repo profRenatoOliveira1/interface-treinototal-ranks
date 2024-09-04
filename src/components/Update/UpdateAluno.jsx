@@ -23,7 +23,7 @@ function UpdateAluno() {
         id_aluno: objAluno.id_aluno,
         nome: objAluno.nome,
         cpf: objAluno.cpf,
-        data_nascimento: formatarData(new Date(objAluno.data_nascimento)),
+        dataNascimento: formatarData(new Date(objAluno.data_nascimento)),
         celular: objAluno.celular,
         endereco: objAluno.endereco,
         email: objAluno.email,
@@ -60,7 +60,6 @@ function UpdateAluno() {
             console.log('Erro ao atualizar dados do aluno');
         }
     }
-
 
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
@@ -100,7 +99,7 @@ function UpdateAluno() {
                                 type="date"
                                 className={styles.formStyleDireita}
                                 placeholder="Data de Nascimento"
-                                value={aluno.data_nascimento}
+                                value={aluno.dataNascimento}
                                 onChange={handleChange}
                                 name="data_nascimento"
                                 max={hoje.toISOString().split('T')[0]}

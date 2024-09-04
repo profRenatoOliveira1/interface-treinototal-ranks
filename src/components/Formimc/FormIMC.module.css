@@ -1,3 +1,4 @@
+/* Variáveis de cores para reutilização em todo o CSS */
 :root {
   --amareloClaro: #ffeba7;
   --cinzaEscuro: #212529;
@@ -14,30 +15,26 @@
   color: var(--cinzaClaro);
 }
 
-
+/* Estilos principais do formulário IMC */
 .formImc {
-  background-color: var(--cinzaAzulado);
-  color: var(--branco);
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 600px;
-  margin: auto auto;
-  margin-top: 4%;
-  box-shadow: 4px 5px 30px 2px rgb(34, 41, 48);
+  background-color: var(--cinzaAzulado); /* Cor de fundo do formulário */
+  color: var(--branco); /* Cor do texto */
+  padding: 20px; /* Espaçamento interno do formulário */
+  border-radius: 8px; /* Bordas arredondadas */
+  max-width: 600px; /* Largura máxima do formulário */
+  margin: auto; /* Centraliza horizontalmente */
+  margin-top: 4%; /* Margem superior para espaçamento do topo */
+  box-shadow: 4px 5px 30px 2px rgb(34, 41, 48); /* Sombra ao redor do formulário */
 }
 
+/* Estilo para o título principal do formulário */
 .h1 {
-  color: var(--branco);
-  /* Cor do texto */
-  text-align: center;
-  /* Alinhamento do texto */
-  font-family: "Archivo Black", sans-serif;
-  /* Fonte */
-  font-weight: 400;
-  /* Peso da fonte */
-  font-style: normal;
-  /* Estilo da fonte */
-  margin-bottom: 2%;
+  color: var(--branco); /* Cor do texto */
+  text-align: center; /* Alinhamento centralizado do texto */
+  font-family: "Archivo Black", sans-serif; /* Fonte do título */
+  font-weight: 400; /* Peso da fonte */
+  font-style: normal; /* Estilo da fonte */
+  margin-bottom: 2%; /* Margem inferior */
 }
 
 
@@ -49,6 +46,7 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+/* Estilo para o grupo de inputs do tipo rádio */
 .radioGroup {
   display: flex;
   justify-content: space-around;
@@ -56,86 +54,97 @@ input[type=checkbox] {
 
 }
 
+/* Estilo para os labels dentro do grupo de rádio */
 .radioGroup label {
-  font-weight: bold;
+  font-weight: bold; /* Fonte em negrito */
 }
 
+/* Espaçamento à direita dos inputs do grupo de rádio */
 .radioGroup input {
-  margin-right: 5px;
+  margin-right: 5px; /* Margem à direita */
 }
 
+/* Estilo para os grupos de formulário (campos de input) */
 .formGroup {
-  margin-bottom: 15px;
-  font-family: "Archivo ", sans-serif;
-  /* Fonte */
+  margin-bottom: 15px; /* Margem inferior */
+  font-family: "Archivo", sans-serif; /* Fonte dos labels e inputs */
 }
 
+/* Estilo para os labels dentro dos grupos de formulário */
 .formGroup label {
-  display: block;
-  margin-bottom: 5px;
-  color: var(--amareloClaro);
-  font-size: 20px;
+  display: block; /* Exibe o label como bloco para ocupar toda a largura */
+  margin-bottom: 5px; /* Margem inferior */
+  color: var(--amareloClaro); /* Cor do texto */
+  font-size: 20px; /* Tamanho da fonte */
 }
 
+/* Estilo para os inputs dentro dos grupos de formulário */
 .formGroup input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid var(--cinzaClaro);
-  border-radius: 4px;
-  background-color: var(--cinzaAvermelhado);
-  color: var(--branco);
+  width: 100%; /* Largura total do input */
+  padding: 8px; /* Espaçamento interno */
+  border: 1px solid var(--cinzaClaro); /* Borda do input */
+  border-radius: 4px; /* Bordas arredondadas */
+  background-color: var(--cinzaAvermelhado); /* Cor de fundo do input */
+  color: var(--branco); /* Cor do texto */
 }
 
+/* Estilo para o botão */
 .button {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--amareloClaro);
-  color: var(--cinzaEscuro);
-  border: none;
-  border-radius: 4px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-family: "Archivo Black", sans-serif;
-  /* Fonte */
+  width: 100%; /* Largura total do botão */
+  padding: 10px; /* Espaçamento interno */
+  background-color: var(--amareloClaro); /* Cor de fundo do botão */
+  color: var(--cinzaEscuro); /* Cor do texto */
+  border: none; /* Remove a borda padrão */
+  border-radius: 4px; /* Bordas arredondadas */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Muda o cursor para uma mão ao passar sobre o botão */
+  transition: background-color 0.3s ease; /* Transição suave para a cor de fundo */
+  font-family: "Archivo Black", sans-serif; /* Fonte do botão */
 }
 
+/* Efeito ao passar o mouse sobre o botão */
 .button:hover {
-  background-color: var(--amareloEscuro);
+  background-color: var(--amareloEscuro); /* Muda a cor de fundo */
 }
 
+/* Estilo para a área de resultado */
 .resultado {
-  margin-top: 20px;
-  padding: 15px;
-  background-color: var(--cinzaAvermelhado);
-  border-radius: 4px;
-  text-align: center;
+  margin-top: 20px; /* Margem superior */
+  padding: 15px; /* Espaçamento interno */
+  background-color: var(--cinzaAvermelhado); /* Cor de fundo */
+  border-radius: 4px; /* Bordas arredondadas */
+  text-align: center; /* Alinhamento centralizado do texto */
 }
 
+/* Estilo para a tabela IMC */
 .tabelaIMC {
-  margin-top: 20px;
-  overflow-x: auto;
+  margin-top: 20px; /* Margem superior */
+  overflow-x: auto; /* Adiciona barra de rolagem horizontal se necessário */
 }
 
+/* Estilo para a tabela dentro da área de tabela IMC */
 .tabelaIMC table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: var(--cinzaAzulado);
-  color: var(--branco);
+  width: 100%; /* Largura total da tabela */
+  border-collapse: collapse; /* Remove espaçamento entre as células */
+  background-color: var(--cinzaAzulado); /* Cor de fundo da tabela */
+  color: var(--branco); /* Cor do texto da tabela */
 }
 
+/* Estilo para cabeçalhos e células da tabela */
 .tabelaIMC th,
 .tabelaIMC td {
-  padding: 10px;
-  border: 1px solid var(--cinzaEscuro);
-  text-align: center;
+  padding: 10px; /* Espaçamento interno das células */
+  border: 1px solid var(--cinzaEscuro); /* Borda das células */
+  text-align: center; /* Alinhamento centralizado do texto */
 }
 
+/* Estilo para o cabeçalho da tabela */
 .tabelaIMC th {
-  background-color: var(--cinzaAvermelhado);
+  background-color: var(--cinzaAvermelhado); /* Cor de fundo do cabeçalho */
 }
 
+/* Estilo para as linhas destacadas da tabela IMC */
 .highlight {
-  background-color: var(--amareloClaro) !important;
-  color: var(--cinzaEscuro) !important;
+  background-color: var(--amareloClaro) !important; /* Cor de fundo destacada */
+  color: var(--cinzaEscuro) !important; /* Cor do texto destacada */
 }

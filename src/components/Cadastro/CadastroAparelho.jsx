@@ -9,9 +9,9 @@ import { Route } from 'react-router-dom';
 function CadastroAparelho() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        idAparelho: '',
-        nomeAparelho: '',
-        musculoAtivado: ''
+        idAparelho: '',        // Campo para o ID do aparelho (opcional, dependendo da implementação)
+        nomeAparelho: '',       // Campo para o nome do aparelho
+        musculoAtivado: ''      // Campo para o músculo ativado pelo aparelho
     });
 
     /**
@@ -28,7 +28,7 @@ function CadastroAparelho() {
 
     const clearForm = () => {
         setFormData({
-            idAparelho: '',
+            id_parelho: '',
             nomeAparelho: '',
             musculoAtivado: ''
         });
@@ -41,19 +41,18 @@ function CadastroAparelho() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            // Envia os dados do formulário para a API e aguarda a resposta
-            const response = await AparelhoRequests.cadastrarAparelho(formData);
+            // Envia os dados do formulário para a API e aguarda a resposta            const response = await AparelhoRequests.cadastrarAparelho(formData);
             console.log('Aparelho cadastrado com sucesso:', response);
             clearForm();
             window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
         } catch (error) {
-            console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro
+            console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
         }
     };
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Cadastro de Aparelho</h1>
+            <h1 className={styles.h1}>Cadastro de Aparelho</h1> {/* Título da seção */}
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome do aparelho */}

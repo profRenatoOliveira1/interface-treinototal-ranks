@@ -9,11 +9,11 @@ import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módu
 function CadastroExercicio() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        idAparelho: '',
-        exercicio: '',
-        carga: '',
-        repeticoes: '',
-        regiaoCorpoAtiva: ''
+        idAparelho: '',              // Campo para o ID do aparelho
+        exercicio: '',               // Campo para o nome do exercício
+        carga: '',                   // Campo para a carga em kg
+        repeticoes: '',              // Campo para o número de repetições
+        regiaoCorpoAtiva: ''         // Campo para a região do corpo ativada
     });
 
     // Define o estado inicial para a lista de aparelhos
@@ -23,23 +23,22 @@ function CadastroExercicio() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhosData = await AparelhoRequests.listarAparelho();
+                const aparelhosData = await AparelhoRequests.listarAparelho(); // Busca a lista de aparelhos da API
                 if (aparelhosData) {
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
             } catch (error) {
-                console.error('Erro ao buscar aparelhos:', error);
+                console.error('Erro ao buscar aparelhos:', error); // Exibe uma mensagem de erro se a requisição falhar
             }
         };
 
         fetchAparelhos(); // Chama a função para buscar aparelhos
-    }, []);
+    }, []); // O array vazio garante que o efeito só seja executado uma vez, quando o componente é montado
 
     /**
      * Função para atualizar o estado do formulário conforme o usuário digita
      * @param {Object} e - O evento de mudança do input
      */
-
     const handleChange = (e) => {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setFormData(prevState => ({
@@ -69,15 +68,22 @@ function CadastroExercicio() {
             console.log('Exercício cadastrado com sucesso:', response);
             clearForm();
             window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
+            setFormData({               // Reseta o estado do formulário após submissão bem-sucedida
+                idAparelho: '',
+                exercicio: '',
+                carga: '',
+                repeticoes: '',
+                regiaoCorpoAtiva: ''
+            });
         } catch (error) {
-            console.error('Erro ao cadastrar exercício:', error);
-            window.alert('Erro ao cadastrar exercício');
+            console.error('Erro ao cadastrar exercício:', error); // Exibe uma mensagem de erro no console
+            window.alert('Erro ao cadastrar exercício'); // Exibe uma mensagem de erro para o usuário
         }
     };
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Cadastro de Exercício</h1>
+            <h1 className={styles.h1}>Cadastro de Exercício</h1> {/* Título da seção */}
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para selecionar o aparelho */}
@@ -90,7 +96,7 @@ function CadastroExercicio() {
                             required
                         >
                             <option value="">Selecione o Aparelho</option>
-                            {aparelhos.map(aparelho => (
+                            {aparelhos.map(aparelho => ( // Mapeia a lista de aparelhos para criar as opções do select
                                 <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
                                     {aparelho.nome_aparelho}
                                 </option>

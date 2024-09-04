@@ -16,8 +16,8 @@ function UpdateAparelho() {
     // Cria um estado para armazenar os dados do aparelho e já preenche com as informações recebidas da página anterior
     const [aparelho, setAparelho] = useState({
         id_aparelho: objAparelho.id_aparelho,
-        nome_aparelho: objAparelho.nome_aparelho,
-        musculo_ativado: objAparelho.musculo_ativado
+        nomeAparelho: objAparelho.nome_aparelho,
+        musculoAtivado: objAparelho.musculo_ativado
     })
 
     // Função para atualizar os valores conforme os inputs do formulário são preenchidos
@@ -32,11 +32,12 @@ function UpdateAparelho() {
     // Função para atualizar os dados do aparelho no banco de dados
     const handleSubmit = async (e) => {
         // evita o recarregamento da página
+        console.table(aparelho);
         e.preventDefault();
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
         if (await AparelhoRequests.atualizarAparelho(aparelho)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
-            window.alert(`aparelho ${aparelho.nome_aparelho} atualizado com sucesso`);
+            window.alert(`aparelho ${aparelho.nomeAparelho} atualizado com sucesso`);
             // redireciona o usuário para a página de listagem de aparelhos
             navigate(`/Listagem/aparelho`, { replace: true });
         } else {
@@ -61,9 +62,9 @@ function UpdateAparelho() {
                                 type="text"
                                 className={styles.formStyle}
                                 placeholder="Nome"
-                                value={aparelho.nome_aparelho} // Define o valor do input com base no estado
+                                value={aparelho.nomeAparelho} // Define o valor do input com base no estado
                                 onChange={handleChange} // Define a função de mudança para atualizar o estado
-                                name="nome_aparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
+                                name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                                 required
                             />
                         </div>
@@ -73,9 +74,9 @@ function UpdateAparelho() {
                                 type="text"
                                 className={styles.formStyle}
                                 placeholder="Músculo Ativado"
-                                value={aparelho.musculo_ativado} // Define o valor do input com base no estado
+                                value={aparelho.musculoAtivado} // Define o valor do input com base no estado
                                 onChange={handleChange} // Define a função de mudança para atualizar o estado
-                                name="musculo_ativado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
+                                name="musculoAtivado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                                 required
                             />
                         </div>

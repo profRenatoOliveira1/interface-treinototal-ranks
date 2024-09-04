@@ -31,94 +31,88 @@
 }
 
 .titulo {
-  text-align: center;
-  color: var(--amareloClaro);
-  font-family: "Archivo Black", sans-serif;
-  font-weight: 400;
-  font-style: normal;
-  margin: 2% 0;
+  text-align: center;  /* Centraliza o texto do título */
+  color: var(--amareloClaro);  /* Define a cor do texto como amarelo claro */
+  font-family: "Archivo Black", sans-serif;  /* Define a fonte do título */
+  font-weight: 400;  /* Define o peso da fonte como normal */
+  font-style: normal;  /* Define o estilo da fonte como normal */
+  margin: 2% 0;  /* Define a margem superior e inferior do título como 2% */
 }
 
 .tabelaCorpo {
-  color: var(--preto);
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid var(--branco);
-  background-color: var(--branco);
+  color: var(--preto);  /* Define a cor do texto como preto */
+  text-align: center;  /* Centraliza o texto nas células */
+  vertical-align: middle;  /* Alinha o conteúdo verticalmente ao meio */
+  border: 1px solid var(--branco);  /* Define uma borda branca ao redor das células */
+  background-color: var(--branco);  /* Define a cor de fundo das células como branco */
 }
 
 .cntTb {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-  overflow-y: auto;
-  max-height: calc(100vh - 140px);
-  width: 100%;
+  margin-top: 20px;  /* Define a margem superior como 20px */
+  margin-bottom: 20px;  /* Define a margem inferior como 20px */
+  overflow-x: auto;  /* Adiciona rolagem horizontal se necessário */
+  overflow-y: auto;  /* Adiciona rolagem vertical se necessário */
+  max-height: calc(100vh - 140px);  /* Define a altura máxima como a altura da tela menos 140px */
+  width: 100%;  /* Define a largura como 100% */
 }
 
 .table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  width: 100%;  /* Define a largura da tabela como 100% */
+  border-collapse: collapse;  /* Remove os espaços entre as bordas das células */
+  margin-bottom: 20px;  /* Define uma margem inferior de 20px */
 }
 
 .table th,
 .table td {
-  padding: 20px;
-  text-align: center;
-  border: 1px solid var(--cinzaClaro);
-  white-space: nowrap;
+  padding: 20px;  /* Define o preenchimento das células como 20px */
+  text-align: center;  /* Centraliza o texto nas células */
+  border: 1px solid var(--cinzaClaro);  /* Define uma borda cinza clara ao redor das células */
+  white-space: nowrap;  /* Evita que o texto seja quebrado em várias linhas */
 }
 
 .pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  display: flex;  /* Exibe os elementos de paginação em um layout flexível */
+  justify-content: center;  /* Centraliza os elementos de paginação horizontalmente */
+  align-items: center;  /* Alinha os elementos de paginação verticalmente */
+  margin-top: 20px;  /* Define a margem superior como 20px */
 }
 
-td,
-th {
-  color: var(--amareloClaro) !important;
-  font-size: 1.2rem !important;
-  background-color: var(--cinzaAzulado) !important;
-  margin: 0;
-  border: 2px solid var(--amareloClaro) !important;
+td, th {
+  color: var(--amareloClaro) !important;  /* Define a cor do texto como amarelo claro, com alta prioridade */
+  font-size: 1.2rem !important;  /* Define o tamanho da fonte como 1.2rem, com alta prioridade */
+  background-color: var(--cinzaAzulado) !important;  /* Define a cor de fundo como cinza azulado, com alta prioridade */
+  margin: 0;  /* Remove a margem das células */
+  border: 2px solid var(--amareloClaro) !important;  /* Define uma borda amarela clara, com alta prioridade */
 }
 
-
-.tabelaHeader,
-th {
-  background-color: var(--cinzaAzulado) !important;
-  color: var(--branco) !important;
-  text-align: center;
-  vertical-align: middle;
-  position: sticky;
-  top: 0;
-  margin: 0;
-  z-index: 1;
+.tabelaHeader, th {
+  background-color: var(--cinzaAzulado) !important;  /* Define a cor de fundo do cabeçalho como cinza azulado, com alta prioridade */
+  color: var(--branco) !important;  /* Define a cor do texto como branco, com alta prioridade */
+  text-align: center;  /* Centraliza o texto nas células do cabeçalho */
+  vertical-align: middle;  /* Alinha o conteúdo verticalmente ao meio */
+  position: sticky;  /* Mantém o cabeçalho fixo no topo ao rolar a tabela */
+  top: 0;  /* Define o cabeçalho fixo no topo da tabela */
+  margin: 0;  /* Remove a margem do cabeçalho */
+  z-index: 1;  /* Define a prioridade da camada para manter o cabeçalho acima das outras células */
 }
 
-.table thead,
-table {
-  color: var(--amareloClaro) !important;
-  font-size: 1.2rem !important;
+.table thead, table {
+  color: var(--amareloClaro) !important;  /* Define a cor do texto do cabeçalho como amarelo claro, com alta prioridade */
+  font-size: 1.2rem !important;  /* Define o tamanho da fonte como 1.2rem, com alta prioridade */
 }
 
-
-@media (max-width: 768px) {
-
+@media (max-width: 768px) {  /* Aplica estilos específicos para telas com largura máxima de 768px */
   .table th,
   .table td {
-    font-size: 14px;
+    font-size: 14px;  /* Reduz o tamanho da fonte das células para 14px */
   }
 
   .pagination button {
-    padding: 6px 12px;
+    padding: 6px 12px;  /* Define o preenchimento dos botões de paginação para 6px 12px */
   }
 
   .pagination input {
-    width: 60px;
-    padding: 6px;
+    width: 60px;  /* Define a largura dos campos de entrada de paginação para 60px */
+    padding: 6px;  /* Define o preenchimento dos campos de entrada de paginação para 6px */
   }
 }

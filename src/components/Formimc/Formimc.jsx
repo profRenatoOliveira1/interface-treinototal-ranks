@@ -1,70 +1,79 @@
 import React, { useState } from 'react';
-import styles from './FormIMC.module.css';
+import styles from './FormIMC.module.css'; // Importa os estilos CSS específicos para este componente
 
 function FormIMC() {
+  // Estados para armazenar os valores dos inputs e resultados
   const [peso, setPeso] = useState('');
   const [altura, setAltura] = useState('');
   const [resultado, setResultado] = useState('');
   const [sexo, setSexo] = useState('masculino');
   const [highlight, setHighlight] = useState('');
 
+  // Função para formatar o peso, garantindo que esteja no formato correto (ex: 65.30)
   const formatarPeso = (valor) => {
-    const apenasNumeros = valor.replace(/[^0-9]/g, '');
+    const apenasNumeros = valor.replace(/[^0-9]/g, ''); // Remove tudo que não é número
     if (apenasNumeros.length <= 2) {
       return apenasNumeros;
     }
-    return apenasNumeros.slice(0, -2) + '.' + apenasNumeros.slice(-2);
+    return apenasNumeros.slice(0, -2) + '.' + apenasNumeros.slice(-2); // Adiciona o ponto decimal
   };
 
+  // Função para formatar a altura, garantindo que esteja no formato correto (ex: 1.60)
   const formatarAltura = (valor) => {
-    const apenasNumeros = valor.replace(/[^0-9]/g, '');
+    const apenasNumeros = valor.replace(/[^0-9]/g, ''); // Remove tudo que não é número
     if (apenasNumeros.length <= 1) {
       return apenasNumeros;
     }
-    return apenasNumeros.slice(0, 1) + '.' + apenasNumeros.slice(1);
+    return apenasNumeros.slice(0, 1) + '.' + apenasNumeros.slice(1); // Adiciona o ponto decimal
   };
 
+  // Função para lidar com mudanças no input de peso
   const handlePesoChange = (e) => {
     let valor = e.target.value;
     const valorFormatado = formatarPeso(valor);
-    if (valorFormatado.length > 6) {
+    if (valorFormatado.length > 6) { // Limita o comprimento do valor formatado
       return;
     }
     setPeso(valorFormatado);
   };
 
+  // Função para lidar com mudanças no input de altura
   const handleAlturaChange = (e) => {
     let valor = e.target.value;
     const valorFormatado = formatarAltura(valor);
-    if (valorFormatado.length > 5) {
+    if (valorFormatado.length > 5) { // Limita o comprimento do valor formatado
       return;
     }
     setAltura(valorFormatado);
   };
 
+  // Função para lidar com mudanças na seleção do sexo
   const handleSexoChange = (e) => {
     setSexo(e.target.value);
   };
 
+  // Função para calcular o IMC e determinar a faixa de IMC
   const calcularIMC = () => {
     const pesoNum = parseFloat(peso);
     const alturaNum = parseFloat(altura);
 
+    // Verifica se o peso e altura são válidos
     if (isNaN(pesoNum) || isNaN(alturaNum) || pesoNum <= 0 || alturaNum <= 0) {
       setResultado('Por favor, insira valores válidos.');
       return;
     }
 
-    const imc = pesoNum / (alturaNum * alturaNum);
+    const imc = pesoNum / (alturaNum * alturaNum); // Calcula o IMC
     let faixaIMC;
     let highlightClass;
 
+    // Determina a faixa de IMC e a classe de destaque com base no sexo
     if (sexo === 'masculino') {
       if (imc < 20) {
         faixaIMC = 'Abaixo do Normal';
         highlightClass = styles.highlight;
       } else if (imc >= 20 && imc < 24.9) {
-        faixaIMC = ' com peso Normal';
+        faixaIMC = 'com peso Normal';
         highlightClass = styles.highlight;
       } else if (imc >= 25 && imc < 29.9) {
         faixaIMC = 'em Obesidade Leve';
@@ -95,9 +104,11 @@ function FormIMC() {
       }
     }
 
+    // Atualiza o resultado com o IMC e a faixa
     setResultado(`Seu IMC é ${imc.toFixed(2)}. Você está ${faixaIMC}.`);
     setHighlight(faixaIMC);
 
+    // Sugere peso ideal se não estiver na faixa normal
     if (faixaIMC !== 'Normal') {
       let pesoIdealMin = 20 * alturaNum * alturaNum;
       let pesoIdealMax = 24.9 * alturaNum * alturaNum;
@@ -113,8 +124,9 @@ function FormIMC() {
 
   return (
     <div className={styles.formImc}>
-      <h1 className={styles.h1}>Cálculo IMC</h1>
+      <h1 className={styles.h1}>Cálculo IMC</h1> {/* Título da seção */}
       <div className={styles.radioGroup}>
+        {/* Seleção de sexo */}
         <label>
           <input
             type="radio"
@@ -135,6 +147,7 @@ function FormIMC() {
         </label>
       </div>
       <div className={styles.formGroup}>
+        {/* Campo para peso */}
         <label htmlFor="peso">Peso (kg):</label>
         <input
           type="text"
@@ -145,6 +158,7 @@ function FormIMC() {
         />
       </div>
       <div className={styles.formGroup}>
+        {/* Campo para altura */}
         <label htmlFor="altura">Altura (m):</label>
         <input
           type="text"
@@ -154,9 +168,11 @@ function FormIMC() {
           placeholder="Exemplo: 1.60"
         />
       </div>
+      {/* Botão para calcular o IMC */}
       <button className={styles.button} onClick={calcularIMC}>
         Calcular IMC
       </button>
+      {/* Exibe o resultado do cálculo */}
       {resultado && <div className={styles.resultado}>{resultado}</div>}
       <div className={styles.tabelaIMC}>
         <table>
@@ -168,6 +184,7 @@ function FormIMC() {
             </tr>
           </thead>
           <tbody>
+            {/* Tabela com faixas de IMC e destaque para a faixa correspondente */}
             <tr className={highlight === 'Obesidade Mórbida' ? styles.highlight : ''}>
               <td>Obesidade Mórbida</td>
               <td>&gt; de 43</td>
@@ -200,4 +217,4 @@ function FormIMC() {
   );
 }
 
-export default FormIMC;
+export default FormIMC; // Exporta o componente para ser utilizado em outras partes da aplicação

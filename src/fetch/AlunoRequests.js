@@ -55,10 +55,10 @@ class AlunoRequests {
             throw error;
         }
     }
-    async deletarAluno(idAluno) {
+    async deletarAluno(idAluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {
-                method: 'DELETE'
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {  // Faz uma requisição HTTP do tipo DELETE para a URL gerada dinamicamente
+                method: 'DELETE'  // Define o método HTTP como DELETE
             });
             if (!response.ok) {
                 throw new Error('Erro ao enviar formulário');
@@ -66,7 +66,7 @@ class AlunoRequests {
             return true;
         } catch (error) {
             console.error('Erro: ', error);
-            return false;
+            return false; 
         }
     }
     async atualizarAluno(aluno) {

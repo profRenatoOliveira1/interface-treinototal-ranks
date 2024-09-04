@@ -9,15 +9,15 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
 function CadastroAluno() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        nome: '',
-        cpf: '',
-        dataNascimento: '',
-        celular: '',
-        endereco: '',
-        email: '',
-        senha: '',
-        altura: '',
-        peso: ''
+        nome: '',             // Campo para o nome do aluno
+        cpf: '',              // Campo para o CPF do aluno
+        dataNascimento: '',   // Campo para a data de nascimento do aluno
+        celular: '',          // Campo para o celular do aluno
+        endereco: '',         // Campo para o endereço do aluno
+        email: '',            // Campo para o email do aluno
+        senha: '',            // Campo para a senha do aluno
+        altura: '',           // Campo para a altura do aluno
+        peso: ''              // Campo para o peso do aluno
     });
 
     /**
@@ -50,11 +50,9 @@ function CadastroAluno() {
      */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
-        // const { name, value } = e.target;
-
-        const dtNasc = new Date(formData.dataNascimento);
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
+        const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para um objeto Date
+        const hoje = new Date(); // Obtém a data atual
+        hoje.setHours(0, 0, 0, 0); // Define as horas como 0 para facilitar a comparação de datas
 
         // Verifica se a data de nascimento não é futura
         if (dtNasc > hoje) {
@@ -69,9 +67,10 @@ function CadastroAluno() {
         }
 
         // Limpa os campos de CPF e celular para remover qualquer formatação
-        const cleanCPF = formData.cpf.replace(/\D/g, '');
-        const cleanCelular = formData.celular.replace(/\D/g, '');
-        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
+        const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do CPF
+        const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do celular
+        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
+
         try {
             // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(cleanData);
@@ -85,13 +84,13 @@ function CadastroAluno() {
         }
     };
 
-    const dtNasc = new Date(formData.dataNascimento);
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+    const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para um objeto Date
+    const hoje = new Date(); // Obtém a data atual
+    hoje.setHours(0, 0, 0, 0); // Define as horas como 0 para facilitar a comparação de datas
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Cadastro de Aluno</h1>
+            <h1 className={styles.h1}>Cadastro de Aluno</h1> {/* Título da seção */}
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome completo */}
@@ -122,12 +121,12 @@ function CadastroAluno() {
                             type="text"
                             className={styles.formStyleDireita}
                             placeholder="Data de Nascimento"
-                            onFocus={(e) => e.target.type = 'date'}
-                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
+                            onFocus={(e) => e.target.type = 'date'} // Muda o tipo do input para "date" ao focar
+                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'} // Volta para "text" se o campo estiver vazio
                             value={formData.dataNascimento}
                             onChange={handleChange}
                             name="dataNascimento"
-                            max={hoje.toISOString().split('T')[0]}
+                            max={hoje.toISOString().split('T')[0]} // Define a data máxima como a data atual
                             required
                         />
                     </div>

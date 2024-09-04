@@ -18,7 +18,7 @@ function UpdateExercicio() {
     const [exercicio, setExercicio] = useState({
         // Não pode colocar camel case em ids, caso coloque vai dar erro, falando que coluna não existe. Deve ficar igual ao banco de dados.
         id_exercicio: objExercicio.id_exercicio,
-        id_aparelho: objExercicio.id_aparelho,
+        idAparelho: objExercicio.id_aparelho,
         exercicio: objExercicio.exercicio,
         carga: objExercicio.carga,
         repeticoes: objExercicio.repeticoes,
