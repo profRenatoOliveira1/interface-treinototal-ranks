@@ -20,5 +20,4 @@ function AlunoCadastro() {
     );
 }
 
-export default AlunoCadastro;
-// Exporta o componente AlunoCadastro como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default AlunoCadastro;//exporta o componente AlunoCadastro para ser usado em outras partes da aplicação.

@@ -10,9 +10,10 @@
   --preto: #000000;
 }
 
+/* Estilo para placeholders específicos dentro dos inputs de peso e altura */
 .peso::placeholder,
 .altura::placeholder {
-  color: var(--cinzaClaro);
+  color: var(--cinzaClaro); /* Cor dos placeholders */
 }
 
 /* Estilos principais do formulário IMC */
@@ -37,20 +38,20 @@
   margin-bottom: 2%; /* Margem inferior */
 }
 
-
+/* Estilo para os inputs do tipo rádio e checkbox */
 input[type=radio],
 input[type=checkbox] {
-  border: 0px;
-  width: 20px;
-  height: 25px;
-  vertical-align: middle;
+  border: 0px; /* Remove a borda padrão */
+  width: 20px; /* Define a largura do input */
+  height: 25px; /* Define a altura do input */
+  vertical-align: middle; /* Alinha verticalmente no meio */
 }
 
 /* Estilo para o grupo de inputs do tipo rádio */
 .radioGroup {
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 15px;
+  display: flex; /* Usa flexbox para organizar os elementos */
+  justify-content: space-around; /* Espaça os itens igualmente */
+  margin-bottom: 15px; /* Margem inferior */
 
 }
 

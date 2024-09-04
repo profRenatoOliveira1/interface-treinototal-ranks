@@ -140,4 +140,4 @@ function ListarAluno() {
     );
 }
 
-export default ListarAluno; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default ListarAluno;// Exporta o componente ListarAluno para ser utilizado em outras partes da aplicação

@@ -65,5 +65,4 @@ function Navegacao() {
     );
 }
 
-// Exporta o componente de navegação para ser utilizado em outras partes do código
-export default Navegacao;
+export default Navegacao;// Exporta o componente Navegacao para ser utilizado em outras partes do código

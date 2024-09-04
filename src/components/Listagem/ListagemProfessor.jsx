@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
-import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importação do módulo responsável por fazer as requisições dos professores
-import { FaTrash } from "react-icons/fa"; // Importação do ícone de lixeira da biblioteca react-icons
-import { FaRegEdit } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import styles from '../styles/StyleListagem.module.css'; // Importa os estilos CSS específicos para este componente
+import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa o módulo responsável pelas requisições de professores
+import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
+import { FaRegEdit } from "react-icons/fa"; // Importa o ícone de edição da biblioteca react-icons
+import { useNavigate } from 'react-router-dom'; // Importa o hook useNavigate para navegação
 
 /**
  * Componente para listar professores
@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function ListarProfessor() {
     // Define o estado inicial para armazenar os professores
     const [professores, setProfessor] = useState([]);
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Hook para navegação
 
     /**
      * Hook useEffect para carregar os professores quando o componente é montado
@@ -63,12 +63,17 @@ function ListarProfessor() {
     const formatarTelefone = (telefone) => {
         return telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
     };
+
+    /**
+     * Função para deletar um professor
+     * @param {Object} professor - O professor a ser deletado
+     */
     const deletarProfessor = (professor) => {
         const deletar = window.confirm(`Tem certeza que deseja remover o professor ${professor.nome}?`);
 
         if (deletar) {
             if (ProfessoresRequests.deletarProfessor(professor.id_professor)) {
-                window.location.reload();
+                window.location.reload(); // Recarrega a página após a exclusão
                 window.alert('Professor removido com sucesso!');
             } else {
                 window.alert('Erro ao remover professor!');
@@ -76,8 +81,12 @@ function ListarProfessor() {
         }
     };
 
+    /**
+     * Função para atualizar um professor
+     * @param {Object} professor - O professor a ser atualizado
+     */
     const UpdateProfessor = (professor) => {
-        // redireciona o usuário para a página de alteração de dados (componente AtualizarAlunos), passando como parâmetro um objeto com as informações do aluno
+        // Redireciona o usuário para a página de atualização, passando os dados do professor como estado
         navigate(`/update/professor`, { state: { objeto: professor }, replace: true });
     }
 
@@ -131,10 +140,14 @@ function ListarProfessor() {
                                 <td>{formatarData(professor.data_contratacao)}</td>
                                 <td>{professor.formacao.toUpperCase()}</td>
                                 <td>{professor.especialidade.toUpperCase()}</td>
-                                <td onClick={() => deletarProfessor(professor)}><FaTrash style={{ color: '#DB0135' }} /></td> {/* Botão para deletar um professor */}
+                                {/* Botão para deletar um professor */}
+                                <td onClick={() => deletarProfessor(professor)}>
+                                    <FaTrash style={{ color: '#DB0135' }} />
+                                </td>
+                                {/* Botão para editar um professor */}
                                 <td>
                                     <FaRegEdit onClick={() => UpdateProfessor(professor)} style={{ color: '#FFFFFF' }} />
-                                </td> {/* Ícone de lixeira para ação de deletar */}
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -144,4 +157,4 @@ function ListarProfessor() {
     );
 }
 
-export default ListarProfessor;
+export default ListarProfessor;//exporta o componente ListarProfessor para ser utilizado em outras partes da aplicação

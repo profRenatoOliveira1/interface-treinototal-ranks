@@ -185,4 +185,5 @@ function UpdateAluno() {
         </>
     );
 }
-export default UpdateAluno;
+
+export default UpdateAluno;// Exporta o componente UpdateAluno para ser utilizado em outras partes do código

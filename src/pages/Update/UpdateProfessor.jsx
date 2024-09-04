@@ -8,4 +8,4 @@ function UpdateProfessor() {
     );
 }
 
-export default UpdateProfessor;
+export default UpdateProfessor;//exporta o componente UpdateProfessor para ser usado em outras partes da aplicação.

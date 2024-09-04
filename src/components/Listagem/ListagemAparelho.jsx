@@ -115,4 +115,4 @@ function ListarAparelho() {
     );
 }
 
-export default ListarAparelho;
+export default ListarAparelho;// Exporta o componente ListaAparelho para que possa ser utilizada em outras partes do código

@@ -8,4 +8,4 @@ function UpdateAparelho() {
     );
 }
 
-export default UpdateAparelho;
+export default UpdateAparelho;//exporta o componente UpdateAparelho para ser usado em outras partes da aplicação.

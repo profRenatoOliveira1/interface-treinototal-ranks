@@ -18,5 +18,5 @@ function conteudoDaHome() {
     );
 }
 
-// Exporta o componente 'conteudoDaHome' para ser utilizado em outras partes do código
-export default conteudoDaHome;
+export default conteudoDaHome;// Exporta o componente conteudoDaHome para ser utilizado em outras partes do código
+

@@ -20,5 +20,4 @@ function ExercicioCadastro() {
     );
 }
 
-export default ExercicioCadastro;
-// Exporta o componente ExercicioCadastro como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default ExercicioCadastro;//exporta o componente ExercicioCadastro para ser usado em outras partes da aplicação.

@@ -1,0 +1,161 @@
+[33mcommit d839dad9f671d94de93a606ac1aaf569b1ea40ac[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 5a7eb98 1de6024
+Author: Lucas Hideki Miyazaki <lucasmiyazaki6@gmail.com>
+Date:   Wed Sep 4 08:34:21 2024 -0300
+
+    corrigindo
+
+[1mdiff --cc src/components/Cadastro/CadastroAparelho.jsx[m
+[1mindex c11d1a0,edef825..74d2290[m
+[1m--- a/src/components/Cadastro/CadastroAparelho.jsx[m
+[1m+++ b/src/components/Cadastro/CadastroAparelho.jsx[m
+[36m@@@ -9,9 -8,9 +9,9 @@@[m [mimport { Route } from 'react-router-dom[m
+  function CadastroAparelho() {[m
+      // Define o estado inicial do formulário com todos os campos vazios[m
+      const [formData, setFormData] = useState({[m
+[31m-         idAparelho: '',[m
+[31m-         nomeAparelho: '',[m
+[31m-         musculoAtivado: ''[m
+[31m -        id_aparelho: '',        // Campo para o ID do aparelho (opcional, dependendo da implementação)[m
+[32m++        idAparelho: '',        // Campo para o ID do aparelho (opcional, dependendo da implementação)[m
+[32m+         nomeAparelho: '',       // Campo para o nome do aparelho[m
+[32m+         musculoAtivado: ''      // Campo para o músculo ativado pelo aparelho[m
+      });[m
+  [m
+      /**[m
+[36m@@@ -26,14 -25,6 +26,14 @@@[m
+          }));[m
+      };[m
+  [m
+[32m +    const clearForm = () => {[m
+[32m +        setFormData({[m
+[31m-             idAparelho: '',[m
+[32m++            id_parelho: '',[m
+[32m +            nomeAparelho: '',[m
+[32m +            musculoAtivado: ''[m
+[32m +        });[m
+[32m +    };[m
+[32m +[m
+      /**[m
+       * Função para lidar com a submissão do formulário[m
+       * @param {Object} e - O evento de submissão do formulário[m
+[36m@@@ -41,13 -32,12 +41,12 @@@[m
+      const handleSubmit = async (e) => {[m
+          e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)[m
+          try {[m
+[31m--            // Envia os dados do formulário para a API e aguarda a resposta[m
+[31m--            const response = await AparelhoRequests.cadastrarAparelho(formData);[m
+[32m++            // Envia os dados do formulário para a API e aguarda a resposta            const response = await AparelhoRequests.cadastrarAparelho(formData);[m
+              console.log('Aparelho cadastrado com sucesso:', response);[m
+[32m +            clearForm();[m
+              window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso[m
+          } catch (error) {[m
+[31m-             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro[m
+[32m+             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console[m
+          }[m
+      };[m
+  [m
+[1mdiff --cc src/components/Cadastro/CadastroExercicio.jsx[m
+[1mindex 08b2a9f,8458452..d11f4b1[m
+[1m--- a/src/components/Cadastro/CadastroExercicio.jsx[m
+[1m+++ b/src/components/Cadastro/CadastroExercicio.jsx[m
+[36m@@@ -67,11 -56,17 +66,18 @@@[m [mfunction CadastroExercicio() [m
+          try {[m
+              const response = await ExerciciosRequests.cadastrarExercicio(formData); // Envia os dados do formulário para a API e aguarda a resposta[m
+              console.log('Exercício cadastrado com sucesso:', response);[m
+[32m +            clearForm();[m
+              window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso[m
+[32m+             setFormData({               // Reseta o estado do formulário após submissão bem-sucedida[m
+[32m+                 idAparelho: '',[m
+[32m+                 exercicio: '',[m
+[32m+                 carga: '',[m
+[32m+                 repeticoes: '',[m
+[32m+                 regiaoCorpoAtiva: ''[m
+[32m+             });[m
+          } catch (error) {[m
+[31m-             console.error('Erro ao cadastrar exercício:', error);[m
+[31m-             window.alert('Erro ao cadastrar exercício');[m
+[32m+             console.error('Erro ao cadastrar exercício:', error); // Exibe uma mensagem de erro no console[m
+[32m+             window.alert('Erro ao cadastrar exercício'); // Exibe uma mensagem de erro para o usuário[m
+          }[m
+      };[m
+  [m
+[1mdiff --cc src/components/Cadastro/CadastroProfessor.jsx[m
+[1mindex b5f954c,dea0823..be01f69[m
+[1m--- a/src/components/Cadastro/CadastroProfessor.jsx[m
+[1m+++ b/src/components/Cadastro/CadastroProfessor.jsx[m
+[36m@@@ -1,49 -1,41 +1,52 @@@[m
+[31m- import React, { useState } from 'react';[m
+[31m- import styles from '../styles/StyleCadastro.module.css';[m
+[31m- import ProfessoresRequests from '../../fetch/ProfessoresRequests';[m
+[31m- import InputMask from "react-input-mask";[m
+[32m+ import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente[m
+[32m+ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente[m
+[32m+ import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa o módulo de requisições para a API de Professores[m
+[32m+ import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input[m
+  [m
+[32m+ /**[m
+[32m+  * Componente funcional para o cadastro de professores[m
+[32m+  */[m
+  function CadastroProfessor() {[m
+[32m+     // Define o estado inicial do formulário com todos os campos vazios[m
+      const [formData, setFormData] = useState({[m
+[31m -        nome: '',                // Campo para o nome do professor[m
+[31m -        cpf: '',                 // Campo para o CPF[m
+[31m -        dataNascimento: '',       // Campo para a data de nascimento[m
+[31m -        celular: '',             // Campo para o número de celular[m
+[31m -        endereco: '',            // Campo para o endereço[m
+[31m -        email: '',               // Campo para o email[m
+[31m -        senha: '',               // Campo para a senha[m
+[31m -        dataContratacao: '',     // Campo para a data de contratação[m
+[31m -        formacao: '',            // Campo para a formação acadêmica[m
+[31m -        especialidade: ''        // Campo para a especialidade do professor[m
+[32m +        nome: '',[m
+[32m +        cpf: '',[m
+[32m +        dataNascimento: '',[m
+[32m +        celular: '',[m
+[32m +        endereco: '',[m
+[32m +        email: '',[m
+[32m +        senha: '',[m
+[32m +        dataContratacao: '',[m
+[32m +        formacao: '',[m
+[32m +        especialidade: ''[m
+      });[m
+  [m
+      // Função para lidar com mudanças nos campos do formulário[m
+[31m-     /** */[m
+      const handleChange = (e) => {[m
+[31m-         const { name, value } = e.target;[m
+[32m+         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado[m
+          setFormData(prevState => ({[m
+[31m -            ...prevState, // Mantém os valores atuais do estado[m
+[31m -            [name]: value // Atualiza o valor do campo específico[m
+[32m +            ...prevState,[m
+[32m +            [name]: value[m
+          }));[m
+      };[m
+  [m
+[31m -    /**[m
+[31m -     * Função para lidar com a submissão do formulário[m
+[31m -     * @param {Object} e - O evento de submissão do formulário[m
+[31m -     */[m
+[32m +    const clearForm = () => {[m
+[32m +        setFormData({[m
+[32m +            nome: '',[m
+[32m +            cpf: '',[m
+[32m +            dataNascimento: '',[m
+[32m +            celular: '',[m
+[32m +            endereco: '',[m
+[32m +            email: '',[m
+[32m +            senha: '',[m
+[32m +            dataContratacao: '',[m
+[32m +            formacao: '',[m
+[32m +            especialidade: ''[m
+[32m +        });[m
+[32m +    };[m
+[32m +[m
+      const handleSubmit = async (e) => {[m
+[31m-         e.preventDefault();[m
+[32m+         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)[m
+  [m
+          const dtNasc = new Date

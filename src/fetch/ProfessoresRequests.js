@@ -88,5 +88,4 @@ class ProfessoresRequests {
 
 }
 
-// Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código
-export default new ProfessoresRequests();
+export default new ProfessoresRequests();// Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código

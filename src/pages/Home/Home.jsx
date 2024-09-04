@@ -36,5 +36,4 @@ function Home() {
   );
 }
 
-export default Home;
-// Exporta o componente Home como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default Home;//exporta o componente Home para ser usado em outras partes da aplicação.

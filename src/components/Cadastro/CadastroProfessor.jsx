@@ -9,16 +9,16 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
 function CadastroProfessor() {
     // Define o estado inicial do formulário com todos os campos vazios
     const [formData, setFormData] = useState({
-        nome: '',
-        cpf: '',
-        dataNascimento: '',
-        celular: '',
-        endereco: '',
-        email: '',
-        senha: '',
-        dataContratacao: '',
-        formacao: '',
-        especialidade: ''
+        nome: '',                   // Campo para o nome do professor
+        cpf: '',                    // Campo para o cpf do professor
+        dataNascimento: '',         // Campo para a data de nascimento do professor
+        celular: '',                // Campo para o celular do professor
+        endereco: '',               // Campo para o endereço do professor
+        email: '',                  // Campo para o email do professor
+        senha: '',                  // Campo para o senha do professor
+        dataContratacao: '',        // Campo para o data de contratação do professor
+        formacao: '',               // Campo para a formação do professor
+        especialidade: ''           // Campo para a especialidade do professor
     });
 
     // Função para lidar com mudanças nos campos do formulário
@@ -26,13 +26,14 @@ function CadastroProfessor() {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setFormData(prevState => ({
             ...prevState,
-            [name]: value
+            [name]: value // Atualiza o estado do campo correspondente
         }));
     };
 
+    // Função para limpar o formulário após o envio ou reset
     const clearForm = () => {
         setFormData({
-            nome: '',
+            nome: '',                  
             cpf: '',
             dataNascimento: '',
             celular: '',
@@ -45,13 +46,14 @@ function CadastroProfessor() {
         });
     };
 
+    // Função para lidar com o envio do formulário
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
 
-        const dtNasc = new Date(formData.dataNascimento);
-        const dtCont = new Date(formData.dataContratacao);
-        const hoje = new Date();
-        hoje.setHours(0, 0, 0, 0);
+        const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para objeto Date
+        const dtCont = new Date(formData.dataContratacao); // Converte a data de contratação para objeto Date
+        const hoje = new Date(); // Obtém a data de hoje
+        hoje.setHours(0, 0, 0, 0); // Define as horas para zero, focando apenas na data
 
         // Verificação das datas
         if (dtNasc > hoje) {
@@ -62,11 +64,11 @@ function CadastroProfessor() {
             setErrorMessage('A data de contratação não pode ser uma data futura.'); // Define a mensagem de erro se a data de contratação for no futuro
             return;
         }
- 
+
         // Limpeza dos campos de CPF e celular
         const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove caracteres não numéricos do CPF
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove caracteres não numéricos do celular
-        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
+        const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
 
         try {
             const response = await ProfessoresRequests.cadastrarProfessor(cleanData); // Envia os dados limpos para a API
@@ -79,8 +81,8 @@ function CadastroProfessor() {
         }
     };
 
-    const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
+    const hoje = new Date(); // Obtém a data de hoje novamente para utilizar no campo de data
+    hoje.setHours(0, 0, 0, 0); // Define as horas para zero, focando apenas na data
 
     return (
         <div className={styles.section}>
@@ -221,4 +223,4 @@ function CadastroProfessor() {
     );
 }
 
-export default CadastroProfessor; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default CadastroProfessor; // Exporta o componente CadastroProfessor para ser utilizado em outras partes da aplicação

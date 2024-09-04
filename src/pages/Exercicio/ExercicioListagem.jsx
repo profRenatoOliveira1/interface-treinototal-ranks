@@ -20,5 +20,4 @@ function ExercicioListagem() {
     );
 }
 
-export default ExercicioListagem;
-// Exporta o componente ExercicioListagem como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default ExercicioListagem;//exporta o componente ExercicioListagem para ser usado em outras partes da aplicação.

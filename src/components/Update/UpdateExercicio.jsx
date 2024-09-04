@@ -150,4 +150,4 @@ function UpdateExercicio() {
         </>
     );
 }
-export default UpdateExercicio;
+export default UpdateExercicio;//exporta o componente UpdateExercicio para ser utilizado em outras partes da aplicação

@@ -217,4 +217,4 @@ function FormIMC() {
   );
 }
 
-export default FormIMC; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default FormIMC; // Exporta o componente FormIMC para ser utilizado em outras partes da aplicação

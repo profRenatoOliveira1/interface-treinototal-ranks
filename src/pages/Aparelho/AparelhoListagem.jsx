@@ -20,5 +20,4 @@ function AparelhoListagem() {
     );
 }
 
-export default AparelhoListagem;
-// Exporta o componente AparelhoListagem como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default AparelhoListagem;//exporta o componente AparelhoListagem para ser usado em outras partes da aplicação.

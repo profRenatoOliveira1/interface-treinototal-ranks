@@ -8,4 +8,4 @@ function UpdateAluno() {
     );
 }
 
-export default UpdateAluno;
+export default UpdateAluno;//exporta o componente UpdateAluno para ser usado em outras partes da aplicação.

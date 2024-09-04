@@ -122,4 +122,4 @@ function TabelaListagemExercicios() {
     );
 }
 
-export default TabelaListagemExercicios;
+export default TabelaListagemExercicios;//exporta o componente TabelaListagemExercicios para ser utilizado em outras partes da aplicação

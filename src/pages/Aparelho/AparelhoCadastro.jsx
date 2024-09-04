@@ -20,5 +20,4 @@ function AparelhoCadastro() {
     );
 }
 
-export default AparelhoCadastro;
-// Exporta o componente AparelhoCadastro como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default AparelhoCadastro;//exporta o componente AparelhoCadastro para ser usado em outras partes da aplicação.

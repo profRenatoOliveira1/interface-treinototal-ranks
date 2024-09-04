@@ -16,5 +16,4 @@ function ImgFundoHome() {
     </>
   );
 }
-// Exporta a função ImgFundoHome para que possa ser utilizada em outras partes do código
-export default ImgFundoHome;
+export default ImgFundoHome;// Exporta a função ImgFundoHome para que possa ser utilizada em outras partes do código

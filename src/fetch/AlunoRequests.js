@@ -1,89 +1,113 @@
 class AlunoRequests {
     constructor() {
-        // Inicializa as rotas e o URL do servidor
+        // Inicializa as rotas e o URL do servidor a partir das variáveis de ambiente
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAluno = '/listar/aluno';
-        this.routeCadastrarAluno = '/novo/aluno';
-        this.routeDeletarAluno = '/remover/aluno';
-        this.routeAtualizarAluno = '/update/aluno';
+        this.routeListarAluno = '/listar/aluno'; // Rota para listar alunos
+        this.routeCadastrarAluno = '/novo/aluno'; // Rota para cadastrar um novo aluno
+        this.routeDeletarAluno = '/remover/aluno'; // Rota para deletar um aluno
+        this.routeAtualizarAluno = '/update/aluno'; // Rota para atualizar informações de um aluno
     }
 
-    async listarAlunos() { // Método assíncrono para listar alunos
+    // Método assíncrono para listar alunos
+    async listarAlunos() { 
         try {
-            // Realiza uma requisição GET para obter a lista de alunos
+            // Faz uma requisição GET para obter a lista de alunos
             const response = await fetch(`${this.serverUrl}${this.routeListarAluno}`);
+            
+            // Verifica se a resposta é bem-sucedida
             if (!response.ok) {
                 throw new Error('Erro ao buscar alunos');
             }
+            
             // Converte a resposta para JSON
             const data = await response.json();
-            // Verifica se a resposta é um array JSON
+            
+            // Verifica se os dados retornados são um array
             if (!Array.isArray(data)) {
                 throw new Error('Resposta inválida: não é um array JSON');
             }
-            // Retorna os dados
+            
+            // Retorna os dados dos alunos
             return data;
         } catch (error) {
-            // Em caso de erro, exibe e relança o erro
+            // Em caso de erro, exibe no console e relança o erro
             console.error('Erro: ', error);
             throw error;
         }
     }
 
-    async cadastrarAluno(aluno) { // Método assíncrono para cadastrar um aluno
+    // Método assíncrono para cadastrar um novo aluno
+    async cadastrarAluno(aluno) {
         try {
-            // Realiza uma requisição POST para cadastrar um aluno
+            // Faz uma requisição POST para cadastrar o aluno
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarAluno}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(aluno)
+                body: JSON.stringify(aluno) // Converte os dados do aluno para JSON
             });
+            
+            // Verifica se a resposta é bem-sucedida
             if (!response.ok) {
                 throw new Error('Erro ao cadastrar aluno');
             }
 
-            // Se o cadastro for bem-sucedido, exibe uma mensagem no console
+            // Exibe uma mensagem de sucesso no console
             console.log('Aluno cadastrado com sucesso!');
 
             // Retorna os dados do aluno cadastrado
             return await response.json();
         } catch (error) {
-            // Em caso de erro, exibe e relança o erro
+            // Em caso de erro, exibe no console e relança o erro
             console.error('Erro: ', error);
             throw error;
         }
     }
-    async deletarAluno(idAluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
+
+    // Método assíncrono para deletar um aluno pelo ID
+    async deletarAluno(idAluno) {  
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {  // Faz uma requisição HTTP do tipo DELETE para a URL gerada dinamicamente
-                method: 'DELETE'  // Define o método HTTP como DELETE
+            // Faz uma requisição DELETE para deletar o aluno
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {
+                method: 'DELETE' // Define o método HTTP como DELETE
             });
+
+            // Verifica se a resposta é bem-sucedida
             if (!response.ok) {
                 throw new Error('Erro ao enviar formulário');
             }
+            
+            // Retorna true se a exclusão foi bem-sucedida
             return true;
         } catch (error) {
+            // Em caso de erro, exibe no console e retorna false
             console.error('Erro: ', error);
             return false; 
         }
     }
+
+    // Método assíncrono para atualizar as informações de um aluno
     async atualizarAluno(aluno) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?id_aluno=${aluno.id_aluno}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(aluno)
-                });
+            // Faz uma requisição PUT para atualizar o aluno
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?id_aluno=${aluno.id_aluno}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(aluno) // Converte os dados atualizados do aluno para JSON
+            });
+
+            // Verifica se a resposta é bem-sucedida
             if (!response.ok) {
                 throw new Error('Erro ao enviar formulário');
             }
+
+            // Retorna true se a atualização foi bem-sucedida
             return true;
         } catch (error) {
+            // Em caso de erro, exibe no console, mostra um alerta e retorna null
             console.error('Erro: ', error);
             window.alert('Erro ao atualizar aluno');
             return null;
@@ -91,5 +115,4 @@ class AlunoRequests {
     }
 }
 
-// Exporta uma instância da classe AlunoRequests para ser utilizada em outras partes do código
-export default new AlunoRequests();
+export default new AlunoRequests();// Exporta uma instância da classe AlunoRequests para ser utilizada em outras partes do código

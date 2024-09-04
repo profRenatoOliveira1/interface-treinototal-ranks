@@ -20,5 +20,4 @@ function AlunoListagem() {
     );
 }
 
-export default AlunoListagem;
-// Exporta o componente AlunoListagem como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default AlunoListagem;//exporta o componente AlunoListagem para ser usado em outras partes da aplicação.

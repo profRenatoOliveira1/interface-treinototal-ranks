@@ -212,4 +212,4 @@ function CadastroAluno() {
     );
 }
 
-export default CadastroAluno; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default CadastroAluno; // Exporta o componente CadastroAluno para ser utilizado em outras partes da aplicação

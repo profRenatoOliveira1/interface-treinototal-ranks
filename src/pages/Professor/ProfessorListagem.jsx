@@ -18,4 +18,4 @@ function cadastro() {
     );
 }
 
-export default cadastro; // Exporta o componente de cadastro de professores como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.
+export default cadastro; //exporta o componente de cadastro de professores como padrão, permitindo que ele seja importado e usado em outras partes da aplicação.

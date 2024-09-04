@@ -11,4 +11,4 @@ function indiceimc() {  // Define um componente funcional chamado indiceimc
     );
 }
 
-export default indiceimc;  // Exporta o componente indiceimc como o export padrão
+export default indiceimc;//exporta o componente Indiceimc para ser usado em outras partes da aplicação.

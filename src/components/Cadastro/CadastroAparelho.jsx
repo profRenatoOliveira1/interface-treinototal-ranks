@@ -28,7 +28,7 @@ function CadastroAparelho() {
 
     const clearForm = () => {
         setFormData({
-            id_parelho: '',
+            idAparelho: '',
             nomeAparelho: '',
             musculoAtivado: ''
         });
@@ -49,7 +49,7 @@ function CadastroAparelho() {
             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
         }
     };
-
+    //renderização do componente
     return (
         <div className={styles.section}>
             <h1 className={styles.h1}>Cadastro de Aparelho</h1> {/* Título da seção */}
@@ -91,4 +91,4 @@ function CadastroAparelho() {
     );
 }
 
-export default CadastroAparelho; // Exporta o componente para ser utilizado em outras partes da aplicação
+export default CadastroAparelho; // Exporta o componente CadastroAparelho para ser utilizado em outras partes da aplicação
