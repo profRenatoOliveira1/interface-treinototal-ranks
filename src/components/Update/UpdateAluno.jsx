@@ -6,7 +6,6 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
 import Navegacao from "../Navegacao/Navegacao"
 import { formatarData } from "../../../util/Utilitarios";
 
-
 function UpdateAluno() {
     // usado para navegar entre páginas (redirecionar)
 
@@ -31,7 +30,15 @@ function UpdateAluno() {
         altura: objAluno.altura,
         peso: objAluno.peso
     })
-    // Função para atualizar os valores conforme os inputs do formulário são preenchidos
+
+    /**
+        * Atualiza o estado do objeto `aluno` com base nas alterações feitas em um campo de formulário.
+        * 
+        * @param {Object} e - O evento disparado pela mudança no campo de input.
+        * @param {HTMLInputElement} e.target - O elemento de input que disparou o evento.
+        * @param {string} e.target.name - O nome do campo de input (usado como chave no estado).
+        * @param {string} e.target.value - O valor atual do campo de input (usado para atualizar o valor no estado).
+    */
     const handleChange = (e) => {
         const { name, value } = e.target;
         setAluno(prevState => ({
@@ -40,7 +47,13 @@ function UpdateAluno() {
         }));
     }
 
-    // Função para atualizar os dados do aluno no banco de dados
+    /**
+        * Lida com o envio do formulário de forma assíncrona, evitando o recarregamento da página
+        * e limpando os campos CPF e celular (removendo caracteres não numéricos) antes de submeter os dados.
+        * 
+        * @async
+        * @param {Object} e - O evento de submissão do formulário.
+    */
     const handleSubmit = async (e) => {
         // evita o recarregamento da página
         e.preventDefault();
@@ -61,6 +74,14 @@ function UpdateAluno() {
         }
     }
 
+    /**
+        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
+        * 
+        * - Cria um novo objeto `Date` com a data e hora atuais.
+        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
+        * 
+        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
+    */
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -180,7 +201,7 @@ function UpdateAluno() {
                             />
                         </div>
                         <button type="submit" className={styles.btn}>
-                            enviar
+                            Atualizar
                         </button>
                     </form>
                 </div>

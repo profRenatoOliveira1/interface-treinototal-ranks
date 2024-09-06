@@ -8,6 +8,14 @@ class ExerciciosRequests {
         this.routeAtualizarExercicio = '/update/exercicio';
     }
 
+    /**
+        * Requisita a lista de Exercícios.
+        * 
+        * @async
+        * @return {Array|undefined} Retorna um array de objetos representando os exercícios, ou `undefined` se ocorrer um erro
+        * 
+        * @throws {Error} Lança um erro se a requisição falhar.
+     */
     async listarExercicio() { // Método assíncrono para listar exercícios
         try {
             // Realiza uma requisição GET para obter a lista de exercícios
@@ -24,6 +32,15 @@ class ExerciciosRequests {
         }
     }
 
+    /**
+        * Cadastra um novo exercício no sistema.
+        * 
+        * @async
+        * @param {*} exercicio - Objeto contendo as informações do exercício a ser cadastrado.
+        * @return Retorna o objeto JSON com os dados do exercício cadastrado, ou `undefined` se ocorrer um erro.
+        * 
+        * @throw {Error} Lança um erro se a requisição falhar.
+     */
     async cadastrarExercicio(exercicio) { // Método assíncrono para cadastrar um exercício
         try {
             // Realiza uma requisição POST para cadastrar um exercício
@@ -46,6 +63,12 @@ class ExerciciosRequests {
         }
     }
 
+    /**
+        * Deleta um exercício do sistema.
+        * 
+        * @param {*} idExercicio  Objeto com as informações do exercício.
+        * @return **verdadeiro (true)** caso o exercício tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
+     */
     async deletarExercicio(idExercicio) {
         try {
             const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
@@ -62,6 +85,12 @@ class ExerciciosRequests {
         }
     }
 
+    /**
+        * Atualiza o registro de um exercício no servidor
+        * 
+        * @param {*} exercicio  Objeto com as informações do exercício
+        * @return **verdadeiro (true)** caso o exercício tenha sido atualizado, **null (nulo)** caso tenha acontecido algum erro
+     */
     async atualizarExercicio(exercicio) {
         try {
             // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal

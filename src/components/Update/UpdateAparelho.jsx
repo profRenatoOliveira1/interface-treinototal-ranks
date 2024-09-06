@@ -6,7 +6,6 @@ import Navegacao from "../Navegacao/Navegacao"
 
 function UpdateAparelho() {
     // usado para navegar entre páginas (redirecionar)
-
     const navigate = useNavigate();
     // usado para pegar os dados da página anterior (as informações do usuário que foram passadas pela componente Listaparelhos)
     const location = useLocation();
@@ -20,7 +19,14 @@ function UpdateAparelho() {
         musculoAtivado: objAparelho.musculo_ativado
     })
 
-    // Função para atualizar os valores conforme os inputs do formulário são preenchidos
+    /**
+        * Atualiza o estado do objeto `aparelho` com base nas alterações feitas em um campo de formulário.
+        * 
+        * @param {Object} e - O evento disparado pela mudança no campo de input.
+        * @param {HTMLInputElement} e.target - O elemento de input que disparou o evento.
+        * @param {string} e.target.name - O nome do campo de input (usado como chave no estado).
+        * @param {string} e.target.value - O valor atual do campo de input (usado para atualizar o valor no estado).
+    */
     const handleChange = (e) => {
         const { name, value } = e.target;
         setAparelho(prevState => ({
@@ -29,7 +35,16 @@ function UpdateAparelho() {
         }));
     }
 
-    // Função para atualizar os dados do aparelho no banco de dados
+    /**
+        * Lida com o envio do formulário de forma assíncrona, evitando o recarregamento da página,
+        * atualiza os dados do aparelho e redireciona o usuário após a atualização.
+        * 
+        * @async
+        * @param {Object} e - O evento de submissão do formulário.
+        * @param {EventTarget} e.target - O elemento que disparou o evento.
+        * 
+        * @throws {Error} Lança um erro se a requisição para atualizar o aparelho falhar.
+    */
     const handleSubmit = async (e) => {
         // evita o recarregamento da página
         console.table(aparelho);
@@ -46,6 +61,14 @@ function UpdateAparelho() {
         }
     }
 
+    /**
+        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
+        * 
+        * - Cria um novo objeto `Date` com a data e hora atuais.
+        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
+        * 
+        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
+    */
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -81,7 +104,7 @@ function UpdateAparelho() {
                             />
                         </div>
                         <button type="submit" className={styles.btn}>
-                            enviar
+                            Atualizar
                         </button>
                     </form>
                 </div>

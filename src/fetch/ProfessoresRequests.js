@@ -8,6 +8,14 @@ class ProfessoresRequests {
         this.routeAtualizarProfessor = '/update/professor';
     }
 
+    /**
+        * Requisita a lista de professores.
+        * 
+        * @async
+        * @return {Array|undefined} Retorna um array de objetos representando os professores, ou `undefined` se ocorrer um erro
+        * 
+        * @throws {Error} Lança um erro se a requisição falhar.
+     */
     async listarProfessor() { // Método assíncrono para listar professores
         try {
             // Realiza uma requisição GET para obter a lista de professores
@@ -23,6 +31,15 @@ class ProfessoresRequests {
         }
     }
 
+    /**
+        * Cadastra um novo professor no sistema.
+        * 
+        * @async
+        * @param {*} professor - Objeto contendo as informações do professor a ser cadastrado.
+        * @return Retorna o objeto JSON com os dados do professor cadastrado, ou `undefined` se ocorrer um erro.
+        * 
+        * @throw {Error} Lança um erro se a requisição falhar.
+     */
     async cadastrarProfessor(professor) { // Método assíncrono para cadastrar um professor
         try {
             // Realiza uma requisição POST para cadastrar um professor
@@ -43,6 +60,13 @@ class ProfessoresRequests {
             console.error('Erro: ', error);
         }
     }
+
+    /**
+        * Deleta um professor do sistema.
+        * 
+        * @param {*} idProfessor  Objeto com as informações do professor.
+        * @return **verdadeiro (true)** caso o professor tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
+     */
     async deletarProfessor(idProfessor) {
         try {
             const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${idProfessor}`, {
@@ -57,12 +81,13 @@ class ProfessoresRequests {
             return false; // Retorna false em caso de erro
         }
     }
+
     /**
- * Atualiza o registro de um professor no servidor
- * 
- * @param {*} professor animal Objeto com as informações do animal
- * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
- */
+        * Atualiza o registro de um professor no servidor
+        * 
+        * @param {*} professor  Objeto com as informações do professor
+        * @return **verdadeiro (true)** caso o professor tenha sido atualizado, **null (nulo)** caso tenha acontecido algum erro
+     */
     async atualizarProfessor(professor) {
         try {
 

@@ -8,6 +8,14 @@ class AparelhoRequests {
         this.routeUpdateAparelho = '/update/aparelho';
     }
 
+    /**
+        * Requisita a lista de aparelhos.
+        * 
+        * @async
+        * @return {Array|undefined} Retorna um array de objetos representando os aparelhos, ou `undefined` se ocorrer um erro
+        * 
+        * @throws {Error} Lança um erro se a requisição falhar.
+     */
     async listarAparelho() { // Método assíncrono para listar aparelhos
         try {
             // Realiza uma requisição GET para obter a lista de aparelhos
@@ -24,6 +32,15 @@ class AparelhoRequests {
         }
     }
 
+    /**
+        * Cadastra um novo aparelho no sistema.
+        * 
+        * @async
+        * @param {*} aparelho - Objeto contendo as informações do aparelho a ser cadastrado.
+        * @return Retorna o objeto JSON com os dados do aparelho cadastrado, ou `undefined` se ocorrer um erro.
+        * 
+        * @throw {Error} Lança um erro se a requisição falhar.
+     */
     async cadastrarAparelho(aparelho) { // Método assíncrono para cadastrar um aparelho
         try {
             // Realiza uma requisição POST para cadastrar um aparelho
@@ -46,6 +63,12 @@ class AparelhoRequests {
         }
     }
 
+    /**
+        * Deleta um aparelho do sistema.
+        * 
+        * @param {*} idAparelho  Objeto com as informações do aparelho.
+        * @return **verdadeiro (true)** caso o aparelho tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
+     */
     async deletarAparelho(idAparelho) { // Método assíncrono para deletar um aparelho
         try {
             const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${idAparelho}`, {
@@ -60,12 +83,13 @@ class AparelhoRequests {
             return false; // Retorna false em caso de erro
         }
     }
+
     /**
- * Atualiza o registro de um aparelho no servidor
- * 
- * @param {*} aparelho animal Objeto com as informações do animal
- * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
- */
+        * Atualiza o registro de um aparelho no servidor
+        * 
+        * @param {*} aparelho Objeto com as informações do aparelho
+        * @return **verdadeiro (true)** caso o aparelho tenha sido atualizado, **null (nulo)** caso tenha acontecido algum erro
+    */
     async atualizarAparelho(aparelho) {
         try {
             const response = await fetch(`${this.serverUrl}${this.routeUpdateAparelho}?id_aparelho=${aparelho.id_aparelho}`,
