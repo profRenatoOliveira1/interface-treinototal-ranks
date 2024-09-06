@@ -85,9 +85,9 @@ function CadastroAparelho() {
                         Cadastrar
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <button className={styles.btnListagem} id='buttonListagem' style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho">
+                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho">
                         Listagem
-                    </button>
+                    </a>
                 </form>
             </div>
         </div>
