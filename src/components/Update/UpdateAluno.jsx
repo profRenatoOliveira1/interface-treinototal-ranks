@@ -68,7 +68,7 @@ function UpdateAluno() {
         <>
             <Navegacao />
             <div className={styles.section}>
-                <h1 className={styles.h1}>Atualizar de Aluno</h1>
+                <h1 className={styles.h1}>Atualização de Aluno</h1>
                 <div className={styles.container}>
                     <form onSubmit={handleSubmit}>
                         {/* Campo para o nome completo */}
@@ -101,7 +101,7 @@ function UpdateAluno() {
                                 placeholder="Data de Nascimento"
                                 value={aluno.dataNascimento}
                                 onChange={handleChange}
-                                name="data_nascimento"
+                                name="dataNascimento"
                                 max={hoje.toISOString().split('T')[0]}
                                 required
                             />

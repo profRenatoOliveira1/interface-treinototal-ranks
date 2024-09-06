@@ -67,7 +67,7 @@ function CadastroProfessor() {
 
     return (
         <div className={styles.section}>
-            <h1 className={styles.h1}>Arualizar de Professor</h1>
+            <h1 className={styles.h1}>Atualização de Professor</h1>
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
                     {/* Campo para nome completo */}

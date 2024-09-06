@@ -72,7 +72,7 @@ function UpdateExercicio() {
         <>
             <Navegacao />
             <div className={styles.section}>
-                <h1 className={styles.h1}>Atualizar de Exercício</h1>
+                <h1 className={styles.h1}>Atualização de Exercício</h1>
                 <div className={styles.container}>
                     <form onSubmit={handleSubmit}>
                         {/* Campo para selecionar o aparelho */}

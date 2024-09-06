@@ -53,7 +53,7 @@ function UpdateAparelho() {
         <>
             <Navegacao />
             <div className={styles.section}>
-                <h1 className={styles.h1}>Atualizar de Aparelho</h1>
+                <h1 className={styles.h1}>Atualização de Aparelho</h1>
                 <div className={styles.container}>
                     <form onSubmit={handleSubmit}>
                         {/* Campo para o nome do aparelho */}
@@ -61,7 +61,7 @@ function UpdateAparelho() {
                             <input
                                 type="text"
                                 className={styles.formStyle}
-                                placeholder="Nome"
+                                placeholder="Nome do Aparelho"
                                 value={aparelho.nomeAparelho} // Define o valor do input com base no estado
                                 onChange={handleChange} // Define a função de mudança para atualizar o estado
                                 name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
