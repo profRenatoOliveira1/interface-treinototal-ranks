@@ -72,6 +72,7 @@ function CadastroProfessor() {
 
         try {
             const response = await ProfessoresRequests.cadastrarProfessor(cleanData); // Envia os dados limpos para a API
+            clearForm();
             console.log('Professor cadastrado com sucesso:', response);
             window.alert(formData.nome + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
             setErrorMessage(''); // Limpa a mensagem de erro em caso de sucesso

@@ -4,7 +4,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import Navegacao from "../Navegacao/Navegacao"
-import {formatarData} from "../../../util/Utilitarios";
+import { formatarData } from "../../../util/Utilitarios";
 
 
 function UpdateAluno() {
@@ -157,13 +157,16 @@ function UpdateAluno() {
                         </div>
                         {/* Campo para altura e peso */}
                         <div className={styles.formGroup}>
-                            <input
-                                type="number"
+                            <InputMask
+                                mask="9.99"
+                                type="text"
                                 className={styles.formStyleEsquerda}
                                 placeholder="Altura/m"
                                 value={aluno.altura}
                                 onChange={handleChange}
                                 name="altura"
+                                max={3}
+                                min={0}
                                 required
                             />
                             <input

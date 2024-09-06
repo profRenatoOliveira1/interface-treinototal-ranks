@@ -61,7 +61,7 @@ function CadastroAluno() {
         }
 
         // Verifica se os campos obrigatórios estão preenchidos
-        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha) {
+        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha || !formData.altura) {
             setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
@@ -70,7 +70,7 @@ function CadastroAluno() {
         const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do CPF
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do celular
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
-
+        console.table(formData)
         try {
             // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(cleanData);
@@ -181,13 +181,16 @@ function CadastroAluno() {
                     </div>
                     {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="number"
+                        <InputMask
+                            mask="9.99"
+                            type="text"
                             className={styles.formStyleEsquerda}
                             placeholder="Altura/m"
                             value={formData.altura}
                             onChange={handleChange}
                             name="altura"
+                            max={3}
+                            min={0}
                             required
                         />
                         <input

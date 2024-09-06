@@ -41,7 +41,8 @@ function CadastroAparelho() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            // Envia os dados do formulário para a API e aguarda a resposta            const response = await AparelhoRequests.cadastrarAparelho(formData);
+            // Envia os dados do formulário para a API e aguarda a resposta            
+            const response = await AparelhoRequests.cadastrarAparelho(formData);
             console.log('Aparelho cadastrado com sucesso:', response);
             clearForm();
             window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
