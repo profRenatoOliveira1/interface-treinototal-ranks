@@ -210,14 +210,14 @@ function CadastroProfessor() {
                             name="especialidade" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                         />
                     </div>
-
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
-                    <a style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Professor" className={styles.btn}>
+                    {/* Botão para acessar a respectiva lista */}
+                    <button className={styles.btnListagem} id='buttonListagem' style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Professor">
                         Listagem
-                    </a>
+                    </button>
                 </form>
             </div>
         </div>

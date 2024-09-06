@@ -80,12 +80,14 @@ function CadastroAparelho() {
                             required
                         />
                     </div>
+                    {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastrar
                     </button>
-                    <a style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho" className={styles.btn}>
+                    {/* Botão para acessar a respectiva lista */}
+                    <button className={styles.btnListagem} id='buttonListagem' style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho">
                         Listagem
-                    </a>
+                    </button>
                 </form>
             </div>
         </div>
