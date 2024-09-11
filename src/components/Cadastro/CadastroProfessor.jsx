@@ -3,11 +3,45 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa o módulo de requisições para a API de Professores
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 
-/**
- * Componente funcional para o cadastro de professores
- */
+    /**
+        * Componente para o cadastro de professores.
+        * 
+        * - Mantém o estado dos dados do formulário usando o hook `useState`.
+        * - Inclui funções para atualizar o estado do formulário, limpar o formulário e submeter os dados.
+        * - Utiliza a biblioteca `react-input-mask` para aplicar máscaras aos campos de CPF e celular.
+        * - Faz validação das datas e limpeza dos campos antes de enviar os dados para a API.
+        * - Exibe um formulário para o usuário preencher com informações do professor.
+        * 
+        * @component
+        * @example
+        * return (
+        *   <CadastroProfessor />
+        * );
+    */
 function CadastroProfessor() {
-    // Define o estado inicial do formulário com todos os campos vazios
+
+    /**
+        * Define o estado inicial do objeto `formData` com campos vazios,
+        * utilizando o hook `useState`.
+        * 
+        * - Cada campo do objeto `formData` representa um atributo do professor
+        *   e é inicializado como uma string vazia.
+        * 
+        * @constant {Object} formData - O estado que contém as informações do formulário.
+        * @function setFormData - Função para atualizar o estado `formData`.
+        * 
+        * @param {Object} formData - Objeto contendo os dados do formulário, com os seguintes campos:
+        * @param {string} formData.nome - Nome do professor.
+        * @param {string} formData.cpf - CPF do professor.
+        * @param {string} formData.dataNascimento - Data de nascimento do professor.
+        * @param {string} formData.celular - Número de celular do professor.
+        * @param {string} formData.endereco - Endereço do professor.
+        * @param {string} formData.email - Endereço de email do professor.
+        * @param {string} formData.senha - Senha do professor.
+        * @param {string} formData.dataContratacao - Data de contratação do professor.
+        * @param {string} formData.formacao - Formação acadêmica do professor.
+        * @param {string} formData.especialidade - Especialidade do professor.
+    */
     const [formData, setFormData] = useState({
         nome: '',                   // Campo para o nome do professor
         cpf: '',                    // Campo para o cpf do professor
@@ -21,7 +55,22 @@ function CadastroProfessor() {
         especialidade: ''           // Campo para a especialidade do professor
     });
 
-    // Função para lidar com mudanças nos campos do formulário
+    /**
+        * Atualiza o estado do formulário com base nas alterações feitas pelo usuário em um campo de input.
+        * 
+        * - Obtém o nome e o valor do campo que foi alterado a partir do evento `e`.
+        * - Atualiza o estado `formData` mantendo os valores atuais e substituindo o valor do campo alterado.
+        * 
+        * @function handleChange
+        * 
+        * @param {Object} e - O evento de mudança do input.
+        * @param {string} e.target.name - O nome do campo de input que disparou o evento (usado como chave no estado).
+        * @param {string} e.target.value - O valor atual do campo de input (usado para atualizar o valor no estado).
+        * 
+        * @example
+        * // Chama a função quando o usuário altera um campo do formulário
+        * handleChange({ target: { name: 'nomeAparelho', value: 'Novo Aparelho' } });
+    */
     const handleChange = (e) => {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setFormData(prevState => ({
@@ -30,10 +79,21 @@ function CadastroProfessor() {
         }));
     };
 
-    // Função para limpar o formulário após o envio ou reset
+    /**
+        * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
+        * 
+        * - Atualiza o estado `formData` para um objeto com todos os campos definidos como strings vazias.
+        * - Esse método é útil para resetar o formulário após a submissão ou quando necessário.
+        * 
+        * @function clearForm
+        * 
+        * @example
+        * // Chama a função para limpar o formulário
+        * clearForm();
+    */
     const clearForm = () => {
         setFormData({
-            nome: '',                  
+            nome: '',
             cpf: '',
             dataNascimento: '',
             celular: '',
@@ -46,7 +106,27 @@ function CadastroProfessor() {
         });
     };
 
-    // Função para lidar com o envio do formulário
+    /**
+        * Função para lidar com a submissão do formulário de cadastro de professores.
+        * 
+        * - Previne o comportamento padrão do formulário que recarregaria a página.
+        * - Converte as datas de nascimento e contratação para objetos `Date` e verifica se são datas futuras, exibindo mensagens de erro se necessário.
+        * - Limpa os campos de CPF e celular de caracteres não numéricos para garantir a consistência dos dados.
+        * - Envia os dados limpos para a API e aguarda a resposta.
+        * - Exibe uma mensagem de sucesso e limpa o formulário em caso de sucesso, ou define uma mensagem de erro em caso de falha.
+        * 
+        * @async
+        * @function handleSubmit
+        * 
+        * @param {Object} e - O evento de submissão do formulário.
+        * @param {string} e.preventDefault - Método para prevenir o comportamento padrão do formulário.
+        * 
+        * @throws {Error} Se ocorrer um erro ao enviar os dados para a API.
+        * 
+        * @example
+        * // Chama a função handleSubmit ao submeter o formulário
+        * handleSubmit(event);
+    */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
 
@@ -65,7 +145,22 @@ function CadastroProfessor() {
             return;
         }
 
-        // Limpeza dos campos de CPF e celular
+        /**
+            Remove formatação dos campos de CPF e celular e cria um novo objeto com os dados limpos.
+            
+            - Remove todos os caracteres não numéricos do CPF e do celular utilizando expressões regulares.
+            - Cria um novo objeto `cleanData` com os dados do formulário, substituindo os campos `cpf` e `celular` pelos valores limpos.
+            
+            @constant {string} cleanCPF - CPF do aluno com todos os caracteres não numéricos removidos.
+            @constant {string} cleanCelular - Número de celular do aluno com todos os caracteres não numéricos removidos.
+            @constant {Object} cleanData - Novo objeto contendo os dados do formulário com CPF e celular limpos.
+            
+            @example
+            // Remove formatação dos dados e cria o objeto com os dados limpos
+            const cleanCPF = formData.cpf.replace(/\D/g, '');
+            const cleanCelular = formData.celular.replace(/\D/g, '');
+            const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular };
+         */
         const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove caracteres não numéricos do CPF
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove caracteres não numéricos do celular
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos

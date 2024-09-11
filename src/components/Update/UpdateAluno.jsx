@@ -6,6 +6,17 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
 import Navegacao from "../Navegacao/Navegacao"
 import { formatarData } from "../../../util/Utilitarios";
 
+    /**
+        * Componente funcional para atualizar os dados de um aluno.
+        * 
+        * - Usa hooks do React (`useState`, `useLocation`, `useNavigate`) para gerenciar o estado e navegação.
+        * - Inicializa o estado com os dados do aluno recuperados da página anterior.
+        * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
+        * - Inclui lógica para atualizar os dados do aluno e redirecionar o usuário após a atualização.
+        * 
+        * @function UpdateAluno
+        * @returns {JSX.Element} O componente de atualização do aluno.
+    */
 function UpdateAluno() {
     // usado para navegar entre páginas (redirecionar)
 
@@ -17,7 +28,28 @@ function UpdateAluno() {
 
     // const { dia, mes, ano } = formatarData(new Date(objAluno.data_nascimento));
 
-    // Cria um estado para armazenar os dados do aluno e já preenche com as informações recebidas da página anterior
+    /**
+        * Define o estado inicial do objeto `aluno` com base nos dados do objeto `objAluno`,
+        * utilizando o hook `useState`.
+        * 
+        * - Cada campo do objeto `aluno` é preenchido com os valores correspondentes de `objAluno`.
+        * - O campo `dataNascimento` é formatado usando a função `formatarData`.
+        * 
+        * @constant {Object} aluno - O estado que contém as informações do aluno.
+        * @function setAluno - Função para atualizar o estado `aluno`.
+        * 
+        * @param {Object} objAluno - Objeto contendo os dados iniciais do aluno, que são:
+        * @param {number} objAluno.id_aluno - Identificador do aluno.
+        * @param {string} objAluno.nome - Nome do aluno.
+        * @param {string} objAluno.cpf - CPF do aluno.
+        * @param {string} objAluno.data_nascimento - Data de nascimento do aluno.
+        * @param {string} objAluno.celular - Número de celular do aluno.
+        * @param {string} objAluno.endereco - Endereço do aluno.
+        * @param {string} objAluno.email - Endereço de email do aluno.
+        * @param {string} objAluno.senha - Senha do aluno.
+        * @param {number} objAluno.altura - Altura do aluno.
+        * @param {number} objAluno.peso - Peso do aluno.
+    */
     const [aluno, setAluno] = useState({
         id_aluno: objAluno.id_aluno,
         nome: objAluno.nome,

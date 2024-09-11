@@ -4,6 +4,17 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AparelhoRequests from "../../fetch/AparelhosRequests"; // Importa o módulo de requisições para a API de Aparelhos
 import Navegacao from "../Navegacao/Navegacao"
 
+/**
+ * Componente funcional para atualizar os dados de um aparelho.
+ * 
+ * - Usa hooks do React (`useState`, `useLocation`, `useNavigate`) para gerenciar o estado e navegação.
+ * - Inicializa o estado com os dados do aparelho recuperados da página anterior.
+ * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
+ * - Inclui lógica para atualizar os dados do aparelho e redirecionar o usuário após a atualização.
+ * 
+ * @function UpdateAparelho
+ * @returns {JSX.Element} O componente de atualização do aparelho.
+ */
 function UpdateAparelho() {
     // usado para navegar entre páginas (redirecionar)
     const navigate = useNavigate();
@@ -12,7 +23,20 @@ function UpdateAparelho() {
     // recupera as informações que vieram da página anterior e armazena na variável objAparelho
     const objAparelho = location.state.objeto;
 
-    // Cria um estado para armazenar os dados do aparelho e já preenche com as informações recebidas da página anterior
+    /**
+        * Define o estado inicial do objeto `aparelho` com base nos dados do objeto `objAparelho`,
+        * utilizando o hook `useState`.
+        * 
+        * - Cada campo do objeto `aparelho` é preenchido com os valores correspondentes de `objAparelho`.
+        * 
+        * @constant {Object} aparelho - O estado que contém as informações do aparelho.
+        * @function setAparelho - Função para atualizar o estado `aparelho`.
+        * 
+        * @param {Object} objAparelho - Objeto contendo os dados iniciais do aparelho, que são:
+        * @param {number} objAparelho.id_aparelho - Identificador do aparelho.
+        * @param {string} objAparelho.nome_aparelho - Nome do aparelho.
+        * @param {string} objAparelho.musculo_ativado - Músculo ativado pelo aparelho.
+    */
     const [aparelho, setAparelho] = useState({
         id_aparelho: objAparelho.id_aparelho,
         nomeAparelho: objAparelho.nome_aparelho,

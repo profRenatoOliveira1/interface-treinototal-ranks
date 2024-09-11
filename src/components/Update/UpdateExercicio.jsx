@@ -5,6 +5,19 @@ import ExerciciosRequests from "../../fetch/ExerciciosRequests";
 import Navegacao from "../Navegacao/Navegacao";
 import AparelhosRequests from "../../fetch/AparelhosRequests";
 
+    /**
+        * Componente funcional para atualizar os dados de um exercício.
+        * 
+        * - Usa hooks do React (`useState`, `useEffect`, `useLocation`, `useNavigate`) para gerenciar o estado, 
+        *   buscar dados e navegar entre páginas.
+        * - Inicializa o estado com os dados do exercício recebidos da página anterior e faz uma requisição para 
+        *   buscar a lista de aparelhos.
+        * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
+        * - Inclui lógica para atualizar os dados do exercício e redirecionar o usuário após a atualização.
+        * 
+        * @function UpdateExercicio
+        * @returns {JSX.Element} O componente de atualização do exercício.
+    */
 function UpdateExercicio() {
     // usado para navegar entre páginas (redirecionar)
     const [aparelhos, setAparelhos] = useState([]);
@@ -14,9 +27,25 @@ function UpdateExercicio() {
     // recupera as informações que vieram da página anterior e armazena na variável objExercicio
     const objExercicio = location.state.objeto;
 
-    // Cria um estado para armazenar os dados do aparelho e já preenche com as informações recebidas da página anterior
+    /**
+        * Define o estado inicial do objeto `exercicio` com base nos dados do objeto `objExercicio`,
+        * utilizando o hook `useState`.
+        * 
+        * - Cada campo do objeto `exercicio` é preenchido com os valores correspondentes de `objExercicio`.
+        * - O identificador do aparelho e as demais propriedades são diretamente atribuídas do objeto `objExercicio`.
+        * 
+        * @constant {Object} exercicio - O estado que contém as informações do exercício.
+        * @function setExercicio - Função para atualizar o estado `exercicio`.
+        * 
+        * @param {Object} objExercicio - Objeto contendo os dados iniciais do exercício, que são:
+        * @param {number} objExercicio.id_exercicio - Identificador do exercício.
+        * @param {number} objExercicio.id_aparelho - Identificador do aparelho associado ao exercício.
+        * @param {string} objExercicio.exercicio - Nome ou descrição do exercício.
+        * @param {number} objExercicio.carga - Carga utilizada no exercício (em Kg).
+        * @param {number} objExercicio.repeticoes - Número de repetições do exercício.
+        * @param {string} objExercicio.regiao_corpo_ativa - Região do corpo ativada pelo exercício.
+    */
     const [exercicio, setExercicio] = useState({
-        // Não pode colocar camel case em ids, caso coloque vai dar erro, falando que coluna não existe. Deve ficar igual ao banco de dados.
         id_exercicio: objExercicio.id_exercicio,
         idAparelho: objExercicio.id_aparelho,
         exercicio: objExercicio.exercicio,
@@ -77,7 +106,7 @@ function UpdateExercicio() {
         * @catch {Error} Lança um erro se a requisição para atualizar o exercício falhar.
     */
     const handleSubmit = async (e) => {
-    // evita o recarregamento da página
+        // evita o recarregamento da página
         e.preventDefault();
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
         if (await ExerciciosRequests.atualizarExercicio(exercicio)) {

@@ -5,15 +5,47 @@ import InputMask from "react-input-mask";
 import { formatarData } from "../../../util/Utilitarios";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function CadastroProfessor() {
-    const navigate = useNavigate();
+    /**
+        * Componente `UpdateProfessor` para atualizar os dados de um professor existente.
+        * 
+        * - Utiliza o hook `useState` para gerenciar o estado do formulário.
+        * - Utiliza `useLocation` para receber os dados do professor da página anterior.
+        * - Manipula as alterações nos campos do formulário e lida com o envio de dados para a API.
+        * - Exibe mensagens de erro ou sucesso após a tentativa de atualização.
+        * 
+        * @component
+        * @returns {JSX.Element} O formulário para atualizar os dados de um professor.
+    */
+    function UpdateProfessor() {
+        const navigate = useNavigate();
     // usado para pegar os dados da página anterior (as informações do usuário que foram passadas pela componente ListAlunos)
-    const location = useLocation();
+        const location = useLocation();
     // recupera as informações que vieram da página anterior e armazena na variável objProfessor
-    const objProfessor = location.state.objeto;
+        const objProfessor = location.state.objeto;
 
-    // const { dia, mes, ano } = formatarData(new Date(objProfessor.data_nascimento));
-    // Cria um estado para armazenar os dados do aluno e já preenche com as informações recebidas da página anterior
+    /**
+        * Define o estado inicial do objeto `professor` com base nos dados do objeto `objProfessor`,
+        * utilizando o hook `useState`.
+        * 
+        * - Cada campo do objeto `professor` é preenchido com os valores correspondentes de `objProfessor`.
+        * - As datas de nascimento e contratação são formatadas utilizando a função `formatarData`.
+        * 
+        * @constant {Object} professor - O estado que contém as informações do professor.
+        * @function setProfessor - Função para atualizar o estado `professor`.
+        * 
+        * @param {Object} objProfessor - Objeto contendo os dados iniciais do professor, que são:
+        * @param {number} objProfessor.id_professor - Identificador do professor.
+        * @param {string} objProfessor.nome - Nome do professor.
+        * @param {string} objProfessor.cpf - CPF do professor.
+        * @param {string} objProfessor.data_nascimento - Data de nascimento do professor.
+        * @param {string} objProfessor.celular - Número de celular do professor.
+        * @param {string} objProfessor.endereco - Endereço do professor.
+        * @param {string} objProfessor.email - Endereço de email do professor.
+        * @param {string} objProfessor.senha - Senha do professor.
+        * @param {string} objProfessor.data_contratacao - Data de contratação do professor.
+        * @param {string} objProfessor.formacao - Formação acadêmica do professor.
+        * @param {string} objProfessor.especialidade - Especialidade do professor.
+    */
     const [professor, setProfessor] = useState({
         id_professor: objProfessor.id_professor,
         nome: objProfessor.nome,
@@ -217,4 +249,4 @@ function CadastroProfessor() {
     );
 }
 
-export default CadastroProfessor;//exporta o componente CadastroProfessor para ser utilizado em outras partes da aplicação
+export default UpdateProfessor;//exporta o componente UpdateProfessor para ser utilizado em outras partes da aplicação
