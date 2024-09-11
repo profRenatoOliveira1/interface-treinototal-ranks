@@ -8,11 +8,11 @@ import Navegacao from '../../components/Navegacao/Navegacao';
 // Importa o componente Navegacao, localizado na pasta '../../components/Navegacao/Navegacao'.
 // Este componente provavelmente contém a barra de navegação ou menu do aplicativo.
 
-import ImgFundoHome from '../../components/ImgFundoHome/ImgFundoHome';
+import ImgFundoHome from '../../components/Home/ImgFundoHome/ImgFundoHome';
 // Importa o componente ImgFundoHome, localizado na pasta '../../components/ImgFundoHome/ImgFundoHome'.
 // Este componente provavelmente exibe uma imagem de fundo específica para a página inicial.
 
-import ConteudoDaHome from '../../components/ConteudoDaHome/ConteudoDaHome';
+import ConteudoDaHome from '../../components/Home/ConteudoDaHome/ConteudoDaHome';
 // Importa o componente ConteudoDaHome, localizado na pasta '../../components/ConteudoDaHome/ConteudoDaHome'.
 // Este componente provavelmente contém o conteúdo principal da página inicial.
 

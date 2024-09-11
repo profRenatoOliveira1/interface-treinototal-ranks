@@ -2,7 +2,7 @@ import React, { useState } from 'react'; // Importa React e o hook useState para
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
-
+import { calcularIMC } from '../../../util/Utilitarios';
     /**
         * Componente funcional para o cadastro de alunos.
         * 
@@ -158,7 +158,6 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
         const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do CPF
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do celular
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
-        console.table(formData)
         try {
             // Envia os dados do formulário para a API e aguarda a resposta
             const response = await AlunoRequests.cadastrarAluno(cleanData);
@@ -290,6 +289,10 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
                             name="peso"
                             required
                         />
+                    </div>
+                    <div className={styles.formGroup}>
+                        <p className={styles.formStyle}
+                        ><strong>imc:</strong> {calcularIMC(formData.peso, formData.altura)}</p>
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>

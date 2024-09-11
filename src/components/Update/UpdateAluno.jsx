@@ -4,7 +4,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import Navegacao from "../Navegacao/Navegacao"
-import { formatarData } from "../../../util/Utilitarios";
+import { formatarData, calcularIMC } from "../../../util/Utilitarios";
 
     /**
         * Componente funcional para atualizar os dados de um aluno.
@@ -94,7 +94,6 @@ function UpdateAluno() {
         const cleanData = { ...aluno, cpf: cleanCPF, celular: cleanCelular };
 
         // chama a função atualizarAluno do arquivo AlunoAPIService
-        console.table(aluno);
         if (await AlunoRequests.atualizarAluno(cleanData)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`Aluno ${aluno.nome} atualizado com sucesso`);
@@ -231,6 +230,10 @@ function UpdateAluno() {
                                 name="peso"
                                 required
                             />
+                        </div>
+                        <div className={styles.formGroup}>
+                            <p className={styles.formStyle}
+                            ><strong>imc:</strong> {calcularIMC(aluno.peso, aluno.altura)}</p>
                         </div>
                         <button type="submit" className={styles.btn}>
                             Atualizar

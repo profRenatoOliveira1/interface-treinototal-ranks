@@ -12,9 +12,9 @@
 .btn {
   display: inline-block;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width: 35%;
+  width: 15%;
   /* Exibe como bloco */
-  padding: 15px 25px;
+  padding: 15px 15px;
   /* Preenchimento */
   background-color: var(--cinzaAzulado);
   /* Cor de fundo */
@@ -101,6 +101,36 @@ td, th {
   font-size: 1.2rem !important;  /* Define o tamanho da fonte como 1.2rem, com alta prioridade */
 }
 
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0; /* Ajuste o valor conforme necessário para espaçamento */
+}
+
+ .searchInput {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 6px 12px;  
+  font-size: 16px;
+  width: 15%;
+  padding: 15px 15px;  
+  background-color: var(--branco);
+  color: var(--preto);
+} 
+.searchInput::placeholder {
+color: var(--preto);
+
+} 
+
+.searchIcon {
+  cursor: pointer;
+  color: #333;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 @media (max-width: 768px) {  /* Aplica estilos específicos para telas com largura máxima de 768px */
   .table th,
   .table td {
@@ -114,5 +144,38 @@ td, th {
   .pagination input {
     width: 60px;  /* Define a largura dos campos de entrada de paginação para 60px */
     padding: 6px;  /* Define o preenchimento dos campos de entrada de paginação para 6px */
+  }
+}
+
+.btnCadastro {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  display: inline-block;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 35%;
+  /* Exibe como bloco */
+  padding: 15px 25px;
+  /* Preenchimento */
+  background-color: var(--cinzaAzulado);
+  /* Cor de fundo */
+  font-size: 18px;
+  color: var(--amareloClaro);
+  border: 3px solid var(--amareloClaro);
+  /* Sem borda */
+  border-radius: 27px;
+  /* Raio da borda */
+  cursor: pointer;
+  /* Cursor */
+  transition: background-color 0.3s ease;
+  /* Transição suave */
+}
+
+/* Controla a posição e tamanho de determinados botões*/
+@media (max-width: 768px) {
+  .btn, .searchInput {
+    width: 60%;
+  }
+  .btnCadastro, .searchInput {
+    width: 60%;
+    margin: 5%;
   }
 }

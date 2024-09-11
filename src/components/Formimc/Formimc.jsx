@@ -118,7 +118,9 @@ function FormIMC() {
       }
       const diferencaPeso = pesoNum < pesoIdealMin ? pesoIdealMin - pesoNum : pesoNum - pesoIdealMax;
       const sugestaoPeso = pesoNum < pesoIdealMin ? 'ganhar' : 'perder';
-      setResultado(prev => `${prev} Você precisa ${sugestaoPeso} ${diferencaPeso.toFixed(2)} kg para estar no peso ideal.`);
+      if (faixaIMC !== 'Normal') {
+        setResultado(prev => `${prev} Você precisa ${sugestaoPeso} ${diferencaPeso.toFixed(2)} kg para estar no peso ideal.`);
+      }
     }
   };
 
