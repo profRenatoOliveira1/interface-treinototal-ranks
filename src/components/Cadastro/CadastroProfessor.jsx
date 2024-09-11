@@ -33,7 +33,7 @@ function CadastroProfessor() {
     // Função para limpar o formulário após o envio ou reset
     const clearForm = () => {
         setFormData({
-            nome: '',                  
+            nome: '',
             cpf: '',
             dataNascimento: '',
             celular: '',

@@ -47,7 +47,6 @@ function UpdateAparelho() {
     */
     const handleSubmit = async (e) => {
         // evita o recarregamento da página
-        console.table(aparelho);
         e.preventDefault();
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
         if (await AparelhoRequests.atualizarAparelho(aparelho)) {

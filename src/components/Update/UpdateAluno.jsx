@@ -62,7 +62,6 @@ function UpdateAluno() {
         const cleanData = { ...aluno, cpf: cleanCPF, celular: cleanCelular };
 
         // chama a função atualizarAluno do arquivo AlunoAPIService
-        console.table(aluno);
         if (await AlunoRequests.atualizarAluno(cleanData)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`Aluno ${aluno.nome} atualizado com sucesso`);

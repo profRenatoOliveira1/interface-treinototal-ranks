@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
-import { FaTrash } from "react-icons/fa"; // Importa o ícone de lixeira da biblioteca react-icons
-import { FaRegEdit } from "react-icons/fa";
+import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importa ícones da biblioteca react-icons
 import { useNavigate } from 'react-router-dom';
 
 
@@ -11,32 +10,34 @@ import { useNavigate } from 'react-router-dom';
  * @returns {JSX.Element} Componente JSX para listagem de aparelhos
  */
 function ListarAparelho() {
-    // Define o estado inicial para armazenar os aparelhos
     const [aparelhos, setAparelhos] = useState([]);
+    const [filteredAparelhos, setFilteredAparelhos] = useState([]);
+    const [search, setSearch] = useState('');
     const navigate = useNavigate();
 
-    /**
-     * Hook useEffect para carregar os aparelhos quando o componente é montado
-     */
     useEffect(() => {
-        /**
-         * Função assíncrona para buscar os aparelhos da API
-         */
         const fetchAparelho = async () => {
             try {
-                // Realiza a requisição para buscar os aparelhos
                 const aparelhos = await AparelhoRequests.listarAparelho();
-                // Atualiza o estado com os aparelhos obtidos da API
                 setAparelhos(aparelhos);
+                setFilteredAparelhos(aparelhos);
             } catch (error) {
-                // Em caso de erro, exibe o erro no console
                 console.error('Erro ao buscar aparelhos: ', error);
             }
         };
-
-        // Chama a função para buscar os aparelhos
         fetchAparelho();
-    }, []); // O array vazio como segundo parâmetro garante que useEffect seja executado apenas uma vez, após a montagem do componente
+    }, []);
+
+    useEffect(() => {
+        if (search === '') {
+            setFilteredAparelhos(aparelhos);
+        } else {
+            const filtered = aparelhos.filter(aparelho =>
+                aparelho.nome_aparelho.toLowerCase().includes(search.toLowerCase())
+            );
+            setFilteredAparelhos(filtered);
+        }
+    }, [search, aparelhos]);
 
     const deletarAparelho = async (aparelho) => {
         const confirmar = window.confirm(`Deseja deletar o Aparelho ${aparelho.nome_aparelho}?`);
@@ -46,7 +47,8 @@ function ListarAparelho() {
                 window.location.reload();
                 if (sucesso) {
                     window.alert('Aparelho deletado com sucesso');
-                    setAparelhos(aparelhos.filter(aparelho => aparelho.id_aparelho !== aparelho.id_aparelho));
+                    setAparelhos(aparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
+                    setFilteredAparelhos(filteredAparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
                 } else {
                     window.alert('Erro ao deletar Aparelho');
                 }
@@ -60,10 +62,9 @@ function ListarAparelho() {
     };
 
     const UpdateAparelho = (aparelho) => {
-        // redireciona o usuário para a página de alteração de dados (componente AtualizarAlunos), passando como parâmetro um objeto com as informações do aluno
         navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true });
     }
-    // Renderização do componente
+
     return (
         <>
             {/* Cabeçalho da seção */}
@@ -82,37 +83,51 @@ function ListarAparelho() {
                 </div>
             </div>
 
+            {/* Campo de Pesquisa */}
+            <div className={styles.searchContainer}>
+                <input
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Pesquisar por nome"
+                    className={styles.searchInput}
+                />
+            </div>
+
             {/* Tabela para listar os aparelhos */}
             <div className={styles.cntTb}>
-                <table className={`${styles.table} ${styles.tabela}`}>
-                    <thead>
-                        <tr className={styles.tabelaHeader}>
-                            <th hidden>ID</th>
-                            <th>Nome</th>
-                            <th>Músculo Ativado</th>
-                            <th colSpan={2}>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* Mapeia os aparelhos e renderiza cada um como uma linha na tabela */}
-                        {aparelhos.map(aparelho => (
-                            <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
-                                <td hidden>{aparelho.id_aparelho}</td>
-                                <td>{aparelho.nome_aparelho.toUpperCase()}</td>
-                                <td>{aparelho.musculo_ativado.toUpperCase()}</td>
-                                <td>
-                                    <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135' }} />
-                                </td>
-                                <td>
-                                    <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF' }} />
-                                </td> {/* Ícone de lixeira para ação de deletar */}
+                {filteredAparelhos.length > 0 ? (
+                    <table className={`${styles.table} ${styles.tabela}`}>
+                        <thead>
+                            <tr className={styles.tabelaHeader}>
+                                <th hidden>ID</th>
+                                <th>Nome</th>
+                                <th>Músculo Ativado</th>
+                                <th colSpan={2}>Ação</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {filteredAparelhos.map(aparelho => (
+                                <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
+                                    <td hidden>{aparelho.id_aparelho}</td>
+                                    <td>{aparelho.nome_aparelho.toUpperCase()}</td>
+                                    <td>{aparelho.musculo_ativado.toUpperCase()}</td>
+                                    <td>
+                                        <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135' }} />
+                                    </td>
+                                    <td>
+                                        <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF' }} />
+                                    </td> {/* Ícone de lixeira para ação de deletar */}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p style={{color: 'white'}}>Nada encontrado</p>
+                )}
             </div>
         </>
     );
 }
 
-export default ListarAparelho;// Exporta o componente ListaAparelho para que possa ser utilizada em outras partes do código
+export default ListarAparelho;

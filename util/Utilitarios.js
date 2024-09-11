@@ -6,29 +6,42 @@
  * @returns data formatada no padrão AAAA-MM-DD
  */
 export function formatarData(data) {
-    let dia, mes, ano = 0;
-
-    // Extrai o ano da data e converte para string
-    ano = `${data.getFullYear()}`;
-
-    // Condicional para formatar dia e mês com dois dígitos (adiciona '0' se necessário)
-    if (data.getDate() < 10 && data.getMonth() + 1 < 10) {
-        dia = `0${data.getDate()}`;
-        mes = `0${data.getMonth() + 1}`;
-    } else if (data.getDate() < 10) {
-        dia = `0${data.getDate()}`;
-        mes = `${data.getMonth() + 1}`;
-    } else if (data.getMonth() + 1 < 10) {
-        dia = `${data.getDate()}`;
-        mes = `0${data.getMonth() + 1}`;
-    } else {
-        dia = `${data.getDate()}`;
-        mes = `${data.getMonth() + 1}`;
-    }
-
-    // Retorna a data no formato AAAA-MM-DD
-    return `${ano}-${mes}-${dia}`;
+    const dataISO = new Date(data).toISOString();
+    return dataISO.split('T')[0];
 }
+
+
+/**
+ * Função para formatar uma data no padrão brasileiro DD/MM/AAAA
+ * 
+ * @param {string|Date} data - data a ser formatada
+ * @returns data formatada no padrão DD/MM/AAAA
+ */
+export function formatadorDataCard(data) {
+    const dataLocal = new Date(data + 'T00:00:00');  // Força a interpretação correta da data no fuso local
+    return dataLocal.toLocaleDateString('pt-BR', {
+        timeZone: 'America/Sao_Paulo',  // Garante o uso do fuso horário correto
+    });
+}
+
+/**
+ * Função para calcular o Índice de Massa Corporal (IMC)
+ * 
+ * @param {number} peso - Peso da pessoa em quilogramas (kg)
+ * @param {number} altura - Altura da pessoa em metros (m)
+ * @returns {number} - Retorna o valor do IMC
+ */
+export function calcularIMC(peso, altura) {
+    if (!peso || !altura || altura <= 0) {
+        return 0;
+    }
+    else {
+        const imc = peso / (altura * altura);
+        return imc.toFixed(2);
+    }
+    
+}
+
 
 /**
  * Função para formatar uma data no padrão brasileiro DD/MM/AAAA
@@ -40,6 +53,11 @@ export function formatadorData(data) {
     return new Date(data).toLocaleDateString('pt-br'); 
 }
 
+
+export function formatarTelefone(celular){ 
+    celular.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+}
+     
 /**
  * Função para formatar um CPF no formato padrão 000.000.000-00
  * 
