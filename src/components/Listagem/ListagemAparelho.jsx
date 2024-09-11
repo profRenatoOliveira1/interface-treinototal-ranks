@@ -74,7 +74,7 @@ function ListarAparelho() {
                         <div className={styles.col}>
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Aparelhos</h1>
-                                <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho" className={styles.btn}>
+                                <a className={styles.btn} style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho">
                                     Cadastrar aparelho
                                 </a>
                             </div>

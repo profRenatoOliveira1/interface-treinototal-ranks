@@ -203,7 +203,6 @@ function CadastroAluno() {
                         />
                     </div>
                     <div className={styles.formGroup}>
-
                         <p className={styles.formStyle}
                         ><strong>imc:</strong> {calcularIMC(formData.peso, formData.altura)}</p>
                     </div>
