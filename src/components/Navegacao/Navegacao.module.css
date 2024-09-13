@@ -36,7 +36,6 @@
   /* Espaçamento entre a imagem e o texto */
 }
 
-
 /* Define o estilo para os links de navegação */
 .navbar-nav .nav-link,
 .navbar-nav .dropdown-item,
@@ -75,4 +74,9 @@ a {
   /* Cor de fundo */
   border: none;
   /* Se você quiser remover a borda */
+}
+.botao{
+  color:var(--amareloClaro)!important;
+  background-color: var(--cinzaAvermelhado)!important;
+  border-color: var(--amareloClaro)!important;
 }

@@ -7,19 +7,18 @@ class ProfessoresRequests {
         this.routeDeletarProfessor = '/remover/professor';
         this.routeAtualizarProfessor = '/update/professor';
     }
-
-    /**
-        * Requisita a lista de professores.
-        * 
-        * @async
-        * @return {Array|undefined} Retorna um array de objetos representando os professores, ou `undefined` se ocorrer um erro
-        * 
-        * @throws {Error} Lança um erro se a requisição falhar.
-     */
+    getAuthToken() {
+        return localStorage.getItem('token');
+    }
     async listarProfessor() { // Método assíncrono para listar professores
         try {
+            const token = this.getAuthToken();
             // Realiza uma requisição GET para obter a lista de professores
-            const response = await fetch(`${this.serverUrl}${this.routeListarProfessor}`);
+            const response = await fetch(`${this.serverUrl}${this.routeListarProfessor}`, {
+                headers: {
+                    'x-access-token': `${token}`,
+                }
+            });
             if (!response.ok) {
                 throw new Error('Erro ao buscar professores');
             }
@@ -31,22 +30,15 @@ class ProfessoresRequests {
         }
     }
 
-    /**
-        * Cadastra um novo professor no sistema.
-        * 
-        * @async
-        * @param {*} professor - Objeto contendo as informações do professor a ser cadastrado.
-        * @return Retorna o objeto JSON com os dados do professor cadastrado, ou `undefined` se ocorrer um erro.
-        * 
-        * @throw {Error} Lança um erro se a requisição falhar.
-     */
     async cadastrarProfessor(professor) { // Método assíncrono para cadastrar um professor
         try {
+            const token = this.getAuthToken();
             // Realiza uma requisição POST para cadastrar um professor
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarProfessor}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
                 },
                 body: JSON.stringify(professor)
             });
@@ -60,17 +52,15 @@ class ProfessoresRequests {
             console.error('Erro: ', error);
         }
     }
-
-    /**
-        * Deleta um professor do sistema.
-        * 
-        * @param {*} idProfessor  Objeto com as informações do professor.
-        * @return **verdadeiro (true)** caso o professor tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
-     */
     async deletarProfessor(idProfessor) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?id_professor=${idProfessor}`, {
-                method: 'DELETE'
+            const token = this.getAuthToken();
+            const response = await fetch(`${this.serverUrl}${this.routeRemoverProfessor}?id_professor=${idProfessor}`, {
+                // Informa o verbo a ser acessado
+                method: 'DELETE',
+                headers: {
+                    'x-access-token': `${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error('Erro ao deletar professor');
@@ -81,25 +71,27 @@ class ProfessoresRequests {
             return false; // Retorna false em caso de erro
         }
     }
-
     /**
-        * Atualiza o registro de um professor no servidor
-        * 
-        * @param {*} professor  Objeto com as informações do professor
-        * @return **verdadeiro (true)** caso o professor tenha sido atualizado, **null (nulo)** caso tenha acontecido algum erro
-     */
+ * Atualiza o registro de um professor no servidor
+ * 
+ * @param {*} professor animal Objeto com as informações do animal
+ * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
+ */
     async atualizarProfessor(professor) {
         try {
-
+            const token = this.getAuthToken();
             // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?id_professor=${professor.id_professor}`,
-                {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(professor)
-                });
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?id_professor=${professor.idProfessor}`, {
+                // Informa o verbo a ser acessado
+                method: 'PUT',
+                // informa os cabeçalhos da requisição
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
+                },
+                // informa o corpo da requisição, contendo as informações do aluno
+                body: JSON.stringify(professor)
+            });
             if (!response.ok) {
                 throw new Error('Erro ao enviar formulário');
             }
@@ -113,4 +105,5 @@ class ProfessoresRequests {
 
 }
 
-export default new ProfessoresRequests();// Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código
+// Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código
+export default new ProfessoresRequests();

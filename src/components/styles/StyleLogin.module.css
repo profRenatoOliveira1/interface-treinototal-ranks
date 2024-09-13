@@ -1,0 +1,88 @@
+:root {
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --cinzaAvermelhado: #333;
+    --branco: #FFFFFF;
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
+}
+
+.divConteiner {
+    display: flex;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerLogin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLogin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 85vh;
+    margin-top: 1%;
+    background-color: var(--cinzaAzulado);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.inpuLogin {
+    width: 100%;
+    max-width: 300px;
+    background-color: var(--cinzaAzulado);
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--branco);
+
+}
+.inpuLogin::-webkit-input-placeholder {
+    color: var(--branco);
+
+}
+.buttonLogin {
+    display: inline-block;
+    width: 35%;
+    /* Exibe como bloco */
+    padding: 15px 25px;
+    /* Preenchimento */
+    background-color: var(--cinzaAzulado);
+    /* Cor de fundo */
+    font-size: 18px;
+    color: var(--amareloClaro);
+    border: 3px solid var(--amareloClaro);
+    /* Sem borda */
+    border-radius: 27px;
+    /* Raio da borda */
+    cursor: pointer;
+    /* Cursor */
+    transition: background-color 0.3s ease;
+    /* Transição suave */
+}
+
+/* Estilos de hover para um botão genérico */
+.buttonLogin:hover {
+    background-color: var(--amareloEscuro);
+    /* Cor de fundo ao pairar */
+}
+
+
+.h1 {
+    text-align: center;
+    color: var(--amareloClaro);
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 2% 0;
+}

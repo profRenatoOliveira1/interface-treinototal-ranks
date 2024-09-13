@@ -7,19 +7,18 @@ class ExerciciosRequests {
         this.routeDeletarExercicio = '/remover/exercicio';
         this.routeAtualizarExercicio = '/update/exercicio';
     }
-
-    /**
-        * Requisita a lista de Exercícios.
-        * 
-        * @async
-        * @return {Array|undefined} Retorna um array de objetos representando os exercícios, ou `undefined` se ocorrer um erro
-        * 
-        * @throws {Error} Lança um erro se a requisição falhar.
-     */
+    getAuthToken() {
+        return localStorage.getItem('token');
+    }
     async listarExercicio() { // Método assíncrono para listar exercícios
         try {
+            const token = this.getAuthToken();
             // Realiza uma requisição GET para obter a lista de exercícios
-            const response = await fetch(`${this.serverUrl}${this.routeListarExercicio}`);
+            const response = await fetch(`${this.serverUrl}${this.routeListarExercicio}`, {
+                headers: {
+                    'x-access-token': `${token}`
+                }
+            }); 
             if (!response.ok) {
                 throw new Error('Erro ao buscar exercícios');
             }
@@ -32,22 +31,15 @@ class ExerciciosRequests {
         }
     }
 
-    /**
-        * Cadastra um novo exercício no sistema.
-        * 
-        * @async
-        * @param {*} exercicio - Objeto contendo as informações do exercício a ser cadastrado.
-        * @return Retorna o objeto JSON com os dados do exercício cadastrado, ou `undefined` se ocorrer um erro.
-        * 
-        * @throw {Error} Lança um erro se a requisição falhar.
-     */
     async cadastrarExercicio(exercicio) { // Método assíncrono para cadastrar um exercício
         try {
+            const token = this.getAuthToken();
             // Realiza uma requisição POST para cadastrar um exercício
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarExercicio}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
                 },
                 body: JSON.stringify(exercicio)
             });
@@ -63,16 +55,15 @@ class ExerciciosRequests {
         }
     }
 
-    /**
-        * Deleta um exercício do sistema.
-        * 
-        * @param {*} idExercicio  Objeto com as informações do exercício.
-        * @return **verdadeiro (true)** caso o exercício tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
-     */
     async deletarExercicio(idExercicio) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
-                method: 'DELETE'
+            const token = this.getAuthToken();
+            const response = await fetch(`${this.serverUrl}${this.routeRemoverExercicio}?id_exercicio=${idExercicio}`, {
+                // Informa o verbo a ser acessado
+                method: 'DELETE',
+                headers: {
+                    'x-access-token': `${token}`
+                }
             });
             if (!response.ok) {
                 throw new Error('Erro ao enviar formulário');
@@ -85,27 +76,22 @@ class ExerciciosRequests {
         }
     }
 
-    /**
-        * Atualiza o registro de um exercício no servidor
-        * 
-        * @param {*} exercicio  Objeto com as informações do exercício
-        * @return **verdadeiro (true)** caso o exercício tenha sido atualizado, **null (nulo)** caso tenha acontecido algum erro
-     */
     async atualizarExercicio(exercicio) {
         try {
+            const token = this.getAuthToken();
             // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
 
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?id_exercicio=${exercicio.id_exercicio}`,
-                {
-                    // Informa o verbo a ser acessado
-                    method: 'PUT',
-                    // informa os cabeçalhos da requisição
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    // informa o corpo da requisição, contendo as informações do aluno
-                    body: JSON.stringify(exercicio)
-                });
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?id_exercicio=${exercicio.idExercicio}`, {
+                // Informa o verbo a ser acessado
+                method: 'PUT',
+                // informa os cabeçalhos da requisição
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
+                },
+                // informa o corpo da requisição, contendo as informações do aluno
+                body: JSON.stringify(exercicio)
+            });
             // Verifica se a resposta não foi bem sucedida ...
             if (!response.ok) {
                 // ... lança um erro
@@ -122,4 +108,5 @@ class ExerciciosRequests {
     }
 }
 
-export default new ExerciciosRequests();// Exporta uma instância da classe ExerciciosRequests para ser utilizada em outras partes do código
+// Exporta uma instância da classe ExerciciosRequests para ser utilizada em outras partes do código
+export default new ExerciciosRequests();
