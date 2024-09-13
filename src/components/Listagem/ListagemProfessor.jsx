@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css';
 import ProfessoresRequests from '../../fetch/ProfessoresRequests';
-import { FaTrash, FaRegEdit } from "react-icons/fa";
+import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { formatadorData } from "../../../util/Utilitarios";
 
@@ -102,41 +102,44 @@ function ListarProfessor() {
                                 <th>CPF</th>
                                 <th>Data de Nascimento</th>
                                 <th>Telefone</th>
-                                <th>Endereço</th>
+                                <th hidden>Endereço</th>
                                 <th hidden>Email</th>
                                 <th hidden>Data de Contratação</th>
                                 <th hidden>Formação</th>
-                                <th hidden>Especialidade</th>
-                                <th colSpan={2}>Ação</th>
+                                <th>Especialidade</th>
+                                <th colSpan={3}>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredProfessores.map(professor => (
                                 <tr key={professor.id_professor} className={styles.tabelaCorpo}>
                                     <td hidden>{professor.id_professor}</td>
-                                    <td onClick={() => handleProfessorClick(professor)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                                    <td title="Ver Mais" onClick={() => handleProfessorClick(professor)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                                         {professor.nome.toUpperCase()}
                                     </td>
                                     <td>{formatarCPF(professor.cpf)}</td>
                                     <td>{formatadorData(professor.data_nascimento)}</td>
                                     <td style={{ width: 200 }}>{formatarTelefone(professor.celular)}</td>
-                                    <td>{professor.endereco.toUpperCase()}</td>
+                                    <td hidden>{professor.endereco.toUpperCase()}</td>
                                     <td hidden>{professor.email.toUpperCase()}</td>
                                     <td hidden>{formatadorData(professor.data_contratacao)}</td>
                                     <td hidden>{professor.formacao.toUpperCase()}</td>
-                                    <td hidden>{professor.especialidade.toUpperCase()}</td>
-                                    <td>
-                                        <FaTrash onClick={() => deleteProfessor(professor)} style={{ color: '#DB0135' }} />
+                                    <td>{professor.especialidade.toUpperCase()}</td>
+                                    <td title="Deletar Professor">
+                                        <FaTrash onClick={() => deleteProfessor(professor)} style={{ color: '#DB0135', cursor: 'pointer' }} />
                                     </td>
-                                    <td>
-                                        <FaRegEdit onClick={() => updateProfessor(professor)} style={{ color: '#FFFFFF' }} />
+                                    <td title="Atualizar Professor">
+                                        <FaRegEdit onClick={() => updateProfessor(professor)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                    </td>
+                                    <td title="Ver Mais">
+                                        <FaInfoCircle onClick={() => handleProfessorClick(professor)} style={{ cursor: 'pointer', color: 'Yellow' }} />
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 ) : (
-                    <p style={{color: 'white'}}>Nada encontrado</p>
+                    <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}
             </div>
         </div>

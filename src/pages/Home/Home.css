@@ -3,55 +3,55 @@
 
 /* Define as variáveis de cor */
 :root {
-    --amareloClaro: #ffeba7;
-    --cinzaEscuro: #212529;
-    --cinzaAzulado: #343A40;
-    --cinzaAvermelhado: #333;
-    --branco: #FFFFFF;
-    --cinzaClaro: #ccc;
-    --amareloEscuro: #b39f72;
-    --preto: #000000;
-  }
+  --amareloClaro: #ffeba7;
+  --cinzaEscuro: #212529;
+  --cinzaAzulado: #343A40;
+  --cinzaAvermelhado: #333;
+  --branco: #FFFFFF;
+  --cinzaClaro: #ccc;
+  --amareloEscuro: #b39f72;
+  --preto: #000000;
+}
 
 /* Estilos para a div-mae */
 .div-mae {
-    display: flex;
-    /* Utiliza um layout flexível */
-    flex-direction: row-reverse;
-    /* Define a direção do eixo principal como de trás para frente */
-    justify-content: space-between;
-    /* Distribui o espaço disponível entre os elementos */
-    width: 100%;
-    /* Define a largura como 100% */
-    align-items: center;
-    /* Alinha os itens verticalmente ao centro */
-    flex-wrap: nowrap;
-    /* Impede a quebra de linha dos itens */
+  display: flex;
+  /* Utiliza um layout flexível */
+  flex-direction: row-reverse;
+  /* Define a direção do eixo principal como de trás para frente */
+  justify-content: space-between;
+  /* Distribui o espaço disponível entre os elementos */
+  width: 100%;
+  /* Define a largura como 100% */
+  align-items: center;
+  /* Alinha os itens verticalmente ao centro */
+  flex-wrap: nowrap;
+  /* Impede a quebra de linha dos itens */
 }
 
 /* Estilos para telas pequenas */
 @media (max-width: 768px) {
-.div-mae {
-  flex-direction: column-reverse;
-  /* Altera a direção do eixo principal para coluna */
-  align-items: center;
-  /* Alinha os itens horizontalmente ao centro */
-  text-align: center;
-}
+  .div-mae {
+    flex-direction: column-reverse;
+    /* Altera a direção do eixo principal para coluna */
+    align-items: center;
+    /* Alinha os itens horizontalmente ao centro */
+    text-align: center;
+  }
 
-.div-mae > * {
-  width: 100%;
-  /* Define a largura dos filhos como 100% */
-}
+  .div-mae>* {
+    width: 100%;
+    /* Define a largura dos filhos como 100% */
+  }
 
-.div-mae img {
-  max-width: 100%;
-  height: auto;
-  /* Garante que a imagem se ajuste corretamente */
-}
+  .div-mae img {
+    max-width: 100%;
+    height: auto;
+    /* Garante que a imagem se ajuste corretamente */
+  }
 
-.div-mae .conteudo-texto {
-  padding: 20px;
-  /* Adiciona um preenchimento para espaçamento */
-}
+  .div-mae .conteudo-texto {
+    padding: 20px;
+    /* Adiciona um preenchimento para espaçamento */
+  }
 }

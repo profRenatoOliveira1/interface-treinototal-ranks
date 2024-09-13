@@ -112,18 +112,18 @@ function ListarAparelho() {
                                     <td hidden>{aparelho.id_aparelho}</td>
                                     <td>{aparelho.nome_aparelho.toUpperCase()}</td>
                                     <td>{aparelho.musculo_ativado.toUpperCase()}</td>
-                                    <td>
-                                        <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135' }} />
+                                    <td title="Deletar Aparelho">
+                                        <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} />
                                     </td>
-                                    <td>
-                                        <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF' }} />
-                                    </td> {/* Ícone de lixeira para ação de deletar */}
+                                    <td title="Atualizar Aparelho">
+                                        <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 ) : (
-                    <p style={{color: 'white'}}>Nada encontrado</p>
+                    <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}
             </div>
         </>

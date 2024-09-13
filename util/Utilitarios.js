@@ -39,7 +39,7 @@ export function calcularIMC(peso, altura) {
         const imc = peso / (altura * altura);
         return imc.toFixed(2);
     }
-    
+
 }
 
 
@@ -50,14 +50,14 @@ export function calcularIMC(peso, altura) {
  * @returns data formatada no padrão DD/MM/AAAA
  */
 export function formatadorData(data) {
-    return new Date(data).toLocaleDateString('pt-br'); 
+    return new Date(data).toLocaleDateString('pt-br');
 }
 
 
-export function formatarTelefone(celular){ 
+export function formatarTelefone(celular) {
     celular.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 }
-     
+
 /**
  * Função para formatar um CPF no formato padrão 000.000.000-00
  * 

@@ -3,21 +3,21 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import { calcularIMC } from '../../../util/Utilitarios';
-    /**
-        * Componente funcional para o cadastro de alunos.
-        * 
-        * - Utiliza o hook `useState` para gerenciar o estado do formulário.
-        * - Inclui campos para nome, CPF, data de nascimento, telefone, endereço, email, senha, altura e peso.
-        * - Utiliza a biblioteca `react-input-mask` para aplicar máscaras de entrada em CPF e telefone.
-        * - Valida a data de nascimento para garantir que não seja uma data futura e verifica se todos os campos obrigatórios estão preenchidos.
-        * - Limpa o formulário após a submissão bem-sucedida e exibe mensagens de erro se necessário.
-        * 
-        * @component
-        * @example
-        * // Renderiza o componente CadastroAluno
-        * <CadastroAluno />
-    */
-    function CadastroAluno() {
+/**
+    * Componente funcional para o cadastro de alunos.
+    * 
+    * - Utiliza o hook `useState` para gerenciar o estado do formulário.
+    * - Inclui campos para nome, CPF, data de nascimento, telefone, endereço, email, senha, altura e peso.
+    * - Utiliza a biblioteca `react-input-mask` para aplicar máscaras de entrada em CPF e telefone.
+    * - Valida a data de nascimento para garantir que não seja uma data futura e verifica se todos os campos obrigatórios estão preenchidos.
+    * - Limpa o formulário após a submissão bem-sucedida e exibe mensagens de erro se necessário.
+    * 
+    * @component
+    * @example
+    * // Renderiza o componente CadastroAluno
+    * <CadastroAluno />
+*/
+function CadastroAluno() {
 
     /**
         * Define o estado inicial do objeto `formData` com campos vazios,

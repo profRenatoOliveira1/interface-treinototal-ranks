@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/StyleListagem.module.css';
 import AlunoRequests from '../../fetch/AlunoRequests';
-import { FaTrash, FaRegEdit } from "react-icons/fa";
+import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { formatadorData } from "../../../util/Utilitarios";
 
@@ -107,14 +107,14 @@ function ListarAluno() {
                                 <th hidden>Altura</th>
                                 <th hidden>Peso</th>
                                 <th hidden>IMC</th>
-                                <th colSpan={2}>Ação</th>
+                                <th colSpan={3}>Ação</th>
                             </tr>
                         </thead>
                         <tbody>
                             {filteredAlunos.map(aluno => (
                                 <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
                                     <td hidden>{aluno.id_aluno}</td>
-                                    <td onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                                    <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                                         {aluno.nome.toUpperCase()}
                                     </td>
                                     <td>{formatarCPF(aluno.cpf)}</td>
@@ -125,18 +125,21 @@ function ListarAluno() {
                                     <td hidden>{`${aluno.altura} m`}</td>
                                     <td hidden>{`${aluno.peso} kg`}</td>
                                     <td hidden>{aluno.imc}</td>
-                                    <td>
-                                        <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135' }} />
+                                    <td title="Deletar Aluno">
+                                        <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135', cursor: 'pointer' }} />
                                     </td>
-                                    <td>
-                                        <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF' }} />
+                                    <td title="Atualizar Aluno">
+                                        <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                    </td>
+                                    <td title="Ver Mais">
+                                        <FaInfoCircle onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', color: 'Yellow' }} />
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 ) : (
-                    <p style={{color: 'white'}}>Nada encontrado</p>
+                    <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}
             </div>
         </div>

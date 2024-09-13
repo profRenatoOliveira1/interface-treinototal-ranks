@@ -5,19 +5,19 @@ import ExerciciosRequests from "../../fetch/ExerciciosRequests";
 import Navegacao from "../Navegacao/Navegacao";
 import AparelhosRequests from "../../fetch/AparelhosRequests";
 
-    /**
-        * Componente funcional para atualizar os dados de um exercício.
-        * 
-        * - Usa hooks do React (`useState`, `useEffect`, `useLocation`, `useNavigate`) para gerenciar o estado, 
-        *   buscar dados e navegar entre páginas.
-        * - Inicializa o estado com os dados do exercício recebidos da página anterior e faz uma requisição para 
-        *   buscar a lista de aparelhos.
-        * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
-        * - Inclui lógica para atualizar os dados do exercício e redirecionar o usuário após a atualização.
-        * 
-        * @function UpdateExercicio
-        * @returns {JSX.Element} O componente de atualização do exercício.
-    */
+/**
+    * Componente funcional para atualizar os dados de um exercício.
+    * 
+    * - Usa hooks do React (`useState`, `useEffect`, `useLocation`, `useNavigate`) para gerenciar o estado, 
+    *   buscar dados e navegar entre páginas.
+    * - Inicializa o estado com os dados do exercício recebidos da página anterior e faz uma requisição para 
+    *   buscar a lista de aparelhos.
+    * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
+    * - Inclui lógica para atualizar os dados do exercício e redirecionar o usuário após a atualização.
+    * 
+    * @function UpdateExercicio
+    * @returns {JSX.Element} O componente de atualização do exercício.
+*/
 function UpdateExercicio() {
     // usado para navegar entre páginas (redirecionar)
     const [aparelhos, setAparelhos] = useState([]);

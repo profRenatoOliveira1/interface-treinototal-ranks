@@ -3,21 +3,21 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa o módulo de requisições para a API de Professores
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 
-    /**
-        * Componente para o cadastro de professores.
-        * 
-        * - Mantém o estado dos dados do formulário usando o hook `useState`.
-        * - Inclui funções para atualizar o estado do formulário, limpar o formulário e submeter os dados.
-        * - Utiliza a biblioteca `react-input-mask` para aplicar máscaras aos campos de CPF e celular.
-        * - Faz validação das datas e limpeza dos campos antes de enviar os dados para a API.
-        * - Exibe um formulário para o usuário preencher com informações do professor.
-        * 
-        * @component
-        * @example
-        * return (
-        *   <CadastroProfessor />
-        * );
-    */
+/**
+    * Componente para o cadastro de professores.
+    * 
+    * - Mantém o estado dos dados do formulário usando o hook `useState`.
+    * - Inclui funções para atualizar o estado do formulário, limpar o formulário e submeter os dados.
+    * - Utiliza a biblioteca `react-input-mask` para aplicar máscaras aos campos de CPF e celular.
+    * - Faz validação das datas e limpeza dos campos antes de enviar os dados para a API.
+    * - Exibe um formulário para o usuário preencher com informações do professor.
+    * 
+    * @component
+    * @example
+    * return (
+    *   <CadastroProfessor />
+    * );
+*/
 function CadastroProfessor() {
 
     /**

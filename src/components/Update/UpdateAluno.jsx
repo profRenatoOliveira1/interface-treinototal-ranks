@@ -6,17 +6,17 @@ import InputMask from "react-input-mask"; // Importa a biblioteca para criar má
 import Navegacao from "../Navegacao/Navegacao"
 import { formatarData, calcularIMC } from "../../../util/Utilitarios";
 
-    /**
-        * Componente funcional para atualizar os dados de um aluno.
-        * 
-        * - Usa hooks do React (`useState`, `useLocation`, `useNavigate`) para gerenciar o estado e navegação.
-        * - Inicializa o estado com os dados do aluno recuperados da página anterior.
-        * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
-        * - Inclui lógica para atualizar os dados do aluno e redirecionar o usuário após a atualização.
-        * 
-        * @function UpdateAluno
-        * @returns {JSX.Element} O componente de atualização do aluno.
-    */
+/**
+    * Componente funcional para atualizar os dados de um aluno.
+    * 
+    * - Usa hooks do React (`useState`, `useLocation`, `useNavigate`) para gerenciar o estado e navegação.
+    * - Inicializa o estado com os dados do aluno recuperados da página anterior.
+    * - Define funções para lidar com mudanças nos campos de entrada e envio do formulário.
+    * - Inclui lógica para atualizar os dados do aluno e redirecionar o usuário após a atualização.
+    * 
+    * @function UpdateAluno
+    * @returns {JSX.Element} O componente de atualização do aluno.
+*/
 function UpdateAluno() {
     // usado para navegar entre páginas (redirecionar)
 

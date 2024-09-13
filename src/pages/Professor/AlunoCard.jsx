@@ -16,7 +16,6 @@ function ProfessorCard() {
             <Navegacao />
             <CardProfessor />
         </>
-        // As tags vazias (<></>) são fragmentos do React que permitem agrupar múltiplos elementos sem adicionar nós extras ao DOM.
     );
 }
 

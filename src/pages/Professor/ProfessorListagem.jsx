@@ -14,7 +14,6 @@ function cadastro() {
             <Navegacao /> {/* Renderiza o componente de navegação */}
             <ListarProfessor /> {/* Renderiza o componente de listagem de professores */}
         </>
-        // As tags vazias (<></>) são fragmentos do React que permitem agrupar múltiplos elementos sem adicionar nós extras ao DOM.
     );
 }
 

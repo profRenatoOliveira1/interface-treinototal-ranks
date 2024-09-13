@@ -115,11 +115,11 @@ function TabelaListagemExercicios() {
                                     <td>{exercicio.repeticoes}</td>
                                     <td>{`${exercicio.carga} Kg`}</td>
                                     <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
-                                    <td>
-                                        <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135' }} />
+                                    <td title="Deletar Exercício">
+                                        <FaTrash onClick={() => deletarExercicio(exercicio)}   style={{ color: '#DB0135', cursor: 'pointer' }} />
                                     </td>
-                                    <td>
-                                        <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF' }} />
+                                    <td title="Atualizar Exercício">
+                                        <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
                                     </td>
                                 </tr>
                             ))}

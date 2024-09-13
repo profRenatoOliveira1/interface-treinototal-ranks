@@ -85,7 +85,7 @@ class AlunoRequests {
         * 
         * @param {*} idAluno  Objeto com as informações do aluno.
         * @return **verdadeiro (true)** caso o aluno tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro.
-     */    
+     */
     async deletarAluno(idAluno) {
         try {
             // Faz uma requisição DELETE para deletar o aluno
