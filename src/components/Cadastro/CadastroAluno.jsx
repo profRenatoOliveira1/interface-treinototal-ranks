@@ -269,9 +269,8 @@ function CadastroAluno() {
                     </div>
                     {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
-                        <InputMask
-                            mask="9.99"
-                            type="text"
+                        <input
+                            type="number"
                             className={styles.formStyleEsquerda}
                             placeholder="Altura/m"
                             value={formData.altura}

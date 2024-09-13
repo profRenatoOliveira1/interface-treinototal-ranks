@@ -154,6 +154,7 @@ function UpdateAluno() {
                                 value={aluno.dataNascimento}
                                 onChange={handleChange}
                                 name="dataNascimento"
+                                min={"1930-01-01"}
                                 max={hoje.toISOString().split('T')[0]}
                                 required
                             />
@@ -209,16 +210,16 @@ function UpdateAluno() {
                         </div>
                         {/* Campo para altura e peso */}
                         <div className={styles.formGroup}>
-                            <InputMask
-                                mask="9.99"
-                                type="text"
+                            <input
+                                type="number"
                                 className={styles.formStyleEsquerda}
                                 placeholder="Altura/m"
                                 value={aluno.altura}
                                 onChange={handleChange}
                                 name="altura"
-                                max={3}
-                                min={0}
+                                max={2.50}
+                                min={1.00}
+                                step={0.01}
                                 required
                             />
                             <input
@@ -228,6 +229,9 @@ function UpdateAluno() {
                                 value={aluno.peso}
                                 onChange={handleChange}
                                 name="peso"
+                                max={250.00}
+                                min={20.00}
+                                step={0.01}
                                 required
                             />
                         </div>

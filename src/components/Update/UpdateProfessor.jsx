@@ -153,6 +153,7 @@ function UpdateProfessor() {
                             value={professor.dataNascimento}
                             onChange={handleChange}
                             name="dataNascimento"
+                            min={"1930-01-01"}
                             max={hoje.toISOString().split('T')[0]}
                             required
                         />
