@@ -213,6 +213,7 @@ function CadastroAluno() {
                             value={formData.dataNascimento}
                             onChange={handleChange}
                             name="dataNascimento"
+                            min={"1930-01-01"}
                             max={hoje.toISOString().split('T')[0]} // Define a data máxima como a data atual
                             required
                         />
@@ -276,8 +277,9 @@ function CadastroAluno() {
                             value={formData.altura}
                             onChange={handleChange}
                             name="altura"
-                            max={3}
-                            min={0}
+                            max={2.50}
+                            min={1.00}
+                            step={0.01}
                             required
                         />
                         <input
@@ -287,6 +289,9 @@ function CadastroAluno() {
                             value={formData.peso}
                             onChange={handleChange}
                             name="peso"
+                            max={250.00}
+                            min={20.00}
+                            step={0.01}
                             required
                         />
                     </div>

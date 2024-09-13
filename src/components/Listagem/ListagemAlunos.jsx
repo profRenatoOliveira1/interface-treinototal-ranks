@@ -98,16 +98,16 @@ function ListarAluno() {
                         <thead>
                             <tr className={styles.tabelaHeader}>
                                 <th hidden>ID</th>
-                                <th>Nome</th>
+                                <th>NOME</th>
                                 <th>CPF</th>
-                                <th>Data de Nascimento</th>
-                                <th>Telefone</th>
-                                <th>Endereço</th>
+                                <th>DATA DE NASCIMENTO</th>
+                                <th>TELEFONE</th>
+                                <th>ENDEREÇO</th>
                                 <th hidden>Email</th>
                                 <th hidden>Altura</th>
                                 <th hidden>Peso</th>
                                 <th hidden>IMC</th>
-                                <th colSpan={3}>Ação</th>
+                                <th colSpan={3}>AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>

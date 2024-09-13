@@ -121,7 +121,7 @@ function CadastroExercicio() {
             console.log('Exercício cadastrado com sucesso:', response);
             clearForm();
             window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
-            setFormData({               // Reseta o estado do formulário após submissão bem-sucedida
+            setFormData({// Reseta o estado do formulário após submissão bem-sucedida
                 idAparelho: '',
                 exercicio: '',
                 carga: '',

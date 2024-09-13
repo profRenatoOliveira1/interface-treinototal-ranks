@@ -1,5 +1,5 @@
 :root {
-  --amareloClaro: #ffeba7;
+  --amareloClaro: rgb(255, 235, 167);
   --cinzaEscuro: #212529;
   --cinzaAzulado: #343A40;
   --cinzaAvermelhado: #333;
@@ -105,8 +105,7 @@
   /* Define a margem superior como 20px */
 }
 
-td,
-th {
+td {
   color: var(--amareloClaro) !important;
   /* Define a cor do texto como amarelo claro, com alta prioridade */
   font-size: 1.2rem !important;
@@ -121,9 +120,9 @@ th {
 
 .tabelaHeader,
 th {
-  background-color: var(--cinzaAzulado) !important;
+  background-color: #c2b382 !important;
   /* Define a cor de fundo do cabeçalho como cinza azulado, com alta prioridade */
-  color: var(--branco) !important;
+  color: var(--preto) !important;
   /* Define a cor do texto como branco, com alta prioridade */
   text-align: center;
   /* Centraliza o texto nas células do cabeçalho */
@@ -136,6 +135,8 @@ th {
   margin: 0;
   /* Remove a margem do cabeçalho */
   z-index: 1;
+  color: var(--cinzaEscuro) !important;
+  border: 3px solid var(--preto) !important;
   /* Define a prioridade da camada para manter o cabeçalho acima das outras células */
 }
 
@@ -169,6 +170,8 @@ table {
   color: var(--preto);
 
 }
+
+
 
 .searchIcon {
   cursor: pointer;
