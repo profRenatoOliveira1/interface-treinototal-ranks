@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa as requisições para buscar aparelhos
-import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importa ícones da biblioteca react-icons
+import styles from '../styles/StyleListagem.module.css';
+import AparelhoRequests from '../../fetch/AparelhosRequests';
+import { FaTrash, FaRegEdit } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-
+import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
 
 /**
  * Componente funcional para listar aparelhos
@@ -13,10 +13,12 @@ function ListarAparelho() {
     const [aparelhos, setAparelhos] = useState([]);
     const [filteredAparelhos, setFilteredAparelhos] = useState([]);
     const [search, setSearch] = useState('');
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const itensPorPagina = 5; // Define quantos itens serão exibidos por página
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAparelho = async () => {
+        const fetchAparelhos = async () => {
             try {
                 const aparelhos = await AparelhoRequests.listarAparelho();
                 setAparelhos(aparelhos);
@@ -25,7 +27,7 @@ function ListarAparelho() {
                 console.error('Erro ao buscar aparelhos: ', error);
             }
         };
-        fetchAparelho();
+        fetchAparelhos();
     }, []);
 
     useEffect(() => {
@@ -44,11 +46,10 @@ function ListarAparelho() {
         if (confirmar) {
             try {
                 const sucesso = await AparelhoRequests.deletarAparelho(aparelho.id_aparelho);
-                window.location.reload();
                 if (sucesso) {
-                    window.alert('Aparelho deletado com sucesso');
                     setAparelhos(aparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
                     setFilteredAparelhos(filteredAparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
+                    window.alert('Aparelho deletado com sucesso');
                 } else {
                     window.alert('Erro ao deletar Aparelho');
                 }
@@ -56,34 +57,40 @@ function ListarAparelho() {
                 window.alert('Erro ao deletar Aparelho');
                 console.error('Erro ao deletar aparelho: ', error);
             }
-        } else {
-            window.alert('Aparelho não deletado');
         }
     };
 
-    const UpdateAparelho = (aparelho) => {
+    const updateAparelho = (aparelho) => {
         navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true });
-    }
+    };
+
+    // Paginação
+    const indiceUltimoItem = paginaAtual * itensPorPagina;
+    const indicePrimeiroItem = indiceUltimoItem - itensPorPagina;
+    const aparelhosPaginados = filteredAparelhos.slice(indicePrimeiroItem, indiceUltimoItem);
+    const totalPaginas = Math.ceil(filteredAparelhos.length / itensPorPagina);
+
+    const mudarPagina = (novaPagina) => {
+        setPaginaAtual(novaPagina);
+    };
 
     return (
         <>
-            {/* Cabeçalho da seção */}
             <div className={styles.section}>
                 <div className={styles.container}>
                     <div className={styles.row}>
                         <div className={styles.col}>
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Aparelhos</h1>
-                                <a className={styles.btn} style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho">
-                                    Cadastrar aparelho
-                                </a>
                             </div>
+                            <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho" className={styles.btn}>
+                                Cadastrar aparelho
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Campo de Pesquisa */}
             <div className={styles.searchContainer}>
                 <input
                     type="text"
@@ -94,20 +101,20 @@ function ListarAparelho() {
                 />
             </div>
 
-            {/* Tabela para listar os aparelhos */}
             <div className={styles.cntTb}>
                 {filteredAparelhos.length > 0 ? (
+                    <>
                     <table className={`${styles.table} ${styles.tabela}`}>
                         <thead>
                             <tr className={styles.tabelaHeader}>
                                 <th hidden>ID</th>
-                                <th>Nome</th>
-                                <th>Músculo Ativado</th>
-                                <th colSpan={2}>Ação</th>
+                                <th>NOME</th>
+                                <th>MÚSCULO ATIVADO</th>
+                                <th colSpan={2}>AÇÃO</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredAparelhos.map(aparelho => (
+                            {aparelhosPaginados.map(aparelho => (
                                 <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
                                     <td hidden>{aparelho.id_aparelho}</td>
                                     <td>{aparelho.nome_aparelho.toUpperCase()}</td>
@@ -116,12 +123,30 @@ function ListarAparelho() {
                                         <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} />
                                     </td>
                                     <td title="Atualizar Aparelho">
-                                        <FaRegEdit onClick={() => UpdateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                        <FaRegEdit onClick={() => updateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    <div className={styles.paginacao}>
+                        <button
+                            onClick={() => mudarPagina(paginaAtual - 1)}
+                            disabled={paginaAtual === 1}
+                        >
+                            <MdOutlineArrowBackIos />
+                        </button>
+
+                        <span>Página {paginaAtual} de {totalPaginas}</span>
+
+                        <button
+                            onClick={() => mudarPagina(paginaAtual + 1)}
+                            disabled={indiceUltimoItem >= filteredAparelhos.length}
+                        >
+                            <MdOutlineArrowForwardIos />
+                        </button>
+                    </div>
+                    </>
                 ) : (
                     <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}

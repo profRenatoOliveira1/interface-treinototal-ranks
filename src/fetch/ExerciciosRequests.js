@@ -58,7 +58,7 @@ class ExerciciosRequests {
     async deletarExercicio(idExercicio) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverExercicio}?id_exercicio=${idExercicio}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
                 // Informa o verbo a ser acessado
                 method: 'DELETE',
                 headers: {

@@ -4,6 +4,7 @@ import AlunoRequests from '../../fetch/AlunoRequests';
 import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { formatadorData } from "../../../util/Utilitarios";
+import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
 
 /**
  * Componente funcional para listar alunos
@@ -11,8 +12,10 @@ import { formatadorData } from "../../../util/Utilitarios";
  */
 function ListarAluno() {
     const [alunos, setAlunos] = useState([]);
-    const [filteredAlunos, setFilteredAlunos] = useState([]);
+    const [alunosFiltrados, setAlunosFiltrados] = useState([]);
     const [search, setSearch] = useState('');
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const itensPorPagina = 5;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -20,7 +23,7 @@ function ListarAluno() {
             try {
                 const aluno = await AlunoRequests.listarAlunos();
                 setAlunos(aluno);
-                setFilteredAlunos(aluno);
+                setAlunosFiltrados(aluno);
             } catch (error) {
                 console.error('Erro ao buscar alunos: ', error);
             }
@@ -30,12 +33,12 @@ function ListarAluno() {
 
     useEffect(() => {
         if (search === '') {
-            setFilteredAlunos(alunos);
+            setAlunosFiltrados(alunos);
         } else {
-            const filtered = alunos.filter(aluno =>
+            const filtrados = alunos.filter(aluno =>
                 aluno.nome.toLowerCase().includes(search.toLowerCase())
             );
-            setFilteredAlunos(filtered);
+            setAlunosFiltrados(filtrados);
         }
     }, [search, alunos]);
 
@@ -43,26 +46,33 @@ function ListarAluno() {
 
     const formatarTelefone = (telefone) => telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 
-    const deleteAluno = async (aluno) => {
+    const deleteAluno = (aluno) => {
         const deletar = window.confirm(`Tem certeza que deseja remover o aluno ${aluno.nome}?`);
         if (deletar) {
-            try {
-                await AlunoRequests.deletarAluno(aluno.id_aluno);
-                setAlunos(alunos.filter(a => a.id_aluno !== aluno.id_aluno));
-                setFilteredAlunos(filteredAlunos.filter(a => a.id_aluno !== aluno.id_aluno));
+            if (AlunoRequests.deletarAluno(aluno.id_aluno)) {
+                window.location.reload();
                 window.alert('Aluno removido com sucesso!');
-            } catch {
+            } else {
                 window.alert('Erro ao remover aluno!');
             }
         }
     };
-
+    
     const updateAluno = (aluno) => {
         navigate(`/update/aluno`, { state: { objeto: aluno }, replace: true });
     };
 
     const handleAlunoClick = (aluno) => {
         navigate(`/card/aluno`, { state: { objeto: aluno }, replace: true });
+    };
+
+    const indiceUltimoItem = paginaAtual * itensPorPagina;
+    const indicePrimeiroItem = indiceUltimoItem - itensPorPagina;
+    const alunosPaginados = alunosFiltrados.slice(indicePrimeiroItem, indiceUltimoItem);
+    const totalPaginas = Math.ceil(alunosFiltrados.length / itensPorPagina);
+
+    const mudarPagina = (novaPagina) => {
+        setPaginaAtual(novaPagina);
     };
 
     return (
@@ -93,7 +103,8 @@ function ListarAluno() {
             </div>
 
             <div className={styles.cntTb}>
-                {filteredAlunos.length > 0 ? (
+                {alunosFiltrados.length > 0 ? (
+                    <>
                     <table className={`${styles.table} ${styles.tabela}`}>
                         <thead>
                             <tr className={styles.tabelaHeader}>
@@ -111,7 +122,7 @@ function ListarAluno() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredAlunos.map(aluno => (
+                            {alunosPaginados.map(aluno => (
                                 <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
                                     <td hidden>{aluno.id_aluno}</td>
                                     <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
@@ -138,6 +149,24 @@ function ListarAluno() {
                             ))}
                         </tbody>
                     </table>
+                    <div className={styles.paginacao}>
+                            <button
+                                onClick={() => mudarPagina(paginaAtual - 1)}
+                                disabled={paginaAtual === 1}
+                            >
+                                <MdOutlineArrowBackIos />
+                            </button>
+
+                            <span>Página {paginaAtual} de {totalPaginas}</span>
+
+                            <button
+                                onClick={() => mudarPagina(paginaAtual + 1)}
+                                disabled={indiceUltimoItem >= alunosFiltrados.length}
+                            >
+                                <MdOutlineArrowForwardIos />
+                            </button>
+                        </div>
+                    </>
                 ) : (
                     <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}

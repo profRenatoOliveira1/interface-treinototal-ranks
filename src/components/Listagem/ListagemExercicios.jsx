@@ -4,16 +4,19 @@ import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS 
 import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
 import AparelhosRequests from '../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importação de ícones da biblioteca react-icons
+import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md"; // Ícones de navegação
 import { useNavigate } from 'react-router-dom';
 
 /**
- * Componente para listar exercícios
+ * Componente para listar exercícios com paginação
  * @returns {JSX.Element} Componente JSX para listagem de exercícios
  */
-function TabelaListagemExercicios() {
+function ListagemExercicios() {
     const [exercicios, setExercicios] = useState([]); // Estado para armazenar os exercícios
     const [filteredExercicios, setFilteredExercicios] = useState([]);
     const [search, setSearch] = useState('');
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const itensPorPagina = 5;
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,7 +42,7 @@ function TabelaListagemExercicios() {
             }
         };
 
-        fetchDados(); // Chama a função para buscar os dados ao montar o componente
+        fetchDados(); 
     }, []);
 
     useEffect(() => {
@@ -68,7 +71,17 @@ function TabelaListagemExercicios() {
 
     const UpdateExercicio = (exercicio) => {
         navigate(`/update/exercicio`, { state: { objeto: exercicio }, replace: true });
-    }
+    };
+
+    // Paginação
+    const indiceUltimoItem = paginaAtual * itensPorPagina;
+    const indicePrimeiroItem = indiceUltimoItem - itensPorPagina;
+    const exerciciosPaginados = filteredExercicios.slice(indicePrimeiroItem, indiceUltimoItem);
+    const totalPaginas = Math.ceil(filteredExercicios.length / itensPorPagina);
+
+    const mudarPagina = (novaPagina) => {
+        setPaginaAtual(novaPagina);
+    };
 
     return (
         <>
@@ -91,46 +104,66 @@ function TabelaListagemExercicios() {
 
             {/* Tabela para listar os exercícios */}
             <div className={styles.cntTb}>
-                {filteredExercicios.length > 0 ? (
-                    <table className={`${styles.table} ${styles.tabela}`}>
-                        <thead>
-                            <tr className={styles.tabelaHeader}>
-                                <th hidden>ID</th>
-                                <th hidden>ID</th>
-                                <th>Nome do Exercício</th>
-                                <th>Aparelho</th>
-                                <th>Repetições</th>
-                                <th>Carga</th>
-                                <th>Região do Corpo</th>
-                                <th colSpan={2}>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredExercicios.map(exercicio => (
-                                <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
-                                    <td hidden>{exercicio.id_exercicio}</td>
-                                    <td hidden>{exercicio.id_aparelho}</td>
-                                    <td>{exercicio.exercicio.toUpperCase()}</td>
-                                    <td>{exercicio.nome_aparelho.toUpperCase()}</td>
-                                    <td>{exercicio.repeticoes}</td>
-                                    <td>{`${exercicio.carga} Kg`}</td>
-                                    <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
-                                    <td title="Deletar Exercício">
-                                        <FaTrash onClick={() => deletarExercicio(exercicio)}   style={{ color: '#DB0135', cursor: 'pointer' }} />
-                                    </td>
-                                    <td title="Atualizar Exercício">
-                                        <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
-                                    </td>
+                {exerciciosPaginados.length > 0 ? (
+                    <>
+                        <table className={`${styles.table} ${styles.tabela}`}>
+                            <thead>
+                                <tr className={styles.tabelaHeader}>
+                                    <th hidden>ID</th>
+                                    <th hidden>ID</th>
+                                    <th>Nome do Exercício</th>
+                                    <th>Aparelho</th>
+                                    <th>Repetições</th>
+                                    <th>Carga</th>
+                                    <th>Região do Corpo</th>
+                                    <th colSpan={2}>Ação</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {exerciciosPaginados.map(exercicio => (
+                                    <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
+                                        <td hidden>{exercicio.id_exercicio}</td>
+                                        <td hidden>{exercicio.id_aparelho}</td>
+                                        <td>{exercicio.exercicio.toUpperCase()}</td>
+                                        <td>{exercicio.nome_aparelho?.toUpperCase()}</td>
+                                        <td>{exercicio.repeticoes}</td>
+                                        <td>{`${exercicio.carga} Kg`}</td>
+                                        <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
+                                        <td title="Deletar Exercício">
+                                            <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135', cursor: 'pointer' }} />
+                                        </td>
+                                        <td title="Atualizar Exercício">
+                                            <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        {/* Paginação */}
+                        <div className={styles.paginacao}>
+                            <button
+                                onClick={() => mudarPagina(paginaAtual - 1)}
+                                disabled={paginaAtual === 1}
+                            >
+                                <MdOutlineArrowBackIos />
+                            </button>
+
+                            <span>Página {paginaAtual} de {totalPaginas}</span>
+
+                            <button
+                                onClick={() => mudarPagina(paginaAtual + 1)}
+                                disabled={paginaAtual === totalPaginas || exerciciosPaginados.length === 0}
+                            >
+                                <MdOutlineArrowForwardIos />
+                            </button>
+                        </div>
+                    </>
                 ) : (
-                    <p style={{color: 'white'}}>Nada encontrado</p>
+                    <p style={{ color: 'white' }}>Nada encontrado</p>
                 )}
             </div>
         </>
     );
 }
 
-export default TabelaListagemExercicios;
+export default ListagemExercicios;

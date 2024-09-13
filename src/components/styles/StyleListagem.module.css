@@ -105,6 +105,11 @@
   /* Define a margem superior como 20px */
 }
 
+span {
+  color: var(--amareloClaro);
+  padding: 0 10px;
+}
+
 td {
   color: var(--amareloClaro) !important;
   /* Define a cor do texto como amarelo claro, com alta prioridade */
