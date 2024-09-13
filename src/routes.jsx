@@ -16,6 +16,7 @@ import UpdateProfessor from './pages/Update/UpdateProfessor';
 import CardAluno from './pages/Aluno/AlunoCard';
 import CardProfessor from './pages/Professor/AlunoCard';
 import Login from './pages/Login/Login';
+import ProfessorAtualizarSenha from './pages/Professor/ProfessorAtulizarSenha';
 
 // Componente de roteamento da aplicação
 export default function AppRouter() {
@@ -39,6 +40,7 @@ export default function AppRouter() {
                 <Route path="/card/aluno" element={<CardAluno />} />
                 <Route path="/card/professor" element={<CardProfessor />} />
                 <Route path="/Login" element={<Login />} />
+                <Route path="/atualizar/senha/professor"  element={ProfessorAtualizarSenha} />
             </Routes>
         </BrowserRouter>
     );
