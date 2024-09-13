@@ -117,17 +117,13 @@ function CadastroExercicio() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            const response = await ExerciciosRequests.cadastrarExercicio(formData); // Envia os dados do formulário para a API e aguarda a resposta
-            console.log('Exercício cadastrado com sucesso:', response);
-            clearForm();
-            window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
-            setFormData({// Reseta o estado do formulário após submissão bem-sucedida
-                idAparelho: '',
-                exercicio: '',
-                carga: '',
-                repeticoes: '',
-                regiaoCorpoAtiva: ''
-            });
+            if (ExerciciosRequests.cadastrarExercicio(formData)) {
+                console.log('Exercício cadastrado com sucesso:');
+                clearForm();
+                window.alert(formData.exercicio + ': foi cadastrado com sucesso');
+            } else {
+                console.log('Erro ao atualizar dados do exercício');
+            }
         } catch (error) {
             console.error('Erro ao cadastrar exercício:', error); // Exibe uma mensagem de erro no console
             window.alert('Erro ao cadastrar exercício'); // Exibe uma mensagem de erro para o usuário

@@ -166,11 +166,13 @@ function CadastroProfessor() {
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
 
         try {
-            const response = await ProfessoresRequests.cadastrarProfessor(cleanData); // Envia os dados limpos para a API
-            clearForm();
-            console.log('Professor cadastrado com sucesso:', response);
-            window.alert(formData.nome + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
-            setErrorMessage(''); // Limpa a mensagem de erro em caso de sucesso
+            if (await ProfessoresRequests.cadastrarProfessor(cleanData)) {
+                clearForm();
+                console.log('Professor cadastrado com sucesso:');
+                window.alert(cleanData.nome + ': foi cadastrado com sucesso');
+            } else {
+                console.log('Erro ao atualizar dados do Professor');
+            }
         } catch (error) {
             console.error('Erro ao cadastrar professor:', error); // Exibe uma mensagem de erro no console
             setErrorMessage('Ocorreu um erro: ' + error.message); // Define a mensagem de erro

@@ -160,10 +160,12 @@ function CadastroAluno() {
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
         try {
             // Envia os dados do formulário para a API e aguarda a resposta
-            const response = await AlunoRequests.cadastrarAluno(cleanData);
-            if (response) {
+            if (await AlunoRequests.cadastrarAluno(cleanData)) {
                 clearForm();
-                window.alert(`${formData.nome} foi cadastrado com sucesso`);
+                console.log('Aluno cadastrado com sucesso:');
+                window.alert(cleanData.nome + ': foi cadastrado com sucesso');
+            } else {
+                console.log('Erro ao atualizar dados do Aluno');
             }
         } catch (error) {
             console.error('Erro ao cadastrar aluno:', error);

@@ -96,11 +96,14 @@ function CadastroAparelho() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            // Envia os dados do formulário para a API e aguarda a resposta            
-            const response = await AparelhoRequests.cadastrarAparelho(formData);
-            console.log('Aparelho cadastrado com sucesso:', response);
-            clearForm();
-            window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
+            // Envia os dados do formulário para a API e aguarda a resposta     
+            if (await AparelhoRequests.cadastrarAparelho(formData)) {
+                console.log('Aparelho cadastrado com sucesso:');
+                clearForm();
+                window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso');
+            } else {
+                console.log('Erro ao atualizar dados do aparelho');
+            }
         } catch (error) {
             console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
         }
