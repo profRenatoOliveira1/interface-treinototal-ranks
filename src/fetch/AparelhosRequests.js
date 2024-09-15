@@ -60,7 +60,7 @@ class AparelhoRequests {
     async deletarAparelho(idAparelho) { // Método assíncrono para deletar um aparelho
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?id_aparelho=${idAparelho}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?idAparelho=${idAparelho}`, {
                 // Informa o verbo a ser acessado
                 method: 'DELETE',
                 headers: {
@@ -85,7 +85,7 @@ class AparelhoRequests {
     async atualizarAparelho(aparelho) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeUpdateAparelho}?id_aparelho=${aparelho.id_aparelho}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeUpdateAparelho}?idAparelho=${aparelho.id_aparelho}`, {
                 // Informa o verbo a ser acessado
                 method: 'PUT',
                 // informa os cabeçalhos da requisição

@@ -67,7 +67,7 @@ class AlunoRequests {
     async deletarAluno(idAluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?id_aluno=${idAluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?idAluno=${idAluno}`, {
                 method: 'DELETE',
                 headers: {
                     'x-access-token': `${token}`
@@ -85,7 +85,7 @@ class AlunoRequests {
     async atualizarAluno(aluno) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?id_aluno=${aluno.id_aluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?idAluno=${aluno.id_aluno}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

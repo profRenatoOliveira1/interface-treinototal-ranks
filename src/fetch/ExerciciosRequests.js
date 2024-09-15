@@ -58,7 +58,7 @@ class ExerciciosRequests {
     async deletarExercicio(idExercicio) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?id_exercicio=${idExercicio}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarExercicio}?idExercicio=${idExercicio}`, {
                 // Informa o verbo a ser acessado
                 method: 'DELETE',
                 headers: {
@@ -81,7 +81,7 @@ class ExerciciosRequests {
             const token = this.getAuthToken();
             // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
 
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?id_exercicio=${exercicio.idExercicio}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?idExercicio=${exercicio.id_exercicio}`, {
                 // Informa o verbo a ser acessado
                 method: 'PUT',
                 // informa os cabeçalhos da requisição

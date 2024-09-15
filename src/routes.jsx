@@ -40,7 +40,7 @@ export default function AppRouter() {
                 <Route path="/card/aluno" element={<CardAluno />} />
                 <Route path="/card/professor" element={<CardProfessor />} />
                 <Route path="/Login" element={<Login />} />
-                <Route path="/atualizar/senha/professor"  element={ProfessorAtualizarSenha} />
+                <Route path="/atualizar/senha/professor"  element={<ProfessorAtualizarSenha/>} />
             </Routes>
         </BrowserRouter>
     );

@@ -4,12 +4,12 @@ import style from '../styles/StyleCadastro.module.css';
 
 function UpdateSenhaProfessor() {
     const [formSenha, setFormSenha] = useState({
-        idProfessor: localStorage.getItem('idProfessor'),
+        idProfessor: localStorage.getItem('id_professor'),
         senhaAtual: '',
         novaSenha: '',
         confirmarSenha: ''
     });
-
+    console.log(formSenha.idProfessor)
     /**
      * Atualiza o estado do formulário conforme o preenchimento do usuário
      * @param {*} e evento de atualização

@@ -56,7 +56,7 @@ class ProfessoresRequests {
     async deletarProfessor(idProfessor) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverProfessor}?id_professor=${idProfessor}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?idProfessor=${idProfessor}`, {
                 // Informa o verbo a ser acessado
                 method: 'DELETE',
                 headers: {
@@ -82,7 +82,7 @@ class ProfessoresRequests {
         try {
             const token = this.getAuthToken();
             // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?id_professor=${professor.idProfessor}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?idProfessor=${professor.idProfessor}`, {
                 // Informa o verbo a ser acessado
                 method: 'PUT',
                 // informa os cabeçalhos da requisição
@@ -109,7 +109,7 @@ class ProfessoresRequests {
      * @param {*} professor Objeto com as informações do professor
      * @returns **verdadeiro (true)** caso o professor tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
      */
-        async atualizarSenhaProfessor(professor) {
+        async UpdateSenhaProfessor(professor) {
             try {
                 console.log(`${this.serverUrl}${this.routeAtualizarSenhaProfessor}?idProfessor=${professor.idProfessor}`);
                 
