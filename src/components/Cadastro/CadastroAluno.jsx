@@ -3,6 +3,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import { calcularIMC } from '../../../util/Utilitarios';
+import './.css'
 /**
     * Componente funcional para o cadastro de alunos.
     * 
@@ -146,80 +147,102 @@ function CadastroAluno() {
             <h1 className={styles.h1}>Cadastro de Aluno</h1> {/* Título da seção */}
             <div className={styles.container}>
                 <form onSubmit={handleSubmit}>
-                    {/* Campo para o nome completo */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Nome completo"
-                            value={formData.nome}
-                            onChange={handleChange}
-                            name="nome"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelNome"
+                                type="text"
+                                placeholder="Nome completo"
+                                value={formData.nome}
+                                onChange={handleChange}
+                                name="nome"
+                                required
+                            />
+                            <label htmlFor="labelNome">Nome completo</label>
+                        </div>
                     </div>
-                    {/* Campo para CPF e data de nascimento */}
                     <div className={styles.formGroup}>
-                        <InputMask
-                            type="text"
-                            mask="999.999.999-99"
-                            className={styles.formStyleEsquerda}
-                            placeholder="CPF"
-                            value={formData.cpf}
-                            onChange={handleChange}
-                            name="cpf"
-                            required
-                        />
-                        <input
-                            type="text"
-                            className={styles.formStyleDireita}
-                            placeholder="Data de Nascimento"
-                            onFocus={(e) => e.target.type = 'date'} // Muda o tipo do input para "date" ao focar
-                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'} // Volta para "text" se o campo estiver vazio
-                            value={formData.dataNascimento}
-                            onChange={handleChange}
-                            name="dataNascimento"
-                            min={"1930-01-01"}
-                            max={hoje.toISOString().split('T')[0]} // Define a data máxima como a data atual
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <InputMask
+                                type="text"
+                                className="form-control input"
+                                id="labelCpf"
+                                mask="999.999.999-99"
+                                placeholder="CPF"
+                                value={formData.cpf}
+                                onChange={handleChange}
+                                name="cpf"
+                                required
+                            />
+                            <label htmlFor="labelCpf">CPF</label>
+                        </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                type="date"
+                                className="form-control input"
+                                id="labelDataNasc"
+                                placeholder="Data de Nascimento"
+                                value={formData.dataNascimento}
+                                onChange={handleChange}
+                                name="dataNascimento"
+                                min={"1930-01-01"}
+                                max={hoje.toISOString().split('T')[0]}
+                                required
+                            />
+                            <label htmlFor="labelDataNasc">Data de Nascimento</label>
+                        </div>
                     </div>
                     {/* Campo para telefone */}
                     <div className={styles.formGroup}>
-                        <InputMask
-                            mask="(99) 99999-9999"
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Telefone"
-                            value={formData.celular}
-                            onChange={handleChange}
-                            name="celular"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <InputMask
+                                type="text"
+                                className="form-control input"
+                                id="labelCelular"
+                                mask="(99) 99999-9999"
+                                placeholder="Celular"
+                                value={formData.celular}
+                                onChange={handleChange}
+                                name="celular"
+                                required
+                            />
+                            <label htmlFor="labelCelular">Celular</label>
+                        </div>
                     </div>
                     {/* Campo para endereço */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Endereço"
-                            value={formData.endereco}
-                            onChange={handleChange}
-                            name="endereco"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelEndereco"
+                                type="text"
+                                placeholder="Endereço"
+                                value={formData.endereco}
+                                onChange={handleChange}
+                                name="endereco"
+                                required
+                            />
+                            <label htmlFor="labelEndereco">Endereço</label>
+                        </div>
                     </div>
                     {/* Campo para email */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="email"
-                            className={styles.formStyle}
-                            placeholder="Email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            name="email"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelEmail"
+                                type="email"
+                                placeholder="E-mail"
+                                value={formData.email}
+                                onChange={handleChange}
+                                name="email"
+                                required
+                            />
+                            <label htmlFor="labelEmail">E-mail</label>
+                        </div>
                     </div>
                     {/* Campo para senha
                     <div className={styles.formGroup}>
@@ -235,48 +258,63 @@ function CadastroAluno() {
                     </div> */}
                     {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyleEsquerda}
-                            placeholder="Altura/m"
-                            value={formData.altura}
-                            onChange={handleChange}
-                            name="altura"
-                            max={2.50}
-                            min={1.00}
-                            step={0.01}
-                            required
-                        />
-                        <input
-                            type="number"
-                            className={styles.formStyleDireita}
-                            placeholder="Peso/Kg"
-                            value={formData.peso}
-                            onChange={handleChange}
-                            name="peso"
-                            max={250.00}
-                            min={20.00}
-                            step={0.01}
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelAltura"
+                                type="number"
+                                placeholder="Altura/m"
+                                value={formData.altura}
+                                onChange={handleChange}
+                                name="altura"
+                                max={2.50}
+                                min={1.00}
+                                step={0.01}
+                                required
+                            />
+                            <label htmlFor="labelAltura">Altura/m</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <p className={styles.formStyle}
-                        ><strong>imc:</strong> {calcularIMC(formData.peso, formData.altura)}</p>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelPeso"
+                                type="number"
+                                placeholder="Peso/Kg"
+                                value={formData.peso}
+                                onChange={handleChange}
+                                name="peso"
+                                max={250.00}
+                                min={20.00}
+                                step={0.01}
+                                required
+                            />
+                            <label htmlFor="labelPeso">Peso/Kg</label>
+                        </div>
+                    </div>
+                    <div className="formGroup input">
+                        <p className={styles.formStyle}>
+                            <strong>IMC:</strong> {calcularIMC(formData.peso, formData.altura)}
+                        </p>
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aluno">
+                    <a
+                        className={styles.btnListagem}
+                        style={{ textDecoration: "none", marginLeft: '5%' }}
+                        href="http://localhost:5173/Listagem/Aluno"
+                    >
                         Alunos
                     </a>
                 </form>
-
             </div>
         </div>
     );
+    
 }
 
 export default CadastroAluno; // Exporta o componente CadastroAluno para ser utilizado em outras partes da aplicação

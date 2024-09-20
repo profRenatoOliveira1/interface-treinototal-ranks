@@ -104,27 +104,35 @@ function UpdateAparelho() {
                     <form onSubmit={handleSubmit}>
                         {/* Campo para o nome do aparelho */}
                         <div className={styles.formGroup}>
-                            <input
-                                type="text"
-                                className={styles.formStyle}
-                                placeholder="Nome do Aparelho"
-                                value={aparelho.nomeAparelho} // Define o valor do input com base no estado
-                                onChange={handleChange} // Define a função de mudança para atualizar o estado
-                                name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
-                                required
-                            />
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    className="form-control input"
+                                    id="labelNomeAparelho"
+                                    type="text"
+                                    placeholder="Nome do aparelho"
+                                    value={aparelho.nomeAparelho}
+                                    onChange={handleChange}
+                                    name="nomeAparelho"
+                                    required
+                                />
+                                <label htmlFor="labelNomeAparelho">Nome do aparelho</label>
+                            </div>
                         </div>
                         {/* Campo para o músculo ativado */}
                         <div className={styles.formGroup}>
-                            <input
-                                type="text"
-                                className={styles.formStyle}
-                                placeholder="Músculo Ativado"
-                                value={aparelho.musculoAtivado} // Define o valor do input com base no estado
-                                onChange={handleChange} // Define a função de mudança para atualizar o estado
-                                name="musculoAtivado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
-                                required
-                            />
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    className="form-control input"
+                                    id="labelMusculoAtivado"
+                                    type="text"
+                                    placeholder="Músculo Ativado"
+                                    value={aparelho.musculoAtivado}
+                                    onChange={handleChange}
+                                    name="musculoAtivado"
+                                    required
+                                />
+                                <label htmlFor="labelMusculoAtivado">Músculo Ativado</label>
+                            </div>
                         </div>
                         <button type="submit" className={styles.btn}>
                             Atualizar

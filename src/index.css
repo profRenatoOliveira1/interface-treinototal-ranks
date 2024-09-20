@@ -54,3 +54,17 @@ body {
   min-height: 100vh;
   /* Define a altura mínima do corpo como 100% da altura da viewport */
 }
+
+.input {
+  background-color: var(--amareloClaro)!important;
+  color: var(--preto)!important;
+  font-size: 18px;
+  border-radius: 15px;
+
+}
+
+/* Estilos para um grupo de formulário genérico */
+.formGroup {
+  margin-bottom: 20px;
+  /* Margem inferior */
+}

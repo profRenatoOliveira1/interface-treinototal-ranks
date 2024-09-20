@@ -104,7 +104,6 @@ function UpdateProfessor() {
             console.log('Erro ao atualizar dados do aluno');
         }
     }
-
     /**
         * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
         * 
@@ -123,123 +122,139 @@ function UpdateProfessor() {
                 <form onSubmit={handleSubmit}>
                     {/* Campo para nome completo */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Nome completo"
-                            value={professor.nome}
-                            onChange={handleChange}
-                            name="nome" required
-                        />
-                    </div>
-                    {/* Campo para CPF */}
-                    <div className={styles.formGroup}>
-                        <InputMask
-                            type="text"
-                            mask="999.999.999-99"
-                            className={styles.formStyleEsquerda}
-                            placeholder="CPF"
-                            value={professor.cpf}
-                            onChange={handleChange}
-                            name="cpf"
-                            required
-                        />
-                        <input
-                            type="text"
-                            className={styles.formStyleDireita}
-                            placeholder="Data de Nascimento"
-                            onFocus={(e) => e.target.type = 'date'}
-                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={professor.dataNascimento}
-                            onChange={handleChange}
-                            name="dataNascimento"
-                            min={"1930-01-01"}
-                            max={hoje.toISOString().split('T')[0]}
-                            required
-                        />
-                    </div>
-                    {/* Campo para número de celular */}
-                    <div className={styles.formGroup}>
-                        <InputMask
-                            mask="(99) 99999-9999"
-                            type="text"
-                            className={styles.formStyleEsquerda}
-                            placeholder="Telefone"
-                            value={professor.celular}
-                            onChange={handleChange}
-                            name="celular"
-                            required
-                        />
-                        <input
-                            type="text"
-                            className={styles.formStyleDireita}
-                            placeholder="Data de Contratação"
-                            onFocus={(e) => e.target.type = 'date'}
-                            onBlur={(e) => e.target.type = e.target.value ? 'date' : 'text'}
-                            value={professor.dataContratacao}
-                            onChange={handleChange}
-                            name="dataContratacao"
-                            max={hoje.toISOString().split('T')[0]}
-                            required
-                        />
-                    </div>
-                    {/* Campo para endereço */}
-                    <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Endereço"
-                            value={professor.endereco}
-                            onChange={handleChange}
-                            name="endereco"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelNome"
+                                type="text"
+                                placeholder="Nome completo"
+                                value={professor.nome}
+                                onChange={handleChange}
+                                name="nome"
+                                required
+                            />
+                            <label htmlFor="labelNome">Nome completo</label>
+                        </div>
                     </div>
                     <div className={styles.formGroup}>
-                        <input
-                            type="email"
-                            className={styles.formStyle}
-                            placeholder="Email"
-                            value={professor.email}
-                            onChange={handleChange}
-                            name="email"
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <InputMask
+                                type="text"
+                                className="form-control input"
+                                id="labelCpf"
+                                mask="999.999.999-99"
+                                placeholder="CPF"
+                                value={professor.cpf}
+                                onChange={handleChange}
+                                name="cpf"
+                                required
+                            />
+                            <label htmlFor="labelCpf">CPF</label>
+                        </div>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                type="date"
+                                className="form-control input"
+                                id="labelDataNasc"
+                                placeholder="Data de Nascimento"
+                                value={professor.dataNascimento}
+                                onChange={handleChange}
+                                name="dataNascimento"
+                                min={"1930-01-01"}
+                                max={hoje.toISOString().split('T')[0]}
+                                required
+                            />
+                            <label htmlFor="labelDataNasc">Data de Nascimento</label>
+                        </div>
                     </div>
-                    {/* <div className={styles.formGroup}>
-                        <input
-                            type="password"
-                            className={styles.formStyle}
-                            placeholder="Senha"
-                            value={professor.senha}
-                            onChange={handleChange}
-                            name="senha"
-                            required
-                        />
-                    </div> */}
-                    {/* Campo para formação */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Formação"
-                            value={professor.formacao}
-                            onChange={handleChange}
-                            name="formacao"
-                        />
+                        <div className="form-floating mb-3 input">
+                            <InputMask
+                                type="text"
+                                className="form-control input"
+                                id="labelCelular"
+                                mask="(99) 99999-9999"
+                                placeholder="Celular"
+                                value={professor.celular}
+                                onChange={handleChange}
+                                name="celular"
+                                required
+                            />
+                            <label htmlFor="labelCelular">Celular</label>
+                        </div>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                type="date"
+                                className="form-control input"
+                                id="labelDataContratacao"
+                                placeholder="Data de Contratação"
+                                value={professor.dataContratacao}
+                                onChange={handleChange}
+                                name="dataContratacao"
+                                max={hoje.toISOString().split('T')[0]}
+                                required
+                            />
+                            <label htmlFor="labelDataContratacao">Data de Contratação</label>
+                        </div>
                     </div>
-                    {/* Campo para especialidade */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Especialidade"
-                            value={professor.especialidade}
-                            onChange={handleChange}
-                            name="especialidade"
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelEndereco"
+                                type="text"
+                                placeholder="Endereço"
+                                value={professor.endereco}
+                                onChange={handleChange}
+                                name="endereco"
+                                required
+                            />
+                            <label htmlFor="labelEndereco">Endereço</label>
+                        </div>
                     </div>
-
+                    <div className={styles.formGroup}>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelEmail"
+                                type="email"
+                                placeholder="E-mail"
+                                value={professor.email}
+                                onChange={handleChange}
+                                name="email"
+                                required
+                            />
+                            <label htmlFor="labelEmail">E-mail</label>
+                        </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelFormacao"
+                                type="text"
+                                placeholder="Formação"
+                                value={professor.formacao}
+                                onChange={handleChange}
+                                name="formacao"
+                            />
+                            <label htmlFor="labelFormacao">Formação</label>
+                        </div>
+                    </div>
+                    <div className={styles.formGroup}>
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelEspecialidade"
+                                type="text"
+                                placeholder="Especialidade"
+                                value={professor.especialidade}
+                                onChange={handleChange}
+                                name="especialidade"
+                            />
+                            <label htmlFor="labelEspecialidade">Especialidade</label>
+                        </div>
+                    </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
                         Atualizar

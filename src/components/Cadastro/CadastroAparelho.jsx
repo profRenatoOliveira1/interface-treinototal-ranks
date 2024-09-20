@@ -96,27 +96,35 @@ function CadastroAparelho() {
                 <form onSubmit={handleSubmit}>
                     {/* Campo para o nome do aparelho */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Nome"
-                            value={formData.nomeAparelho} // Define o valor do input com base no estado
-                            onChange={handleChange} // Define a função de mudança para atualizar o estado
-                            name="nomeAparelho" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelNomeAparelho"
+                                type="text"
+                                placeholder="Nome do aparelho"
+                                value={formData.nomeAparelho}
+                                onChange={handleChange}
+                                name="nomeAparelho"
+                                required
+                            />
+                            <label htmlFor="labelNomeAparelho">Nome do aparelho</label>
+                        </div>
                     </div>
                     {/* Campo para o músculo ativado */}
                     <div className={styles.formGroup}>
-                        <input
-                            type="text"
-                            className={styles.formStyle}
-                            placeholder="Músculo Ativado"
-                            value={formData.musculoAtivado} // Define o valor do input com base no estado
-                            onChange={handleChange} // Define a função de mudança para atualizar o estado
-                            name="musculoAtivado" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
-                            required
-                        />
+                        <div className="form-floating mb-3 input">
+                            <input
+                                className="form-control input"
+                                id="labelMusculoAtivado"
+                                type="text"
+                                placeholder="Músculo Ativado"
+                                value={formData.musculoAtivado}
+                                onChange={handleChange}
+                                name="musculoAtivado"
+                                required
+                            />
+                            <label htmlFor="labelMusculoAtivado">Músculo Ativado</label>
+                        </div>
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
