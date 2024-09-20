@@ -75,7 +75,7 @@ function UpdateAparelho() {
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
         if (await AparelhoRequests.atualizarAparelho(aparelho)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
-            window.alert(`aparelho ${aparelho.nomeAparelho} atualizado com sucesso`);
+            window.alert(`O aparelho ${aparelho.nomeAparelho} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de aparelhos
             navigate(`/Listagem/aparelho`, { replace: true });
         } else {

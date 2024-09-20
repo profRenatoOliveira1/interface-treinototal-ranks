@@ -47,14 +47,14 @@ function UpdateProfessor() {
         * @param {string} objProfessor.especialidade - Especialidade do professor.
     */
     const [professor, setProfessor] = useState({
-        id_professor: objProfessor.id_professor,
+        idProfessor: objProfessor.id_professor,
         nome: objProfessor.nome,
         cpf: objProfessor.cpf,
         dataNascimento: formatarData(new Date(objProfessor.data_nascimento)),
         celular: objProfessor.celular,
         endereco: objProfessor.endereco,
         email: objProfessor.email,
-        senha: objProfessor.senha,
+        // senha: objProfessor.senha,
         dataContratacao: formatarData(new Date(objProfessor.data_contratacao)),
         formacao: objProfessor.formacao,
         especialidade: objProfessor.especialidade
@@ -96,7 +96,7 @@ function UpdateProfessor() {
         // chama a função atualizarAluno do arquivo AlunoAPIService
         if (await ProfessoresRequests.atualizarProfessor(cleanData)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
-            window.alert(`Professor ${professor.nome} atualizado com sucesso`);
+            window.alert(`O professor ${professor.nome} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de alunos
             navigate(`/Listagem/Professor`, { replace: true });
         } else {
@@ -206,7 +206,7 @@ function UpdateProfessor() {
                             required
                         />
                     </div>
-                    <div className={styles.formGroup}>
+                    {/* <div className={styles.formGroup}>
                         <input
                             type="password"
                             className={styles.formStyle}
@@ -216,7 +216,7 @@ function UpdateProfessor() {
                             name="senha"
                             required
                         />
-                    </div>
+                    </div> */}
                     {/* Campo para formação */}
                     <div className={styles.formGroup}>
                         <input

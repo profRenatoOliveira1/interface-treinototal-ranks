@@ -111,7 +111,7 @@ function UpdateExercicio() {
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
         if (await ExerciciosRequests.atualizarExercicio(exercicio)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
-            window.alert(`exercicio ${exercicio.exercicio} atualizado com sucesso`);
+            window.alert(`O exercício ${exercicio.exercicio} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de aparelhos
             navigate(`/Listagem/exercicio`, { replace: true });
         } else {

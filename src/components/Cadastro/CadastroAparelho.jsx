@@ -1,7 +1,6 @@
 import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
-import { Route } from 'react-router-dom';
 
 /**
     * Função `CadastroAparelho` responsável por definir o estado inicial do formulário de cadastro de aparelho,
@@ -50,31 +49,6 @@ function CadastroAparelho() {
     };
 
     /**
-        * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
-        * 
-        * - Atualiza o estado `formData` com um novo objeto onde todos os campos são definidos como strings vazias.
-        * - Essa função é útil para resetar o formulário após a submissão dos dados ou quando necessário.
-        * 
-        * @function clearForm
-        * 
-        * @example
-        * // Chama a função para limpar o formulário
-        * clearForm();
-        * 
-        * @constant {Object} formData - O estado do formulário que será redefinido.
-        * @constant {string} formData.idAparelho - Campo para o identificador do aparelho, definido como string vazia.
-        * @constant {string} formData.nomeAparelho - Campo para o nome do aparelho, definido como string vazia.
-        * @constant {string} formData.musculoAtivado - Campo para o músculo ativado pelo aparelho, definido como string vazia.
-    */
-    const clearForm = () => {
-        setFormData({
-            idAparelho: '',
-            nomeAparelho: '',
-            musculoAtivado: ''
-        });
-    };
-
-    /**
         * Lida com a submissão do formulário de forma assíncrona, evitando o recarregamento da página,
         * e envia os dados do formulário para a API.
         * 
@@ -99,13 +73,18 @@ function CadastroAparelho() {
             // Envia os dados do formulário para a API e aguarda a resposta     
             if (await AparelhoRequests.cadastrarAparelho(formData)) {
                 console.log('Aparelho cadastrado com sucesso:');
-                clearForm();
                 window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso');
+                if (window.confirm(`Deseja ir para a listagem?`)) 
+                    window.location.href = 'http://localhost:5173/Listagem/Aparelho';
+                else
+                    window.location.reload();
             } else {
-                console.log('Erro ao atualizar dados do aparelho');
+                window.alert('Erro ao cadastrar aparelho'); // Exibe uma mensagem de erro para o usuário
+                window.location.reload();
             }
         } catch (error) {
-            console.error('Erro ao cadastrar aparelho:', error); // Exibe uma mensagem de erro no console
+            window.alert('Erro ao cadastrar aparelho'); // Exibe uma mensagem de erro para o usuário
+            window.location.reload();
         }
     };
 
@@ -141,11 +120,11 @@ function CadastroAparelho() {
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
-                        Cadastrar
+                        Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
                     <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho">
-                        Listagem
+                        Aparelhos
                     </a>
                 </form>
             </div>

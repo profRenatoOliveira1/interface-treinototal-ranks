@@ -74,28 +74,6 @@ function CadastroExercicio() {
     };
 
     /**
-        * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
-        * 
-        * - Atualiza o estado `formData` para um objeto com todos os campos definidos como strings vazias.
-        * - Esse método é útil para resetar o formulário após a submissão ou quando necessário.
-        * 
-        * @function clearForm
-        * 
-        * @example
-        * // Chama a função para limpar o formulário
-        * clearForm();
-    */
-    const clearForm = () => {
-        setFormData({
-            idAparelho: '',
-            exercicio: '',
-            carga: '',
-            repeticoes: '',
-            regiaoCorpoAtiva: ''
-        });
-    };
-
-    /**
         * Lida com a submissão do formulário de forma assíncrona, evitando o recarregamento da página,
         * e envia os dados do formulário para a API.
         * 
@@ -117,16 +95,22 @@ function CadastroExercicio() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            if (ExerciciosRequests.cadastrarExercicio(formData)) {
+            // Envia os dados do formulário para a API e aguarda a resposta     
+            if (await ExerciciosRequests.cadastrarExercicio(formData)) {
                 console.log('Exercício cadastrado com sucesso:');
-                clearForm();
                 window.alert(formData.exercicio + ': foi cadastrado com sucesso');
+                if (window.confirm(`Deseja ir para a listagem?`))
+                    window.location.href = 'http://localhost:5173/Listagem/Exercicio';
+                else
+                    window.location.reload();
             } else {
-                console.log('Erro ao atualizar dados do exercício');
+                console.log('Erro ao atualizar dados do aparelho');
+                window.alert('Erro ao cadastrar exercício'); // Exibe uma mensagem de erro para o usuário
+                window.location.reload();
             }
         } catch (error) {
-            console.error('Erro ao cadastrar exercício:', error); // Exibe uma mensagem de erro no console
             window.alert('Erro ao cadastrar exercício'); // Exibe uma mensagem de erro para o usuário
+            window.location.reload();
         }
     };
 
@@ -202,11 +186,11 @@ function CadastroExercicio() {
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
-                        Cadastrar
+                        Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
                     <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Exercicio">
-                        Listagem
+                        Exercícios
                     </a>
                 </form>
             </div>

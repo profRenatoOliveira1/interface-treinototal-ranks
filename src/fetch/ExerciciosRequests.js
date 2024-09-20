@@ -71,7 +71,6 @@ class ExerciciosRequests {
             return true;
         } catch (error) {
             console.error('Erro: ', error);
-            window.alert('Erro ao deletar Exercicio');
             return false;
         }
     }

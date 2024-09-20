@@ -49,7 +49,7 @@ function CadastroProfessor() {
         celular: '',                // Campo para o celular do professor
         endereco: '',               // Campo para o endereço do professor
         email: '',                  // Campo para o email do professor
-        senha: '',                  // Campo para o senha do professor
+        // senha: '',                  // Campo para o senha do professor
         dataContratacao: '',        // Campo para o data de contratação do professor
         formacao: '',               // Campo para a formação do professor
         especialidade: ''           // Campo para a especialidade do professor
@@ -80,33 +80,6 @@ function CadastroProfessor() {
     };
 
     /**
-        * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
-        * 
-        * - Atualiza o estado `formData` para um objeto com todos os campos definidos como strings vazias.
-        * - Esse método é útil para resetar o formulário após a submissão ou quando necessário.
-        * 
-        * @function clearForm
-        * 
-        * @example
-        * // Chama a função para limpar o formulário
-        * clearForm();
-    */
-    const clearForm = () => {
-        setFormData({
-            nome: '',
-            cpf: '',
-            dataNascimento: '',
-            celular: '',
-            endereco: '',
-            email: '',
-            senha: '',
-            dataContratacao: '',
-            formacao: '',
-            especialidade: ''
-        });
-    };
-
-    /**
         * Função para lidar com a submissão do formulário de cadastro de professores.
         * 
         * - Previne o comportamento padrão do formulário que recarregaria a página.
@@ -130,21 +103,6 @@ function CadastroProfessor() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
 
-        const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para objeto Date
-        const dtCont = new Date(formData.dataContratacao); // Converte a data de contratação para objeto Date
-        const hoje = new Date(); // Obtém a data de hoje
-        hoje.setHours(0, 0, 0, 0); // Define as horas para zero, focando apenas na data
-
-        // Verificação das datas
-        if (dtNasc > hoje) {
-            setErrorMessage('A data de nascimento não pode ser uma data futura.'); // Define a mensagem de erro se a data de nascimento for no futuro
-            return;
-        }
-        if (dtCont > hoje) {
-            setErrorMessage('A data de contratação não pode ser uma data futura.'); // Define a mensagem de erro se a data de contratação for no futuro
-            return;
-        }
-
         /**
             Remove formatação dos campos de CPF e celular e cria um novo objeto com os dados limpos.
             
@@ -164,18 +122,22 @@ function CadastroProfessor() {
         const cleanCPF = formData.cpf.replace(/\D/g, ''); // Remove caracteres não numéricos do CPF
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove caracteres não numéricos do celular
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
-
         try {
+            // Envia os dados do formulário para a API e aguarda a resposta     
             if (await ProfessoresRequests.cadastrarProfessor(cleanData)) {
-                clearForm();
                 console.log('Professor cadastrado com sucesso:');
                 window.alert(cleanData.nome + ': foi cadastrado com sucesso');
+                if (window.confirm(`Deseja ir para a listagem?`))
+                    window.location.href = 'http://localhost:5173/Listagem/Professor';
+                else
+                    window.location.reload();
             } else {
-                console.log('Erro ao atualizar dados do Professor');
+                window.alert('Erro ao cadastrar professor'); // Exibe uma mensagem de erro para o usuário
+                window.location.reload();
             }
         } catch (error) {
-            console.error('Erro ao cadastrar professor:', error); // Exibe uma mensagem de erro no console
-            setErrorMessage('Ocorreu um erro: ' + error.message); // Define a mensagem de erro
+            console.error('Erro ao cadastrar professor:', error.message);
+            window.location.reload();
         }
     };
 
@@ -220,6 +182,7 @@ function CadastroProfessor() {
                             value={formData.dataNascimento}
                             onChange={handleChange} // Define a função de mudança para atualizar o estado
                             name="dataNascimento"
+                            min={"1930-01-01"}
                             max={hoje.toISOString().split('T')[0]} // Define a data máxima como hoje
                             required
                         />
@@ -273,7 +236,7 @@ function CadastroProfessor() {
                             required
                         />
                     </div>
-                    {/* Campo para senha */}
+                    {/* Campo para senha
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -284,7 +247,7 @@ function CadastroProfessor() {
                             name="senha" // Define o nome do campo, necessário para identificar qual campo está sendo atualizado
                             required
                         />
-                    </div>
+                    </div> */}
                     {/* Campo para formação */}
                     <div className={styles.formGroup}>
                         <input
@@ -309,11 +272,11 @@ function CadastroProfessor() {
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
-                        Cadastrar
+                        Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
                     <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Professor">
-                        Listagem
+                        Professores
                     </a>
                 </form>
             </div>

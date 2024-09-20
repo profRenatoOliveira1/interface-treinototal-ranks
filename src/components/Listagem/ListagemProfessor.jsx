@@ -52,16 +52,15 @@ function ListarProfessor() {
 
     // Função para deletar um professor
     const deleteProfessor = async (professor) => {
-        const deletar = window.confirm(`Tem certeza que deseja remover o professor ${professor.nome}?`);
+        const deletar = window.confirm(`Deseja mesmo remover o registro ${professor.nome}? Essa operação é irreversível!`);
+
         if (deletar) {
-            try {
-                await ProfessoresRequests.deletarProfessor(professor.id_professor);
-                setProfessores(professores.filter(p => p.id_professor !== professor.id_professor));
-                setFilteredProfessores(filteredProfessores.filter(p => p.id_professor !== professor.id_professor));
-                window.alert('Professor removido com sucesso!');
-            } catch {
-                window.alert('Erro ao remover professor!');
+            if (ProfessoresRequests.deletarProfessor(professor.id_professor)) {
+                window.alert(`Registro ${professor.nome} removido com sucesso.`);
+            } else {
+                window.alert(`Falha ao remover ${professor.nome}.`);
             }
+            window.location.reload();
         }
     };
 
@@ -95,7 +94,7 @@ function ListarProfessor() {
                                 <h1 className={styles.titulo}>Tabela Professores</h1>
                             </div>
                             <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Professor" className={styles.btn}>
-                                Cadastrar Professor
+                                Novo Professor
                             </a>
                         </div>
                     </div>

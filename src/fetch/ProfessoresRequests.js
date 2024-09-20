@@ -109,47 +109,47 @@ class ProfessoresRequests {
      * @param {*} professor Objeto com as informações do professor
      * @returns **verdadeiro (true)** caso o professor tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
      */
-        async UpdateSenhaProfessor(professor) {
-            try {
-                console.log(`${this.serverUrl}${this.routeAtualizarSenhaProfessor}?idProfessor=${professor.idProfessor}`);
+        // async UpdateSenhaProfessor(professor) {
+        //     try {
+        //         console.log(`${this.serverUrl}${this.routeAtualizarSenhaProfessor}?idProfessor=${professor.idProfessor}`);
                 
-                const token = this.getAuthToken();
-                // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
-                const response = await fetch(`${this.serverUrl}${this.routeAtualizarSenhaProfessor}?idProfessor=${professor.idProfessor}`, {
-                    // Informa o verbo a ser acessado
-                    method: 'PUT',
-                    // informa os cabeçalhos da requisição
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'x-access-token': `${token}`
-                    },
-                    // informa o corpo da requisição, contendo as informações do aluno
-                    body: JSON.stringify(professor)
-                });
+        //         const token = this.getAuthToken();
+        //         // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
+        //         const response = await fetch(`${this.serverUrl}${this.routeAtualizarSenhaProfessor}?idProfessor=${professor.idProfessor}`, {
+        //             // Informa o verbo a ser acessado
+        //             method: 'PUT',
+        //             // informa os cabeçalhos da requisição
+        //             headers: {
+        //                 'Content-Type': 'application/json',
+        //                 'x-access-token': `${token}`
+        //             },
+        //             // informa o corpo da requisição, contendo as informações do aluno
+        //             body: JSON.stringify(professor)
+        //         });
     
-                /**
-                 * Para os alunos engraçadinhos não trocarem a senha do usuário admin
-                 */
-                if(response.status === 403) {
-                    console.error('Não é possível alterar a senha do administrador');
-                    alert('Não é possível alterar a senha do administrador');
-                    return null;
-                }
+        //         /**
+        //          * Para os alunos engraçadinhos não trocarem a senha do usuário admin
+        //          */
+        //         if(response.status === 403) {
+        //             console.error('Não é possível alterar a senha do administrador');
+        //             alert('Não é possível alterar a senha do administrador');
+        //             return null;
+        //         }
     
-                // Verifica se a resposta não foi bem sucedida ...
-                if (!response.ok) {
-                    // ... lança um erro
-                    throw new Error('Erro ao enviar formulário');
-                }
-                // retorna true caso a resposta seja bem sucedida
-                return true;
-            } catch (error) {
-                // caso ocorra algum erro na comunicação
-                console.error('Erro: ', error);
-                window.alert('Erro ao atualizar senha do professor');
-                return null;
-            }
-        }
+        //         // Verifica se a resposta não foi bem sucedida ...
+        //         if (!response.ok) {
+        //             // ... lança um erro
+        //             throw new Error('Erro ao enviar formulário');
+        //         }
+        //         // retorna true caso a resposta seja bem sucedida
+        //         return true;
+        //     } catch (error) {
+        //         // caso ocorra algum erro na comunicação
+        //         console.error('Erro: ', error);
+        //         window.alert('Erro ao atualizar senha do professor');
+        //         return null;
+        //     }
+        // }
 }
 
 // Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código

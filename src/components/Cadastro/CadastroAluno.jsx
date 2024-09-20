@@ -47,7 +47,7 @@ function CadastroAluno() {
         celular: '',          // Campo para o celular do aluno
         endereco: '',         // Campo para o endereço do aluno
         email: '',            // Campo para o email do aluno
-        senha: '',            // Campo para a senha do aluno
+        // senha: '',            // Campo para a senha do aluno
         altura: '',           // Campo para a altura do aluno
         peso: ''              // Campo para o peso do aluno
     });
@@ -77,32 +77,6 @@ function CadastroAluno() {
     };
 
     /**
-        * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
-        * 
-        * - Atualiza o estado `formData` para um objeto com todos os campos definidos como strings vazias.
-        * - Esse método é útil para resetar o formulário após a submissão ou quando necessário.
-        * 
-        * @function clearForm
-        * 
-        * @example
-        * // Chama a função para limpar o formulário
-        * clearForm();
-    */
-    const clearForm = () => {
-        setFormData({
-            nome: '',
-            cpf: '',
-            dataNascimento: '',
-            celular: '',
-            endereco: '',
-            email: '',
-            senha: '',
-            altura: '',
-            peso: ''
-        });
-    };
-
-    /**
         * Lida com a submissão do formulário de forma assíncrona, evitando o recarregamento da página,
         * e envia os dados do formulário para a API.
         * 
@@ -123,21 +97,6 @@ function CadastroAluno() {
     */
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
-        const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para um objeto Date
-        const hoje = new Date(); // Obtém a data atual
-        hoje.setHours(0, 0, 0, 0); // Define as horas como 0 para facilitar a comparação de datas
-
-        // Verifica se a data de nascimento não é futura
-        if (dtNasc > hoje) {
-            setErrorMessage('A data de nascimento não pode ser uma data futura.');
-            return;
-        }
-
-        // Verifica se os campos obrigatórios estão preenchidos
-        if (!formData.nome || !formData.cpf || !formData.email || !formData.senha || !formData.altura) {
-            setErrorMessage('Por favor, preencha todos os campos obrigatórios.');
-            return;
-        }
 
         /**
             Remove formatação dos campos de CPF e celular e cria um novo objeto com os dados limpos.
@@ -159,21 +118,26 @@ function CadastroAluno() {
         const cleanCelular = formData.celular.replace(/\D/g, ''); // Remove todos os caracteres não numéricos do celular
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
         try {
-            // Envia os dados do formulário para a API e aguarda a resposta
+            // Envia os dados do formulário para a API e aguarda a resposta     
             if (await AlunoRequests.cadastrarAluno(cleanData)) {
-                clearForm();
                 console.log('Aluno cadastrado com sucesso:');
                 window.alert(cleanData.nome + ': foi cadastrado com sucesso');
+
+                if (window.confirm(`Deseja ir para a listagem?`))
+                    window.location.href = 'http://localhost:5173/Listagem/Aluno';
+                else
+                    window.location.reload();
             } else {
-                console.log('Erro ao atualizar dados do Aluno');
+                window.alert('Erro ao cadastrar aluno'); // Exibe uma mensagem de erro para o usuário
+                window.location.reload();
             }
         } catch (error) {
-            console.error('Erro ao cadastrar aluno:', error);
-            window.alert('Ocorreu um erro: ' + error.message);
+            window.alert('Ocorreu um erro: ' + error.message); // Exibe uma mensagem de erro para o usuário
+            window.location.reload();
         }
+
     };
 
-    const dtNasc = new Date(formData.dataNascimento); // Converte a data de nascimento para um objeto Date
     const hoje = new Date(); // Obtém a data atual
     hoje.setHours(0, 0, 0, 0); // Define as horas como 0 para facilitar a comparação de datas
 
@@ -257,7 +221,7 @@ function CadastroAluno() {
                             required
                         />
                     </div>
-                    {/* Campo para senha */}
+                    {/* Campo para senha
                     <div className={styles.formGroup}>
                         <input
                             type="password"
@@ -268,7 +232,7 @@ function CadastroAluno() {
                             name="senha"
                             required
                         />
-                    </div>
+                    </div> */}
                     {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
                         <input
@@ -302,11 +266,11 @@ function CadastroAluno() {
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>
-                        Cadastrar
+                        Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
                     <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aluno">
-                        Listagem
+                        Alunos
                     </a>
                 </form>
 

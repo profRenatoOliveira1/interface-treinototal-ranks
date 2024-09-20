@@ -58,7 +58,7 @@ function UpdateAluno() {
         celular: objAluno.celular,
         endereco: objAluno.endereco,
         email: objAluno.email,
-        senha: objAluno.senha,
+        // senha: objAluno.senha,
         altura: objAluno.altura,
         peso: objAluno.peso
     })
@@ -96,7 +96,7 @@ function UpdateAluno() {
         // chama a função atualizarAluno do arquivo AlunoAPIService
         if (await AlunoRequests.atualizarAluno(cleanData)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
-            window.alert(`Aluno ${aluno.nome} atualizado com sucesso`);
+            window.alert(`O aluno ${aluno.nome} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de alunos
             navigate(`/Listagem/Aluno`, { replace: true });
         } else {
@@ -196,7 +196,7 @@ function UpdateAluno() {
                                 required
                             />
                         </div>
-                        {/* Campo para senha */}
+                        {/* Campo para senha
                         <div className={styles.formGroup}>
                             <input
                                 type="password"
@@ -207,7 +207,7 @@ function UpdateAluno() {
                                 name="senha"
                                 required
                             />
-                        </div>
+                        </div> */}
                         {/* Campo para altura e peso */}
                         <div className={styles.formGroup}>
                             <input

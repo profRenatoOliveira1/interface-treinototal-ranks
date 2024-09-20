@@ -47,17 +47,18 @@ function ListarAluno() {
     const formatarTelefone = (telefone) => telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 
     const deleteAluno = (aluno) => {
-        const deletar = window.confirm(`Tem certeza que deseja remover o aluno ${aluno.nome}?`);
+        const deletar = window.confirm(`Deseja mesmo remover o registro ${aluno.nome}? Essa operação é irreversível!`);
+
         if (deletar) {
             if (AlunoRequests.deletarAluno(aluno.id_aluno)) {
-                window.location.reload();
-                window.alert('Aluno removido com sucesso!');
+                window.alert(`Registro ${aluno.nome} removido com sucesso.`);
             } else {
-                window.alert('Erro ao remover aluno!');
+                window.alert(`Falha ao remover ${aluno.nome}.`);
             }
+            window.location.reload();
         }
     };
-    
+
     const updateAluno = (aluno) => {
         navigate(`/update/aluno`, { state: { objeto: aluno }, replace: true });
     };
@@ -85,7 +86,7 @@ function ListarAluno() {
                                 <h1 className={styles.titulo}>Tabela Alunos</h1>
                             </div>
                             <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aluno" className={styles.btn}>
-                                Cadastrar aluno
+                                Novo aluno
                             </a>
                         </div>
                     </div>
@@ -105,51 +106,51 @@ function ListarAluno() {
             <div className={styles.cntTb}>
                 {alunosFiltrados.length > 0 ? (
                     <>
-                    <table className={`${styles.table} ${styles.tabela}`}>
-                        <thead>
-                            <tr className={styles.tabelaHeader}>
-                                <th hidden>ID</th>
-                                <th>NOME</th>
-                                <th>CPF</th>
-                                <th>DATA DE NASCIMENTO</th>
-                                <th>TELEFONE</th>
-                                <th>ENDEREÇO</th>
-                                <th hidden>Email</th>
-                                <th hidden>Altura</th>
-                                <th hidden>Peso</th>
-                                <th hidden>IMC</th>
-                                <th colSpan={3}>AÇÃO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {alunosPaginados.map(aluno => (
-                                <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
-                                    <td hidden>{aluno.id_aluno}</td>
-                                    <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-                                        {aluno.nome.toUpperCase()}
-                                    </td>
-                                    <td>{formatarCPF(aluno.cpf)}</td>
-                                    <td>{formatadorData(aluno.data_nascimento)}</td>
-                                    <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td>
-                                    <td>{aluno.endereco.toUpperCase()}</td>
-                                    <td hidden>{aluno.email.toUpperCase()}</td>
-                                    <td hidden>{`${aluno.altura} m`}</td>
-                                    <td hidden>{`${aluno.peso} kg`}</td>
-                                    <td hidden>{aluno.imc}</td>
-                                    <td title="Deletar Aluno">
-                                        <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135', cursor: 'pointer' }} />
-                                    </td>
-                                    <td title="Atualizar Aluno">
-                                        <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
-                                    </td>
-                                    <td title="Ver Mais">
-                                        <FaInfoCircle onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', color: 'Yellow' }} />
-                                    </td>
+                        <table className={`${styles.table} ${styles.tabela}`}>
+                            <thead>
+                                <tr className={styles.tabelaHeader}>
+                                    <th hidden>ID</th>
+                                    <th>NOME</th>
+                                    <th>CPF</th>
+                                    <th>DATA DE NASCIMENTO</th>
+                                    <th>TELEFONE</th>
+                                    <th>ENDEREÇO</th>
+                                    <th hidden>Email</th>
+                                    <th hidden>Altura</th>
+                                    <th hidden>Peso</th>
+                                    <th hidden>IMC</th>
+                                    <th colSpan={3}>AÇÃO</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className={styles.paginacao}>
+                            </thead>
+                            <tbody>
+                                {alunosPaginados.map(aluno => (
+                                    <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
+                                        <td hidden>{aluno.id_aluno}</td>
+                                        <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                                            {aluno.nome.toUpperCase()}
+                                        </td>
+                                        <td>{formatarCPF(aluno.cpf)}</td>
+                                        <td>{formatadorData(aluno.data_nascimento)}</td>
+                                        <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td>
+                                        <td>{aluno.endereco.toUpperCase()}</td>
+                                        <td hidden>{aluno.email.toUpperCase()}</td>
+                                        <td hidden>{`${aluno.altura} m`}</td>
+                                        <td hidden>{`${aluno.peso} kg`}</td>
+                                        <td hidden>{aluno.imc}</td>
+                                        <td title="Deletar Aluno">
+                                            <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135', cursor: 'pointer' }} />
+                                        </td>
+                                        <td title="Atualizar Aluno">
+                                            <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                        </td>
+                                        <td title="Ver Mais">
+                                            <FaInfoCircle onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', color: 'Yellow' }} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className={styles.paginacao}>
                             <button
                                 onClick={() => mudarPagina(paginaAtual - 1)}
                                 disabled={paginaAtual === 1}

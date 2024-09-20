@@ -42,7 +42,7 @@ function ListagemExercicios() {
             }
         };
 
-        fetchDados(); 
+        fetchDados();
     }, []);
 
     useEffect(() => {
@@ -57,15 +57,14 @@ function ListagemExercicios() {
     }, [search, exercicios]);
 
     const deletarExercicio = (exercicio) => {
-        const deletar = window.confirm(`Tem certeza que deseja remover o exercício ${exercicio.exercicio}?`);
-
+        const deletar = window.confirm(`Deseja mesmo remover o registro ${exercicio.exercicio}? Essa operação é irreversível!`);
         if (deletar) {
             if (ExerciciosRequests.deletarExercicio(exercicio.id_exercicio)) {
-                window.location.reload();
-                window.alert('Exercicio removido com sucesso');
+                window.alert(`Registro ${exercicio.exercicio} removido com sucesso.`);
             } else {
-                window.alert('Erro ao remover exercicio');
+                window.alert(`Falha ao remover ${exercicio.exercicio}.`);
             }
+            window.location.reload();
         }
     };
 
@@ -88,7 +87,7 @@ function ListagemExercicios() {
             {/* Título da tabela de exercícios */}
             <h1 className={styles.titulo}>Tabela de Exercícios</h1>
             <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Exercicio" className={styles.btn}>
-                Cadastrar Exercicio
+                Novo Exercicio
             </a>
 
             {/* Campo de Pesquisa */}
@@ -111,12 +110,12 @@ function ListagemExercicios() {
                                 <tr className={styles.tabelaHeader}>
                                     <th hidden>ID</th>
                                     <th hidden>ID</th>
-                                    <th>Nome do Exercício</th>
-                                    <th>Aparelho</th>
-                                    <th>Repetições</th>
-                                    <th>Carga</th>
-                                    <th>Região do Corpo</th>
-                                    <th colSpan={2}>Ação</th>
+                                    <th>NOME DO EXERCÍCIO</th>
+                                    <th>APARELHO</th>
+                                    <th>REPETIÇÕES</th>
+                                    <th>CARGA</th>
+                                    <th>REGIÃO DO CORPO</th>
+                                    <th colSpan={2}>AÇÃO</th>
                                 </tr>
                             </thead>
                             <tbody>

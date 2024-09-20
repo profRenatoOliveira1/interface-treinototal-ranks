@@ -41,22 +41,16 @@ function ListarAparelho() {
         }
     }, [search, aparelhos]);
 
-    const deletarAparelho = async (aparelho) => {
-        const confirmar = window.confirm(`Deseja deletar o Aparelho ${aparelho.nome_aparelho}?`);
-        if (confirmar) {
-            try {
-                const sucesso = await AparelhoRequests.deletarAparelho(aparelho.id_aparelho);
-                if (sucesso) {
-                    setAparelhos(aparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
-                    setFilteredAparelhos(filteredAparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
-                    window.alert('Aparelho deletado com sucesso');
-                } else {
-                    window.alert('Erro ao deletar Aparelho');
-                }
-            } catch (error) {
-                window.alert('Erro ao deletar Aparelho');
-                console.error('Erro ao deletar aparelho: ', error);
+    const deletarAparelho = (aparelho) => {
+        const deletar = window.confirm(`Deseja mesmo remover o registro ${aparelho.nome_aparelho}? Essa operação é irreversível!`);
+
+        if (deletar) {
+            if (AparelhoRequests.deletarAparelho(aparelho.id_aparelho)) {
+                window.alert(`Registro ${aparelho.nome_aparelho} removido com sucesso.`);
+            } else {
+                window.alert(`Falha ao remover ${aparelho.nome_aparelho}.`);
             }
+            window.location.reload();
         }
     };
 
@@ -84,7 +78,7 @@ function ListarAparelho() {
                                 <h1 className={styles.titulo}>Tabela Aparelhos</h1>
                             </div>
                             <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho" className={styles.btn}>
-                                Cadastrar aparelho
+                                Novo aparelho
                             </a>
                         </div>
                     </div>
@@ -104,48 +98,48 @@ function ListarAparelho() {
             <div className={styles.cntTb}>
                 {filteredAparelhos.length > 0 ? (
                     <>
-                    <table className={`${styles.table} ${styles.tabela}`}>
-                        <thead>
-                            <tr className={styles.tabelaHeader}>
-                                <th hidden>ID</th>
-                                <th>NOME</th>
-                                <th>MÚSCULO ATIVADO</th>
-                                <th colSpan={2}>AÇÃO</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {aparelhosPaginados.map(aparelho => (
-                                <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
-                                    <td hidden>{aparelho.id_aparelho}</td>
-                                    <td>{aparelho.nome_aparelho.toUpperCase()}</td>
-                                    <td>{aparelho.musculo_ativado.toUpperCase()}</td>
-                                    <td title="Deletar Aparelho">
-                                        <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} />
-                                    </td>
-                                    <td title="Atualizar Aparelho">
-                                        <FaRegEdit onClick={() => updateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
-                                    </td>
+                        <table className={`${styles.table} ${styles.tabela}`}>
+                            <thead>
+                                <tr className={styles.tabelaHeader}>
+                                    <th hidden>ID</th>
+                                    <th>NOME</th>
+                                    <th>MÚSCULO ATIVADO</th>
+                                    <th colSpan={2}>AÇÃO</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                    <div className={styles.paginacao}>
-                        <button
-                            onClick={() => mudarPagina(paginaAtual - 1)}
-                            disabled={paginaAtual === 1}
-                        >
-                            <MdOutlineArrowBackIos />
-                        </button>
+                            </thead>
+                            <tbody>
+                                {aparelhosPaginados.map(aparelho => (
+                                    <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
+                                        <td hidden>{aparelho.id_aparelho}</td>
+                                        <td>{aparelho.nome_aparelho.toUpperCase()}</td>
+                                        <td>{aparelho.musculo_ativado.toUpperCase()}</td>
+                                        <td title="Deletar Aparelho">
+                                            <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} />
+                                        </td>
+                                        <td title="Atualizar Aparelho">
+                                            <FaRegEdit onClick={() => updateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className={styles.paginacao}>
+                            <button
+                                onClick={() => mudarPagina(paginaAtual - 1)}
+                                disabled={paginaAtual === 1}
+                            >
+                                <MdOutlineArrowBackIos />
+                            </button>
 
-                        <span>Página {paginaAtual} de {totalPaginas}</span>
+                            <span>Página {paginaAtual} de {totalPaginas}</span>
 
-                        <button
-                            onClick={() => mudarPagina(paginaAtual + 1)}
-                            disabled={indiceUltimoItem >= filteredAparelhos.length}
-                        >
-                            <MdOutlineArrowForwardIos />
-                        </button>
-                    </div>
+                            <button
+                                onClick={() => mudarPagina(paginaAtual + 1)}
+                                disabled={indiceUltimoItem >= filteredAparelhos.length}
+                            >
+                                <MdOutlineArrowForwardIos />
+                            </button>
+                        </div>
                     </>
                 ) : (
                     <p style={{ color: 'white' }}>Nada encontrado</p>
