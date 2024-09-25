@@ -142,10 +142,7 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
 
-#flutuante {
-  font-size: 10px;
-  background-color: yellow !important;
-}
+
 
 .form-floating:focus {
   background-color: yellow !important;

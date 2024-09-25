@@ -4,6 +4,8 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import ExerciciosRequests from "../../fetch/ExerciciosRequests";
 import Navegacao from "../Navegacao/Navegacao";
 import AparelhosRequests from "../../fetch/AparelhosRequests";
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import Form from 'react-bootstrap/Form';
 
 /**
     * Componente funcional para atualizar os dados de um exercício.
@@ -140,23 +142,23 @@ function UpdateExercicio() {
                     <form onSubmit={handleSubmit}>
                         {/* Campo para selecionar o aparelho */}
                         <div className={styles.formGroup}>
-                        <div className="form-floating mb-3 input">
-                            <select
-                                className="form-control input"
+                        <FloatingLabel controlId="floatingSelectAparelho" label="Selecione o Aparelho">
+                            <Form.Select
                                 value={exercicio.idAparelho}
                                 onChange={handleChange}
                                 name="idAparelho"
+                                aria-label="Seleção de aparelho"
+                                className="input formGroup"
                                 required
                             >
-                                <option value="">Selecione o Aparelho</option>
+                                <option value="">Selecione um aparelho</option>
                                 {aparelhos.map((aparelho) => (
                                     <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
                                         {aparelho.nome_aparelho}
                                     </option>
                                 ))}
-                            </select>
-                            <label htmlFor="idAparelho">Aparelho</label>
-                        </div>
+                            </Form.Select>
+                        </FloatingLabel>
                     </div>
 
                     {/* Campo para o nome do exercício */}
