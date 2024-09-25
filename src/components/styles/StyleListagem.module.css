@@ -176,8 +176,6 @@ table {
 
 }
 
-
-
 .searchIcon {
   cursor: pointer;
   color: #333;
@@ -185,6 +183,23 @@ table {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
+}
+
+[type=button]:not(:disabled),
+[type=reset]:not(:disabled),
+[type=submit]:not(:disabled),
+button:not(:disabled) {
+  color: var(--amareloClaro);
+  background-color: transparent;
+}
+
+[type=button],
+[type=reset],
+[type=submit],
+button {
+  color: var(--amareloEscuro);
+  background-color: transparent;
+  
 }
 
 @media (max-width: 768px) {

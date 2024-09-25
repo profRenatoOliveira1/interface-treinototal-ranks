@@ -48,9 +48,6 @@
   color: var(--preto);
 }
 
-label {
-  color: #000000 !important;
-}
 
 
 form {
@@ -102,6 +99,7 @@ form {
   cursor: pointer;
   /* Cursor */
   transition: background-color 0.3s ease;
+
   /* Transição suave */
 }
 

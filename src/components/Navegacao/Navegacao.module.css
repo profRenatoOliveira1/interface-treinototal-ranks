@@ -55,6 +55,7 @@ a {
   color: var(--amareloClaro) !important;
   /* Cor do texto */
   text-decoration: none;
+  justify-content: center;
   /* Remove sublinhado dos links */
   font-size: 16px;
   /* Define o tamanho da fonte para todos os textos na barra de navegação */
@@ -80,3 +81,5 @@ a {
   background-color: var(--cinzaAvermelhado)!important;
   border-color: var(--amareloClaro)!important;
 }
+
+

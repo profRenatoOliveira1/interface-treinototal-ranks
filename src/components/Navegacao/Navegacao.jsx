@@ -13,6 +13,12 @@ function Navegacao() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
 
+    const [vizualizacaoAparelho, setVizualizacaoAparelho] = useState(false);
+    const [vizualizacaoAluno, setVizualizacaoAluno] = useState(false);
+    const [vizualizacaoExercicio, setVizualizacaoExercicio] = useState(false);
+    const [vizualizacaoProfessor, setVizualizacaoProfessor] = useState(false);
+    const [vizualizacaoLogin, setVizualizacaoLogin] = useState(false);
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         const storedUsername = localStorage.getItem('username');
@@ -49,29 +55,63 @@ function Navegacao() {
                                 <Nav.Link href="/imc" className={styles.navbar}>
                                     Imc
                                 </Nav.Link>
-                                <NavDropdown title="Aluno" id="collapsible-nav-dropdown" className={styles.navbar}>
+                                
+                                <NavDropdown
+                                    title="Aluno"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoAluno}
+                                    onMouseEnter={() => setVizualizacaoAluno(true)}
+                                    onMouseLeave={() => setVizualizacaoAluno(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Aluno" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Aluno" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Professor" id="collapsible-nav-dropdown" className={styles.navbar}>
+
+                                <NavDropdown
+                                    title="Professor"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoProfessor}
+                                    onMouseEnter={() => setVizualizacaoProfessor(true)}
+                                    onMouseLeave={() => setVizualizacaoProfessor(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Professor" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Professor" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Exercicio" id="collapsible-nav-dropdown" className={styles.navbar}>
+
+                                <NavDropdown
+                                    title="Exercicio"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoExercicio}
+                                    onMouseEnter={() => setVizualizacaoExercicio(true)}
+                                    onMouseLeave={() => setVizualizacaoExercicio(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Exercicio" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Exercicio" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Aparelho" id="collapsible-nav-dropdown" className={styles.navbar}>
+
+                                <NavDropdown
+                                    title="Aparelho"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoAparelho}
+                                    onMouseEnter={() => setVizualizacaoAparelho(true)}
+                                    onMouseLeave={() => setVizualizacaoAparelho(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                {/* <NavDropdown title="Treino" id="collapsible-nav-dropdown" className={styles.navbar}>
-                                    <NavDropdown.Item href="/Cadastro/Treino" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Treino" className={styles.navDropdown}>Listagem</NavDropdown.Item>
-                                </NavDropdown> */}
-                                <NavDropdown title={`Olá ${username.split(' ')[0]}`} id="collapsible-nav-dropdown" className={styles.navbar}>
-                                    {/* <NavDropdown.Item href="/atualizar/senha/professor" className={styles.navDropdown}>Atualizar Senha</NavDropdown.Item> */}
-                                    <NavDropdown.Item onClick={handleLogout} className={styles.navDropdown}><MdLogout /> Sair</NavDropdown.Item>
+
+                                <NavDropdown title={`Olá ${username.split(' ')[0]}`} id="collapsible-nav-dropdown" className={styles.navbar}
+                                show={vizualizacaoLogin}
+                                onMouseEnter={() => setVizualizacaoLogin(true)}
+                                onMouseLeave={() => setVizualizacaoLogin(false)}
+                                >
+                                    <NavDropdown.Item onClick={handleLogout} className={styles.navDropdown}>
+                                        <MdLogout /> Sair
+                                    </NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         ) : (

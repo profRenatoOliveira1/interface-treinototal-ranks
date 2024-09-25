@@ -9,80 +9,96 @@
     --preto: #000000;
 }
 
-.divConteiner {
-    display: flex;
-    width: 90%;
-    align-items: center;
-    justify-content: center;
-}
-
 .containerLogin {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100vh;
+    padding: 20px;
 }
 
 .formLogin {
+    background-color: var(--cinzaAzulado);
+    border-radius: 10px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 80vh;
-    width: 85vh;
-    margin-top: 1%;
-    background-color: var(--cinzaAzulado);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.inpuLogin {
     width: 100%;
-    max-width: 300px;
-    background-color: var(--cinzaAzulado);
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-    color: var(--branco);
-
+    max-width: 500px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
-.inpuLogin::-webkit-input-placeholder {
-    color: var(--branco);
-
-}
-.buttonLogin {
-    display: inline-block;
-    width: 35%;
-    /* Exibe como bloco */
-    padding: 15px 25px;
-    /* Preenchimento */
-    background-color: var(--cinzaAzulado);
-    /* Cor de fundo */
-    font-size: 18px;
-    color: var(--amareloClaro);
-    border: 3px solid var(--amareloClaro);
-    /* Sem borda */
-    border-radius: 27px;
-    /* Raio da borda */
-    cursor: pointer;
-    /* Cursor */
-    transition: background-color 0.3s ease;
-    /* Transição suave */
-}
-
-/* Estilos de hover para um botão genérico */
-.buttonLogin:hover {
-    background-color: var(--amareloEscuro);
-    /* Cor de fundo ao pairar */
-}
-
 
 .h1 {
     text-align: center;
     color: var(--amareloClaro);
     font-family: "Archivo Black", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    margin: 2% 0;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.divConteiner {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.input {
+    background-color: var(--amareloClaro) !important;
+    color: var(--preto) !important;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.input:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.buttonLogin {
+    width: 100%;
+    background-color: var(--cinzaAzulado);
+    font-size: 1.2rem;
+    padding: 15px;
+    color: var(--amareloClaro);
+    border: 2px solid var(--amareloClaro);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.buttonLogin:hover {
+    background-color: var(--amareloEscuro);
+}
+
+.errorMessage {
+    color: red;
+    margin-top: 15px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .formLogin {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .h1 {
+        font-size: 1.5rem;
+    }
+
+    .input {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .buttonLogin {
+        font-size: 1rem;
+        padding: 10px;
+    }
 }

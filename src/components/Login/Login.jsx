@@ -39,30 +39,37 @@ function Login() {
         <div className={styles.containerLogin}>
             <form className={styles.formLogin} onSubmit={handleSubmit}>
                 <h1 className={styles.h1}>Login</h1>
-                <div style={{marginTop: '10%'}} className={styles.divConteiner}>
-                <p style={{ color: '#ffeba7', fontWeight: 'bold', fontSize: '150%', marginTop: '2%' }}>E-mail</p>
-                <input
-                    type="text"
-                    className={styles.inpuLogin}
-                    placeholder="E-mail"
-                    value={formLogin.email}
-                    onChange={handleChange}
-                    name="email"
-                />
+                <div style={{ marginTop: '10%' }} className={styles.divConteiner}>
+                    <div className="form-floating mb-3 input">
+                        <input
+                            className="form-control input"
+                            id="labelEmail"
+                            type="email"
+                            placeholder="Endereço"
+                            value={formLogin.email}
+                            onChange={handleChange}
+                            name="email"
+                            required
+                        />
+                        <label htmlFor="labelEmail">Email</label>
+                    </div>
                 </div>
-                <div style={{marginTop: '4%'}} className={styles.divConteiner}>
-                <p style={{ color: '#ffeba7', fontWeight: 'bold', fontSize: '150%', marginTop: '2%'  }}>Senha</p>
-                <input
-                    type="password"
-                    className={styles.inpuLogin}
-                    placeholder="Senha"
-                    value={formLogin.password}
-                    onChange={handleChange}
-                    name="password"
-                    
-                />
+                <div style={{ marginTop: '4%' }} className={styles.divConteiner}>
+                    <div className="form-floating mb-3 input">
+                        <input
+                            className="form-control input"
+                            id="labelSenha"
+                            type="password"
+                            placeholder="Senha"
+                            value={formLogin.password}
+                            onChange={handleChange}
+                            name="password"
+                            required
+                        />
+                        <label htmlFor="labelSenha">Senha</label>
+                    </div>
                 </div>
-                <button style={{marginTop: '4%'}} className={styles.buttonLogin} type="submit">
+                <button style={{ marginTop: '4%' }} className={styles.buttonLogin} type="submit">
                     Login
                 </button>
                 {errorMessage && <p className={styles.errorMessage} style={{ color: 'red' }}>{errorMessage}</p>}
