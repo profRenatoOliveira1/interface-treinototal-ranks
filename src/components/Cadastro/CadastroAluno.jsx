@@ -3,7 +3,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import { calcularIMC } from '../../../util/Utilitarios';
-import './.css'
+
 /**
     * Componente funcional para o cadastro de alunos.
     * 

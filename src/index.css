@@ -60,11 +60,31 @@ body {
   color: var(--preto)!important;
   font-size: 18px;
   border-radius: 15px;
-
 }
 
 /* Estilos para um grupo de formulário genérico */
 .formGroup {
   margin-bottom: 20px;
   /* Margem inferior */
+}
+
+.form-floating>.form-control-plaintext~label::after,
+.form-floating>.form-control:focus~label::after,
+.form-floating>.form-control:not(:placeholder-shown)~label::after,
+.form-floating>.form-select~label::after {
+    background-color: transparent !important;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext {
+    padding: 30px !important;
+}
+
+.form-floating>.form-control-plaintext~label,
+.form-floating>.form-control:focus~label,
+.form-floating>.form-control:not(:placeholder-shown)~label,
+.form-floating>.form-select~label {
+    color: rgb(80, 79, 79) !important;
+    font-size: 1.2rem;
+    margin-top: -8px;
 }

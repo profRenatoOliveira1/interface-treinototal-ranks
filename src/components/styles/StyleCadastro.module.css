@@ -36,7 +36,7 @@
 .formStyle {
   width: 100%;
   /* Largura total */
-  padding: 15px;
+  padding: 17px;
   /* Preenchimento */
   border: 1px solid var(--cinzaEscuro);
   /* Borda */
@@ -49,7 +49,7 @@
 }
 
 label {
-  color: #000000!important;
+  color: #000000 !important;
 }
 
 
@@ -143,33 +143,12 @@ input::-webkit-inner-spin-button {
 }
 
 #flutuante {
-  font-size: 12px;
+  font-size: 10px;
   background-color: yellow !important;
 }
 
 .form-floating:focus {
   background-color: yellow !important;
+  padding: 1000px
 }
 
-/* TESTE */
-.form-floating.input {
-  background-color: #ffeb99 !important; /* Cor de fundo amarelo claro */
-}
-
-.form-floating.input input {
-  background-color: #ffeb99 !important; /* Cor de fundo do input */
-  color: black; /* Cor do texto */
-}
-
-.form-floating.input label {
-  background-color: #ffeb99 !important; /* Cor de fundo do label */
-  color: black; /* Cor do texto no label */
-  padding-left: 5px; /* Um pequeno espaçamento para o label */
-}
-
-.form-floating.input .form-control {
-  background-color: #ffeb99 !important; /* Fundo do input */
-  color: black !important; /* Cor do texto no input */
-  border-radius: 15px !important; /* Ajuste de borda arredondada, se necessário */
-  border: 2px solid #4a90e2; /* Cor da borda */
-}
