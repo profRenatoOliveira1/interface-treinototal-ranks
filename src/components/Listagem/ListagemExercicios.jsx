@@ -124,7 +124,7 @@ function ListagemExercicios() {
                                         <td hidden>{exercicio.id_exercicio}</td>
                                         <td hidden>{exercicio.id_aparelho}</td>
                                         <td>{exercicio.exercicio.toUpperCase()}</td>
-                                        <td>{exercicio.nome_aparelho?.toUpperCase()}</td>
+                                        <td>{exercicio.nome_aparelho.toUpperCase()}</td>
                                         <td>{exercicio.repeticoes}</td>
                                         <td>{`${exercicio.carga} Kg`}</td>
                                         <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td>
