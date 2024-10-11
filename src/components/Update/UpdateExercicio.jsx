@@ -123,14 +123,23 @@ function UpdateExercicio() {
     }
 
     /**
-        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
+        * Cria um novo objeto de data para representar a data atual.
         * 
-        * - Cria um novo objeto `Date` com a data e hora atuais.
-        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
+        * - A função `new Date()` obtém a data e hora atuais no momento de execução.
         * 
-        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
-    */
+        * @constant {Date} hoje - Objeto de data que representa a data de hoje.
+        */
     const hoje = new Date();
+
+    /**
+     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
+     * (dia, mês e ano) seja considerada nas operações subsequentes.
+     * 
+     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
+     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
+     * 
+     * @method setHours
+     */
     hoje.setHours(0, 0, 0, 0);
 
     return (
@@ -142,92 +151,92 @@ function UpdateExercicio() {
                     <form onSubmit={handleSubmit}>
                         {/* Campo para selecionar o aparelho */}
                         <div className={styles.formGroup}>
-                        <FloatingLabel controlId="floatingSelectAparelho" label="Selecione o Aparelho">
-                            <Form.Select
-                                value={exercicio.idAparelho}
-                                onChange={handleChange}
-                                name="idAparelho"
-                                aria-label="Seleção de aparelho"
-                                className="input formGroup"
-                                required
-                            >
-                                <option value="">Selecione um aparelho</option>
-                                {aparelhos.map((aparelho) => (
-                                    <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
-                                        {aparelho.nome_aparelho}
-                                    </option>
-                                ))}
-                            </Form.Select>
-                        </FloatingLabel>
-                    </div>
-
-                    {/* Campo para o nome do exercício */}
-                    <div className={styles.formGroup}>
-                        <div className="form-floating mb-3 input">
-                            <input
-                                type="text"
-                                className="form-control input"
-                                id="exercicio"
-                                placeholder="Exercício"
-                                value={exercicio.exercicio}
-                                onChange={handleChange}
-                                name="exercicio"
-                                required
-                            />
-                            <label htmlFor="exercicio">Exercício</label>
+                            <FloatingLabel controlId="floatingSelectAparelho" label="Selecione o Aparelho">
+                                <Form.Select
+                                    value={exercicio.idAparelho}
+                                    onChange={handleChange}
+                                    name="idAparelho"
+                                    aria-label="Seleção de aparelho"
+                                    className="input formGroup"
+                                    required
+                                >
+                                    <option value="">Selecione um aparelho</option>
+                                    {aparelhos.map((aparelho) => (
+                                        <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
+                                            {aparelho.nome_aparelho}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </FloatingLabel>
                         </div>
-                    </div>
 
-                    {/* Campo para a carga */}
-                    <div className={styles.formGroup}>
-                        <div className="form-floating mb-3 input">
-                            <input
-                                type="number"
-                                className="form-control input"
-                                id="carga"
-                                placeholder="Carga/Kg"
-                                value={exercicio.carga}
-                                onChange={handleChange}
-                                name="carga"
-                                required
-                            />
-                            <label htmlFor="carga">Carga/Kg</label>
+                        {/* Campo para o nome do exercício */}
+                        <div className={styles.formGroup}>
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    type="text"
+                                    className="form-control input"
+                                    id="exercicio"
+                                    placeholder="Exercício"
+                                    value={exercicio.exercicio}
+                                    onChange={handleChange}
+                                    name="exercicio"
+                                    required
+                                />
+                                <label htmlFor="exercicio">Exercício</label>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Campo para repetições */}
-                    <div className={styles.formGroup}>
-                        <div className="form-floating mb-3 input">
-                            <input
-                                type="number"
-                                className="form-control input"
-                                id="repeticoes"
-                                placeholder="Repetições"
-                                value={exercicio.repeticoes}
-                                onChange={handleChange}
-                                name="repeticoes"
-                                required
-                            />
-                            <label htmlFor="repeticoes">Repetições</label>
+                        {/* Campo para a carga */}
+                        <div className={styles.formGroup}>
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    type="number"
+                                    className="form-control input"
+                                    id="carga"
+                                    placeholder="Carga/Kg"
+                                    value={exercicio.carga}
+                                    onChange={handleChange}
+                                    name="carga"
+                                    required
+                                />
+                                <label htmlFor="carga">Carga/Kg</label>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Campo para a região do corpo ativada */}
-                    <div className={styles.formGroup}>
-                        <div className="form-floating mb-3 input">
-                            <input
-                                type="text"
-                                className="form-control input"
-                                id="regiaoCorpoAtiva"
-                                placeholder="Região do corpo ativada"
-                                value={exercicio.regiaoCorpoAtiva}
-                                onChange={handleChange}
-                                name="regiaoCorpoAtiva"
-                                required
-                            />
-                            <label htmlFor="regiaoCorpoAtiva">Região do Corpo Ativada</label>
+                        {/* Campo para repetições */}
+                        <div className={styles.formGroup}>
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    type="number"
+                                    className="form-control input"
+                                    id="repeticoes"
+                                    placeholder="Repetições"
+                                    value={exercicio.repeticoes}
+                                    onChange={handleChange}
+                                    name="repeticoes"
+                                    required
+                                />
+                                <label htmlFor="repeticoes">Repetições</label>
+                            </div>
                         </div>
-                    </div>
+
+                        {/* Campo para a região do corpo ativada */}
+                        <div className={styles.formGroup}>
+                            <div className="form-floating mb-3 input">
+                                <input
+                                    type="text"
+                                    className="form-control input"
+                                    id="regiaoCorpoAtiva"
+                                    placeholder="Região do corpo ativada"
+                                    value={exercicio.regiaoCorpoAtiva}
+                                    onChange={handleChange}
+                                    name="regiaoCorpoAtiva"
+                                    required
+                                />
+                                <label htmlFor="regiaoCorpoAtiva">Região do Corpo Ativada</label>
+                            </div>
+                        </div>
                         {/* Botão para enviar o formulário */}
                         <button type="submit" className={styles.btn}>
                             Atualizar
@@ -238,4 +247,6 @@ function UpdateExercicio() {
         </>
     );
 }
-export default UpdateExercicio;//exporta o componente UpdateExercicio para ser utilizado em outras partes da aplicação
+
+//exporta o componente UpdateExercicio para ser utilizado em outras partes da aplicação
+export default UpdateExercicio;

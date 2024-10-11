@@ -1,11 +1,15 @@
 import AparelhoUpdate from '../../components/Update/UpdateAparelho';
+// Importa o componente AparelhoUpdate, que está localizado na pasta '../../components/Update/AparelhoUpdate'.
+// Este componente é responsável pelo formulário ou funcionalidade de atualização de aparelho.
 
 function UpdateAparelho() {
+    // Define um componente funcional chamado UpdateAparelho.
     return (
-        <>
-            <AparelhoUpdate />
+        <> {/* Fragmento React para envolver múltiplos elementos */}
+            <AparelhoUpdate /> {/* Renderiza o componente de atualização de aparelhos */}
         </>
     );
 }
 
-export default UpdateAparelho;//exporta o componente UpdateAparelho para ser usado em outras partes da aplicação.
+//exporta o componente UpdateAparelho para ser usado em outras partes da aplicação.
+export default UpdateAparelho;

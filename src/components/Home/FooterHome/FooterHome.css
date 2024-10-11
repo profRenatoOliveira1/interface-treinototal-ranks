@@ -1,0 +1,76 @@
+:root {
+    /* Definição de variáveis globais para cores */
+    --amareloClaro: #ffeba7;
+    /* Cor amarela clara */
+    --cinzaEscuro: #212529;
+    /* Cor cinza escura */
+    --cinzaAzulado: #343A40;
+    /* Cor cinza com tom azulado */
+    --cinzaAvermelhado: #333;
+    /* Cor cinza com tom avermelhado */
+    --branco: #FFFFFF;
+    /* Cor branca */
+    --cinzaClaro: #ccc;
+    /* Cor cinza clara */
+    --amareloEscuro: #b39f72;
+    /* Cor amarela escura */
+    --preto: #000000;
+    /* Cor preta */
+}
+
+/* Estilos para o rodapé da página */
+footer {
+    display: flex;
+    /* Usa o layout flexível para organizar o conteúdo do rodapé */
+    justify-content: space-between;
+    /* Alinha a div-left à esquerda e a div-right à direita */
+    font-family: "Archivo Black", sans-serif;
+    /* Define a fonte como "Archivo Black" */
+    color: var(--amareloClaro);
+    /* Define a cor do texto como amarelo claro */
+    background-color: var(--cinzaEscuro);
+    /* Define a cor de fundo do rodapé como cinza escuro */
+    width: 98.7vw;
+    /* Define a largura do rodapé como 98.7% da largura da viewport */
+    height: auto;
+    /* Altura ajustável automaticamente */
+    border: 5px solid var(--cinzaEscuro);
+    /* Define uma borda de 5px com a mesma cor do fundo, criando uma borda sólida */
+    text-align: justify;
+    /* Justifica o texto no rodapé para garantir alinhamento das margens esquerda e direita */
+}
+
+/* Remove as bolinhas das listas não ordenadas (ul) dentro do rodapé */
+footer ul {
+    margin-top: 3%;
+    /* Define uma margem superior de 3% */
+    list-style-type: none;
+    /* Remove as bolinhas da lista */
+}
+
+.div-right {
+    margin-top: 3.4%;
+    /* Define um espaço acima da div-right */
+    margin-right: 2%;
+    /* Define um espaço ao lado direito da div-right */
+    text-align: end !important;
+    /* Alinha o texto à direita, garantindo que essa configuração tenha prioridade */
+}
+
+.div-bottomR {
+    margin-top: 0.2%;
+    /* Define um espaço acima da div-right */
+    margin-right: 2%;
+    /* Define um espaço ao lado direito da div-right */
+}
+
+/* Estilo para a div-bottom */
+.div-bottomL {
+    margin-left: 2.4%;
+    /* Define um espaçamento à esquerda da div-bottom */
+    width: 9%;
+    /* Define a largura total da div-bottom */
+    background-color: var(--cinzaEscuro);
+    /* Define a cor de fundo da div-bottom como cinza escuro */
+    /* Espaçamento interno opcional pode ser adicionado aqui, se necessário */
+}

@@ -1,15 +1,31 @@
 import React, { useState } from 'react';
 import styles from './FormIMC.module.css'; // Importa os estilos CSS específicos para este componente
 
+/**
+ * Componente funcional para calcular o IMC (Índice de Massa Corporal) e mostrar o resultado.
+ * 
+ * - Usa hooks para gerenciar estados dos inputs e do resultado.
+ * - Calcula o IMC com base no peso e na altura fornecidos e define a faixa de IMC.
+ * - Exibe uma tabela com as faixas de IMC e destaca a faixa correspondente ao resultado.
+ * 
+ * @function FormIMC
+ * @returns {JSX.Element} O componente do formulário de IMC.
+ */
 function FormIMC() {
   // Estados para armazenar os valores dos inputs e resultados
-  const [peso, setPeso] = useState('');
-  const [altura, setAltura] = useState('');
-  const [resultado, setResultado] = useState('');
-  const [sexo, setSexo] = useState('masculino');
-  const [highlight, setHighlight] = useState('');
+  const [peso, setPeso] = useState(''); // Estado para armazenar o valor do peso
+  const [altura, setAltura] = useState(''); // Estado para armazenar o valor da altura
+  const [resultado, setResultado] = useState(''); // Estado para armazenar o resultado do cálculo de IMC
+  const [sexo, setSexo] = useState('masculino'); // Estado para armazenar o sexo selecionado
+  const [highlight, setHighlight] = useState(''); // Estado para armazenar a faixa de IMC destacada
 
-  // Função para formatar o peso, garantindo que esteja no formato correto (ex: 65.30)
+  /**
+   * Função para formatar o peso, garantindo que esteja no formato correto (ex: 65.30).
+   * Remove qualquer caractere que não seja número e insere o ponto decimal no lugar correto.
+   * 
+   * @param {string} valor - O valor do peso digitado pelo usuário.
+   * @returns {string} O valor formatado do peso.
+   */
   const formatarPeso = (valor) => {
     const apenasNumeros = valor.replace(/[^0-9]/g, ''); // Remove tudo que não é número
     if (apenasNumeros.length <= 2) {
@@ -18,7 +34,13 @@ function FormIMC() {
     return apenasNumeros.slice(0, -2) + '.' + apenasNumeros.slice(-2); // Adiciona o ponto decimal
   };
 
-  // Função para formatar a altura, garantindo que esteja no formato correto (ex: 1.60)
+  /**
+   * Função para formatar a altura, garantindo que esteja no formato correto (ex: 1.60).
+   * Remove qualquer caractere que não seja número e insere o ponto decimal no lugar correto.
+   * 
+   * @param {string} valor - O valor da altura digitado pelo usuário.
+   * @returns {string} O valor formatado da altura.
+   */
   const formatarAltura = (valor) => {
     const apenasNumeros = valor.replace(/[^0-9]/g, ''); // Remove tudo que não é número
     if (apenasNumeros.length <= 1) {
@@ -27,7 +49,12 @@ function FormIMC() {
     return apenasNumeros.slice(0, 1) + '.' + apenasNumeros.slice(1); // Adiciona o ponto decimal
   };
 
-  // Função para lidar com mudanças no input de peso
+  /**
+   * Função para lidar com mudanças no input de peso.
+   * Formata o valor do peso e atualiza o estado.
+   * 
+   * @param {Object} e - O evento de mudança do input de peso.
+   */
   const handlePesoChange = (e) => {
     let valor = e.target.value;
     const valorFormatado = formatarPeso(valor);
@@ -37,7 +64,12 @@ function FormIMC() {
     setPeso(valorFormatado);
   };
 
-  // Função para lidar com mudanças no input de altura
+  /**
+   * Função para lidar com mudanças no input de altura.
+   * Formata o valor da altura e atualiza o estado.
+   * 
+   * @param {Object} e - O evento de mudança do input de altura.
+   */
   const handleAlturaChange = (e) => {
     let valor = e.target.value;
     const valorFormatado = formatarAltura(valor);
@@ -47,12 +79,23 @@ function FormIMC() {
     setAltura(valorFormatado);
   };
 
-  // Função para lidar com mudanças na seleção do sexo
+  /**
+   * Função para lidar com mudanças na seleção do sexo.
+   * Atualiza o estado do sexo.
+   * 
+   * @param {Object} e - O evento de mudança da seleção de sexo.
+   */
   const handleSexoChange = (e) => {
     setSexo(e.target.value);
   };
 
-  // Função para calcular o IMC e determinar a faixa de IMC
+  /**
+   * Função para calcular o IMC e determinar a faixa de IMC.
+   * 
+   * - Converte peso e altura para números e valida os valores.
+   * - Determina a faixa de IMC com base no sexo selecionado.
+   * - Sugere o peso ideal caso o IMC esteja fora da faixa normal.
+   */
   const calcularIMC = () => {
     const pesoNum = parseFloat(peso);
     const alturaNum = parseFloat(altura);
@@ -219,4 +262,5 @@ function FormIMC() {
   );
 }
 
-export default FormIMC; // Exporta o componente FormIMC para ser utilizado em outras partes da aplicação
+// Exporta o componente FormIMC para ser utilizado em outras partes da aplicação
+export default FormIMC; 

@@ -12,12 +12,12 @@ import Navegacao from '../../components/Navegacao/Navegacao';
 function ExercicioListagem() {
     // Define um componente funcional chamado ExercicioListagem.
     return (
-        <div>
-            <Navegacao />
-            <ListagemExercicio />
-        </div>
-        // Utiliza uma <div> para agrupar os componentes Navegacao e ListagemExercicio.
+        <> {/* Fragmento React para envolver múltiplos elementos */}
+            <Navegacao /> {/* Renderiza o componente de navegação */}
+            <ListagemExercicio /> {/* Renderiza o componente de listagem de exercícios */}
+        </>
     );
 }
 
-export default ExercicioListagem;//exporta o componente ExercicioListagem para ser usado em outras partes da aplicação.
+//exporta o componente ExercicioListagem para ser usado em outras partes da aplicação.
+export default ExercicioListagem;

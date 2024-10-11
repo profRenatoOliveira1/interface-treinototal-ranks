@@ -1,100 +1,88 @@
 .card {
-    display: flex;
-    margin-top: 10%;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid var(--cinzaClaro);
-    border-radius: 8px;
-    padding: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
-    margin: 20px auto;
-    background-color: var(--cinzaEscuro);
-    /* Cor do fundo do card */
-    color: var(--amareloClaro);
-    /* Cor das letras */
+    display: flex; /* Define o layout como flexível para permitir alinhamento de elementos */
+    margin-top: 10%; /* Espaçamento superior do card */
+    flex-direction: column; /* Organiza os filhos em uma coluna por padrão */
+    justify-content: space-between; /* Espaça os filhos uniformemente ao longo do eixo principal */
+    align-items: center; /* Alinha os itens ao centro no eixo transversal */
+    border: 2px solid var(--amareloClaro); /* Borda do card com cor clara */
+    border-radius: 8px; /* Cantos arredondados do card */
+    padding: 16px; /* Espaçamento interno do card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave embaixo do card */
+    max-width: 600px; /* Largura máxima do card */
+    margin: 20px auto; /* Centraliza o card horizontalmente com margens superior e inferior */
+    background-color: var(--cinzaEscuro); /* Cor de fundo do card */
+    color: var(--amareloClaro); /* Cor do texto dentro do card */
 }
 
+/* Estilos para telas com largura mínima de 768px */
 @media (min-width: 768px) {
     .card {
-        flex-direction: row;
-        /* Alinha a imagem e as informações lado a lado em telas maiores */
-        padding: 24px;
+        flex-direction: row; /* Alinha a imagem e as informações lado a lado em telas maiores */
+        padding: 24px; /* Aumenta o padding para telas maiores */
     }
 
     .infoContainer {
-        margin-left: 24px;
-        /* Espaço entre a imagem e as informações */
-        text-align: left;
-        /* Alinha o texto à esquerda */
+        margin-left: 24px; /* Espaço entre a imagem e as informações */
+        text-align: left; /* Alinha o texto à esquerda */
     }
 
     .btn {
-        width: 100%;
-        /* O botão ocupa toda a largura na parte inferior do card */
-        margin-top: 24px;
+        width: 100%; /* O botão ocupa toda a largura na parte inferior do card */
+        margin-top: 24px; /* Espaçamento superior do botão */
     }
 }
 
 .avatarContainer {
-    flex-shrink: 0;
-    /* Impede que a imagem seja redimensionada */
+    flex-shrink: 0; /* Impede que a imagem seja redimensionada */
 }
 
 .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 120px; /* Largura da imagem do avatar */
+    height: 120px; /* Altura da imagem do avatar */
+    border-radius: 50%; /* Faz a imagem ser circular */
+    object-fit: cover; /* Cobre a área do avatar sem distorção */
 }
 
 .infoContainer {
-    flex: 1;
-    margin-bottom: 16px;
+    flex: 1; /* Permite que este container cresça e ocupe o espaço restante */
+    margin-bottom: 16px; /* Espaçamento inferior do container de informações */
 }
 
 .nome {
-    font-size: 1.75rem;
-    margin-bottom: 8px;
+    font-size: 1.75rem; /* Tamanho da fonte do nome */
+    margin-bottom: 8px; /* Espaçamento inferior do nome */
 }
 
 .card p {
-    margin: 4px 0;
-    font-size: 1rem;
+    margin: 4px 0; /* Margem para parágrafos dentro do card */
+    font-size: 1rem; /* Tamanho da fonte padrão para parágrafos */
 }
 
 strong {
-    font-weight: bold;
+    font-weight: bold; /* Define o texto em negrito */
 }
 
 .btnContainer {
-    width: 30%;
-    margin: auto auto;
-    margin-top: 16px;
+    width: 30%; /* Largura do container do botão */
+    margin: auto; /* Centraliza o botão horizontalmente */
+    margin-top: 16px; /* Espaçamento superior do container do botão */
 }
 
-
 .btn {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    width: 100%;
-    /* O botão ocupa toda a largura disponível */
-    padding: 15px 25px;
-    background-color: var(--cinzaAzulado);
-    /* Cor do botão */
-    font-size: 18px;
-    color: var(--amareloClaro);
-    /* Cor do texto do botão */
-    border: 3px solid var(--amareloClaro);
-    border-radius: 27px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 16px;
-    text-align: center;
-    /* Centraliza o texto do botão */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* Conjunto de fontes para o botão */
+    width: 100%; /* O botão ocupa toda a largura disponível */
+    padding: 15px 25px; /* Espaçamento interno do botão */
+    background-color: var(--cinzaAzulado); /* Cor de fundo do botão */
+    font-size: 18px; /* Tamanho da fonte do botão */
+    color: var(--amareloClaro); /* Cor do texto do botão */
+    border: 3px solid var(--amareloClaro); /* Borda do botão com cor clara */
+    border-radius: 27px; /* Cantos arredondados do botão */
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+    transition: background-color 0.3s ease; /* Transição suave para a cor de fundo ao passar o mouse */
+    margin-top: 16px; /* Espaçamento superior do botão */
+    text-align: center; /* Centraliza o texto do botão */
 }
 
 .btn:hover {
-    background-color: var(--amareloEscuro);
-    /* Cor de fundo ao passar o mouse */
+    background-color: var(--amareloEscuro); /* Cor de fundo ao passar o mouse */
 }

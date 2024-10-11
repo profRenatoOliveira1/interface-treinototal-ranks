@@ -1,4 +1,5 @@
 :root {
+    /* Variáveis de cores para facilitar a manutenção e reutilização */
     --amareloClaro: #ffeba7;
     --cinzaEscuro: #212529;
     --cinzaAzulado: #343A40;
@@ -9,96 +10,150 @@
     --preto: #000000;
 }
 
+/* Container principal da página */
+.divConteiner {
+    display: flex;
+    /* Exibe os itens em linha */
+    width: 75%;
+    /* Define a largura do container */
+    align-items: center;
+    /* Centraliza verticalmente os itens */
+    justify-content: center;
+    /* Centraliza horizontalmente os itens */
+}
+
+/* Container específico para o conteúdo de login */
 .containerLogin {
     display: flex;
+    /* Exibe os itens em linha */
     align-items: center;
+    /* Centraliza verticalmente os itens */
     justify-content: center;
-    height: 100vh;
-    padding: 20px;
+    /* Centraliza horizontalmente os itens */
 }
 
+/* Estilos para o formulário de login */
 .formLogin {
-    background-color: var(--cinzaAzulado);
-    border-radius: 10px;
-    padding: 40px;
     display: flex;
+    /* Exibe os itens em coluna */
     flex-direction: column;
+    /* Alinha os itens em uma coluna */
     align-items: center;
-    width: 100%;
-    max-width: 500px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-}
-
-.h1 {
-    text-align: center;
-    color: var(--amareloClaro);
-    font-family: "Archivo Black", sans-serif;
-    font-size: 2rem;
-    margin-bottom: 20px;
-}
-
-.divConteiner {
-    width: 100%;
-    margin-bottom: 15px;
-}
-
-.input {
-    background-color: var(--amareloClaro) !important;
-    color: var(--preto) !important;
-    font-size: 1rem;
-    border-radius: 10px;
-    padding: 15px;
-    width: 100%;
-    border: none;
-    outline: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-.input:focus {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.buttonLogin {
-    width: 100%;
+    /* Centraliza os itens horizontalmente */
+    justify-content: center;
+    /* Centraliza os itens verticalmente */
+    height: 80vh;
+    /* Define a altura do formulário em 80% da altura da tela */
+    width: 85vh;
+    /* Define a largura do formulário */
     background-color: var(--cinzaAzulado);
-    font-size: 1.2rem;
-    padding: 15px;
-    color: var(--amareloClaro);
-    border: 2px solid var(--amareloClaro);
+    /* Cor de fundo do formulário */
+    padding: 20px;
+    /* Adiciona espaçamento interno */
     border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    /* Arredonda os cantos do formulário */
 }
 
+/* Estilos para os campos de entrada de login */
+.inpuLogin {
+    width: 100%;
+    /* Largura total do campo de entrada */
+    max-width: 300px;
+    /* Largura máxima de 300px */
+    background-color: var(--cinzaAzulado);
+    /* Cor de fundo do campo */
+    padding: 10px;
+    /* Preenchimento interno */
+    margin: 10px;
+    /* Margem externa */
+    border: 1px solid #ccc;
+    /* Borda ao redor do campo */
+    border-radius: 5px;
+    /* Arredonda os cantos */
+    font-size: 16px;
+    /* Tamanho da fonte */
+    color: var(--branco);
+    /* Cor do texto */
+}
+
+/* Estilo do placeholder no campo de entrada */
+.inpuLogin::-webkit-input-placeholder {
+    color: var(--branco);
+    /* Cor do placeholder */
+}
+
+/* Estilos para o botão de login */
+.buttonLogin {
+    display: inline-block;
+    /* Exibe como um bloco inline */
+    width: 35%;
+    /* Define a largura do botão */
+    padding: 15px 25px;
+    /* Preenchimento interno do botão */
+    background-color: var(--cinzaAzulado);
+    /* Cor de fundo do botão */
+    font-size: 18px;
+    /* Tamanho da fonte do botão */
+    color: var(--amareloClaro);
+    /* Cor do texto */
+    border: 3px solid var(--amareloClaro);
+    /* Cor da borda */
+    border-radius: 27px;
+    /* Raio de arredondamento da borda */
+    cursor: pointer;
+    /* Cursor de ponteiro ao passar sobre o botão */
+    transition: background-color 0.3s ease;
+    /* Transição suave ao mudar a cor de fundo */
+    margin: 2%;
+    /* Margem ao redor do botão */
+    font-family: "Archivo Black", sans-serif;
+    /* Fonte personalizada */
+    font-weight: bold;
+    /* Texto em negrito */
+}
+
+/* Estilos para o efeito de hover no botão */
 .buttonLogin:hover {
     background-color: var(--amareloEscuro);
+    /* Cor de fundo ao passar o mouse sobre o botão */
 }
 
+/* Estilos para o título h1 */
+.h1 {
+    text-align: center;
+    /* Centraliza o texto */
+    color: var(--amareloClaro);
+    /* Define a cor do texto */
+    font-family: "Archivo Black", sans-serif;
+    /* Fonte personalizada */
+    font-weight: 400;
+    /* Espessura da fonte */
+    font-style: normal;
+    /* Estilo normal da fonte */
+    margin: 5%;
+    /* Margem ao redor do título */
+}
+
+/* Estilos para o parágrafo */
+.p {
+    text-align: center;
+    /* Centraliza o texto */
+    color: var(--amareloClaro);
+    /* Define a cor do texto */
+    font-family: "Archivo Black", sans-serif;
+    /* Fonte personalizada */
+    font-weight: bold;
+    /* Texto em negrito */
+    font-size: 150%;
+    /* Aumenta o tamanho da fonte */
+    margin: 2% 0;
+    /* Margem acima e abaixo do parágrafo */
+}
+
+/* Estilos para a mensagem de erro */
 .errorMessage {
+    margin-top: 3%;
+    /* Margem superior */
     color: red;
-    margin-top: 15px;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .formLogin {
-        width: 90%;
-        padding: 20px;
-    }
-
-    .h1 {
-        font-size: 1.5rem;
-    }
-
-    .input {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .buttonLogin {
-        font-size: 1rem;
-        padding: 10px;
-    }
+    /* Cor da mensagem de erro */
 }

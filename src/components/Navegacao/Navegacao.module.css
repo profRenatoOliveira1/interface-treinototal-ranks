@@ -1,17 +1,17 @@
 :root {
-  --amareloClaro: #ffeba7;
-  --cinzaEscuro: #212529;
-  --cinzaAzulado: #343A40;
-  --cinzaAvermelhado: #333;
-  --branco: #FFFFFF;
-  --cinzaClaro: #ccc;
-  --amareloEscuro: #b39f72;
-  --preto: #000000;
+  --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
+  --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
+  --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+  --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+  --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
+  --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
+  --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+  --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
 }
 
 /* Define o estilo para a barra de navegação */
 .CtnNavbar {
-  background-color: var(--cinzaEscuro);
+  background-color: var(--cinzaEscuro) !important;
   /* Um tom de cinza escuro */
   padding: 10px;
   /* Adiciona algum padding */
@@ -21,65 +21,63 @@
   color: var(--amareloClaro);
 }
 
-/* Define o estilo para o texto e links na barra de navegação */
-
-
 /* Define o estilo para a imagem do logo */
 .logoImage {
-  width: 70px;
+  display: flex;
+  width: 80px;
   /* Aumenta o tamanho da imagem */
-  height: 70px;
+  height: 80px;
   /* Aumenta o tamanho da imagem */
   border-radius: 50%;
   /* Torna a imagem circular */
-  margin-right: 10px;
-  /* Espaçamento entre a imagem e o texto */
-}
-
-/* Define o estilo para os links de navegação */
-.navbar-nav .nav-link,
-.navbar-nav .dropdown-item,
-.navbar-brand {
-  color: var(--amareloClaro);
-  /* Cor #ffeba7 para os links de navegação */
-  font-size: 16px;
-  /* Define o tamanho da fonte para os links e itens do dropdown */
+  justify-content: start;
 }
 
 /* Define o estilo para os links de navegação ao passar o mouse */
-
-.navbar,
-a {
-  display: flex;
+.navbar, a  {
   align-items: center;
   color: var(--amareloClaro) !important;
   /* Cor do texto */
+  border-radius: 10px;
+  /* Personalização da borda do texto */
   text-decoration: none;
-  justify-content: center;
   /* Remove sublinhado dos links */
   font-size: 16px;
   /* Define o tamanho da fonte para todos os textos na barra de navegação */
   font-family: "Archivo Black", sans-serif;
   /* Define a fonte */
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: 2px;
+  /* Define um espçamento entre os itens*/
 }
 
 .navDropdown {
   color: var(--cinzaAzulado) !important;
+  background-color: var(--azulEscuro) !important;
+  align-items: center;
 }
 
-/* styles.css ou qualquer outro nome do seu arquivo CSS */
-.navbar-toggler {
-  color: white;
+.navbarHome {
+  color: var(--azulEscuro) !important;
   /* Cor do texto */
-  background-color: white;
-  /* Cor de fundo */
-  border: none;
-  /* Se você quiser remover a borda */
+  border-radius: 10px;
+  background-color: var(--amareloClaro) !important;
+  /* Personalização da borda do texto */
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 3px;
+  /* Define um espçamento entre os itens*/
 }
-.botao{
+
+  /* Se você quiser remover a borda */
+.loginbutton {
   color:var(--amareloClaro)!important;
   background-color: var(--cinzaAvermelhado)!important;
   border-color: var(--amareloClaro)!important;
+  /* Define as cores do botão de Login*/
+  font-weight: bold !important;
+  /* Define o texto como Negrito*/
 }
 
-
+/* styles.css ou qualquer outro nome do seu arquivo CSS */

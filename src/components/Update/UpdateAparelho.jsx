@@ -85,14 +85,23 @@ function UpdateAparelho() {
     }
 
     /**
-        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
+        * Cria um novo objeto de data para representar a data atual.
         * 
-        * - Cria um novo objeto `Date` com a data e hora atuais.
-        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
+        * - A função `new Date()` obtém a data e hora atuais no momento de execução.
         * 
-        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
-    */
+        * @constant {Date} hoje - Objeto de data que representa a data de hoje.
+        */
     const hoje = new Date();
+
+    /**
+     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
+     * (dia, mês e ano) seja considerada nas operações subsequentes.
+     * 
+     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
+     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
+     * 
+     * @method setHours
+     */
     hoje.setHours(0, 0, 0, 0);
 
     return (
@@ -143,4 +152,6 @@ function UpdateAparelho() {
         </>
     );
 }
-export default UpdateAparelho;//exporta o componente UpdateAparelho para ser utilizado em outras partes da aplicação
+
+//exporta o componente UpdateAparelho para ser utilizado em outras partes da aplicação
+export default UpdateAparelho;

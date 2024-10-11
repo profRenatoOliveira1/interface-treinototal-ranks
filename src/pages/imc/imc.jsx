@@ -1,6 +1,9 @@
-import React from 'react';  // Importa o React para permitir o uso de JSX
-import Formimc from '../../components/Formimc/Formimc';  // Importa o componente Formimc
-import Navegacao from '../../components/Navegacao/Navegacao';  // Importa o componente Navegacao
+import React from 'react';
+// Importa o React para permitir o uso de JSX
+import Formimc from '../../components/Formimc/Formimc'; 
+// Importa o componente Formimc
+import Navegacao from '../../components/Navegacao/Navegacao';
+// Importa o componente Navegacao
 
 function indiceimc() {  // Define um componente funcional chamado indiceimc
     return (
@@ -11,4 +14,5 @@ function indiceimc() {  // Define um componente funcional chamado indiceimc
     );
 }
 
-export default indiceimc;//exporta o componente Indiceimc para ser usado em outras partes da aplicação.
+//exporta o componente Indiceimc para ser usado em outras partes da aplicação.
+export default indiceimc;

@@ -1,16 +1,32 @@
+// Importa o hook 'useLocation' do react-router-dom para acessar o estado atual da navegação
 import { useLocation } from "react-router-dom";
+
+// Importa o React e o hook 'useState' para definir e gerenciar estados no componente
 import React from 'react';
 import { useState } from "react";
+
+// Importa os estilos específicos do componente
 import styles from '../styles/StyleCard.module.css';
+
+// Importa uma imagem padrão para o avatar
 import FotoPadrao from '../../assets/FotoPadrao.png';
+
+// Importa o hook 'useNavigate' do react-router-dom para navegação programática
 import { useNavigate } from "react-router-dom";
+
+// Importa funções utilitárias para formatação de dados
 import { formatarData, formatarCPF, formatadorDataCard } from "../../../util/Utilitarios";
 
+// Definição do componente funcional 'CardProfessor'
 function CardProfessor() {
+    // Inicializa o hook 'useNavigate' para navegação
     const navigate = useNavigate();
+
+    // Inicializa o hook 'useLocation' para acessar o objeto 'objProfessor' passado como estado
     const location = useLocation();
     const objProfessor = location.state.objeto;
 
+    // Define o estado 'professor' com os dados do objeto 'objProfessor', formatando datas e CPF
     const [professor] = useState({
         nome: objProfessor.nome,
         cpf: objProfessor.cpf,
@@ -23,18 +39,24 @@ function CardProfessor() {
         especialidade: objProfessor.especialidade
     });
 
+    // Função para voltar à página de listagem de professores
     const voltar = () => {
         navigate(`/Listagem/Professor`, { replace: true });
-    }
+    };
+
+    // Função para formatar o telefone no padrão '(XX) XXXXX-XXXX'
     const formatarTelefone = (telefone) => telefone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
 
     return (
         <>
+            {/* Card contendo as informações do professor */}
             <div className={styles.card}>
                 <div className={styles.avatarContainer}>
+                    {/* Exibe a imagem do professor ou uma imagem padrão */}
                     <img src={FotoPadrao} alt="Foto do aluno" className={styles.avatar} />
                 </div>
                 <div className={styles.infoContainer}>
+                    {/* Exibe as informações formatadas do professor */}
                     <h2 className={styles.nome}>{professor.nome}</h2>
                     <p><strong>CPF:</strong> {formatarCPF(professor.cpf)}</p>
                     <p><strong>Data de Nascimento:</strong> {formatadorDataCard(professor.dataNascimento)}</p>
@@ -46,6 +68,7 @@ function CardProfessor() {
                     <p><strong>Especialidade:</strong> {professor.especialidade}</p>
                 </div>
             </div>
+            {/* Botão para voltar à página anterior */}
             <div className={styles.btnContainer}>
                 <button className={styles.btn} type="button" onClick={voltar}>
                     Voltar
@@ -55,4 +78,5 @@ function CardProfessor() {
     );
 }
 
+// Exporta o componente 'CardProfessor' para ser utilizado em outras partes do código
 export default CardProfessor;

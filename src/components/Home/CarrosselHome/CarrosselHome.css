@@ -1,0 +1,32 @@
+/* Define variáveis de cor para reutilização */
+:root {
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --cinzaAvermelhado: #333;
+    --branco: #FFFFFF;
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
+}
+
+/* Estilo para a imagem de fundo */
+.div-carrossel {
+    height: 70% !important;
+    /* Define a altura da imagem como 70% do elemento pai */
+    width: 80% !important;
+    /* Define a largura da imagem como 80% do elemento pai */
+    margin: 0% auto;
+    /* Aliha o Carousel no centro horizontalmente*/
+    border: 5px solid var(--cinzaEscuro);
+    /* Define uma borda de 5px com estilo sólido, utilizando a cor cinza escuro definida na variável global (--cinzaEscuro) */
+    margin-bottom: 5%;
+    /* Define um espaçamento de 5% abaixo do elemento, criando uma margem inferior proporcional ao tamanho da tela */
+}
+
+.th {
+    font-family: "Archivo Black", sans-serif;
+    /* Fonte */
+    font-weight: bold;
+    /* Formato da fonte */
+}

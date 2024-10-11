@@ -1,4 +1,5 @@
 :root {
+  /* Definição de variáveis de cor */
   --amareloClaro: rgb(255, 235, 167);
   --cinzaEscuro: #212529;
   --cinzaAzulado: #343A40;
@@ -9,253 +10,270 @@
   --preto: #000000;
 }
 
+/* Estilos gerais para o botão */
 .btn {
   display: inline-block;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  /* Exibe como um elemento em linha, mas com comportamento de bloco */
+  font-family: system-ui, sans-serif;
+  /* Define a família da fonte para o botão */
   width: 15%;
-  /* Exibe como bloco */
+  /* Largura de 15% */
   padding: 15px 15px;
-  /* Preenchimento */
-  background-color: var(--cinzaAzulado);
-  /* Cor de fundo */
+  /* Preenchimento interno do botão */
+  background-color: var(--amareloClaro);
+  /* Cor de fundo cinza azulado */
   font-size: 18px;
-  color: var(--amareloClaro);
-  border: 3px solid var(--amareloClaro);
-  /* Sem borda */
-  border-radius: 27px;
-  /* Raio da borda */
+  /* Tamanho da fonte de 18px */
+  color: var(--cinzaAzulado) !important;
+  /* Cor do texto */
+  border: 1px solid var(--amareloClaro);
+  /* Borda amarela clara */
+  border-radius: 10px;
+  /* Borda arredondada */
   cursor: pointer;
-  /* Cursor */
+  /* Define o cursor como pointer ao passar sobre o botão */
   transition: background-color 0.3s ease;
-  /* Transição suave */
+  /* Transição suave na mudança de cor de fundo */
+  font-weight: bold;
 }
 
+/* Estilo do título da página */
 .titulo {
   text-align: center;
-  /* Centraliza o texto do título */
+  /* Centraliza o texto */
   color: var(--amareloClaro);
   /* Define a cor do texto como amarelo claro */
   font-family: "Archivo Black", sans-serif;
   /* Define a fonte do título */
   font-weight: 400;
-  /* Define o peso da fonte como normal */
+  /* Peso da fonte normal */
   font-style: normal;
-  /* Define o estilo da fonte como normal */
+  /* Estilo da fonte normal */
   margin: 2% 0;
-  /* Define a margem superior e inferior do título como 2% */
+  /* Margem superior e inferior de 2% */
 }
 
+/* Estilos para o corpo da tabela */
 .tabelaCorpo {
   color: var(--preto);
-  /* Define a cor do texto como preto */
+  /* Cor do texto como preto */
   text-align: center;
-  /* Centraliza o texto nas células */
+  /* Centraliza o texto */
   vertical-align: middle;
-  /* Alinha o conteúdo verticalmente ao meio */
+  /* Alinha o conteúdo verticalmente no centro */
   border: 1px solid var(--branco);
-  /* Define uma borda branca ao redor das células */
+  /* Borda branca ao redor das células */
   background-color: var(--branco);
-  /* Define a cor de fundo das células como branco */
+  /* Cor de fundo das células como branco */
 }
 
+/* Estilos para o contêiner da tabela */
 .cntTb {
   margin-top: 20px;
-  /* Define a margem superior como 20px */
+  /* Margem superior de 20px */
   margin-bottom: 20px;
-  /* Define a margem inferior como 20px */
+  /* Margem inferior de 20px */
+  margin-left: 6%;
+  /* Margem inferior de 20px */
+
   overflow-x: auto;
-  /* Adiciona rolagem horizontal se necessário */
+  /* Habilita rolagem horizontal, se necessário */
   overflow-y: auto;
-  /* Adiciona rolagem vertical se necessário */
+  /* Habilita rolagem vertical, se necessário */
   max-height: calc(100vh - 140px);
-  /* Define a altura máxima como a altura da tela menos 140px */
-  width: 100%;
-  /* Define a largura como 100% */
+  /* Altura máxima limitada pela altura da janela menos 140px */
+  width: 90%;
+  /* Largura total da tabela */
 }
 
+/* Estilos gerais para a tabela */
 .table {
   width: 100%;
-  /* Define a largura da tabela como 100% */
+  /* Largura da tabela como 100% */
   border-collapse: collapse;
-  /* Remove os espaços entre as bordas das células */
+  /* Remove os espaços entre as células */
   margin-bottom: 20px;
-  /* Define uma margem inferior de 20px */
+  /* Margem inferior de 20px */
 }
 
+/* Estilos para as células da tabela */
 .table th,
 .table td {
   padding: 20px;
-  /* Define o preenchimento das células como 20px */
+  /* Preenchimento interno de 20px */
   text-align: center;
   /* Centraliza o texto nas células */
   border: 1px solid var(--cinzaClaro);
-  /* Define uma borda cinza clara ao redor das células */
+  /* Borda cinza clara ao redor das células */
   white-space: nowrap;
-  /* Evita que o texto seja quebrado em várias linhas */
+  /* Evita quebra de linha no texto das células */
 }
 
+/* Estilos para a paginação */
 .pagination {
   display: flex;
-  /* Exibe os elementos de paginação em um layout flexível */
+  /* Exibe os elementos em um layout flexível */
   justify-content: center;
-  /* Centraliza os elementos de paginação horizontalmente */
+  /* Centraliza horizontalmente */
   align-items: center;
-  /* Alinha os elementos de paginação verticalmente */
+  /* Centraliza verticalmente */
   margin-top: 20px;
-  /* Define a margem superior como 20px */
+  /* Margem superior de 20px */
 }
 
+/* Estilo de texto genérico */
 span {
   color: var(--amareloClaro);
+  /* Cor do texto como amarelo claro */
   padding: 0 10px;
+  /* Preenchimento de 10px nos lados */
 }
 
+/* Estilo das células da tabela */
 td {
   color: var(--amareloClaro) !important;
-  /* Define a cor do texto como amarelo claro, com alta prioridade */
+  /* Cor do texto como amarelo claro com prioridade */
   font-size: 1.2rem !important;
-  /* Define o tamanho da fonte como 1.2rem, com alta prioridade */
+  /* Tamanho da fonte de 1.2rem com prioridade */
   background-color: var(--cinzaAzulado) !important;
-  /* Define a cor de fundo como cinza azulado, com alta prioridade */
+  /* Cor de fundo como cinza azulado com prioridade */
   margin: 0;
-  /* Remove a margem das células */
-  border: 2px solid var(--amareloClaro) !important;
-  /* Define uma borda amarela clara, com alta prioridade */
+  /* Remove as margens */
+  border: 3px solid var(--amareloClaro) !important;
+  /* Borda amarela clara com prioridade */
 }
 
+/* Estilos para o cabeçalho da tabela */
 .tabelaHeader,
 th {
   background-color: #c2b382 !important;
-  /* Define a cor de fundo do cabeçalho como cinza azulado, com alta prioridade */
+  /* Cor de fundo do cabeçalho */
   color: var(--preto) !important;
-  /* Define a cor do texto como branco, com alta prioridade */
+  /* Cor do texto no cabeçalho */
   text-align: center;
-  /* Centraliza o texto nas células do cabeçalho */
+  /* Centraliza o texto no cabeçalho */
   vertical-align: middle;
-  /* Alinha o conteúdo verticalmente ao meio */
+  /* Alinha o conteúdo verticalmente */
   position: sticky;
-  /* Mantém o cabeçalho fixo no topo ao rolar a tabela */
+  /* Mantém o cabeçalho fixo durante a rolagem */
   top: 0;
-  /* Define o cabeçalho fixo no topo da tabela */
+  /* Fixa o cabeçalho no topo da tabela */
   margin: 0;
-  /* Remove a margem do cabeçalho */
+  /* Remove as margens */
   z-index: 1;
-  color: var(--cinzaEscuro) !important;
+  /* Define uma prioridade de camada para o cabeçalho */
   border: 3px solid var(--preto) !important;
-  /* Define a prioridade da camada para manter o cabeçalho acima das outras células */
+  /* Define a borda preta com prioridade */
 }
 
+/* Estilo do cabeçalho da tabela e da tabela geral */
 .table thead,
 table {
   color: var(--amareloClaro) !important;
-  /* Define a cor do texto do cabeçalho como amarelo claro, com alta prioridade */
+  /* Cor do texto no cabeçalho e tabela como amarelo claro */
   font-size: 1.2rem !important;
-  /* Define o tamanho da fonte como 1.2rem, com alta prioridade */
+  /* Tamanho da fonte de 1.2rem com prioridade */
 }
 
+/* Estilos para o campo de busca */
 .searchContainer {
   display: flex;
+  /* Exibe o contêiner de busca em um layout flexível */
   justify-content: center;
+  /* Centraliza o campo de busca horizontalmente */
   margin: 20px 0;
-  /* Ajuste o valor conforme necessário para espaçamento */
+  /* Margem superior e inferior de 20px */
 }
 
+/* Estilos para o input de busca */
 .searchInput {
   border: 1px solid #ccc;
+  /* Borda cinza */
   border-radius: 4px;
+  /* Borda arredondada */
   padding: 6px 12px;
+  /* Preenchimento interno do campo */
   font-size: 16px;
+  /* Tamanho da fonte de 16px */
   width: 15%;
-  padding: 15px 15px;
+  /* Largura de 15% */
   background-color: var(--branco);
+  /* Cor de fundo branca */
   color: var(--preto);
+  /* Cor do texto preta */
 }
 
+/* Estilos do placeholder */
 .searchInput::placeholder {
   color: var(--preto);
-
+  /* Cor do placeholder */
+  font-weight: bold;
 }
 
+/* Ícone de busca */
 .searchIcon {
   cursor: pointer;
+  /* Ícone de busca com cursor de pointer */
   color: #333;
+  /* Cor do ícone */
   position: absolute;
+  /* Define posição absoluta */
   right: 10px;
+  /* Distância à direita de 10px */
   top: 50%;
+  /* Posiciona verticalmente no meio */
   transform: translateY(-50%);
+  /* Ajuste para centralização vertical */
 }
 
-[type=button]:not(:disabled),
-[type=reset]:not(:disabled),
-[type=submit]:not(:disabled),
-button:not(:disabled) {
-  color: var(--amareloClaro);
-  background-color: transparent;
-}
-
-[type=button],
-[type=reset],
-[type=submit],
-button {
-  color: var(--amareloEscuro);
-  background-color: transparent;
-  
-}
-
+/* Media queries para telas menores */
 @media (max-width: 768px) {
 
-  /* Aplica estilos específicos para telas com largura máxima de 768px */
+  /* Ajustes para a tabela */
   .table th,
   .table td {
     font-size: 14px;
-    /* Reduz o tamanho da fonte das células para 14px */
+    /* Tamanho da fonte reduzido para 14px */
   }
 
+  /* Ajustes para a paginação */
   .pagination button {
     padding: 6px 12px;
-    /* Define o preenchimento dos botões de paginação para 6px 12px */
+    /* Preenchimento menor nos botões de paginação */
+  
   }
 
   .pagination input {
     width: 60px;
-    /* Define a largura dos campos de entrada de paginação para 60px */
+    /* Largura do campo de input para paginação */
     padding: 6px;
-    /* Define o preenchimento dos campos de entrada de paginação para 6px */
+    /* Preenchimento do campo de input */
   }
 }
 
+/* Estilos para o botão de cadastro */
 .btnCadastro {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: system-ui, sans-serif;
+  /* Define a fonte */
   display: inline-block;
   width: 35%;
-  /* Exibe como bloco */
+  /* Define a largura do botão */
   padding: 15px 25px;
-  /* Preenchimento */
+  /* Preenchimento interno do botão */
   background-color: var(--cinzaAzulado);
-  /* Cor de fundo */
+  /* Cor de fundo cinza azulado */
   font-size: 18px;
+  /* Tamanho da fonte */
   color: var(--amareloClaro);
+  /* Cor do texto */
   border: 3px solid var(--amareloClaro);
-  /* Sem borda */
+  /* Borda amarela clara */
   border-radius: 27px;
-  /* Raio da borda */
+  /* Bordas arredondadas */
   cursor: pointer;
-  /* Cursor */
+  /* Define o cursor como pointer */
   transition: background-color 0.3s ease;
-  /* Transição suave */
+  /* Transição suave de cor de fundo */
 }
 
-/* Controla a posição e tamanho de determinados botões*/
-@media (max-width: 768px) {
-
-  .btn,
-  .searchInput {
-    width: 60%;
-  }
-
-  .btnCadastro,
-  .searchInput {
-    width: 60%;
-    margin: 5%;
-  }
-}
+/* Estilos responsivos para o botão e campo de busca */

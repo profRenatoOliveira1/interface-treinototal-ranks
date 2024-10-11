@@ -18,34 +18,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 */
 function UpdateProfessor() {
     const navigate = useNavigate();
-    // usado para pegar os dados da página anterior (as informações do usuário que foram passadas pela componente ListAlunos)
     const location = useLocation();
-    // recupera as informações que vieram da página anterior e armazena na variável objProfessor
     const objProfessor = location.state.objeto;
 
-    /**
-        * Define o estado inicial do objeto `professor` com base nos dados do objeto `objProfessor`,
-        * utilizando o hook `useState`.
-        * 
-        * - Cada campo do objeto `professor` é preenchido com os valores correspondentes de `objProfessor`.
-        * - As datas de nascimento e contratação são formatadas utilizando a função `formatarData`.
-        * 
-        * @constant {Object} professor - O estado que contém as informações do professor.
-        * @function setProfessor - Função para atualizar o estado `professor`.
-        * 
-        * @param {Object} objProfessor - Objeto contendo os dados iniciais do professor, que são:
-        * @param {number} objProfessor.id_professor - Identificador do professor.
-        * @param {string} objProfessor.nome - Nome do professor.
-        * @param {string} objProfessor.cpf - CPF do professor.
-        * @param {string} objProfessor.data_nascimento - Data de nascimento do professor.
-        * @param {string} objProfessor.celular - Número de celular do professor.
-        * @param {string} objProfessor.endereco - Endereço do professor.
-        * @param {string} objProfessor.email - Endereço de email do professor.
-        * @param {string} objProfessor.senha - Senha do professor.
-        * @param {string} objProfessor.data_contratacao - Data de contratação do professor.
-        * @param {string} objProfessor.formacao - Formação acadêmica do professor.
-        * @param {string} objProfessor.especialidade - Especialidade do professor.
-    */
+    // Define o estado inicial do objeto `professor` com base nos dados do objeto `objProfessor`,
+    // Utilizando `America/Sao_Paulo` como fuso horário para garantir o formato correto.
     const [professor, setProfessor] = useState({
         idProfessor: objProfessor.id_professor,
         nome: objProfessor.nome,
@@ -54,20 +31,12 @@ function UpdateProfessor() {
         celular: objProfessor.celular,
         endereco: objProfessor.endereco,
         email: objProfessor.email,
-        // senha: objProfessor.senha,
         dataContratacao: formatarData(new Date(objProfessor.data_contratacao)),
         formacao: objProfessor.formacao,
         especialidade: objProfessor.especialidade
     })
 
-    /**
-        * Atualiza o estado do objeto `professor` com base nas alterações feitas em um campo de formulário.
-        * 
-        * @param {Object} e - O evento disparado pela mudança no campo de input.
-        * @param {HTMLInputElement} e.target - O elemento de input que disparou o evento.
-        * @param {string} e.target.name - O nome do campo de input (usado como chave no estado).
-        * @param {string} e.target.value - O valor atual do campo de input (usado para atualizar o valor no estado).
-    */
+    // Função para lidar com as mudanças nos campos de input e atualizar o estado do objeto professor.
     const handleChange = (e) => {
         const { name, value } = e.target;
         setProfessor(prevState => ({
@@ -76,42 +45,22 @@ function UpdateProfessor() {
         }));
     }
 
-    /**
-        * Lida com o envio do formulário de forma assíncrona, evitando o recarregamento da página,
-        * limpa os campos CPF e celular, atualiza os dados do professor e redireciona o usuário após a atualização.
-        * 
-        * @async
-        * @param {Object} e - O evento de submissão do formulário.
-        * @param {EventTarget} e.target - O elemento que disparou o evento.
-        * 
-        * @throws {Error} Lança um erro se a requisição para atualizar o professor falhar.
-    */
+    // Função assíncrona para lidar com o envio do formulário e atualizar os dados do professor.
     const handleSubmit = async (e) => {
-        // evita o recarregamento da página
         e.preventDefault();
         const cleanCPF = professor.cpf.replace(/\D/g, '');
         const cleanCelular = professor.celular.replace(/\D/g, '');
         const cleanData = { ...professor, cpf: cleanCPF, celular: cleanCelular };
 
-        // chama a função atualizarAluno do arquivo AlunoAPIService
         if (await ProfessoresRequests.atualizarProfessor(cleanData)) {
-            // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`O professor ${professor.nome} foi atualizado com sucesso.`);
-            // redireciona o usuário para a página de listagem de alunos
             navigate(`/Listagem/Professor`, { replace: true });
         } else {
-            // caso a funçao atualizarAluno retorne algum erro, é exibido um log
-            console.log('Erro ao atualizar dados do aluno');
+            console.log('Erro ao atualizar dados do professor');
         }
     }
-    /**
-        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
-        * 
-        * - Cria um novo objeto `Date` com a data e hora atuais.
-        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
-        * 
-        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
-    */
+
+    // Definição da data de hoje, configurada para o início do dia.
     const hoje = new Date();
     hoje.setHours(0, 0, 0, 0);
 
@@ -265,4 +214,5 @@ function UpdateProfessor() {
     );
 }
 
-export default UpdateProfessor;//exporta o componente UpdateProfessor para ser utilizado em outras partes da aplicação
+// Exporta o componente UpdateProfessor para ser utilizado em outras partes da aplicação.
+export default UpdateProfessor;

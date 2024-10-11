@@ -78,7 +78,7 @@ class ExerciciosRequests {
     async atualizarExercicio(exercicio) {
         try {
             const token = this.getAuthToken();
-            // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
+            // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do exercício
 
             const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?idExercicio=${exercicio.id_exercicio}`, {
                 // Informa o verbo a ser acessado

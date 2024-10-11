@@ -1,71 +1,100 @@
-import React, { useState, useEffect } from 'react';
-import styles from '../styles/StyleListagem.module.css';
-import AparelhoRequests from '../../fetch/AparelhosRequests';
-import { FaTrash, FaRegEdit } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
-import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md";
+import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários
+import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
+import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa funções para requisições de aparelhos
+import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importa ícones para deletar e editar
+import { useNavigate } from 'react-router-dom'; // Importa hook para navegação
+import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md"; // Importa ícones para navegação entre páginas
 
 /**
  * Componente funcional para listar aparelhos
  * @returns {JSX.Element} Componente JSX para listagem de aparelhos
  */
 function ListarAparelho() {
-    const [aparelhos, setAparelhos] = useState([]);
-    const [filteredAparelhos, setFilteredAparelhos] = useState([]);
-    const [search, setSearch] = useState('');
-    const [paginaAtual, setPaginaAtual] = useState(1);
+    // Hooks de estado para armazenar dados e controle de página
+    const [aparelhos, setAparelhos] = useState([]); // Armazena todos os aparelhos
+    const [filteredAparelhos, setFilteredAparelhos] = useState([]); // Armazena aparelhos filtrados
+    const [search, setSearch] = useState(''); // Armazena texto de busca
+    const [paginaAtual, setPaginaAtual] = useState(1); // Armazena número da página atual
     const itensPorPagina = 5; // Define quantos itens serão exibidos por página
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // Inicializa o hook de navegação
 
+    /**
+     * Efeito para buscar aparelhos quando o componente é montado
+     * Executa apenas uma vez ao montar o componente
+     */
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhos = await AparelhoRequests.listarAparelho();
-                setAparelhos(aparelhos);
-                setFilteredAparelhos(aparelhos);
+                const aparelhos = await AparelhoRequests.listarAparelho(); // Requisição para listar aparelhos
+                setAparelhos(aparelhos); // Atualiza o estado com aparelhos recebidos
+                setFilteredAparelhos(aparelhos); // Inicialmente, não filtra
             } catch (error) {
-                console.error('Erro ao buscar aparelhos: ', error);
+                console.error('Erro ao buscar aparelhos: ', error); // Trata erro na requisição
             }
         };
-        fetchAparelhos();
-    }, []);
+        fetchAparelhos(); // Chama a função para buscar aparelhos
+    }, []); // Dependência vazia, roda apenas uma vez ao montar o componente
 
+    /**
+     * Efeito para filtrar aparelhos com base na busca
+     * Executa sempre que o valor de 'search' ou 'aparelhos' mudar
+     */
     useEffect(() => {
         if (search === '') {
-            setFilteredAparelhos(aparelhos);
+            setFilteredAparelhos(aparelhos); // Se não houver busca, exibe todos
         } else {
+            // Filtra aparelhos pelo nome
             const filtered = aparelhos.filter(aparelho =>
                 aparelho.nome_aparelho.toLowerCase().includes(search.toLowerCase())
             );
-            setFilteredAparelhos(filtered);
+            setFilteredAparelhos(filtered); // Atualiza a lista filtrada
         }
-    }, [search, aparelhos]);
+    }, [search, aparelhos]); // Dependências para re-executar o efeito
 
-    const deletarAparelho = (aparelho) => {
-        const deletar = window.confirm(`Deseja mesmo remover o registro ${aparelho.nome_aparelho}? Essa operação é irreversível!`);
-
-        if (deletar) {
-            if (AparelhoRequests.deletarAparelho(aparelho.id_aparelho)) {
-                window.alert(`Registro ${aparelho.nome_aparelho} removido com sucesso.`);
-            } else {
-                window.alert(`Falha ao remover ${aparelho.nome_aparelho}.`);
+    /**
+     * Função para deletar um aparelho
+     * @param {Object} aparelho - O objeto do aparelho a ser deletado
+     */
+    const deletarAparelho = async (aparelho) => {
+        const confirmar = window.confirm(`Deseja deletar o Aparelho ${aparelho.nome_aparelho}?`); // Confirmação de exclusão
+        if (confirmar) {
+            try {
+                const sucesso = await AparelhoRequests.deletarAparelho(aparelho.id_aparelho); // Requisição para deletar aparelho
+                if (sucesso) {
+                    // Atualiza a lista de aparelhos após a exclusão
+                    setAparelhos(aparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
+                    setFilteredAparelhos(filteredAparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
+                    window.alert('Aparelho deletado com sucesso'); // Mensagem de sucesso
+                } else {
+                    window.alert('Erro ao deletar Aparelho'); // Mensagem de erro
+                }
+            } catch (error) {
+                window.alert('Erro ao deletar Aparelho'); // Mensagem de erro
+                console.error('Erro ao deletar aparelho: ', error); // Log de erro
             }
-            window.location.reload();
         }
     };
 
+    /**
+     * Função para atualizar um aparelho
+     * @param {Object} aparelho - O objeto do aparelho a ser atualizado
+     */
     const updateAparelho = (aparelho) => {
-        navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true });
+        navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true }); // Navega para a página de atualização
     };
 
-    // Paginação
-    const indiceUltimoItem = paginaAtual * itensPorPagina;
-    const indicePrimeiroItem = indiceUltimoItem - itensPorPagina;
-    const aparelhosPaginados = filteredAparelhos.slice(indicePrimeiroItem, indiceUltimoItem);
-    const totalPaginas = Math.ceil(filteredAparelhos.length / itensPorPagina);
+    // Cálculos para a paginação
+    const indiceUltimoItem = paginaAtual * itensPorPagina; // Índice do último item da página atual
+    const indicePrimeiroItem = indiceUltimoItem - itensPorPagina; // Índice do primeiro item da página atual
+    const aparelhosPaginados = filteredAparelhos.slice(indicePrimeiroItem, indiceUltimoItem); // Aparelhos da página atual
+    const totalPaginas = Math.ceil(filteredAparelhos.length / itensPorPagina); // Total de páginas
 
+    /**
+     * Função para mudar a página
+     * @param {number} novaPagina - O número da nova página a ser exibida
+     */
     const mudarPagina = (novaPagina) => {
-        setPaginaAtual(novaPagina);
+        setPaginaAtual(novaPagina); // Atualiza a página atual
     };
 
     return (
@@ -75,10 +104,10 @@ function ListarAparelho() {
                     <div className={styles.row}>
                         <div className={styles.col}>
                             <div className={styles.section}>
-                                <h1 className={styles.titulo}>Tabela Aparelhos</h1>
+                                <h1 className={styles.titulo}>Tabela Aparelhos</h1> {/* Título da tabela */}
                             </div>
                             <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aparelho" className={styles.btn}>
-                                Novo aparelho
+                                Novo Aparelho {/* Botão para cadastrar novo aparelho */}
                             </a>
                         </div>
                     </div>
@@ -88,65 +117,66 @@ function ListarAparelho() {
             <div className={styles.searchContainer}>
                 <input
                     type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Pesquisar por nome"
-                    className={styles.searchInput}
+                    value={search} // Valor do input de busca
+                    onChange={(e) => setSearch(e.target.value)} // Atualiza o estado de busca
+                    placeholder="Pesquisar" // Texto de placeholder
+                    className={styles.searchInput} // Classe de estilo
                 />
             </div>
 
             <div className={styles.cntTb}>
-                {filteredAparelhos.length > 0 ? (
+                {filteredAparelhos.length > 0 ? ( // Verifica se existem aparelhos filtrados
                     <>
-                        <table className={`${styles.table} ${styles.tabela}`}>
+                        <table className={`${styles.table} ${styles.tabela}`}> {/* Tabela de aparelhos */}
                             <thead>
                                 <tr className={styles.tabelaHeader}>
-                                    <th hidden>ID</th>
-                                    <th>NOME</th>
-                                    <th>MÚSCULO ATIVADO</th>
-                                    <th colSpan={2}>AÇÃO</th>
+                                    <th hidden>ID</th> {/* ID oculto na tabela */}
+                                    <th>NOME</th> {/* Cabeçalho para o nome do aparelho */}
+                                    <th>MÚSCULO ATIVADO</th> {/* Cabeçalho para músculo ativado */}
+                                    <th colSpan={2}>AÇÃO</th> {/* Cabeçalho para ações */}
                                 </tr>
                             </thead>
                             <tbody>
-                                {aparelhosPaginados.map(aparelho => (
+                                {aparelhosPaginados.map(aparelho => ( // Mapeia os aparelhos para exibição
                                     <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
-                                        <td hidden>{aparelho.id_aparelho}</td>
-                                        <td>{aparelho.nome_aparelho.toUpperCase()}</td>
-                                        <td>{aparelho.musculo_ativado.toUpperCase()}</td>
+                                        <td hidden>{aparelho.id_aparelho}</td> {/* ID oculto na tabela */}
+                                        <td>{aparelho.nome_aparelho.toUpperCase()}</td> {/* Nome do aparelho em letras maiúsculas */}
+                                        <td>{aparelho.musculo_ativado.toUpperCase()}</td> {/* Músculo ativado em letras maiúsculas */}
                                         <td title="Deletar Aparelho">
-                                            <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} />
+                                            <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone para deletar */}
                                         </td>
                                         <td title="Atualizar Aparelho">
-                                            <FaRegEdit onClick={() => updateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} />
+                                            <FaRegEdit onClick={() => updateAparelho(aparelho)} style={{ color: '#FFFFFF', cursor: 'pointer' }} /> {/* Ícone para atualizar */}
                                         </td>
                                     </tr>
                                 ))}
                             </tbody>
                         </table>
-                        <div className={styles.paginacao}>
+                        <div className={styles.paginacao}> {/* Controles de paginação */}
                             <button
-                                onClick={() => mudarPagina(paginaAtual - 1)}
-                                disabled={paginaAtual === 1}
+                                onClick={() => mudarPagina(paginaAtual - 1)} // Botão para página anterior
+                                disabled={paginaAtual === 1} // Desabilita se estiver na primeira página
                             >
-                                <MdOutlineArrowBackIos />
+                                <MdOutlineArrowBackIos /> {/* Ícone de seta para trás */}
                             </button>
 
-                            <span>Página {paginaAtual} de {totalPaginas}</span>
+                            <span>Página {paginaAtual} de {totalPaginas}</span> {/* Texto informando a página atual e total de páginas */}
 
                             <button
-                                onClick={() => mudarPagina(paginaAtual + 1)}
-                                disabled={indiceUltimoItem >= filteredAparelhos.length}
+                                onClick={() => mudarPagina(paginaAtual + 1)} // Botão para próxima página
+                                disabled={indiceUltimoItem >= filteredAparelhos.length} // Desabilita se não houver mais páginas
                             >
-                                <MdOutlineArrowForwardIos />
+                                <MdOutlineArrowForwardIos /> {/* Ícone de seta para frente */}
                             </button>
                         </div>
                     </>
                 ) : (
-                    <p style={{ color: 'white' }}>Nada encontrado</p>
+                    <p style={{ color: 'white' }}>Nada encontrado</p> // Mensagem se nenhum aparelho for encontrado
                 )}
             </div>
         </>
     );
 }
 
+// Exporta o componente ListarAparelho para ser utilizado em outras partes do código
 export default ListarAparelho;

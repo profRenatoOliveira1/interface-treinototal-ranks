@@ -140,4 +140,5 @@ function CadastroAparelho() {
     );
 }
 
-export default CadastroAparelho; // Exporta o componente CadastroAparelho para ser utilizado em outras partes da aplicação
+// Exporta o componente CadastroAparelho para ser utilizado em outras partes da aplicação
+export default CadastroAparelho; 

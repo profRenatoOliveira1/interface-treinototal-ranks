@@ -37,7 +37,6 @@ function CadastroAluno() {
         * @param {string} formData.celular - Número de celular do aluno.
         * @param {string} formData.endereco - Endereço do aluno.
         * @param {string} formData.email - Endereço de email do aluno.
-        * @param {string} formData.senha - Senha do aluno.
         * @param {string} formData.altura - Altura do aluno.
         * @param {string} formData.peso - Peso do aluno.
     */
@@ -48,7 +47,6 @@ function CadastroAluno() {
         celular: '',          // Campo para o celular do aluno
         endereco: '',         // Campo para o endereço do aluno
         email: '',            // Campo para o email do aluno
-        // senha: '',            // Campo para a senha do aluno
         altura: '',           // Campo para a altura do aluno
         peso: ''              // Campo para o peso do aluno
     });
@@ -139,8 +137,25 @@ function CadastroAluno() {
 
     };
 
-    const hoje = new Date(); // Obtém a data atual
-    hoje.setHours(0, 0, 0, 0); // Define as horas como 0 para facilitar a comparação de datas
+    /**
+     * Cria um novo objeto de data para representar a data atual.
+     * 
+     * - A função `new Date()` obtém a data e hora atuais no momento de execução.
+     * 
+     * @constant {Date} hoje - Objeto de data que representa a data de hoje.
+     */
+    const hoje = new Date();
+
+    /**
+     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
+     * (dia, mês e ano) seja considerada nas operações subsequentes.
+     * 
+     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
+     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
+     * 
+     * @method setHours
+     */
+    hoje.setHours(0, 0, 0, 0);
 
     return (
         <div className={styles.section}>
@@ -244,18 +259,6 @@ function CadastroAluno() {
                             <label htmlFor="labelEmail">E-mail</label>
                         </div>
                     </div>
-                    {/* Campo para senha
-                    <div className={styles.formGroup}>
-                        <input
-                            type="password"
-                            className={styles.formStyle}
-                            placeholder="Senha"
-                            value={formData.senha}
-                            onChange={handleChange}
-                            name="senha"
-                            required
-                        />
-                    </div> */}
                     {/* Campo para altura e peso */}
                     <div className={styles.formGroup}>
                         <div className="form-floating mb-3 input">
@@ -314,7 +317,8 @@ function CadastroAluno() {
             </div>
         </div>
     );
-    
+
 }
 
-export default CadastroAluno; // Exporta o componente CadastroAluno para ser utilizado em outras partes da aplicação
+// Exporta o componente CadastroAluno para ser utilizado em outras partes da aplicação
+export default CadastroAluno;

@@ -46,7 +46,6 @@ function UpdateAluno() {
         * @param {string} objAluno.celular - Número de celular do aluno.
         * @param {string} objAluno.endereco - Endereço do aluno.
         * @param {string} objAluno.email - Endereço de email do aluno.
-        * @param {string} objAluno.senha - Senha do aluno.
         * @param {number} objAluno.altura - Altura do aluno.
         * @param {number} objAluno.peso - Peso do aluno.
     */
@@ -58,7 +57,6 @@ function UpdateAluno() {
         celular: objAluno.celular,
         endereco: objAluno.endereco,
         email: objAluno.email,
-        // senha: objAluno.senha,
         altura: objAluno.altura,
         peso: objAluno.peso
     })
@@ -106,16 +104,24 @@ function UpdateAluno() {
     }
 
     /**
-        * Cria um objeto `Date` representando o momento atual e define a hora para o início do dia (meia-noite).
+        * Cria um novo objeto de data para representar a data atual.
         * 
-        * - Cria um novo objeto `Date` com a data e hora atuais.
-        * - Define as horas, minutos, segundos e milissegundos para 0, representando o início do dia.
+        * - A função `new Date()` obtém a data e hora atuais no momento de execução.
         * 
-        * @constant {Date} hoje - O objeto `Date` representando o início do dia atual.
-    */
+        * @constant {Date} hoje - Objeto de data que representa a data de hoje.
+        */
     const hoje = new Date();
-    hoje.setHours(0, 0, 0, 0);
 
+    /**
+     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
+     * (dia, mês e ano) seja considerada nas operações subsequentes.
+     * 
+     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
+     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
+     * 
+     * @method setHours
+     */
+    hoje.setHours(0, 0, 0, 0);
     return (
         <>
             <Navegacao />
@@ -285,4 +291,5 @@ function UpdateAluno() {
     );
 }
 
-export default UpdateAluno;// Exporta o componente UpdateAluno para ser utilizado em outras partes do código
+// Exporta o componente UpdateAluno para ser utilizado em outras partes do código
+export default UpdateAluno;

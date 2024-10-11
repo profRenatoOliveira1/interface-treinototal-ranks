@@ -12,23 +12,26 @@
 
 /* Estilos para um título genérico */
 .titulo {
-    text-align: center;
-    /* Alinha o texto ao centro */
     color: var(--amareloClaro);
-    /* Define a cor do texto */
+    /* Mantém a cor */
     font-family: "Archivo Black", sans-serif;
-    /* Define a fonte */
+    /* Mantém a fonte */
     font-weight: 400;
-    /* Define o peso da fonte */
+    /* Mantém o peso da fonte */
     font-style: normal;
-    /* Define o estilo da fonte */
+    /* Mantém o estilo da fonte */
+    display: flex;
+    /* Altera o display para inline para que fiquem lado a lado */
+    margin-right: 10px;
+    /* Adiciona um espaçamento entre as palavras */
+    margin-bottom: -6%;
 }
 
 /* Estilos para o conteúdo dentro de uma div */
 .div-conteudo {
     margin-left: 10%;
     /* Define uma margem à esquerda */
-    width: 80%;
+    width: 100%;
     /* Define a largura */
 }
 
@@ -36,22 +39,4 @@
 .home {
     margin-top: 5%;
     /* Define uma margem superior */
-}
-
-/* Estilos para parágrafos */
-.paragrafo {
-    width: 95%;
-    /* Define a largura */
-    font-size: 1.2rem;
-    /* Define o tamanho da fonte */
-    text-align: justify;
-    /* Justifica o texto */
-    margin-left: 3%;
-    /* Define uma margem à esquerda */
-    height: 80%;
-    /* Define a altura */
-    color: var(--amareloClaro);
-    /* Define a cor do texto */
-    font-family: Arial, Helvetica, sans-serif;
-    /* Define a fonte */
 }

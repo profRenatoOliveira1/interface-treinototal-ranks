@@ -79,8 +79,8 @@ class AparelhoRequests {
     /**
  * Atualiza o registro de um aparelho no servidor
  * 
- * @param {*} aparelho animal Objeto com as informações do animal
- * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
+ * @param {*} aparelho Objeto com as informações do aparelho
+ * @returns **verdadeiro (true)** caso o aparelho tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
  */
     async atualizarAparelho(aparelho) {
         try {
