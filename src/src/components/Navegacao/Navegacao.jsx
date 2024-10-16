@@ -25,6 +25,12 @@ function Navegacao() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [username, setUsername] = useState('');
 
+    const [vizualizacaoAparelho, setVizualizacaoAparelho] = useState(false);
+    const [vizualizacaoAluno, setVizualizacaoAluno] = useState(false);
+    const [vizualizacaoExercicio, setVizualizacaoExercicio] = useState(false);
+    const [vizualizacaoProfessor, setVizualizacaoProfessor] = useState(false);
+    const [vizualizacaoLogin, setVizualizacaoLogin] = useState(false);
+
     /**
      * useEffect que é executado ao carregar o componente.
      * Verifica se o token de autenticação existe e se ainda está válido,
@@ -75,25 +81,60 @@ function Navegacao() {
                             <>
                                 {/* Links e menus exibidos apenas quando o usuário está autenticado */}
                                 <Nav.Link href="/imc" className={styles.navbar}>IMC</Nav.Link>
-                                <NavDropdown title="Aluno" id="collapsible-nav-dropdown" className={styles.navbar}>
+                                <NavDropdown
+                                    title="Aluno"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoAluno}
+                                    onMouseEnter={() => setVizualizacaoAluno(true)}
+                                    onMouseLeave={() => setVizualizacaoAluno(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Aluno" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Aluno" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Professor" id="collapsible-nav-dropdown" className={styles.navbar}>
+                                <NavDropdown
+                                    title="Professor"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoProfessor}
+                                    onMouseEnter={() => setVizualizacaoProfessor(true)}
+                                    onMouseLeave={() => setVizualizacaoProfessor(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Professor" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Professor" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Exercicio" id="collapsible-nav-dropdown" className={styles.navbar}>
+                                <NavDropdown
+                                    title="Exercício"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoExercicio}
+                                    onMouseEnter={() => setVizualizacaoExercicio(true)}
+                                    onMouseLeave={() => setVizualizacaoExercicio(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Exercicio" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Exercicio" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                <NavDropdown title="Aparelho" id="collapsible-nav-dropdown" className={styles.navbar}>
+                                <NavDropdown
+                                    title="Aparelho"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoAparelho}
+                                    onMouseEnter={() => setVizualizacaoAparelho(true)}
+                                    onMouseLeave={() => setVizualizacaoAparelho(false)}
+                                >
                                     <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
+                                
                                 {/* Menu dropdown para o usuário autenticado com opção de atualizar senha e fazer logout */}
-                                <NavDropdown title={`Olá ${username.split(' ')[0]}`} id="collapsible-nav-dropdown" className={styles.navbar}>
-                                    <NavDropdown.Item onClick={handleLogout} className={styles.navDropdown}><MdLogout /> Sair</NavDropdown.Item>
+                                <NavDropdown title={`Olá ${username.split(' ')[0]}`} id="collapsible-nav-dropdown" className={styles.navbar}
+                                show={vizualizacaoLogin}
+                                onMouseEnter={() => setVizualizacaoLogin(true)}
+                                onMouseLeave={() => setVizualizacaoLogin(false)}
+                                >
+                                    <NavDropdown.Item onClick={handleLogout} className={styles.navDropdown}>
+                                        <MdLogout /> Sair
+                                    </NavDropdown.Item>
                                 </NavDropdown>
                             </>
                         ) : (
@@ -107,4 +148,5 @@ function Navegacao() {
     );
 }
 
-export default Navegacao; // Exporta o componente Navegacao para uso em outros arquivos
+// Exporta o componente Navegacao para uso em outros arquivos
+export default Navegacao;
