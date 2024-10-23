@@ -21,7 +21,7 @@ class AuthRequests {
             console.log('Login bem-sucedido, dados recebidos:', data);
             if (data.auth) {
                 console.log('Chamando persistToken com:', data.token, data.professor.nome);
-                this.persistToken(data.token, data.professor.nome);
+                this.persistToken(data.token, data.professor.nome, data.auth);
             }
 
             return data;
@@ -31,14 +31,16 @@ class AuthRequests {
         }
     }
 
-    persistToken(token, username) {
+    persistToken(token, username, isAuth) {
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
+        localStorage.setItem('isAuth', isAuth);
     }
 
     removeToken() {
         localStorage.removeItem('token');
         localStorage.removeItem('username');
+        localStorage.removeItem('isAuth');
         window.location.href = '/';
     }
 
