@@ -39,7 +39,8 @@ function Navegacao() {
     useEffect(() => {
         const token = localStorage.getItem('token'); // Obtém o token do localStorage
         const storedUsername = localStorage.getItem('username'); // Obtém o nome de usuário do localStorage
-        if (token && AuthRequests.checkTokenExpiry()) { // Verifica se o token é válido e ainda não expirou
+        const isAuth = localStorage.getItem('isAuth');
+        if (isAuth && token && AuthRequests.checkTokenExpiry()) { // Verifica se o token é válido e ainda não expirou
             setIsAuthenticated(true); // Define o usuário como autenticado
             setUsername(storedUsername); // Armazena o nome de usuário no estado
         } else {

@@ -1,22 +1,14 @@
 :root {
-    /* Definição de variáveis globais para cores */
-    --amareloClaro: #ffeba7;
-    /* Cor amarela clara */
-    --cinzaEscuro: #212529;
-    /* Cor cinza escura */
-    --cinzaAzulado: #343A40;
-    /* Cor cinza com tom azulado */
-    --cinzaAvermelhado: #333;
-    /* Cor cinza com tom avermelhado */
-    --branco: #FFFFFF;
-    /* Cor branca */
-    --cinzaClaro: #ccc;
-    /* Cor cinza clara */
-    --amareloEscuro: #b39f72;
-    /* Cor amarela escura */
-    --preto: #000000;
-    /* Cor preta */
-}
+    /* Definição de variáveis de cor */
+    --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
+    --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
+    --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+    --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+    --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
+    --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
+    --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+    --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
+  }
 
 /* Estilos para o rodapé da página */
 footer {

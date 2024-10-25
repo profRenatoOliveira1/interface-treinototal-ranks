@@ -16,14 +16,6 @@ function FooterHome() {
                         <li>Vitor Joaquim de Almeida</li>
                     </ul>
                 </div>
-                <div className='div-right footer'>
-                    <ul>
-                        <li>cf4168548@gmail.com</li>
-                        <li>gabrielhenri9427@gmail.com</li>
-                        <li>lucasmiyazaki6@gmail.com</li>
-                        <li>vitoreojoaquim@gmail.com</li>
-                    </ul>
-                </div>
             </footer>
             <footer>
                 <div className='div-bottomL footer'>
@@ -37,4 +29,5 @@ function FooterHome() {
     );
 }
 
-export default FooterHome;// Exporta o componente conteudoDaHome para ser utilizado em outras partes do código
+// Exporta o componente conteudoDaHome para ser utilizado em outras partes do código
+export default FooterHome;

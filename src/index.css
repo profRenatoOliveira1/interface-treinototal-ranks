@@ -4,21 +4,24 @@
 /* Importa os estilos do Bootstrap */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+/* Define cores personalizadas como variáveis CSS no escopo global */
 :root {
-  --amareloClaro: #ffeba7;
-  --cinzaEscuro: #212529;
-  --cinzaAzulado: #343A40;
-  --cinzaAvermelhado: #333;
-  --branco: #FFFFFF;
-  --cinzaClaro: #ccc;
-  --amareloEscuro: #b39f72;
-  --preto: #000000;
+  --amareloClaro: #ffeba7; /* Cor amarela clara */
+  --cinzaEscuro: #212529; /* Cor cinza escura */
+  --cinzaAzulado: #343A40; /* Cor cinza com leve tonalidade azulada */
+  --cinzaAvermelhado: #333; /* Cor cinza com leve tonalidade avermelhada */
+  --branco: #FFFFFF; /* Cor branca */
+  --cinzaClaro: #ccc; /* Cor cinza clara */
+  --amareloEscuro: #b39f72; /* Cor amarela escura */
+  --preto: #000000; /* Cor preta */
 }
 
+/* Define o estilo de fundo do elemento raiz */
 #root {
-  background-color: var(--cinzaAzulado);
+  background-color: var(--cinzaAzulado); /* Aplica a cor de fundo cinza azulada */
 }
 
+/* Configurações adicionais de fontes e estilos no escopo global */
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   /* Define a fonte padrão */
@@ -27,64 +30,80 @@
   font-weight: 400;
   /* Define o peso da fonte */
   color-scheme: light dark;
-  /* Define a cor de texto padrão */
+  /* Define o esquema de cor para tema claro e escuro */
   font-synthesis: none;
-  /* Evita a síntese de fontes */
+  /* Desativa a síntese automática de fontes */
   text-rendering: optimizeLegibility;
-  /* Otimiza a legibilidade do texto */
+  /* Otimiza a renderização para legibilidade de texto */
   -webkit-font-smoothing: antialiased;
   /* Suaviza as bordas das fontes no WebKit */
   -moz-osx-font-smoothing: grayscale;
   /* Suaviza as bordas das fontes no macOS */
 }
 
+/* Estilos de seleção de texto */
 ::selection {
   color: var(--cinzaAvermelhado);
+  /* Cor do texto ao selecionar */
   background-color: var(--amareloClaro);
+  /* Cor de fundo ao selecionar */
 }
 
-/* Estilos para o corpo do documento */
+/* Estilos gerais para o corpo do documento */
 body {
   margin: 0;
   /* Remove as margens padrão */
   display: flex;
-  /* Usa um layout flexível */
+  /* Usa layout flexível para o conteúdo do corpo */
   min-width: 320px;
   /* Define a largura mínima do corpo */
   min-height: 100vh;
   /* Define a altura mínima do corpo como 100% da altura da viewport */
 }
 
+/* Estilos personalizados para elementos de entrada de texto */
 .input {
-  background-color: var(--amareloClaro)!important;
-  color: var(--preto)!important;
+  background-color: var(--amareloClaro) !important;
+  /* Define a cor de fundo da entrada */
+  color: var(--preto) !important;
+  /* Define a cor do texto da entrada */
   font-size: 18px;
+  /* Define o tamanho da fonte */
   border-radius: 15px;
+  /* Define bordas arredondadas */
 }
 
 /* Estilos para um grupo de formulário genérico */
 .formGroup {
   margin-bottom: 20px;
-  /* Margem inferior */
+  /* Define margem inferior para espaçamento */
 }
 
+/* Estilos específicos para o elemento de formulário flutuante */
 .form-floating>.form-control-plaintext~label::after,
 .form-floating>.form-control:focus~label::after,
 .form-floating>.form-control:not(:placeholder-shown)~label::after,
 .form-floating>.form-select~label::after {
     background-color: transparent !important;
+    /* Define cor de fundo transparente para rótulos em foco e preenchidos */
 }
 
+/* Estilos de preenchimento para campos de entrada no formulário flutuante */
 .form-floating>.form-control,
 .form-floating>.form-control-plaintext {
     padding: 30px !important;
+    /* Define o preenchimento interno */
 }
 
+/* Estilos de cor e tamanho de rótulos no formulário flutuante */
 .form-floating>.form-control-plaintext~label,
 .form-floating>.form-control:focus~label,
 .form-floating>.form-control:not(:placeholder-shown)~label,
 .form-floating>.form-select~label {
     color: rgb(80, 79, 79) !important;
+    /* Define a cor do texto do rótulo */
     font-size: 1.2rem;
+    /* Define o tamanho da fonte do rótulo */
     margin-top: -8px;
+    /* Ajusta a margem superior para posicionamento */
 }

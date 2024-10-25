@@ -304,4 +304,5 @@ function CadastroProfessor() {
     );
 }
 
-export default CadastroProfessor; // Exporta o componente CadastroProfessor para ser utilizado em outras partes da aplicação
+// Exporta o componente CadastroProfessor para ser utilizado em outras partes da aplicação
+export default CadastroProfessor;

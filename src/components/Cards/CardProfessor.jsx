@@ -1,21 +1,10 @@
-// Importa o hook 'useLocation' do react-router-dom para acessar o estado atual da navegação
-import { useLocation } from "react-router-dom";
-
-// Importa o React e o hook 'useState' para definir e gerenciar estados no componente
-import React from 'react';
-import { useState } from "react";
-
-// Importa os estilos específicos do componente
-import styles from '../styles/StyleCard.module.css';
-
-// Importa uma imagem padrão para o avatar
-import FotoPadrao from '../../assets/FotoPadrao.png';
-
-// Importa o hook 'useNavigate' do react-router-dom para navegação programática
-import { useNavigate } from "react-router-dom";
-
-// Importa funções utilitárias para formatação de dados
-import { formatarData, formatarCPF, formatadorDataCard } from "../../../util/Utilitarios";
+import React from 'react'; // Importa a biblioteca React, necessária para criar componentes funcionais em React.
+import { useState } from "react"; // Hook para gerenciar o estado do componente
+import { useLocation } from "react-router-dom"; // Importa o hook 'useLocation' do react-router-dom para acessar o estado atual da navegação
+import styles from '../styles/StyleCard.module.css'; // Importa os estilos específicos do componentel
+import FotoPadrao from '../../assets/FotoPadrao.png'; // Importa uma imagem padrão para o avatar
+import { useNavigate } from "react-router-dom"; // Importa o hook 'useNavigate' do react-router-dom para navegação programática
+import { formatarData, formatarCPF, formatadorDataCard } from "../../../util/Utilitarios";// Importa funções utilitárias para formatação de dados
 
 // Definição do componente funcional 'CardProfessor'
 function CardProfessor() {

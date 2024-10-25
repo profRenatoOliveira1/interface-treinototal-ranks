@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from './FormIMC.module.css'; // Importa os estilos CSS específicos para este componente
 
 /**

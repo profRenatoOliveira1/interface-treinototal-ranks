@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom"; // Hook para acessar a localização atual
-import React from 'react';
+import React from 'react'; // Importa a biblioteca React, necessária para criar componentes funcionais em React.
 import { useState } from "react"; // Hook para gerenciar o estado do componente
 import styles from '../styles/StyleCard.module.css'; // Importa o arquivo CSS para estilizar o componente
 import FotoPadrao from '../../assets/FotoPadrao.png'; // Imagem padrão para o avatar do aluno

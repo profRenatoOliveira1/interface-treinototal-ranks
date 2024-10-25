@@ -1,5 +1,5 @@
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React from 'react'; // Importa React e os hooks useState e useEffect
+import { Navigate } from 'react-router-dom'; // Importa o componente Navigate do React
 
 /**
  * Lida com a proteção das rotas
@@ -17,4 +17,5 @@ const ProtectedRoute = ({ element: Element, ...rest }) => {
     return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;  // verifica se o usuário está autenticado (isAuth = true), caso sim, renderiza o elemento, caso contrário, redireciona para a página de login
 };
 
+// Exporta o componente ProtectedRoute para ser usado na proteção de rotas
 export default ProtectedRoute;

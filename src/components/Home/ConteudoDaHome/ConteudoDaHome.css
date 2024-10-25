@@ -1,15 +1,15 @@
-/* Define variáveis de cor para reutilização */
 :root {
-    --amareloClaro: #ffeba7;
-    --cinzaEscuro: #212529;
-    --cinzaAzulado: #343A40;
-    --cinzaAvermelhado: #333;
-    --branco: #FFFFFF;
-    --cinzaClaro: #ccc;
-    --amareloEscuro: #b39f72;
-    --preto: #000000;
-}
-
+    /* Definição de variáveis de cor */
+    --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
+    --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
+    --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+    --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+    --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
+    --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
+    --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+    --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
+  }
+  
 /* Estilos para um título genérico */
 .titulo {
     color: var(--amareloClaro);
@@ -24,7 +24,9 @@
     /* Altera o display para inline para que fiquem lado a lado */
     margin-right: 10px;
     /* Adiciona um espaçamento entre as palavras */
-    margin-bottom: -6%;
+    margin-bottom: -17%;
+        /* Adiciona um espaçamento entre as palavras */
+        margin-top: -2%;
 }
 
 /* Estilos para o conteúdo dentro de uma div */
