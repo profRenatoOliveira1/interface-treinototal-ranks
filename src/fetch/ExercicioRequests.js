@@ -1,22 +1,21 @@
 import { SERVER_ROUTES } from "../appconfig";
 
-class AlunoRequests {
+class ExercicioRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAlunos = SERVER_ROUTES.LISTAR_ALUNOS;
-        this.routeCadastrarAluno = SERVER_ROUTES.CADASTRAR_ALUNO;
-        this.routeRemoverAluno = SERVER_ROUTES.REMOVER_ALUNO;
-        this.routeAtualizarAluno = SERVER_ROUTES.ATUALIZAR_ALUNO;
+        this.routeListarExercicios = SERVER_ROUTES.LISTAR_EXERCICIOS;
+        this.routeCadastrarExercicio = SERVER_ROUTES.CADASTRAR_EXERCICIO;
+        this.routeRemoverExercicio = SERVER_ROUTES.REMOVER_EXERCICIO;
+        this.routeAtualizarExercicio = SERVER_ROUTES.ATUALIZAR_EXERCICIO;
     }
-    
     getToken() {
         return localStorage.getItem('authToken');
     }
 
-    async listarAlunos() {
+    async listarExercicios() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListarAlunos}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeListarExercicios}`, {
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -34,36 +33,38 @@ class AlunoRequests {
         }
     }
 
-    async cadastrarAluno(aluno) {
+    async cadastrarExercicio(exercicioData) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeCadastrarAluno}`, {
+            console.log('Dados do exercício:', exercicioData); // Verifique os dados aqui
+
+            const response = await fetch(`${this.serverUrl}${this.routeCadastrarExercicio}`, {
                 method: 'POST',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(aluno)
+                body: JSON.stringify(exercicioData),
             });
 
             if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Erro na resposta:', errorData);
+                const errorText = await response.text(); // Captura a resposta do erro
+                console.error('Erro do servidor:', errorText); // Mostra o erro do servidor
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error(`Erro ao adicionar aluno: ${errorData.message || response.statusText}`);
+                throw new Error('Erro ao adicionar exercício');
             }
 
             return await response.json();
         } catch (error) {
-            console.error('Erro ao adicionar aluno:', error);
+            console.error('Erro ao adicionar exercício:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
-            return null;
+            throw error;
         }
     }
 
-    async deletarAluno(idAluno) {
+    async deletarExercicio(exercicioId) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverAluno}?idAluno=${idAluno}`, {
-                method: 'DELETE',
+            const response = await fetch(`${this.serverUrl}${this.routeRemoverExercicio}?idExercicio=${exercicioId}`, {
+                method: 'POST',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -71,39 +72,38 @@ class AlunoRequests {
             });
             if (!response.ok) {
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao deletar aluno');
+                throw new Error('Erro ao deletar exercício');
             }
             return true;
         } catch (error) {
-            console.error('Erro ao deletar aluno:', error);
+            console.error('Erro ao deletar exercício:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
             return false;
         }
     }
 
-    async atualizarAluno(aluno) {
-        console.log(aluno);
+    async atualizarExercicio(exercicio) {
+        console.log(exercicio)
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?idAluno=${aluno.idAluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?idExercicio=${exercicio.idExercicio}`, {
                 method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(aluno)
+                body: JSON.stringify(exercicio)
             });
             if (!response.ok) {
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao atualizar aluno');
+                throw new Error('Erro ao atualizar exercício');
             }
-            return true;
+            return await response.json();
         } catch (error) {
-            console.error('Erro ao atualizar aluno:', error);
-            window.alert('Erro ao atualizar aluno');
+            console.error('Erro ao atualizar exercício:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
             return null;
         }
     }
 }
 
-export default new AlunoRequests();
+export default new ExercicioRequests();

@@ -1,22 +1,22 @@
 import { SERVER_ROUTES } from "../appconfig";
 
-class AlunoRequests {
+class AparelhoRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAlunos = SERVER_ROUTES.LISTAR_ALUNOS;
-        this.routeCadastrarAluno = SERVER_ROUTES.CADASTRAR_ALUNO;
-        this.routeRemoverAluno = SERVER_ROUTES.REMOVER_ALUNO;
-        this.routeAtualizarAluno = SERVER_ROUTES.ATUALIZAR_ALUNO;
+        this.routeListarAparelhos = SERVER_ROUTES.LISTAR_APARELHOS;
+        this.routeCadastrarAparelho = SERVER_ROUTES.CADASTRAR_APARELHO;
+        this.routeRemoverAparelho = SERVER_ROUTES.REMOVER_APARELHO;
+        this.routeAtualizarAparelho = SERVER_ROUTES.ATUALIZAR_APARELHO;
     }
-    
+
     getToken() {
         return localStorage.getItem('authToken');
     }
 
-    async listarAlunos() {
+    async listarAparelhos() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListarAlunos}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeListarAparelhos}`, {
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -34,35 +34,31 @@ class AlunoRequests {
         }
     }
 
-    async cadastrarAluno(aluno) {
+    async cadastrarAparelho(aparelhoData) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeCadastrarAluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeCadastrarAparelho}`, {
                 method: 'POST',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(aluno)
+                body: JSON.stringify(aparelhoData)
             });
-
             if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Erro na resposta:', errorData);
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error(`Erro ao adicionar aluno: ${errorData.message || response.statusText}`);
+                throw new Error('Erro ao adicionar aparelho');
             }
-
             return await response.json();
         } catch (error) {
-            console.error('Erro ao adicionar aluno:', error);
+            console.error('Erro ao adicionar aparelho:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
             return null;
         }
     }
 
-    async deletarAluno(idAluno) {
+    async deletarAparelho(aparelhoId) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverAluno}?idAluno=${idAluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeRemoverAparelho}?idAparelho=${aparelhoId}`, {
                 method: 'DELETE',
                 headers: {
                     'x-access-token': `${token}`,
@@ -71,39 +67,38 @@ class AlunoRequests {
             });
             if (!response.ok) {
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao deletar aluno');
+                throw new Error('Erro ao deletar aparelho');
             }
             return true;
         } catch (error) {
-            console.error('Erro ao deletar aluno:', error);
+            console.error('Erro ao deletar aparelho:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
             return false;
         }
     }
 
-    async atualizarAluno(aluno) {
-        console.log(aluno);
+    async atualizarAparelho(aparelho) {
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?idAluno=${aluno.idAluno}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAparelho}?idAparelho=${aparelho.idAparelho}`, {
                 method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(aluno)
+                body: JSON.stringify(aparelho)
             });
             if (!response.ok) {
                 console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao atualizar aluno');
+                throw new Error('Erro ao atualizar aparelho');
             }
-            return true;
+            return await response.json();
         } catch (error) {
-            console.error('Erro ao atualizar aluno:', error);
-            window.alert('Erro ao atualizar aluno');
+            console.error('Erro ao atualizar aparelho:', error);
             console.info("Verifque se o servidor está ligado e se o token é válido.");
             return null;
         }
     }
 }
 
-export default new AlunoRequests();
+
+export default new AparelhoRequests();

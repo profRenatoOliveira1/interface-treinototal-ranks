@@ -1,97 +1,124 @@
+import { SERVER_ROUTES } from "../appconfig";
+
+/**
+ * Classe para lidar com autenticação
+ */
 class AuthRequests {
+    
     /**
-     * Inicializa a URL do servidor e a rota de login.
+     * Construtor das rotas e do endereço do servidor
      */
     constructor() {
-        this.serverUrl = import.meta.env.VITE_API_URL; // Obtém a URL base do servidor a partir das variáveis de ambiente
-        this.routeLogin = '/login'; // Rota para autenticação de login
+        // endereço do servidor
+        this.serverUrl = import.meta.env.VITE_API_URL;
+        // rota do servidor
+        this.routeLogin = SERVER_ROUTES.LOGIN;
     }
 
     /**
-     * Método assíncrono para realizar o login.
-     * @param {object} login - O objeto contendo as informações de login.
-     * @returns {Promise<object>} Os dados recebidos após o login em formato JSON.
-     * @throws {Error} Lança um erro se a autenticação falhar.
+     * Realiza a autenticação no servidor
+     * @param {*} login - email e senha
+     * @returns **true** caso sucesso, **false** caso erro
      */
-    async login(login) {
+    async login(login) {    
         try {
-            // Realiza uma requisição POST para autenticar o usuário
+            // faz a requisição POST ao servidor
             const response = await fetch(`${this.serverUrl}${this.routeLogin}`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json' // Define o tipo de conteúdo como JSON
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(login) // Converte o objeto login para uma string JSON
+                // passando as informações de login no corpo da requisição
+                body: JSON.stringify(login)
             });
-
-            // Verifica se a resposta foi bem-sucedida
+            
+            // Verifica alguma falha na comunicação
             if (!response.ok) {
-                console.log('Erro na autenticação'); // Log de erro para autenticação
-                throw new Error('Falha no login'); // Lança um erro se a autenticação falhar
+                console.error('Erro na autenticação: ', response.statusText);
+                throw new Error('Falha no login');
             }
-
-            // Converte a resposta para JSON
+            // caso a requisição seja bem sucedida, armazena a resposta em uma constante
             const data = await response.json();
-            console.log('Login bem-sucedido, dados recebidos:', data); // Log de dados recebidos após o login
+            console.log(data);
 
-            // Verifica se a autenticação foi bem-sucedida
+            // verifica se o atributo auth da resposta tem o valor TRUE, se tiver é porque a autenticação teve sucesso
             if (data.auth) {
-                console.log('Chamando persistToken com:', data.token, data.professor.nome); // Log para persistir o token
-                this.persistToken(data.token, data.professor.nome, data.auth); // Persiste o token, nome do professor e status de autenticação
+                // persistem o token, o nome e o id do usuário no localStorage
+                this.persistToken(data.token, data.professor.nome, data.professor.email, data.auth);
             }
 
-            return data; // Retorna os dados recebidos após o login
+            // retorna a resposta da requisição a quem chamou a função
+            return true;
         } catch (error) {
-            // Em caso de erro, exibe o erro no console
+            // lança um erro em caso de falha
             console.error('Erro: ', error);
-            throw error; // Relança o erro para ser tratado em outro lugar
+            return false;
         }
     }
 
     /**
-     * Método para persistir o token de autenticação no localStorage.
-     * @param {string} token - O token de autenticação a ser armazenado.
-     * @param {string} username - O nome de usuário a ser armazenado.
-     * @param {boolean} isAuth - O status de autenticação a ser armazenado.
+     * Persiste o token no localStorage
+     * @param {*} token - token recebido do servidor
+     * @param {*} email - nome usuário recebido do servidor
+     * @param {*} idProfessor - idUsuario recebido do servidor
      */
-    persistToken(token, username, isAuth) {
-        localStorage.setItem('token', token); // Armazena o token
-        localStorage.setItem('username', username); // Armazena o nome de usuário
-        localStorage.setItem('isAuth', isAuth); // Armazena o status de autenticação
+    persistToken(token, nome, idProfessor, isAuth) {
+        // adiciona o token no localStorage com o apelido de token
+        localStorage.setItem('token', token);  // -> armazena o token no localStorage e coloca o 'apelido' de token
+        // adiciona o nome de usuário no localStorage com o apelido de username
+        localStorage.setItem('username', nome);  // -> armazena o username no localStorage e coloca o 'apelido' de username 
+        // adiciona o id do usuário no localStorage com o apelido de idUsuario
+        localStorage.setItem('idProfessor', idProfessor);  // -> armazena o idUsuario no localStorage e coloca o 'apelido' de idUsuario
+        // adiciona o valor de autenticação no localStorage com o apelido de isAuth
+        localStorage.setItem('isAuth', isAuth);  // -> armazena o estado da autenticação (true, false) no localStorage e coloca o 'apelido' de isAuth
     }
 
     /**
-     * Método para remover o token de autenticação do localStorage.
+     * Remove as informações do localStorage
      */
     removeToken() {
-        localStorage.removeItem('token'); // Remove o token
-        localStorage.removeItem('username'); // Remove o nome de usuário
-        localStorage.removeItem('isAuth'); // Remove o status de autenticação
-        window.location.href = '/'; // Redireciona para a página inicial
+        // remove o token do localStorage
+        localStorage.removeItem('token');  // -> remove o 'apelido' de token do localStorage
+        // remove o username do localStorage
+        localStorage.removeItem('username');  // -> remove o 'apelido' de username do localStorage
+        // remove o idUsuario do localStorage
+        localStorage.removeItem('idProfessor');  // -> remove o 'apelido' de idUsuario do localStorage
+        // remove o isAuth do localStorage
+        localStorage.removeItem('isAuth');  // -> remove o 'apelido' de isAuth do localStorage
+        // redireciona o usuário para a página de login
+        window.location.href = '/login';
     }
 
     /**
-     * Método para verificar a expiração do token.
-     * @returns {boolean} Verdadeiro se o token ainda for válido, falso caso contrário.
+     * Verifica a validade do token
+     * @returns **true** caso token válido, **false** caso token inválido
      */
     checkTokenExpiry() {
-        const token = localStorage.getItem('token'); // Obtém o token do localStorage
+        // recupera o valor do token no localStorage
+        const token = localStorage.getItem('token');
+        
+        // verifica se o valor é diferente de vazio
         if (token) {
-            // Decodifica o payload do token JWT
+            // recupera a data de expiração do token
             const payload = JSON.parse(atob(token.split('.')[1]));
-            const expiry = payload.exp; // Obtém a data de expiração do token
-            const now = Math.floor(Date.now() / 1000); // Obtém o tempo atual em segundos
+            // recupera a hora de expiração do token
+            const expiry = payload.exp;
+            // pega a data e hora atual
+            const now = Math.floor(Date.now() / 1000);
 
-            // Verifica se o token expirou
+            // verifica se o token está expirado
             if (expiry < now) {
-                this.removeToken(); // Remove o token se estiver expirado
-                return false; // Retorna falso se o token expirou
+                // invoca a função para remover o token do localStorage
+                this.removeToken();
+                // retorna false
+                return false;
             }
-            return true; // Retorna verdadeiro se o token ainda for válido
+            // caso o token não esteja expirado, retorna true
+            return true;
         }
-        return false; // Retorna falso se não houver token
+        // caso o token esteja vazio, retorna false
+        return false;
     }
 }
 
-// Exporta uma instância da classe AuthRequests para ser utilizada em outras partes do código
 export default new AuthRequests();
