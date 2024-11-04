@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importação do Bootstrap para estilização
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
-import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
-import AparelhosRequests from '../../fetch/AparelhosRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
+import ExercicioRequests from '../../fetch/ExercicioRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
+import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importação do módulo responsável por fazer as requisições dos aparelhos
 import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importação de ícones da biblioteca react-icons
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md"; // Ícones de navegação
 import { useNavigate } from 'react-router-dom'; // Importa hook para navegação entre rotas
@@ -27,8 +27,8 @@ function ListagemExercicios() {
     useEffect(() => {
         const fetchDados = async () => {
             try {
-                const exercicios = await ExerciciosRequests.listarExercicio(); // Requisição para buscar os exercícios
-                const aparelhos = await AparelhosRequests.listarAparelho(); // Requisição para buscar os aparelhos
+                const exercicios = await ExercicioRequests.listarExercicios(); // Requisição para buscar os exercícios
+                const aparelhos = await AparelhoRequests.listarAparelhos(); // Requisição para buscar os aparelhos
 
                 // Criação de um mapa para facilitar a associação entre aparelhos e seus nomes
                 const aparelhosMap = aparelhos.reduce((map, aparelho) => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa o módulo de requisições para a API de Professores
+import ProfessorRequests from '../../fetch/ProfessorRequests'; // Importa o módulo de requisições para a API de Professores
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 
 /**
@@ -124,11 +124,11 @@ function CadastroProfessor() {
         const cleanData = { ...formData, cpf: cleanCPF, celular: cleanCelular }; // Cria um novo objeto com os dados limpos
         try {
             // Envia os dados do formulário para a API e aguarda a resposta    
-            if (await ProfessoresRequests.cadastrarProfessor(cleanData)) {
+            if (await ProfessorRequests.cadastrarProfessor(cleanData)) {
                 console.log('Professor cadastrado com sucesso:');
                 window.alert(cleanData.nome + ': foi cadastrado com sucesso');
                 if (window.confirm(`Deseja ir para a listagem?`))
-                    window.location.href = 'http://localhost:5173/Listagem/Professor';
+                    window.location.href = '/Listagem/Professor';
                 else
                     window.location.reload();
             } else {
@@ -295,7 +295,7 @@ function CadastroProfessor() {
                         Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Professor">
+                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="/Listagem/Professor">
                         Professores
                     </a>
                 </form>

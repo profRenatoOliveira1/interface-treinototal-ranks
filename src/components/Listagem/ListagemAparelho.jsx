@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa funções para requisições de aparelhos
+import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importa funções para requisições de aparelhos
 import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importa ícones para deletar e editar
 import { useNavigate } from 'react-router-dom'; // Importa hook para navegação
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md"; // Importa ícones para navegação entre páginas

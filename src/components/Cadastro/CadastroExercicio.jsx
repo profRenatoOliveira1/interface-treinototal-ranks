@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import ExerciciosRequests from '../../fetch/ExerciciosRequests'; // Importa o módulo de requisições para a API de Exercícios
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API de Aparelhos
+import ExercicioRequests from '../../fetch/ExercicioRequests'; // Importa o módulo de requisições para a API de Exercícios
+import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importa o módulo de requisições para a API de Aparelhos
 
 
 function CadastroExercicio() {
@@ -134,7 +134,7 @@ function CadastroExercicio() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            if (ExerciciosRequests.cadastrarExercicio(formData)) {
+            if (ExercicioRequests.cadastrarExercicio(formData)) {
                 console.log('Exercício cadastrado com sucesso:'); // Confirmação de sucesso no console
                 clearForm(); // Limpa o formulário após o cadastro
                 window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso

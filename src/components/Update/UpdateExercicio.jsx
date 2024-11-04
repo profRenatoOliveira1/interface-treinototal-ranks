@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import ExerciciosRequests from "../../fetch/ExerciciosRequests";
+import ExercicioRequests from "../../fetch/ExercicioRequests";
 import Navegacao from "../Navegacao/Navegacao";
-import AparelhosRequests from "../../fetch/AparelhosRequests";
+import AparelhoRequests from "../../fetch/AparelhoRequests";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 
@@ -69,7 +69,7 @@ function UpdateExercicio() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhosData = await AparelhosRequests.listarAparelho();
+                const aparelhosData = await AparelhoRequests.listarAparelhos();
                 if (aparelhosData) {
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
@@ -111,7 +111,7 @@ function UpdateExercicio() {
         // evita o recarregamento da página
         e.preventDefault();
         // chama a função atualizarAparelho do arquivo aparelhoAPIService
-        if (await ExerciciosRequests.atualizarExercicio(exercicio)) {
+        if (await ExercicioRequests.atualizarExercicio(exercicio)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`O exercício ${exercicio.exercicio} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de aparelhos

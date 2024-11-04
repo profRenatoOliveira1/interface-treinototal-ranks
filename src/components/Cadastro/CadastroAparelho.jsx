@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from '../../fetch/AparelhosRequests'; // Importa o módulo de requisições para a API
+import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importa o módulo de requisições para a API
 
 /**
     * Função `CadastroAparelho` responsável por definir o estado inicial do formulário de cadastro de aparelho,

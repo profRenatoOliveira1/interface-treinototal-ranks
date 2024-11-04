@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos específicos do componente
-import ProfessoresRequests from '../../fetch/ProfessoresRequests'; // Importa as funções para fazer requisições de professores
+import ProfessorRequests from '../../fetch/ProfessorRequests'; // Importa as funções para fazer requisições de professores
 import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa"; // Importa ícones da biblioteca react-icons
 import { useNavigate } from 'react-router-dom'; // Importa hook para navegação entre rotas
 import { formatadorData } from "../../../util/Utilitarios"; // Importa função para formatação de datas
@@ -58,7 +58,7 @@ function ListarProfessor() {
     useEffect(() => {
         const fetchProfessores = async () => {
             try {
-                const professor = await ProfessoresRequests.listarProfessor(); // Faz a requisição para obter a lista de professores
+                const professor = await ProfessorRequests.listarProfessores(); // Faz a requisição para obter a lista de professores
                 setProfessores(professor); // Atualiza o estado com a lista de professores
                 setFilteredProfessores(professor); // Inicializa a lista filtrada com todos os professores
             } catch (error) {

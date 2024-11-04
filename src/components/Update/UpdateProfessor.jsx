@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from '../styles/StyleCadastro.module.css';
-import ProfessoresRequests from '../../fetch/ProfessoresRequests';
+import ProfessorRequest from '../../fetch/ProfessorRequests';
 import InputMask from "react-input-mask";
 import { formatarData } from "../../../util/Utilitarios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -52,7 +52,7 @@ function UpdateProfessor() {
         const cleanCelular = professor.celular.replace(/\D/g, '');
         const cleanData = { ...professor, cpf: cleanCPF, celular: cleanCelular };
 
-        if (await ProfessoresRequests.atualizarProfessor(cleanData)) {
+        if (await ProfessorRequest.atualizarProfessor(cleanData)) {
             window.alert(`O professor ${professor.nome} foi atualizado com sucesso.`);
             navigate(`/Listagem/Professor`, { replace: true });
         } else {

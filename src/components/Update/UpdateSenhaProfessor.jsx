@@ -1,7 +1,7 @@
 // Importa o hook useState do React para gerenciar o estado local
 import { useState } from "react";
 // Importa as requisições para a API de professores
-import ProfessoresRequests from "../../fetch/ProfessoresRequests";
+import ProfessorRequests from '../../fetch/ProfessorRequests';
 // Importa os estilos CSS específicos para o componente
 import style from '../styles/StyleCadastro.module.css';
 
@@ -40,7 +40,7 @@ function UpdateSenhaProfessor() {
         if (formSenha.novaSenha === formSenha.confirmarSenha) {
             try {
                 // Chama a função para atualizar a senha do professor na API
-                const response = await ProfessoresRequests.UpdateSenhaProfessor(formSenha);
+                const response = await ProfessorRequests.UpdateSenhaProfessor(formSenha);
                 if (response) {
                     console.log('Senha atualizada com sucesso', response); // Log para debug
                     window.alert('Senha atualizada com sucesso'); // Alerta de sucesso

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
-import AparelhoRequests from "../../fetch/AparelhosRequests"; // Importa o módulo de requisições para a API de Aparelhos
+import AparelhoRequests from "../../fetch/AparelhoRequests"; // Importa o módulo de requisições para a API de Aparelhos
 import Navegacao from "../Navegacao/Navegacao"
 
 /**

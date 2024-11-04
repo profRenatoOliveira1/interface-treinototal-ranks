@@ -23,7 +23,7 @@ function Login() {
      */
     const [formLogin, setFormLogin] = useState({
         email: '',  // Inicializa o email como uma string vazia
-        password: '' // Inicializa a senha como uma string vazia
+        senha: '' // Inicializa a senha como uma string vazia
     });
 
     /**
@@ -60,7 +60,7 @@ function Login() {
             // Faz a requisição de login com os dados do formulário
             const response = await AuthRequests.login(formLogin);
             // Verifica se a autenticação foi bem-sucedida
-            if (response.auth) {
+            if (response) {
                 // Se a autenticação for bem-sucedida, persiste o token após um pequeno delay
                 setTimeout(() => {
                     AuthRequests.persistToken(response.token); // Armazena o token
@@ -99,9 +99,9 @@ function Login() {
                         type="password" // Campo de senha
                         className={styles.inpuLogin} // Classe CSS para estilizar o input
                         placeholder="Senha" // Placeholder do campo
-                        value={formLogin.password} // Vincula o valor do campo ao estado `formLogin.password`
+                        value={formLogin.senha} // Vincula o valor do campo ao estado `formLogin.password`
                         onChange={handleChange} // Chama `handleChange` ao modificar o valor
-                        name="password" // Define o nome do input como "password"
+                        name="senha" // Define o nome do input como "password"
                     />
                 </div>
                 <button className={styles.buttonLogin} type="submit"> {/* Botão para enviar o formulário */}
