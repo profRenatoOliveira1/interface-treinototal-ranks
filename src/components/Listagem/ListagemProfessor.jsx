@@ -209,17 +209,17 @@ function ListarProfessor() {
                             </thead>
                             <tbody>
                                 {professoresPaginados.map(professor => ( // Mapeia os professores paginados
-                                    <tr key={professor.id_professor} className={styles.tabelaCorpo}>
-                                        <td hidden>{professor.id_professor}</td>
+                                    <tr key={professor.idProfessor} className={styles.tabelaCorpo}>
+                                        <td hidden>{professor.idProfessor}</td>
                                         <td title="Ver Mais" onClick={() => handleProfessorClick(professor)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                                             {professor.nome.toUpperCase()} {/* Nome do professor em letras maiúsculas */}
                                         </td>
                                         <td>{formatarCPF(professor.cpf)}</td> {/* CPF formatado */}
-                                        <td>{formatadorData(professor.data_nascimento)}</td> {/* Data de nascimento formatada */}
+                                        <td>{formatadorData(professor.dataNascimento)}</td> {/* Data de nascimento formatada */}
                                         <td style={{ width: 200 }}>{formatarTelefone(professor.celular)}</td> {/* Telefone formatado */}
                                         <td hidden>{professor.endereco.toUpperCase()}</td>
                                         <td hidden>{professor.email.toUpperCase()}</td>
-                                        <td hidden>{formatadorData(professor.data_contratacao)}</td>
+                                        <td hidden>{formatadorData(professor.dataContratacao)}</td>
                                         <td hidden>{professor.formacao.toUpperCase()}</td>
                                         <td>{professor.especialidade.toUpperCase()}</td> {/* Especialidade do professor */}
                                         <td title="Deletar Professor">
