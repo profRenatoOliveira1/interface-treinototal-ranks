@@ -2,9 +2,9 @@ import './CardHome.css';
 // Importa os estilos CSS específicos para este componente
 import imgCard from '../../../assets/imgCard.jpg';
 // Importa a imagem do card
-import ExDes from '../../../assets/exdes.jpeg';
+import ExDes from '../../../assets/ExDes.jpeg';
 // Importa a imagem do card
-import ExTri from '../../../assets/extri.jpeg';
+import ExTri from '../../../assets/ExTri.jpeg';
 // Importa a imagem do card
 
 // Definição do componente 'conteudoDaHome'
