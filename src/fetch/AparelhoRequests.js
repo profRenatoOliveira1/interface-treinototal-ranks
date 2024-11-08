@@ -10,7 +10,7 @@ class AparelhoRequests {
     }
 
     getToken() {
-        return localStorage.getItem('authToken');
+        return localStorage.getItem('token');
     }
 
     async listarAparelhos() {
@@ -35,6 +35,7 @@ class AparelhoRequests {
     }
 
     async cadastrarAparelho(aparelhoData) {
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarAparelho}`, {
                 method: 'POST',
@@ -57,9 +58,10 @@ class AparelhoRequests {
     }
 
     async deletarAparelho(aparelhoId) {
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeRemoverAparelho}?idAparelho=${aparelhoId}`, {
-                method: 'DELETE',
+                method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -78,6 +80,7 @@ class AparelhoRequests {
     }
 
     async atualizarAparelho(aparelho) {
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeAtualizarAparelho}?idAparelho=${aparelho.idAparelho}`, {
                 method: 'PUT',

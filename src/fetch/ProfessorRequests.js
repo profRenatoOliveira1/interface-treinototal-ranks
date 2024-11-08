@@ -10,7 +10,7 @@ class ProfessorRequests {
     }
 
     getToken() {
-        return localStorage.getItem('authToken');
+        return localStorage.getItem('token');
     }
 
     async listarProfessores() {
@@ -35,6 +35,7 @@ class ProfessorRequests {
     }
 
     async cadastrarProfessor(professorData) {
+        const token = this.getToken();
         try {
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarProfessor}`, {
                 method: 'POST',
@@ -57,9 +58,10 @@ class ProfessorRequests {
     }
 
     async deletarProfessor(idProfessor) {
+        const token = this.getToken();
         try {
             const response = await fetch(`${this.serverUrl}${this.routeRemoverProfessor}?idProfessor=${idProfessor}`, {
-                method: 'DELETE',
+                method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -78,6 +80,7 @@ class ProfessorRequests {
     }
 
     async atualizarProfessor(professor) {
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?idProfessor=${professor.idProfessor}`, {
                 method: 'PUT',

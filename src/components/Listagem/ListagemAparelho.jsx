@@ -25,7 +25,7 @@ function ListarAparelho() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhos = await AparelhoRequests.listarAparelho(); // Requisição para listar aparelhos
+                const aparelhos = await AparelhoRequests.listarAparelhos(); // Requisição para listar aparelhos
                 setAparelhos(aparelhos); // Atualiza o estado com aparelhos recebidos
                 setFilteredAparelhos(aparelhos); // Inicialmente, não filtra
             } catch (error) {
@@ -45,7 +45,7 @@ function ListarAparelho() {
         } else {
             // Filtra aparelhos pelo nome
             const filtered = aparelhos.filter(aparelho =>
-                aparelho.nome_aparelho.toLowerCase().includes(search.toLowerCase())
+                aparelho.nomeAparelho.toLowerCase().includes(search.toLowerCase())
             );
             setFilteredAparelhos(filtered); // Atualiza a lista filtrada
         }
@@ -56,15 +56,14 @@ function ListarAparelho() {
      * @param {Object} aparelho - O objeto do aparelho a ser deletado
      */
     const deletarAparelho = async (aparelho) => {
-        const confirmar = window.confirm(`Deseja deletar o Aparelho ${aparelho.nome_aparelho}?`); // Confirmação de exclusão
+        const confirmar = window.confirm(`Deseja deletar o Aparelho ${aparelho.nomeAparelho}?`); // Confirmação de exclusão
         if (confirmar) {
             try {
-                const sucesso = await AparelhoRequests.deletarAparelho(aparelho.id_aparelho); // Requisição para deletar aparelho
+                const sucesso = await AparelhoRequests.deletarAparelho(aparelho.idAparelho); // Requisição para deletar aparelho
                 if (sucesso) {
                     // Atualiza a lista de aparelhos após a exclusão
-                    setAparelhos(aparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
-                    setFilteredAparelhos(filteredAparelhos.filter(a => a.id_aparelho !== aparelho.id_aparelho));
                     window.alert('Aparelho deletado com sucesso'); // Mensagem de sucesso
+                    window.location.reload();
                 } else {
                     window.alert('Erro ao deletar Aparelho'); // Mensagem de erro
                 }
@@ -140,8 +139,8 @@ function ListarAparelho() {
                                 {aparelhosPaginados.map(aparelho => ( // Mapeia os aparelhos para exibição
                                     <tr key={aparelho.id_aparelho} className={styles.tabelaCorpo}>
                                         <td hidden>{aparelho.id_aparelho}</td> {/* ID oculto na tabela */}
-                                        <td>{aparelho.nome_aparelho.toUpperCase()}</td> {/* Nome do aparelho em letras maiúsculas */}
-                                        <td>{aparelho.musculo_ativado.toUpperCase()}</td> {/* Músculo ativado em letras maiúsculas */}
+                                        <td>{aparelho.nomeAparelho.toUpperCase()}</td> {/* Nome do aparelho em letras maiúsculas */}
+                                        <td>{aparelho.musculoAtivado.toUpperCase()}</td> {/* Músculo ativado em letras maiúsculas */}
                                         <td title="Deletar Aparelho">
                                             <FaTrash onClick={() => deletarAparelho(aparelho)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone para deletar */}
                                         </td>

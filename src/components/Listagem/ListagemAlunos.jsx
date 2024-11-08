@@ -19,6 +19,8 @@ function ListarAluno() {
     const itensPorPagina = 5; // Número de itens por página
     const navigate = useNavigate(); // Hook para navegação entre rotas
 
+
+    
     /** 
      * Efeito para buscar alunos na montagem do componente 
      * Executa uma única vez ao montar o componente 
@@ -65,7 +67,7 @@ function ListarAluno() {
     const deleteAluno = (aluno) => {
         const deletar = window.confirm(`Tem certeza que deseja remover o aluno ${aluno.nome}?`); // Confirmação de exclusão
         if (deletar) {
-            if (AlunoRequests.deletarAluno(aluno.id_aluno)) {
+            if (AlunoRequests.deletarAluno(aluno.idAluno)) {
                 window.location.reload(); // Recarrega a página após exclusão
                 window.alert('Aluno removido com sucesso!'); // Alerta de sucesso
             } else {
@@ -158,7 +160,7 @@ function ListarAluno() {
                                             {aluno.nome.toUpperCase()} {/* Nome do aluno */}
                                         </td>
                                         <td>{formatarCPF(aluno.cpf)}</td> {/* CPF formatado */}
-                                        <td>{formatadorData(aluno.data_nascimento)}</td> {/* Data de nascimento formatada */}
+                                        <td>{formatadorData(aluno.dataNascimento)}</td> {/* Data de nascimento formatada */}
                                         <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td> {/* Telefone formatado */}
                                         <td>{aluno.endereco.toUpperCase()}</td> {/* Endereço do aluno */}
                                         <td hidden>{aluno.email.toUpperCase()}</td>

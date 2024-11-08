@@ -40,20 +40,20 @@ function UpdateExercicio() {
         * @function setExercicio - Função para atualizar o estado `exercicio`.
         * 
         * @param {Object} objExercicio - Objeto contendo os dados iniciais do exercício, que são:
-        * @param {number} objExercicio.id_exercicio - Identificador do exercício.
-        * @param {number} objExercicio.id_aparelho - Identificador do aparelho associado ao exercício.
+        * @param {number} objExercicio.idExercicio - Identificador do exercício.
+        * @param {number} objExercicio.idAparelho - Identificador do aparelho associado ao exercício.
         * @param {string} objExercicio.exercicio - Nome ou descrição do exercício.
         * @param {number} objExercicio.carga - Carga utilizada no exercício (em Kg).
         * @param {number} objExercicio.repeticoes - Número de repetições do exercício.
-        * @param {string} objExercicio.regiao_corpo_ativa - Região do corpo ativada pelo exercício.
+        * @param {string} objExercicio.regiaoCorpoAtivada - Região do corpo ativada pelo exercício.
     */
     const [exercicio, setExercicio] = useState({
-        id_exercicio: objExercicio.id_exercicio,
-        idAparelho: objExercicio.id_aparelho,
+        idExercicio: objExercicio.idExercicio,
+        idAparelho: objExercicio.idAparelho,
         exercicio: objExercicio.exercicio,
         carga: objExercicio.carga,
         repeticoes: objExercicio.repeticoes,
-        regiaoCorpoAtiva: objExercicio.regiao_corpo_ativa
+        regiaoCorpoAtivada: objExercicio.regiaoCorpoAtivada
     })
 
     /**
@@ -162,8 +162,8 @@ function UpdateExercicio() {
                                 >
                                     <option value="">Selecione um aparelho</option>
                                     {aparelhos.map((aparelho) => (
-                                        <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
-                                            {aparelho.nome_aparelho}
+                                        <option key={aparelho.idAparelho} value={aparelho.idAparelho}>
+                                            {aparelho.nomeAparelho}
                                         </option>
                                     ))}
                                 </Form.Select>
@@ -227,14 +227,14 @@ function UpdateExercicio() {
                                 <input
                                     type="text"
                                     className="form-control input"
-                                    id="regiaoCorpoAtiva"
+                                    id="regiaoCorpoAtivada"
                                     placeholder="Região do corpo ativada"
-                                    value={exercicio.regiaoCorpoAtiva}
+                                    value={exercicio.regiaoCorpoAtivada}
                                     onChange={handleChange}
-                                    name="regiaoCorpoAtiva"
+                                    name="regiaoCorpoAtivada"
                                     required
                                 />
-                                <label htmlFor="regiaoCorpoAtiva">Região do Corpo Ativada</label>
+                                <label htmlFor="regiaoCorpoAtivada">Região do Corpo Ativada</label>
                             </div>
                         </div>
                         {/* Botão para enviar o formulário */}

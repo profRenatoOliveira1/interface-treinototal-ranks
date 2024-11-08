@@ -9,8 +9,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Importa as imagens que serão usadas no carrossel
 import img1 from '../../../assets/img1.png';
-import img2 from '../../../assets/img2.png';
-import img3 from '../../../assets/img3.png';
+import img2 from '../../../assets/img2.jpeg';
+import img3 from '../../../assets/img3.jpeg';
+import img4 from '../../../assets/img4.jpeg';
 
 // Define o componente funcional CarrosselHome
 function CarrosselHome() {
@@ -18,7 +19,7 @@ function CarrosselHome() {
   return (
     <>
       {/* Componente de carrossel contendo as imagens e legendas */}
-      <Carousel className='div-carrossel home'>
+      <Carousel className='div-carrossel home' >
 
         {/* Primeira imagem do carrossel */}
         <Carousel.Item>
@@ -27,11 +28,7 @@ function CarrosselHome() {
             src={img1}
             alt="Primeiro Slide"
           />
-          <Carousel.Caption>
-            <h3 className='th'>Idealize</h3>
-            <p className='th'>Planeje SUA ROTINA de treinos!</p>
-          </Carousel.Caption>
-        </Carousel.Item>
+          </Carousel.Item>
 
         {/* Segunda imagem do carrossel */}
         <Carousel.Item>
@@ -40,10 +37,6 @@ function CarrosselHome() {
             src={img2}
             alt="Segundo Slide"
           />
-          <Carousel.Caption>
-            <h3 className='th'>Pratique</h3>
-            <p className='th'>Dê seu MÁXIMO!</p>
-          </Carousel.Caption>
         </Carousel.Item>
 
         {/* Terceira imagem do carrossel */}
@@ -53,10 +46,15 @@ function CarrosselHome() {
             src={img3}
             alt="Terceiro Slide"
           />
-          <Carousel.Caption>
-            <h3 className='th'>Conquiste</h3>
-            <p className='th'>Alcance seu futuro EU!</p>
-          </Carousel.Caption>
+        </Carousel.Item>
+
+        {/* Quarta imagem do carrossel */}
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src={img4}
+            alt="Quarto Slide"
+          />
         </Carousel.Item>
 
       </Carousel>

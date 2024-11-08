@@ -32,14 +32,14 @@ function ListagemExercicios() {
 
                 // Criação de um mapa para facilitar a associação entre aparelhos e seus nomes
                 const aparelhosMap = aparelhos.reduce((map, aparelho) => {
-                    map[aparelho.id_aparelho] = aparelho; // Mapeia cada aparelho por seu ID
+                    map[aparelho.idAparelho] = aparelho; // Mapeia cada aparelho por seu ID
                     return map; // Retorna o mapa atualizado
                 }, {});
 
                 // Combina os dados de exercícios com seus respectivos aparelhos
                 const exerciciosComAparelhos = exercicios.map(exercicio => ({
                     ...exercicio,
-                    nome_aparelho: aparelhosMap[exercicio.id_aparelho]?.nome_aparelho // Adiciona o nome do aparelho
+                    nomeAparelho: aparelhosMap[exercicio.idAparelho]?.nomeAparelho // Adiciona o nome do aparelho
                 }));
 
                 setExercicios(exerciciosComAparelhos); // Atualiza o estado com os exercícios obtidos
@@ -76,7 +76,7 @@ function ListagemExercicios() {
         const deletar = window.confirm(`Tem certeza que deseja remover o exercício ${exercicio.exercicio}?`); // Confirmação de exclusão
 
         if (deletar) {
-            if (ExerciciosRequests.deletarExercicio(exercicio.id_exercicio)) {
+            if (ExercicioRequests.deletarExercicio(exercicio.idExercicio)) {
                 window.location.reload(); // Recarrega a página após a exclusão
                 window.alert('Exercicio removido com sucesso'); // Alerta de sucesso
             } else {
@@ -111,7 +111,7 @@ function ListagemExercicios() {
         <>
             {/* Título da tabela de exercícios */}
             <h1 className={styles.titulo}>Tabela de Exercícios</h1>
-            <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Exercicio" className={styles.btn}>
+            <a style={{ textDecoration: "none" }} href="/Cadastro/Exercicio" className={styles.btn}>
                 Novo Exercicio {/* Link para adicionar novo exercício */}
             </a>
 
@@ -146,13 +146,13 @@ function ListagemExercicios() {
                             <tbody>
                                 {exerciciosPaginados.map(exercicio => ( // Mapeia exercícios a serem exibidos
                                     <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
-                                        <td hidden>{exercicio.id_exercicio}</td>
-                                        <td hidden>{exercicio.id_aparelho}</td>
+                                        <td hidden>{exercicio.idExercicio}</td>
+                                        <td hidden>{exercicio.idAparelho}</td>
                                         <td>{exercicio.exercicio.toUpperCase()}</td> {/* Nome do exercício */}
-                                        <td>{exercicio.nome_aparelho?.toUpperCase()}</td> {/* Nome do aparelho */}
+                                        <td>{exercicio.nomeAparelho?.toUpperCase()}</td> {/* Nome do aparelho */}
                                         <td>{exercicio.repeticoes}</td> {/* Repetições do exercício */}
                                         <td>{`${exercicio.carga} Kg`}</td> {/* Carga do exercício */}
-                                        <td>{exercicio.regiao_corpo_ativa.toUpperCase()}</td> {/* Região do corpo ativa */}
+                                        <td>{exercicio.regiaoCorpoAtivada.toUpperCase()}</td> {/* Região do corpo ativa */}
                                         <td title="Deletar Exercício">
                                             <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone de deletar */}
                                         </td>

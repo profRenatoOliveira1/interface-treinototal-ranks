@@ -19,11 +19,11 @@ function CardProfessor() {
     const [professor] = useState({
         nome: objProfessor.nome,
         cpf: objProfessor.cpf,
-        dataNascimento: formatarData(new Date(objProfessor.data_nascimento)),
+        dataNascimento: formatarData(new Date(objProfessor.dataNascimento)),
         celular: objProfessor.celular,
         endereco: objProfessor.endereco,
         email: objProfessor.email,
-        dataContratacao: formatarData(new Date(objProfessor.data_contratacao)),
+        dataContratacao: formatarData(new Date(objProfessor.dataContratacao)),
         formacao: objProfessor.formacao,
         especialidade: objProfessor.especialidade
     });

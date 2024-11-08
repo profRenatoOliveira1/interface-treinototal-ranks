@@ -26,7 +26,7 @@ function UpdateAluno() {
     // recupera as informações que vieram da página anterior e armazena na variável objAluno
     const objAluno = location.state.objeto;
 
-    // const { dia, mes, ano } = formatarData(new Date(objAluno.data_nascimento));
+    // const { dia, mes, ano } = formatarData(new Date(objAluno.dataNascimento));
 
     /**
         * Define o estado inicial do objeto `aluno` com base nos dados do objeto `objAluno`,
@@ -39,26 +39,29 @@ function UpdateAluno() {
         * @function setAluno - Função para atualizar o estado `aluno`.
         * 
         * @param {Object} objAluno - Objeto contendo os dados iniciais do aluno, que são:
-        * @param {number} objAluno.id_aluno - Identificador do aluno.
+        * @param {number} objAluno.idAluno - Identificador do aluno.
         * @param {string} objAluno.nome - Nome do aluno.
         * @param {string} objAluno.cpf - CPF do aluno.
-        * @param {string} objAluno.data_nascimento - Data de nascimento do aluno.
+        * @param {string} objAluno.dataNascimento - Data de nascimento do aluno.
         * @param {string} objAluno.celular - Número de celular do aluno.
         * @param {string} objAluno.endereco - Endereço do aluno.
         * @param {string} objAluno.email - Endereço de email do aluno.
         * @param {number} objAluno.altura - Altura do aluno.
         * @param {number} objAluno.peso - Peso do aluno.
+        * @param {number} objAluno.imc - Peso do aluno.
+
     */
     const [aluno, setAluno] = useState({
-        id_aluno: objAluno.id_aluno,
+        idAluno: objAluno.idAluno,
         nome: objAluno.nome,
         cpf: objAluno.cpf,
-        dataNascimento: formatarData(new Date(objAluno.data_nascimento)),
+        dataNascimento: formatarData(new Date(objAluno.dataNascimento)),
         celular: objAluno.celular,
         endereco: objAluno.endereco,
         email: objAluno.email,
         altura: objAluno.altura,
-        peso: objAluno.peso
+        peso: objAluno.peso,
+        imc: objAluno.imc
     })
 
     /**
@@ -70,12 +73,25 @@ function UpdateAluno() {
         * @param {string} e.target.value - O valor atual do campo de input (usado para atualizar o valor no estado).
     */
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
         setAluno(prevState => ({
-            ...prevState,
-            [name]: value
+            ...prevState, // Mantém os valores atuais do estado
+            [name]: value // Atualiza o valor do campo específico
         }));
-    }
+
+        if(name === 'peso' || name === 'altura') {
+            const altura = parseFloat(name === 'altura' ? value: setAluno.altura);
+            const peso = parseFloat(name === 'peso' ? value: setAluno.peso);
+
+            if(altura > 0 && peso > 0) {
+                const imc = (peso / (altura * altura)).toFixed(2);
+                setAluno(prevState => ({
+                    ...prevState,
+                    imc
+                }));
+            }
+        }
+    };
 
     /**
         * Lida com o envio do formulário de forma assíncrona, evitando o recarregamento da página
@@ -277,10 +293,16 @@ function UpdateAluno() {
                             </div>
                         </div>
                         <div className="formGroup input">
-                            <p className={styles.formStyle}>
-                                <strong>IMC:</strong> {calcularIMC(aluno.peso, aluno.altura)}
-                            </p>
-                        </div>
+                        <input 
+                            type="text"
+                            className='form-control input'
+                            placeholder='IMC'
+                            value={aluno.imc}
+                            onChange={handleChange}
+                            name="imc" 
+                            disabled
+                            style={{ height: '50px', textAlign: 'center', fontWeight: 'bold'}} />
+                    </div>
                         <button type="submit" className={styles.btn}>
                             Atualizar
                         </button>

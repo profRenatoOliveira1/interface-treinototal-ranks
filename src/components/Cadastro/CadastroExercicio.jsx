@@ -10,27 +10,27 @@ function CadastroExercicio() {
      * Define o estado inicial do formulário com todos os campos vazios.
      * Utiliza o hook `useState` para gerenciar o estado do formulário.
      * 
-     * - Cada campo do objeto `formData` representa um atributo do exercício e é inicializado como uma string vazia.
+     * - Cada campo do objeto `exercicio` representa um atributo do exercício e é inicializado como uma string vazia.
      * 
-     * @constant {Object} formData - O estado que contém as informações do formulário.
-     * @function setFormData - Função para atualizar o estado `formData`.
+     * @constant {Object} exercicio - O estado que contém as informações do formulário.
+     * @function setexercicio - Função para atualizar o estado `exercicio`.
      * 
-     * @param {Object} formData - Objeto contendo os dados do formulário, com os seguintes campos:
-     * @param {string} formData.idAparelho - ID do aparelho associado ao exercício.
-     * @param {string} formData.exercicio - Nome do exercício.
-     * @param {string} formData.carga - Carga em kg do exercício.
-     * @param {string} formData.repeticoes - Número de repetições do exercício.
-     * @param {string} formData.regiaoCorpoAtiva - Região do corpo ativada pelo exercício.
+     * @param {Object} exercicio - Objeto contendo os dados do formulário, com os seguintes campos:
+     * @param {string} exercicio.idAparelho - ID do aparelho associado ao exercício.
+     * @param {string} exercicio.exercicio - Nome do exercício.
+     * @param {string} exercicio.carga - Carga em kg do exercício.
+     * @param {string} exercicio.repeticoes - Número de repetições do exercício.
+     * @param {string} exercicio.regiaoCorpoAtivada - Região do corpo ativada pelo exercício.
      */
-    const [formData, setFormData] = useState({
+    const [exercicio, setexercicio] = useState({
         idAparelho: '',              // Campo para o ID do aparelho
         exercicio: '',               // Campo para o nome do exercício
         carga: '',                   // Campo para a carga em kg
         repeticoes: '',              // Campo para o número de repetições
-        regiaoCorpoAtiva: ''         // Campo para a região do corpo ativada
+        regiaoCorpoAtivada: ''         // Campo para a região do corpo ativada
     });
 
-    /**
+    /** 
      * Define o estado para armazenar a lista de aparelhos disponíveis.
      * 
      * - O estado `aparelhos` armazena os dados recebidos da API, que serão usados
@@ -54,7 +54,7 @@ function CadastroExercicio() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhosData = await AparelhoRequests.listarAparelho(); // Busca a lista de aparelhos da API
+                const aparelhosData = await AparelhoRequests.listarAparelhos(); // Busca a lista de aparelhos da API
                 if (aparelhosData) {
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
@@ -70,7 +70,7 @@ function CadastroExercicio() {
      * Atualiza o estado do formulário com base nas alterações feitas pelo usuário em um campo de input.
      * 
      * - Obtém o nome e o valor do campo que foi alterado a partir do evento `e`.
-     * - Atualiza o estado `formData` mantendo os valores atuais e substituindo o valor do campo alterado.
+     * - Atualiza o estado `exercicio` mantendo os valores atuais e substituindo o valor do campo alterado.
      * 
      * @function handleChange
      * 
@@ -84,16 +84,16 @@ function CadastroExercicio() {
      */
     const handleChange = (e) => {
         const { name, value } = e.target; // Obtém o nome e o valor do campo que foi alterado
-        setFormData(prevState => ({
+        setexercicio(prevState => ({
             ...prevState, // Mantém os valores atuais do estado
             [name]: value // Atualiza o valor do campo específico
         }));
     };
 
     /**
-     * Limpa os campos do formulário, redefinindo o estado `formData` para seus valores iniciais.
+     * Limpa os campos do formulário, redefinindo o estado `exercicio` para seus valores iniciais.
      * 
-     * - Atualiza o estado `formData` para um objeto com todos os campos definidos como strings vazias.
+     * - Atualiza o estado `exercicio` para um objeto com todos os campos definidos como strings vazias.
      * - Esse método é útil para resetar o formulário após a submissão ou quando necessário.
      * 
      * @function clearForm
@@ -103,12 +103,12 @@ function CadastroExercicio() {
      * clearForm();
      */
     const clearForm = () => {
-        setFormData({
+        setexercicio({
             idAparelho: '',
             exercicio: '',
             carga: '',
             repeticoes: '',
-            regiaoCorpoAtiva: ''
+            regiaoCorpoAtivada: ''
         });
     };
 
@@ -134,10 +134,10 @@ function CadastroExercicio() {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
         try {
-            if (ExercicioRequests.cadastrarExercicio(formData)) {
+            if (ExercicioRequests.cadastrarExercicio(exercicio)) {
                 console.log('Exercício cadastrado com sucesso:'); // Confirmação de sucesso no console
                 clearForm(); // Limpa o formulário após o cadastro
-                window.alert(formData.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
+                window.alert(exercicio.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
 
                 if (window.confirm(`Deseja ir para a listagem?`))
                     window.location.href = 'http://localhost:5173/Listagem/Exercicio';
@@ -161,15 +161,15 @@ function CadastroExercicio() {
                     <div className={styles.formGroup}>
                         <select
                             className={styles.formStyle}
-                            value={formData.idAparelho}
+                            value={exercicio.idAparelho}
                             onChange={handleChange}
                             name="idAparelho"
                             required
                         >
                             <option value="">Selecione o Aparelho</option>
                             {aparelhos.map(aparelho => ( // Mapeia a lista de aparelhos para criar as opções do select
-                                <option key={aparelho.id_aparelho} value={aparelho.id_aparelho}>
-                                    {aparelho.nome_aparelho}
+                                <option key={aparelho.idAparelho} value={aparelho.idAparelho}>
+                                    {aparelho.nomeAparelho}
                                 </option>
                             ))}
                         </select>
@@ -180,7 +180,7 @@ function CadastroExercicio() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Exercício"
-                            value={formData.exercicio}
+                            value={exercicio.exercicio}
                             onChange={handleChange}
                             name="exercicio"
                             required
@@ -192,7 +192,7 @@ function CadastroExercicio() {
                             type="number"
                             className={styles.formStyle}
                             placeholder="Carga/Kg"
-                            value={formData.carga}
+                            value={exercicio.carga}
                             onChange={handleChange}
                             name="carga"
                             required
@@ -204,7 +204,7 @@ function CadastroExercicio() {
                             type="number"
                             className={styles.formStyle}
                             placeholder="Repetições"
-                            value={formData.repeticoes}
+                            value={exercicio.repeticoes}
                             onChange={handleChange}
                             name="repeticoes"
                             required
@@ -216,9 +216,9 @@ function CadastroExercicio() {
                             type="text"
                             className={styles.formStyle}
                             placeholder="Região do corpo ativada"
-                            value={formData.regiaoCorpoAtiva}
+                            value={exercicio.regiaoCorpoAtivada}
                             onChange={handleChange}
-                            name="regiaoCorpoAtiva"
+                            name="regiaoCorpoAtivada"
                             required
                         />
                     </div>

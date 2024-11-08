@@ -24,14 +24,14 @@ function UpdateProfessor() {
     // Define o estado inicial do objeto `professor` com base nos dados do objeto `objProfessor`,
     // Utilizando `America/Sao_Paulo` como fuso horário para garantir o formato correto.
     const [professor, setProfessor] = useState({
-        idProfessor: objProfessor.id_professor,
+        idProfessor: objProfessor.idProfessor,
         nome: objProfessor.nome,
         cpf: objProfessor.cpf,
-        dataNascimento: formatarData(new Date(objProfessor.data_nascimento)),
+        dataNascimento: formatarData(new Date(objProfessor.dataNascimento)),
         celular: objProfessor.celular,
         endereco: objProfessor.endereco,
         email: objProfessor.email,
-        dataContratacao: formatarData(new Date(objProfessor.data_contratacao)),
+        dataContratacao: formatarData(new Date(objProfessor.dataContratacao)),
         formacao: objProfessor.formacao,
         especialidade: objProfessor.especialidade
     })

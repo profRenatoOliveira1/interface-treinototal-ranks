@@ -9,7 +9,7 @@ class ExercicioRequests {
         this.routeAtualizarExercicio = SERVER_ROUTES.ATUALIZAR_EXERCICIO;
     }
     getToken() {
-        return localStorage.getItem('authToken');
+        return localStorage.getItem('token');
     }
 
     async listarExercicios() {
@@ -34,6 +34,7 @@ class ExercicioRequests {
     }
 
     async cadastrarExercicio(exercicioData) {
+        const token = localStorage.getItem('token');
         try {
             console.log('Dados do exercício:', exercicioData); // Verifique os dados aqui
 
@@ -62,9 +63,10 @@ class ExercicioRequests {
     }
 
     async deletarExercicio(exercicioId) {
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeRemoverExercicio}?idExercicio=${exercicioId}`, {
-                method: 'POST',
+                method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -83,7 +85,7 @@ class ExercicioRequests {
     }
 
     async atualizarExercicio(exercicio) {
-        console.log(exercicio)
+        const token = localStorage.getItem('token');
         try {
             const response = await fetch(`${this.serverUrl}${this.routeAtualizarExercicio}?idExercicio=${exercicio.idExercicio}`, {
                 method: 'PUT',

@@ -18,37 +18,37 @@ function ListarProfessor() {
      * Estado para armazenar a lista de professores.
      * @type {Array} professores - Lista de professores.
      */
-    const [professores, setProfessores] = useState([]); 
+    const [professores, setProfessores] = useState([]);
 
     /** 
      * Estado para armazenar os professores filtrados pela pesquisa.
      * @type {Array} filteredProfessores - Lista de professores filtrados.
      */
-    const [filteredProfessores, setFilteredProfessores] = useState([]); 
+    const [filteredProfessores, setFilteredProfessores] = useState([]);
 
     /** 
      * Estado para armazenar o valor do campo de busca.
      * @type {string} search - Valor do campo de pesquisa.
      */
-    const [search, setSearch] = useState(''); 
+    const [search, setSearch] = useState('');
 
     /** 
      * Estado para armazenar a página atual da listagem.
      * @type {number} paginaAtual - Número da página atual.
      */
-    const [paginaAtual, setPaginaAtual] = useState(1); 
+    const [paginaAtual, setPaginaAtual] = useState(1);
 
     /** 
      * Número de itens a serem exibidos por página.
      * @type {number} itensPorPagina - Itens por página.
      */
-    const itensPorPagina = 5; 
+    const itensPorPagina = 5;
 
     /** 
      * Hook para navegação entre páginas.
      * @type {function} navigate - Função para navegar entre rotas.
      */
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     /**
      * Efeito para buscar a lista de professores ao montar o componente.
@@ -109,10 +109,11 @@ function ListarProfessor() {
         const deletar = window.confirm(`Tem certeza que deseja remover o professor ${professor.nome}?`); // Confirmação de exclusão
         if (deletar) {
             try {
-                await ProfessoresRequests.deletarProfessor(professor.id_professor); // Faz a requisição para deletar o professor
-                setProfessores(professores.filter(p => p.id_professor !== professor.id_professor)); // Atualiza a lista de professores
-                setFilteredProfessores(filteredProfessores.filter(p => p.id_professor !== professor.id_professor)); // Atualiza a lista filtrada
-                window.alert('Professor removido com sucesso!'); // Alerta de sucesso
+                if (await ProfessorRequests.deletarProfessor(professor.idProfessor)) {
+                    // Faz a requisição para deletar o professor
+                    window.alert('Professor removido com sucesso!'); // Alerta de sucesso
+                    window.location.reload();
+                }
             } catch {
                 window.alert('Erro ao remover professor!'); // Alerta de erro
             }
@@ -168,7 +169,7 @@ function ListarProfessor() {
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Professores</h1> {/* Título da tabela */}
                             </div>
-                            <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Professor" className={styles.btn}>
+                            <a style={{ textDecoration: "none" }} href="/Cadastro/Professor" className={styles.btn}>
                                 Novo Professor {/* Link para adicionar novo professor */}
                             </a>
                         </div>
@@ -215,11 +216,11 @@ function ListarProfessor() {
                                             {professor.nome.toUpperCase()} {/* Nome do professor em letras maiúsculas */}
                                         </td>
                                         <td>{formatarCPF(professor.cpf)}</td> {/* CPF formatado */}
-                                        <td>{formatadorData(professor.data_nascimento)}</td> {/* Data de nascimento formatada */}
+                                        <td>{formatadorData(professor.dataNascimento)}</td> {/* Data de nascimento formatada */}
                                         <td style={{ width: 200 }}>{formatarTelefone(professor.celular)}</td> {/* Telefone formatado */}
                                         <td hidden>{professor.endereco.toUpperCase()}</td>
                                         <td hidden>{professor.email.toUpperCase()}</td>
-                                        <td hidden>{formatadorData(professor.data_contratacao)}</td>
+                                        <td hidden>{formatadorData(professor.dataContratacao)}</td>
                                         <td hidden>{professor.formacao.toUpperCase()}</td>
                                         <td>{professor.especialidade.toUpperCase()}</td> {/* Especialidade do professor */}
                                         <td title="Deletar Professor">

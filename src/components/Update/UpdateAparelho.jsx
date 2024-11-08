@@ -38,9 +38,9 @@ function UpdateAparelho() {
         * @param {string} objAparelho.musculo_ativado - Músculo ativado pelo aparelho.
     */
     const [aparelho, setAparelho] = useState({
-        id_aparelho: objAparelho.id_aparelho,
-        nomeAparelho: objAparelho.nome_aparelho,
-        musculoAtivado: objAparelho.musculo_ativado
+        idAparelho: objAparelho.idAparelho,
+        nomeAparelho: objAparelho.nomeAparelho,
+        musculoAtivado: objAparelho.musculoAtivado
     })
 
     /**

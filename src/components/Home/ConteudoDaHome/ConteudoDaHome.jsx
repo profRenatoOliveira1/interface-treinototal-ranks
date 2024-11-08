@@ -9,7 +9,7 @@ function conteudoDaHome() {
             <div className='div-conteudo home'>
 
                 {/* Título da página */}
-                <h1 className='titulo'>Treino Total</h1>
+                <h1 className='titulo' >Treino Total</h1>
             </div>
         </>
     );

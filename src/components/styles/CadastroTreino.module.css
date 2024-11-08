@@ -1,0 +1,195 @@
+/* :root {
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --cinzaAvermelhado: #333;
+    --branco: #FFFFFF;
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
+} */
+
+.cadastroTreino {
+    color: var(--branco);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.selections {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.selectionBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--cinzaAzulado);
+    padding: 4% 6%;
+    border-radius: 25px;
+    border: 2px solid var(--amareloClaro);
+}
+
+.selectionBox Button {
+    margin-bottom: 10px;
+}
+
+td  {
+    color: var(--amareloClaro) !important;
+    font-size: 1.2rem !important;
+    background-color: var(--cinzaAzulado) !important;
+    margin: 0;
+    border: 2px solid var(--amareloClaro) !important;
+}
+th {
+    color: var(--branco) !important;
+    font-size: 1.2rem !important;
+    background-color: var(--amareloClaro) !important;
+    margin: 0;
+    border: 2px solid var(--cinzaAzulado) !important;
+}
+.selected {
+    padding: 10px 15px;
+    /* border-radius: 5px; */
+    font-size: 1.3rem;
+    /* margin-top: 5px; */
+    text-align: center;
+    /* border-radius: 25px; */
+    margin: auto auto;
+}
+
+.table thead th, table {
+    color: white !important;
+    font-size: 1.2rem !important;
+}
+
+.input {
+    color: var(--amareloClaro);
+    padding: 5px;
+    background-color: var(--cinzaAzulado);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 1.3rem;
+    border: none;
+}
+
+.removeButton {
+    background-color: var(--cinzaAzulado) !important;
+    border: none !important;
+    color: #ff4d4d !important;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.removeButton:hover {
+    color: #ce0f0f;
+}
+
+.btn {
+    display: inline-block;
+    width: 35%;
+    /* Exibe como bloco */
+    padding: 15px 25px;
+    /* Preenchimento */
+    background-color: var(--cinzaAzulado);
+    /* Cor de fundo */
+    font-size: 18px;
+    color: var(--amareloClaro);
+    border: 3px solid var(--amareloClaro);
+    /* Sem borda */
+    border-radius: 27px;
+    /* Raio da borda */
+    cursor: pointer;
+    /* Cursor */
+    transition: background-color 0.3s ease;
+    /* Transição suave */
+  }
+  
+  /* Estilos de hover para um botão genérico */
+  .btn:hover {
+    background-color: var(--amareloEscuro);
+    color: var(--branco);
+  }
+
+.h1 {
+    color: var(--branco);
+    text-align: center;
+    font-family: "Archivo Black", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin-bottom: 2%;
+}
+
+.botaoSelecao {
+    width: 100%;
+    font-size: 1.5rem !important;
+    color: var(--amareloClaro) !important;
+    border-color: var(--amareloClaro) !important;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .selections {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .selectionBox {
+        width: 90%;
+        margin-bottom: 20px;
+    }
+
+    .cadastrarButton {
+        width: 50% !important;
+    }
+    .cadastrarButton {
+        width: 70% !important;
+        font-size: 1.5rem !important;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .cadastroTreino {
+        padding: 10px;
+        margin-top: 10%;
+    }
+
+    .selected {
+        font-size: 1rem;
+    }
+
+    .input {
+        font-size: 1rem;
+    }
+
+    td, th {
+        font-size: 1rem !important;
+    }
+
+    .cadastrarButton {
+        width: 70% !important;
+        font-size: 1.5rem !important;
+    }
+
+    .botaoSelecao {
+        width: 70%;
+        font-size: 1.2rem !important;
+    }
+}

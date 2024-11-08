@@ -48,7 +48,8 @@ function CadastroAluno() {
         endereco: '',         // Campo para o endereço do aluno
         email: '',            // Campo para o email do aluno
         altura: '',           // Campo para a altura do aluno
-        peso: ''              // Campo para o peso do aluno
+        peso: '',             // Campo para o peso do aluno
+        imc: ''              // Campo para o imc do aluno
     });
 
     /**
@@ -73,6 +74,19 @@ function CadastroAluno() {
             ...prevState, // Mantém os valores atuais do estado
             [name]: value // Atualiza o valor do campo específico
         }));
+
+        if(name === 'peso' || name === 'altura') {
+            const altura = parseFloat(name === 'altura' ? value: formData.altura);
+            const peso = parseFloat(name === 'peso' ? value: formData.peso);
+
+            if(altura > 0 && peso > 0) {
+                const imc = (peso / (altura * altura)).toFixed(2);
+                setFormData(prevState => ({
+                    ...prevState,
+                    imc
+                }));
+            }
+        }
     };
 
     /**
@@ -297,9 +311,15 @@ function CadastroAluno() {
                         </div>
                     </div>
                     <div className="formGroup input">
-                        <p className={styles.formStyle}>
-                            <strong>IMC:</strong> {calcularIMC(formData.peso, formData.altura)}
-                        </p>
+                        <input 
+                            type="text"
+                            className='form-control input'
+                            placeholder='IMC'
+                            value={formData.imc}
+                            onChange={handleChange}
+                            name="imc" 
+                            disabled
+                            style={{ height: '50px', textAlign: 'center', fontWeight: 'bold'}} />
                     </div>
                     {/* Botão para enviar o formulário */}
                     <button type="submit" className={styles.btn}>

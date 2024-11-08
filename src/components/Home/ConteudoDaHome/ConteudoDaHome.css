@@ -1,15 +1,23 @@
 :root {
     /* Definição de variáveis de cor */
-    --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
-    --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
-    --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
-    --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
-    --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
-    --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
-    --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
-    --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
-  }
-  
+    --amareloClaro: #ffeba7;
+    /* Amarelo claro, usado para elementos destacados e botões */
+    --cinzaEscuro: #212529;
+    /* Cinza escuro, provavelmente usado para fundos ou texto */
+    --cinzaAzulado: #343A40;
+    /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+    --cinzaAvermelhado: #333;
+    /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+    --branco: #FFFFFF;
+    /* Cor branca, comumente utilizada para texto ou fundos claros */
+    --cinzaClaro: #ccc;
+    /* Cinza claro, pode ser usado para bordas ou textos desativados */
+    --amareloEscuro: #b39f72;
+    /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+    --preto: #000000;
+    /* Cor preta, geralmente usada para texto ou elementos de destaque */
+}
+
 /* Estilos para um título genérico */
 .titulo {
     color: var(--amareloClaro);
@@ -21,12 +29,13 @@
     font-style: normal;
     /* Mantém o estilo da fonte */
     display: flex;
-    /* Altera o display para inline para que fiquem lado a lado */
-    margin-right: 10px;
+    /* Altera o display para flex */
+    justify-content: center !important;
     /* Adiciona um espaçamento entre as palavras */
-    margin-bottom: -17%;
-        /* Adiciona um espaçamento entre as palavras */
-        margin-top: -2%;
+    margin-bottom: 1%;
+    /* Adiciona um espaçamento entre as palavras */
+    margin-top: -2%;
+    /* Centraliza o título*/
 }
 
 /* Estilos para o conteúdo dentro de uma div */
