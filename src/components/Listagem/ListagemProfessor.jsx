@@ -210,8 +210,8 @@ function ListarProfessor() {
                             </thead>
                             <tbody>
                                 {professoresPaginados.map(professor => ( // Mapeia os professores paginados
-                                    <tr key={professor.id_professor} className={styles.tabelaCorpo}>
-                                        <td hidden>{professor.id_professor}</td>
+                                    <tr key={professor.idProfessor} className={styles.tabelaCorpo}>
+                                        <td hidden>{professor.idProfessor}</td>
                                         <td title="Ver Mais" onClick={() => handleProfessorClick(professor)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
                                             {professor.nome.toUpperCase()} {/* Nome do professor em letras maiúsculas */}
                                         </td>
