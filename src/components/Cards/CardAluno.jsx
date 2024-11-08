@@ -38,7 +38,7 @@ function CardAluno() {
     const [aluno] = useState({
         nome: objAluno.nome,
         cpf: objAluno.cpf,
-        dataNascimento: formatarData(new Date(objAluno.data_nascimento)), // Formata a data de nascimento
+        dataNascimento: formatarData(new Date(objAluno.dataNascimento)), // Formata a data de nascimento
         celular: objAluno.celular,
         endereco: objAluno.endereco,
         email: objAluno.email,

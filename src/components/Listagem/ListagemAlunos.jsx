@@ -158,7 +158,7 @@ function ListarAluno() {
                                             {aluno.nome.toUpperCase()} {/* Nome do aluno */}
                                         </td>
                                         <td>{formatarCPF(aluno.cpf)}</td> {/* CPF formatado */}
-                                        <td>{formatadorData(aluno.data_nascimento)}</td> {/* Data de nascimento formatada */}
+                                        <td>{formatadorData(aluno.dataNascimento)}</td> {/* Data de nascimento formatada */}
                                         <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td> {/* Telefone formatado */}
                                         <td>{aluno.endereco.toUpperCase()}</td> {/* Endereço do aluno */}
                                         <td hidden>{aluno.email.toUpperCase()}</td>
