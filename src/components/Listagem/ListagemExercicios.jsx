@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários
+import React, { useState, useEffect } from 'react'; // Importa React e hooks necessários 
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importação do Bootstrap para estilização
 import styles from '../styles/StyleListagem.module.css'; // Importa estilos CSS específicos para este componente
 import ExercicioRequests from '../../fetch/ExercicioRequests'; // Importação do módulo responsável por fazer as requisições dos exercícios
@@ -28,7 +28,7 @@ function ListagemExercicios() {
         const fetchDados = async () => {
             try {
                 const exercicios = await ExercicioRequests.listarExercicios(); // Requisição para buscar os exercícios
-                const aparelhos = await AparelhoRequests.listarAparelhos(); // Requisição para buscar os aparelhos
+                const aparelhos = await AparelhoRequests.ListagemAparelhos(); // Requisição para buscar os aparelhos
 
                 // Criação de um mapa para facilitar a associação entre aparelhos e seus nomes
                 const aparelhosMap = aparelhos.reduce((map, aparelho) => {
@@ -129,66 +129,61 @@ function ListagemExercicios() {
             {/* Tabela para listar os exercícios */}
             <div className={styles.cntTb}>
                 {exerciciosPaginados.length > 0 ? ( // Verifica se há exercícios a serem exibidos
-                    <>
-                        <table className={`${styles.table} ${styles.tabela}`}>
-                            <thead>
-                                <tr className={styles.tabelaHeader}>
-                                    <th hidden>ID</th>
-                                    <th hidden>ID</th>
-                                    <th>Nome do Exercício</th>
-                                    <th>Aparelho</th>
-                                    <th>Repetições</th>
-                                    <th>Carga</th>
-                                    <th>Região do Corpo</th>
-                                    <th colSpan={2}>Ação</th> {/* Colunas de ação */}
+                    <table className={`${styles.table} ${styles.tabela}`}>
+                        <thead>
+                            <tr className={styles.tabelaHeader}>
+                                <th hidden>ID</th>
+                                <th hidden>ID</th>
+                                <th>NOME DO EXERCÍCIO</th>
+                                <th>APARELHO</th>
+                                <th>REGIÃO DO CORPO</th>
+                                <th colSpan={2}>AÇÃO</th> {/* Colunas de ação */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {exerciciosPaginados.map(exercicio => ( // Mapeia exercícios a serem exibidos
+                                <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
+                                    <td hidden>{exercicio.idExercicio}</td>
+                                    <td hidden>{exercicio.idAparelho}</td>
+                                    <td>{exercicio.exercicio.toUpperCase()}</td> {/* Nome do exercício */}
+                                    <td>{exercicio.nomeAparelho?.toUpperCase()}</td> {/* Nome do aparelho */}
+                                    <td>{exercicio.regiaoCorpoAtivada.toUpperCase()}</td> {/* Região do corpo ativa */}
+                                    <td title="Deletar Exercício">
+                                        <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone de deletar */}
+                                    </td>
+                                    <td title="Atualizar Exercício">
+                                        <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF', cursor: 'pointer' }} /> {/* Ícone de editar */}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {exerciciosPaginados.map(exercicio => ( // Mapeia exercícios a serem exibidos
-                                    <tr key={exercicio.id_exercicio} className={styles.tabelaCorpo}>
-                                        <td hidden>{exercicio.idExercicio}</td>
-                                        <td hidden>{exercicio.idAparelho}</td>
-                                        <td>{exercicio.exercicio.toUpperCase()}</td> {/* Nome do exercício */}
-                                        <td>{exercicio.nomeAparelho?.toUpperCase()}</td> {/* Nome do aparelho */}
-                                        <td>{exercicio.repeticoes}</td> {/* Repetições do exercício */}
-                                        <td>{`${exercicio.carga} Kg`}</td> {/* Carga do exercício */}
-                                        <td>{exercicio.regiaoCorpoAtivada.toUpperCase()}</td> {/* Região do corpo ativa */}
-                                        <td title="Deletar Exercício">
-                                            <FaTrash onClick={() => deletarExercicio(exercicio)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone de deletar */}
-                                        </td>
-                                        <td title="Atualizar Exercício">
-                                            <FaRegEdit onClick={() => UpdateExercicio(exercicio)} style={{ color: '#FFFFFF', cursor: 'pointer' }} /> {/* Ícone de editar */}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        {/* Paginação */}
-                        <div className={styles.paginacao}>
-                            <button
-                                onClick={() => mudarPagina(paginaAtual - 1)} // Muda para a página anterior
-                                disabled={paginaAtual === 1} // Desabilita se já estiver na primeira página
-                            >
-                                <MdOutlineArrowBackIos />
-                            </button>
-
-                            <span>Página {paginaAtual} de {totalPaginas}</span> {/* Exibe informações da página atual */}
-
-                            <button
-                                onClick={() => mudarPagina(paginaAtual + 1)} // Muda para a próxima página
-                                disabled={paginaAtual === totalPaginas || exerciciosPaginados.length === 0} // Desabilita se já estiver na última página
-                            >
-                                <MdOutlineArrowForwardIos />
-                            </button>
-                        </div>
-                    </>
+                            ))}
+                        </tbody>
+                    </table>
                 ) : (
                     <p style={{ color: 'white' }}>Nada encontrado</p> // Mensagem caso não haja exercícios
                 )}
+            </div>
+
+            {/* Paginação (Agora fora da tabela) */}
+            <div className={styles.paginacao}>
+                <button
+                    onClick={() => mudarPagina(paginaAtual - 1)} // Muda para a página anterior
+                    disabled={paginaAtual === 1} // Desabilita se já estiver na primeira página
+                >
+                    <MdOutlineArrowBackIos />
+                </button>
+
+                <span>Página {paginaAtual} de {totalPaginas}</span> {/* Exibe informações da página atual */}
+
+                <button
+                    onClick={() => mudarPagina(paginaAtual + 1)} // Muda para a próxima página
+                    disabled={paginaAtual === totalPaginas || exerciciosPaginados.length === 0} // Desabilita se já estiver na última página
+                >
+                    <MdOutlineArrowForwardIos />
+                </button>
             </div>
         </>
     );
 }
 
-// Exporta o componente para uso em outras partes do aplicativo
+// Exporta o componente ListagemExercicios
 export default ListagemExercicios;

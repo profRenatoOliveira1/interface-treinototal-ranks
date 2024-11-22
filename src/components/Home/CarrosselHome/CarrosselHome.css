@@ -9,12 +9,10 @@
     --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
     --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
   }
-  
+
 /* Estilo para a imagem de fundo */
 .div-carrossel {
-    height: 40% !important;
-    /* Define a altura da imagem como 70% do elemento pai */
-    width: 50% !important;
+    width: 75% !important;
     /* Define a largura da imagem como 80% do elemento pai */
     margin: 0% auto;
     /* Aliha o Carousel no centro horizontalmente*/

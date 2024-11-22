@@ -3,18 +3,32 @@
 
 /* Define as variáveis de cor */
 :root {
-  --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
-  --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
-  --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
-  --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
-  --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
-  --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
-  --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
-  --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
+  --amareloClaro: #ffeba7;
+  /* Amarelo claro, usado para elementos destacados e botões */
+  --cinzaEscuro: #212529;
+  /* Cinza escuro, provavelmente usado para fundos ou texto */
+  --cinzaAzulado: #343A40;
+  /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+  --cinzaAvermelhado: #333;
+  /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+  --branco: #FFFFFF;
+  /* Cor branca, comumente utilizada para texto ou fundos claros */
+  --cinzaClaro: #ccc;
+  /* Cinza claro, pode ser usado para bordas ou textos desativados */
+  --amareloEscuro: #b39f72;
+  /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+  --preto: #000000;
+  /* Cor preta, geralmente usada para texto ou elementos de destaque */
 }
 
 /* Estilos para a div-mae */
 .div-mae {
+  color: var(--amareloClaro);
+  /* Mantém a cor */
+  font-family: "Archivo Black", sans-serif;
+  /* Mantém a fonte */
+  font-weight: 400;
+  /* Mantém o peso da fonte */
   display: flex;
   /* Utiliza um layout flexível */
   justify-content: space-between;
@@ -26,6 +40,8 @@
   flex-wrap: nowrap;
   /* Impede a quebra de linha dos itens */
   flex-direction: column;
+  /* Garante que o contêiner ocupe toda a altura da tela */
+  min-height: 100%;
 }
 
 /* Estilos para telas pequenas */
@@ -56,10 +72,32 @@
 
 .CarrosselHome {
   align-items: center;
-    /* alinha o objeto e elementos filhos ao centro */
+  /* alinha o objeto e elementos filhos ao centro */
 }
 
 .conteudoDaHome {
   align-items: center;
-    /* alinha o objeto ao centro */
+  /* alinha o objeto ao centro */
+}
+
+.div-inicio {
+  display: flex;
+  flex-direction: row;
+  /* Organiza os itens na horizontal */
+  justify-content: space-between;
+  /* Ajusta o espaçamento entre os itens */
+  align-items: flex-start;
+  /* Alinha os itens no topo */
+  gap: 20px;
+  /* Espaço entre as divs */
+}
+
+.conteudoDaHome {
+  flex: 1;
+  /* Faz com que essa div ocupe o espaço disponível */
+}
+
+.CarrosselHome {
+  flex: 1;
+  /* Faz com que essa div ocupe o espaço disponível */
 }

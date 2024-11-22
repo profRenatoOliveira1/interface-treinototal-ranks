@@ -51,8 +51,6 @@ function UpdateExercicio() {
         idExercicio: objExercicio.idExercicio,
         idAparelho: objExercicio.idAparelho,
         exercicio: objExercicio.exercicio,
-        carga: objExercicio.carga,
-        repeticoes: objExercicio.repeticoes,
         regiaoCorpoAtivada: objExercicio.regiaoCorpoAtivada
     })
 
@@ -69,7 +67,7 @@ function UpdateExercicio() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhosData = await AparelhoRequests.listarAparelhos();
+                const aparelhosData = await AparelhoRequests.ListagemAparelhos();
                 if (aparelhosData) {
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
@@ -184,40 +182,6 @@ function UpdateExercicio() {
                                     required
                                 />
                                 <label htmlFor="exercicio">Exercício</label>
-                            </div>
-                        </div>
-
-                        {/* Campo para a carga */}
-                        <div className={styles.formGroup}>
-                            <div className="form-floating mb-3 input">
-                                <input
-                                    type="number"
-                                    className="form-control input"
-                                    id="carga"
-                                    placeholder="Carga/Kg"
-                                    value={exercicio.carga}
-                                    onChange={handleChange}
-                                    name="carga"
-                                    required
-                                />
-                                <label htmlFor="carga">Carga/Kg</label>
-                            </div>
-                        </div>
-
-                        {/* Campo para repetições */}
-                        <div className={styles.formGroup}>
-                            <div className="form-floating mb-3 input">
-                                <input
-                                    type="number"
-                                    className="form-control input"
-                                    id="repeticoes"
-                                    placeholder="Repetições"
-                                    value={exercicio.repeticoes}
-                                    onChange={handleChange}
-                                    name="repeticoes"
-                                    required
-                                />
-                                <label htmlFor="repeticoes">Repetições</label>
                             </div>
                         </div>
 

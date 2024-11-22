@@ -16,7 +16,7 @@ footer {
     /* Usa o layout flexível para organizar o conteúdo do rodapé */
     justify-content: space-between;
     /* Alinha a div-left à esquerda e a div-right à direita */
-    font-family: "Archivo Black", sans-serif;
+    font-family: sans-serif;
     /* Define a fonte como "Archivo Black" */
     color: var(--amareloClaro);
     /* Define a cor do texto como amarelo claro */
@@ -58,11 +58,16 @@ footer ul {
 
 /* Estilo para a div-bottom */
 .div-bottomL {
-    margin-left: 2.4%;
+    margin-left: 3%;
     /* Define um espaçamento à esquerda da div-bottom */
     width: 9%;
     /* Define a largura total da div-bottom */
     background-color: var(--cinzaEscuro);
     /* Define a cor de fundo da div-bottom como cinza escuro */
-    /* Espaçamento interno opcional pode ser adicionado aqui, se necessário */
+}
+
+@media (max-width: 768px) {
+    .div-bottomR {
+        display: none;
+    }
 }

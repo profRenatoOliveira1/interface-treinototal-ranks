@@ -19,7 +19,10 @@ function FooterHome() {
             </footer>
             <footer>
                 <div className='div-bottomL footer'>
-                    <a target='_blank' href="https://www.instagram.com/" className='rSocial'>Instagram</a>
+                    <a target='_blank' href="https://www.instagram.com/" 
+                    className='rSocial' 
+                    style={{fontFamily: 'sans-serif'}}
+                    >Instagram</a>
                 </div>
                 <div className='div-bottomR footer'>
                     <p>© 2024 Treino Total.Todos os direitos reservados.</p>

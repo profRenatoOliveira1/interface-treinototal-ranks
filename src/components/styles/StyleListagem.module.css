@@ -1,13 +1,21 @@
 :root {
   /* Definição de variáveis de cor */
-  --amareloClaro: #ffeba7; /* Amarelo claro, usado para elementos destacados e botões */
-  --cinzaEscuro: #212529; /* Cinza escuro, provavelmente usado para fundos ou texto */
-  --cinzaAzulado: #343A40; /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
-  --cinzaAvermelhado: #333; /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
-  --branco: #FFFFFF; /* Cor branca, comumente utilizada para texto ou fundos claros */
-  --cinzaClaro: #ccc; /* Cinza claro, pode ser usado para bordas ou textos desativados */
-  --amareloEscuro: #b39f72; /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
-  --preto: #000000; /* Cor preta, geralmente usada para texto ou elementos de destaque */
+  --amareloClaro: #ffeba7;
+  /* Amarelo claro, usado para elementos destacados e botões */
+  --cinzaEscuro: #212529;
+  /* Cinza escuro, provavelmente usado para fundos ou texto */
+  --cinzaAzulado: #343A40;
+  /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
+  --cinzaAvermelhado: #333;
+  /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
+  --branco: #FFFFFF;
+  /* Cor branca, comumente utilizada para texto ou fundos claros */
+  --cinzaClaro: #ccc;
+  /* Cinza claro, pode ser usado para bordas ou textos desativados */
+  --amareloEscuro: #b39f72;
+  /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
+  --preto: #000000;
+  /* Cor preta, geralmente usada para texto ou elementos de destaque */
 }
 
 /* Estilos gerais para o botão */
@@ -240,7 +248,7 @@ table {
   .pagination button {
     padding: 6px 12px;
     /* Preenchimento menor nos botões de paginação */
-  
+
   }
 
   .pagination input {
@@ -276,4 +284,7 @@ table {
   /* Transição suave de cor de fundo */
 }
 
-/* Estilos responsivos para o botão e campo de busca */
+.paginacao {
+  margin-bottom: 2%;
+  /* Define margem abaixo do item */
+}

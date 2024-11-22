@@ -3,7 +3,7 @@ import { SERVER_ROUTES } from "../appconfig";
 class ProfessorRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarProfessores = SERVER_ROUTES.LISTAR_PROFESSORES;
+        this.routeListagemProfessores = SERVER_ROUTES.LISTAR_PROFESSORES;
         this.routeCadastrarProfessor = SERVER_ROUTES.CADASTRAR_PROFESSOR;
         this.routeRemoverProfessor = SERVER_ROUTES.REMOVER_PROFESSOR;
         this.routeAtualizarProfessor = SERVER_ROUTES.ATUALIZAR_PROFESSOR;
@@ -13,10 +13,10 @@ class ProfessorRequests {
         return localStorage.getItem('token');
     }
 
-    async listarProfessores() {
+    async ListagemProfessores() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListarProfessores}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeListagemProfessores}`, {
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'

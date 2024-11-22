@@ -1,8 +1,8 @@
 import Navegacao from '../../components/Navegacao/Navegacao';
 // Importa o componente Navegacao, localizado na pasta '../../components/Navegacao/Navegacao'.
 // Este componente provavelmente contém a barra de navegação ou menu do aplicativo.
-import ListarProfessor from '../../components/Listagem/ListagemProfessor';
-// Importa o componente ListarProfessor, localizado na pasta '../../components/Listagem/ListagemProfessor'.
+import ListagemProfessor from '../../components/Listagem/ListagemProfessor';
+// Importa o componente ListagemProfessor, localizado na pasta '../../components/Listagem/ListagemProfessor'.
 // Este componente é responsável por exibir a listagem de professores.
 
 // Componente responsável por renderizar a página de cadastro de professores.
@@ -11,7 +11,7 @@ function cadastro() {
     return (
         <> {/* Fragmento React para envolver múltiplos elementos */}
             <Navegacao /> {/* Renderiza o componente de navegação */}
-            <ListarProfessor /> {/* Renderiza o componente de listagem de professores */}
+            <ListagemProfessor /> {/* Renderiza o componente de listagem de professores */}
         </>
     );
 }

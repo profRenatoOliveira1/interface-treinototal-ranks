@@ -19,7 +19,6 @@ function ListarAluno() {
     const itensPorPagina = 5; // Número de itens por página
     const navigate = useNavigate(); // Hook para navegação entre rotas
 
-
     
     /** 
      * Efeito para buscar alunos na montagem do componente 
@@ -135,72 +134,72 @@ function ListarAluno() {
 
             <div className={styles.cntTb}>
                 {alunosFiltrados.length > 0 ? ( // Verifica se há alunos filtrados
-                    <>
-                        <table className={`${styles.table} ${styles.tabela}`}>
-                            <thead>
-                                <tr className={styles.tabelaHeader}>
-                                    <th hidden>ID</th>
-                                    <th>NOME</th>
-                                    <th>CPF</th>
-                                    <th>DATA DE NASCIMENTO</th>
-                                    <th>TELEFONE</th>
-                                    <th>ENDEREÇO</th>
-                                    <th hidden>Email</th>
-                                    <th hidden>Altura</th>
-                                    <th hidden>Peso</th>
-                                    <th hidden>IMC</th>
-                                    <th colSpan={3}>AÇÃO</th> {/* Colunas de ação */}
+                    <table className={`${styles.table} ${styles.tabela}`}>
+                        <thead>
+                            <tr className={styles.tabelaHeader}>
+                                <th hidden>ID</th>
+                                <th>NOME</th>
+                                <th>CPF</th>
+                                <th>DATA DE NASCIMENTO</th>
+                                <th>TELEFONE</th>
+                                <th>ENDEREÇO</th>
+                                <th hidden>Email</th>
+                                <th hidden>Altura</th>
+                                <th hidden>Peso</th>
+                                <th hidden>IMC</th>
+                                <th colSpan={3}>AÇÃO</th> {/* Colunas de ação */}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {alunosPaginados.map(aluno => ( // Mapeia alunos a serem exibidos
+                                <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
+                                    <td hidden>{aluno.id_aluno}</td>
+                                    <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+                                        {aluno.nome.toUpperCase()} {/* Nome do aluno */}
+                                    </td>
+                                    <td>{formatarCPF(aluno.cpf)}</td> {/* CPF formatado */}
+                                    <td>{formatadorData(aluno.dataNascimento)}</td> {/* Data de nascimento formatada */}
+                                    <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td> {/* Telefone formatado */}
+                                    <td>{aluno.endereco.toUpperCase()}</td> {/* Endereço do aluno */}
+                                    <td hidden>{aluno.email.toUpperCase()}</td>
+                                    <td hidden>{`${aluno.altura} m`}</td>
+                                    <td hidden>{`${aluno.peso} kg`}</td>
+                                    <td hidden>{aluno.imc}</td>
+                                    <td title="Deletar Aluno">
+                                        <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone de deletar */}
+                                    </td>
+                                    <td title="Atualizar Aluno">
+                                        <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF', cursor: 'pointer' }} /> {/* Ícone de editar */}
+                                    </td>
+                                    <td title="Ver Mais">
+                                        <FaInfoCircle onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', color: 'Yellow' }} /> {/* Ícone de ver mais */}
+                                    </td>
                                 </tr>
-                            </thead>
-                            <tbody>
-                                {alunosPaginados.map(aluno => ( // Mapeia alunos a serem exibidos
-                                    <tr key={aluno.id_aluno} className={styles.tabelaCorpo}>
-                                        <td hidden>{aluno.id_aluno}</td>
-                                        <td title="Ver Mais" onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-                                            {aluno.nome.toUpperCase()} {/* Nome do aluno */}
-                                        </td>
-                                        <td>{formatarCPF(aluno.cpf)}</td> {/* CPF formatado */}
-                                        <td>{formatadorData(aluno.dataNascimento)}</td> {/* Data de nascimento formatada */}
-                                        <td style={{ width: 200 }}>{formatarTelefone(aluno.celular)}</td> {/* Telefone formatado */}
-                                        <td>{aluno.endereco.toUpperCase()}</td> {/* Endereço do aluno */}
-                                        <td hidden>{aluno.email.toUpperCase()}</td>
-                                        <td hidden>{`${aluno.altura} m`}</td>
-                                        <td hidden>{`${aluno.peso} kg`}</td>
-                                        <td hidden>{aluno.imc}</td>
-                                        <td title="Deletar Aluno">
-                                            <FaTrash onClick={() => deleteAluno(aluno)} style={{ color: '#DB0135', cursor: 'pointer' }} /> {/* Ícone de deletar */}
-                                        </td>
-                                        <td title="Atualizar Aluno">
-                                            <FaRegEdit onClick={() => updateAluno(aluno)} style={{ color: '#FFFFFF', cursor: 'pointer' }} /> {/* Ícone de editar */}
-                                        </td>
-                                        <td title="Ver Mais">
-                                            <FaInfoCircle onClick={() => handleAlunoClick(aluno)} style={{ cursor: 'pointer', color: 'Yellow' }} /> {/* Ícone de ver mais */}
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                        <div className={styles.paginacao}> {/* Controles de paginação */}
-                            <button
-                                onClick={() => mudarPagina(paginaAtual - 1)} // Muda para a página anterior
-                                disabled={paginaAtual === 1} // Desabilita se já estiver na primeira página
-                            >
-                                <MdOutlineArrowBackIos />
-                            </button>
-
-                            <span>Página {paginaAtual} de {totalPaginas}</span> {/* Exibe informações da página atual */}
-
-                            <button
-                                onClick={() => mudarPagina(paginaAtual + 1)} // Muda para a próxima página
-                                disabled={indiceUltimoItem >= alunosFiltrados.length} // Desabilita se já estiver na última página
-                            >
-                                <MdOutlineArrowForwardIos />
-                            </button>
-                        </div>
-                    </>
+                            ))}
+                        </tbody>
+                    </table>
                 ) : (
                     <p style={{ color: 'white' }}>Nada encontrado</p> // Mensagem caso não haja alunos
                 )}
+            </div>
+
+            {/* Colocando a paginação fora da tabela */}
+            <div className={styles.paginacao}> {/* Controles de paginação */}
+                <button
+                    onClick={() => mudarPagina(paginaAtual - 1)} // Muda para a página anterior
+                    disabled={paginaAtual === 1} // Desabilita se já estiver na primeira página
+                >
+                    <MdOutlineArrowBackIos />
+                </button>
+
+                <span>Página {paginaAtual} de {totalPaginas}</span> {/* Exibe informações da página atual */}
+
+                <button
+                    onClick={() => mudarPagina(paginaAtual + 1)} // Muda para a próxima página
+                    disabled={indiceUltimoItem >= alunosFiltrados.length} // Desabilita se já estiver na última página
+                >
+                    <MdOutlineArrowForwardIos />
+                </button>
             </div>
         </div>
     );

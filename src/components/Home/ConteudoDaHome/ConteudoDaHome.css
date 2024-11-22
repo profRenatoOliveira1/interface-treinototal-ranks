@@ -1,48 +1,22 @@
-:root {
-    /* Definição de variáveis de cor */
-    --amareloClaro: #ffeba7;
-    /* Amarelo claro, usado para elementos destacados e botões */
-    --cinzaEscuro: #212529;
-    /* Cinza escuro, provavelmente usado para fundos ou texto */
-    --cinzaAzulado: #343A40;
-    /* Cinza azulado, utilizado em elementos de interface como botões ou fundos */
-    --cinzaAvermelhado: #333;
-    /* Cinza avermelhado, possivelmente usado para textos ou backgrounds */
-    --branco: #FFFFFF;
-    /* Cor branca, comumente utilizada para texto ou fundos claros */
-    --cinzaClaro: #ccc;
-    /* Cinza claro, pode ser usado para bordas ou textos desativados */
-    --amareloEscuro: #b39f72;
-    /* Amarelo escuro, usado para elementos que precisam de destaque ou contraste */
-    --preto: #000000;
-    /* Cor preta, geralmente usada para texto ou elementos de destaque */
-}
-
 /* Estilos para um título genérico */
 .titulo {
+    text-align: center;
+    /* Alinha o texto ao centro */
     color: var(--amareloClaro);
-    /* Mantém a cor */
+    /* Define a cor do texto */
     font-family: "Archivo Black", sans-serif;
-    /* Mantém a fonte */
+    /* Define a fonte */
     font-weight: 400;
-    /* Mantém o peso da fonte */
+    /* Define o peso da fonte */
     font-style: normal;
-    /* Mantém o estilo da fonte */
-    display: flex;
-    /* Altera o display para flex */
-    justify-content: center !important;
-    /* Adiciona um espaçamento entre as palavras */
-    margin-bottom: 1%;
-    /* Adiciona um espaçamento entre as palavras */
-    margin-top: -2%;
-    /* Centraliza o título*/
+    /* Define o estilo da fonte */
 }
 
 /* Estilos para o conteúdo dentro de uma div */
 .div-conteudo {
     margin-left: 10%;
     /* Define uma margem à esquerda */
-    width: 100%;
+    width: 80%;
     /* Define a largura */
 }
 
@@ -50,4 +24,29 @@
 .home {
     margin-top: 5%;
     /* Define uma margem superior */
+}
+
+/* Estilos para parágrafos */
+.paragrafo {
+    width: 95%;
+    /* Define a largura */
+    font-size: 1.2rem;
+    /* Define o tamanho da fonte */
+    text-align: justify;
+    /* Justifica o texto */
+    margin-left: 3%;
+    /* Define uma margem à esquerda */
+    height: 80%;
+    /* Define a altura */
+    color: var(--amareloClaro);
+    /* Define a cor do texto */
+    font-family: Arial, Helvetica, sans-serif;
+    /* Define a fonte */
+}
+
+/* Estilos para a classe 'home' */
+.home {
+    margin-top: 1%;
+    /* Define uma margem superior */
+    margin-bottom: 1%;
 }

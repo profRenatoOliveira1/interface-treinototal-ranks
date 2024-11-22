@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'; // Importa comp
 
 // Componentes
 import Home from './pages/Home/Home'; // Importa o componente Home
-import Imc from './pages/imc/imc'; // Importa o componente ListarProfessor
+import Imc from './pages/imc/imc'; // Importa o componente ListagemProfessor
 import Login from './pages/Login/Login'; // Importa o componente UpadateAluno
 import ProtectedRoute from './components/Rotas/ProtectedRoutes'; // componente responsável pela proteção das rotas
 
@@ -14,7 +14,7 @@ import CardAluno from './pages/Aluno/AlunoCard'; // Importa o componente AlunoCa
 
 // Aparelho
 import CadastroAparelho from './pages/Aparelho/AparelhoCadastro'; // Importa o componente CadastroAparelho
-import ListarAparelho from './pages/Aparelho/AparelhoListagem'; // Importa o componente ListarAparelho
+import ListagemAparelho from './pages/Aparelho/AparelhoListagem'; // Importa o componente ListagemAparelho
 import UpdateAparelho from './pages/Update/UpdateAparelho'; // Importa o componente UpadateApareho
 
 // Exercício
@@ -24,7 +24,7 @@ import UpdateExercicio from './pages/Update/UpdateExercicio'; // Importa o compo
 
 // Professor
 import CadastroProfessor from './pages/Professor/ProfessorCadastro'; // Importa o componente CadastroProfessor
-import ListarProfessor from './pages/Professor/ProfessorListagem'; // Importa o componente ListarProfessor
+import ListagemProfessor from './pages/Professor/ProfessorListagem'; // Importa o componente ListagemProfessor
 import UpdateProfessor from './pages/Update/UpdateProfessor'; // Importa o componente UpadateProfessor
 import CardProfessor from './pages/Professor/ProfessorCard'; // Importa o componente CardProfessor
 import ProfessorAtualizarSenha from './pages/Professor/ProfessorAtulizarSenha'; // Importa o componente AtualizarSenha
@@ -50,7 +50,7 @@ export default function AppRouter() {
 
                 {/* Aparelho */}
                 <Route path="/Cadastro/Aparelho" element={<ProtectedRoute element={CadastroAparelho} />} /> {/* Rota para o cadastro de aparelho */}
-                <Route path="/Listagem/Aparelho" element={<ProtectedRoute element={ListarAparelho} />} /> {/* Rota para listagem de  aparelhos */}
+                <Route path="/Listagem/Aparelho" element={<ProtectedRoute element={ListagemAparelho} />} /> {/* Rota para listagem de  aparelhos */}
                 <Route path="/Update/Aparelho" element={<ProtectedRoute element={UpdateAparelho} />} /> {/* Rota para Atualizar o Aparelho */}
 
                 {/* Exercício */}
@@ -60,7 +60,7 @@ export default function AppRouter() {
 
                 {/* Professor */}
                 <Route path="/Cadastro/Professor" element={<ProtectedRoute element={CadastroProfessor} />} /> {/* Rota para o cadastro de professor */}
-                <Route path="/Listagem/Professor" element={<ProtectedRoute element={ListarProfessor} />} /> {/* Rota para listagem de professores */}
+                <Route path="/Listagem/Professor" element={<ProtectedRoute element={ListagemProfessor} />} /> {/* Rota para listagem de professores */}
                 <Route path="/Update/Professor" element={<ProtectedRoute element={UpdateProfessor} />} /> {/* Rota para Atualizar o Professor */}
                 <Route path="/Card/Professor" element={<ProtectedRoute element={CardProfessor} />} /> {/* Rota para Card Professor */}
                 <Route path="/Atualizar/Senha/Professor" element={<ProtectedRoute element={ProfessorAtualizarSenha} />} /> {/* Rota para o Professor Atualizar a Senha */}

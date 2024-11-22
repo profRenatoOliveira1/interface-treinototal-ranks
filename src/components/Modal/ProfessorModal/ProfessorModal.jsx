@@ -24,7 +24,7 @@ function ProfessorModal({ show, handleClose, onSelectProfessor }) {
     useEffect(() => {
         const fetchProfessores = async () => {
             try {
-                const professor = await ProfessoresRequests.listarProfessor();
+                const professor = await ProfessoresRequests.ListagemProfessor();
                 setProfessores(professor);
             } catch (error) {
                 console.error('Erro ao buscar professores: ', error);

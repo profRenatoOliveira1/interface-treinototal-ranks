@@ -25,8 +25,6 @@ function CadastroExercicio() {
     const [exercicio, setexercicio] = useState({
         idAparelho: '',              // Campo para o ID do aparelho
         exercicio: '',               // Campo para o nome do exercício
-        carga: '',                   // Campo para a carga em kg
-        repeticoes: '',              // Campo para o número de repetições
         regiaoCorpoAtivada: ''         // Campo para a região do corpo ativada
     });
 
@@ -54,7 +52,7 @@ function CadastroExercicio() {
     useEffect(() => {
         const fetchAparelhos = async () => {
             try {
-                const aparelhosData = await AparelhoRequests.listarAparelhos(); // Busca a lista de aparelhos da API
+                const aparelhosData = await AparelhoRequests.ListagemAparelhos(); // Busca a lista de aparelhos da API
                 if (aparelhosData) {
                     setAparelhos(aparelhosData); // Atualiza o estado com a lista de aparelhos
                 }
@@ -106,8 +104,6 @@ function CadastroExercicio() {
         setexercicio({
             idAparelho: '',
             exercicio: '',
-            carga: '',
-            repeticoes: '',
             regiaoCorpoAtivada: ''
         });
     };
@@ -183,30 +179,6 @@ function CadastroExercicio() {
                             value={exercicio.exercicio}
                             onChange={handleChange}
                             name="exercicio"
-                            required
-                        />
-                    </div>
-                    {/* Campo para a carga */}
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="Carga/Kg"
-                            value={exercicio.carga}
-                            onChange={handleChange}
-                            name="carga"
-                            required
-                        />
-                    </div>
-                    {/* Campo para repetições */}
-                    <div className={styles.formGroup}>
-                        <input
-                            type="number"
-                            className={styles.formStyle}
-                            placeholder="Repetições"
-                            value={exercicio.repeticoes}
-                            onChange={handleChange}
-                            name="repeticoes"
                             required
                         />
                     </div>

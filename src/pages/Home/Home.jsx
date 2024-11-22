@@ -16,10 +16,6 @@ import ConteudoDaHome from '../../components/Home/ConteudoDaHome/ConteudoDaHome'
 // Importa o componente ConteudoDaHome, localizado na pasta '../../components/ConteudoDaHome/ConteudoDaHome'.
 // Este componente provavelmente contém o conteúdo principal da página inicial.
 
-import CardHome from '../../components/Home/CardHome/CardHome';
-// Importa o componente CardHome, localizado na pasta '../../components/Home/CardHome/CardHome'.
-// Este componente provavelmente contém o conteúdo principal da página inicial.
-
 import FooterHome from '../../components/Home/FooterHome/FooterHome';
 // Importa o componente FooterHome, localizado na pasta '../../components/Home/FooterHome/FooterHome'.
 // Este componente provavelmente contém o conteúdo principal da página inicial.
@@ -33,25 +29,26 @@ function Home() {
 
       {/* Div principal contendo o conteúdo da página */}
       <div className='div-mae'>
-        <div className='conteudoDaHome'>
-          <ConteudoDaHome></ConteudoDaHome>
+        <div style={{ marginTop: '1%' }}>
+          {/* Título da página */}
+          <h1>Treino Total</h1>
         </div>
-        {/* Renderiza o componente ConteudoDaHome, exibindo o conteúdo principal da página inicial. */}
 
-        <div className='CarrosselHome'>
-          <CarrosselHome></CarrosselHome>
+        <div className='div-inicio'>
+          <div className='conteudoDaHome'>
+            <ConteudoDaHome></ConteudoDaHome>
+          </div>
+          {/* Renderiza o componente ConteudoDaHome, exibindo o conteúdo principal da página inicial. */}
+
+          <div className='CarrosselHome'>
+            <CarrosselHome></CarrosselHome>
+          </div>
+          {/* Renderiza o componente CarrosselHome, exibindo a imagem de fundo da página inicial. */}
         </div>
-        {/* Renderiza o componente CarrosselHome, exibindo a imagem de fundo da página inicial. */}
-
-        <div className='cardHome'>
-          <CardHome></CardHome>
-        </div>
-        {/* Renderiza o componente CardHome, exibindo a imagem de fundo da página inicial. */}
-
         <div className='footerHome'>
           <FooterHome></FooterHome>
         </div>
-        {/* Renderiza o componente CardHome, exibindo a imagem de fundo da página inicial. */}
+        {/* Renderiza o componente FooterHome, exibindo a imagem de fundo da página inicial. */}
 
       </div>
     </>

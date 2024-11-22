@@ -3,7 +3,7 @@ import { SERVER_ROUTES } from "../appconfig";
 class AparelhoRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAparelhos = SERVER_ROUTES.LISTAR_APARELHOS;
+        this.routeListagemAparelhos = SERVER_ROUTES.LISTAR_APARELHOS;
         this.routeCadastrarAparelho = SERVER_ROUTES.CADASTRAR_APARELHO;
         this.routeRemoverAparelho = SERVER_ROUTES.REMOVER_APARELHO;
         this.routeAtualizarAparelho = SERVER_ROUTES.ATUALIZAR_APARELHO;
@@ -13,10 +13,10 @@ class AparelhoRequests {
         return localStorage.getItem('token');
     }
 
-    async listarAparelhos() {
+    async ListagemAparelhos() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListarAparelhos}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeListagemAparelhos}`, {
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
