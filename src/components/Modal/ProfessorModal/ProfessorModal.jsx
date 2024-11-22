@@ -24,7 +24,7 @@ function ProfessorModal({ show, handleClose, onSelectProfessor }) {
     useEffect(() => {
         const fetchProfessores = async () => {
             try {
-                const professor = await ProfessoresRequests.ListagemProfessor();
+                const professor = await ProfessoresRequests.listarProfessor();
                 setProfessores(professor);
             } catch (error) {
                 console.error('Erro ao buscar professores: ', error);
@@ -69,12 +69,12 @@ function ProfessorModal({ show, handleClose, onSelectProfessor }) {
                     <table className="table table-striped">
                         <tbody>
                             {filtroProfessores.map((professor) => (
-                                <tr key={professor.id_professor}>
-                                    <td hidden>{professor.id_professor}</td>
+                                <tr key={professor.idProfessor}>
+                                    <td hidden>{professor.idProfessor}</td>
                                     <td>{professor.nome}</td>
                                     <td>
                                         <Button
-                                            style={{ backgroundColor: 'var(--amareloClaro)', color: 'var(--branco)' }}
+                                            style={{ backgroundColor: 'var(--cinzaAzulado)', color: 'var(--branco)', border: 'solid var(--amareloClaro)'  }}
                                             onClick={() => {onSelectProfessor(professor), limpaFiltro()}}
                                         >
                                             Selecionar

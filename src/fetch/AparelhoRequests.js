@@ -1,12 +1,11 @@
-import { SERVER_ROUTES } from "../appconfig";
 
 class AparelhoRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListagemAparelhos = SERVER_ROUTES.LISTAR_APARELHOS;
-        this.routeCadastrarAparelho = SERVER_ROUTES.CADASTRAR_APARELHO;
-        this.routeRemoverAparelho = SERVER_ROUTES.REMOVER_APARELHO;
-        this.routeAtualizarAparelho = SERVER_ROUTES.ATUALIZAR_APARELHO;
+        this.routeListarAparelho = '/listar/aparelhos';
+        this.routeCadastrarAparelho = '/novo/aparelho';
+        this.routeDeletarAparelho = '/remover/aparelho';
+        this.routeUpdateAparelho = '/atualizar/aparelho';
     }
 
     getToken() {
@@ -16,7 +15,7 @@ class AparelhoRequests {
     async ListagemAparelhos() {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListagemAparelhos}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeListarAparelho}`, {
                 headers: {
                     'x-access-token': `${token}`,
                     'Content-Type': 'application/json'
@@ -60,7 +59,7 @@ class AparelhoRequests {
     async deletarAparelho(aparelhoId) {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverAparelho}?idAparelho=${aparelhoId}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAparelho}?idAparelho=${aparelhoId}`, {
                 method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,
@@ -82,7 +81,7 @@ class AparelhoRequests {
     async atualizarAparelho(aparelho) {
         const token = localStorage.getItem('token');
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarAparelho}?idAparelho=${aparelho.idAparelho}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeUpdateAparelho}?idAparelho=${aparelho.idAparelho}`, {
                 method: 'PUT',
                 headers: {
                     'x-access-token': `${token}`,

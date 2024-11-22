@@ -1,5 +1,3 @@
-import { SERVER_ROUTES } from "../appconfig";
-
 /**
  * Classe para requisição de treino
  */
@@ -9,9 +7,9 @@ class TreinoRequests {
      * Construtor das rotas e do endereço do servidor
      */
     constructor() {
-        this.serverURL = import.meta.env.VITE_API_URL;
-        this.routeCadastrarTreino = SERVER_ROUTES.CADASTRAR_TREINO;
-        this.routeListarTreino = SERVER_ROUTES.LISTAR_TREINO;
+        this.serverUrl = import.meta.env.VITE_API_URL;
+        this.routeCadastrarTreino = '/novo/treino';
+        this.routeListarTreino = '/listar/treino';
     }
 
     /**
@@ -23,32 +21,31 @@ class TreinoRequests {
     }
 
     /**
-     * Faz a busca dos alunos no servidor
-     * @param {*} tipoBusca nome ou matrícula
-     * @param {*} valorBusca valor inserido pelo usuário
-     * @returns ficha de treino
+     * Lista todos os treinos cadastrados.
+     * 
+     * @returns {Promise<Object[]>} Um array de objetos com informações dos treinos, ou um erro caso não seja possível obter a lista
      */
-    async listarTreino(tipoBusca, valorBusca) {
+    async listarTreinos(matricula) { // Método assíncrono para listar treino
         try {
             const token = this.getAuthToken();
-            let url = `${this.serverURL}`;
-            let headers = {
-                'x-access-token': `${token}`
-            };
-            if (tipoBusca === 'matricula') {
-                url += `${this.routeListarTreino}?matricula=${valorBusca}`;
-            } else {
-                url += `${this.routeListarTreino}?nome_aluno=${valorBusca}`;
-            }
-            const response = await fetch(url, { headers });
+            // Realiza uma requisição GET para obter a lista de treinos
+            const response = await fetch(`${this.serverUrl}${this.routeListarTreino}?matricula=${matricula}`, {
+                headers: {
+                    'x-access-token': `${token}`,
+                }
+            });
             if (!response.ok) {
-                throw new Error('Erro ao buscar treinos');
+                throw new Error('Erro ao buscar treino');
             }
+            // Converte a resposta para JSON e a retorna
             return await response.json();
         } catch (error) {
+            // Em caso de erro, exibe o erro no console
             console.error('Erro: ', error);
         }
     }
+
+
 
     /**
      * Cadastra uma ficha de treino
@@ -58,7 +55,7 @@ class TreinoRequests {
     async cadastrarTreino(treino) {
         try {
             const token = this.getAuthToken();
-            const response = await fetch(`${this.serverURL}${this.routeCadastrarTreino}`, {
+            const response = await fetch(`${this.serverUrl}${this.routeCadastrarTreino}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

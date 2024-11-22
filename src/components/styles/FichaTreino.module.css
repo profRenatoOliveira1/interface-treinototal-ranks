@@ -1,0 +1,151 @@
+:root {
+    --cinzaAvermelhado: #333;
+    --cinzaMeioEscuro: #444;
+    --cinzaMedio: #666;
+    --amareloClaro: #ffeba7;
+    --cinzaEscuro: #212529;
+    --cinzaAzulado: #343A40;
+    --branco: #FFFFFF;
+    --cinzaClaro: #ccc;
+    --amareloEscuro: #b39f72;
+    --preto: #000000;
+}
+
+body {
+    background-color: var(--cinzaAvermelhado);
+    color: var(--amareloClaro);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.searchSection {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.searchSection label {
+    color: var(--amareloClaro);
+}
+
+.searchSection select,
+.searchSection input,
+.searchSection button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--cinzaMedio);
+    background-color: var(--cinzaMeioEscuro);
+    color: var(--amareloClaro);
+}
+
+.searchSection button {
+    cursor: pointer;
+}
+
+.nomeAluno, .nomeProfessor {
+    background-color: var(--cinzaMeioEscuro);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    color: var(--branco);
+}
+
+.nomeAluno h4, .nomeProfessor h4 {
+    margin: 0 0 5px 0;
+    color: var(--amareloClaro);
+}
+
+.nomeAluno h3, .nomeProfessor h3 {
+    margin: 0;
+    color: var (--amareloClaro);
+}
+
+.exerciciosSection {
+    margin-top: 20px;
+}
+
+.exercicio {
+    background-color: var(--cinzaMeioEscuro);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.exercicio h4 {
+    color: var(--amareloBemClaro);
+}
+
+.exercicio h3 {
+    margin: 0 0 10px 0;
+    color: var(--amareloBemClaro);
+}
+
+.divs {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    flex-wrap: wrap;
+    
+}
+.containerDiv {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.divExercicio {
+    display: flex;
+    align-items: center; /* Alinhar os itens centralizados verticalmente */
+}
+
+.carga {
+    margin-left: 5px; /* Pequeno espaço entre o número e o "Kg" */
+    display: inline-block;
+}
+
+.tabelaListTreino {
+    width: 90%;
+    border: none!important;
+    margin: auto auto;
+}
+
+.tabelaListTreino td {
+    text-align: left;
+    border: none!important;
+    background-color: var(--cinzaMeioEscuro) !important;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .searchSection {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nomeAluno, .nomeProfessor, .exercicio {
+        padding: 5px;
+    }
+
+    .nomeAluno h4, .nomeProfessor h4, .exercicio h4 {
+        font-size: 14px;
+    }
+
+    .nomeAluno h3, .nomeProfessor h3, .exercicio h3 {
+        font-size: 16px;
+    }
+}

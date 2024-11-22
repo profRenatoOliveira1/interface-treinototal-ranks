@@ -76,13 +76,13 @@ function ExercicioModal({ show, handleClose, onSelectExercicio }) {
                         </thead>
                         <tbody>
                             {filtroExercicios.map((exercicio) => (
-                                <tr key={exercicio.id_exercicio}>
-                                    <td hidden>{exercicio.id_exercicio}</td>
+                                <tr key={exercicio.idExercicio}>
+                                    <td hidden>{exercicio.idExercicio}</td>
                                     <td>{exercicio.exercicio}</td>
-                                    <td>{exercicio.regiao_corpo_ativada}</td>
+                                    <td>{exercicio.regiaoCorpoAtivada}</td>
                                     <td>
                                         <Button
-                                            style={{ backgroundColor: 'var(--amareloClaro)', color: 'var(--branco)' }}
+                                            style={{ backgroundColor: 'var(--cinzaAzulado)', color: 'var(--branco)', border: 'solid var(--amareloClaro)'  }}
                                             onClick={() => {onSelectExercicio(exercicio), limpaFiltro()}}
                                         >
                                             Selecionar
@@ -96,7 +96,7 @@ function ExercicioModal({ show, handleClose, onSelectExercicio }) {
                     <p>Carregando exercícios...</p>
                 )}
             </Modal.Body>
-            <Modal.Footer style={{ backgroundColor: '#343A40', color: '#FFFFFF' }}>
+            <Modal.Footer style={{ backgroundColor: '#343A40', color: '#000000' }}>
                 <Button variant="secondary" onClick={handleClose}>
                     Fechar
                 </Button>

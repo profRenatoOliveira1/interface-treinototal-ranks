@@ -27,7 +27,7 @@ function ListagemExercicios() {
     useEffect(() => {
         const fetchDados = async () => {
             try {
-                const exercicios = await ExercicioRequests.listarExercicios(); // Requisição para buscar os exercícios
+                const exercicios = await ExercicioRequests.listarExercicio(); // Requisição para buscar os exercícios
                 const aparelhos = await AparelhoRequests.ListagemAparelhos(); // Requisição para buscar os aparelhos
 
                 // Criação de um mapa para facilitar a associação entre aparelhos e seus nomes

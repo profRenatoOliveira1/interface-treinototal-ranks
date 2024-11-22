@@ -29,6 +29,7 @@ function Navegacao() {
     const [vizualizacaoAluno, setVizualizacaoAluno] = useState(false);
     const [vizualizacaoExercicio, setVizualizacaoExercicio] = useState(false);
     const [vizualizacaoProfessor, setVizualizacaoProfessor] = useState(false);
+    const [vizualizacaoTreino, setVizualizacaoTreino] = useState(false);
     const [vizualizacaoLogin, setVizualizacaoLogin] = useState(false);
 
     /**
@@ -126,7 +127,18 @@ function Navegacao() {
                                     <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
                                     <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
-                                
+                                <NavDropdown
+                                    title="Treino"
+                                    id="collapsible-nav-dropdown"
+                                    className={styles.navbar}
+                                    show={vizualizacaoTreino}
+                                    onMouseEnter={() => setVizualizacaoTreino(true)}
+                                    onMouseLeave={() => setVizualizacaoTreino(false)}
+                                >
+                                    <NavDropdown.Item href="/Cadastro/Treino" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href="/Listagem/Treino" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                </NavDropdown>
+
                                 {/* Menu dropdown para o usuário autenticado com opção de atualizar senha e fazer logout */}
                                 <NavDropdown title={`Olá ${username.split(' ')[0]}`} id="collapsible-nav-dropdown" className={styles.navbar}
                                 show={vizualizacaoLogin}
@@ -140,7 +152,7 @@ function Navegacao() {
                             </>
                         ) : (
                             // Botão de login exibido quando o usuário não está autenticado
-                            <Button onClick={handleLogin} className={styles.loginbutton} variant="primary">Login</Button>
+                            <Button onClick={handleLogin} className={styles.botao} variant="primary">Login</Button>
                         )}
                     </Nav>
                 </Navbar.Collapse>

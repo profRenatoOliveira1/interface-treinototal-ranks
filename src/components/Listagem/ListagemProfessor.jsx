@@ -35,7 +35,7 @@ function ListagemProfessor() {
         const fetchProfessores = async () => {
             try {
                 // Faz requisição para obter a lista de professores
-                const professor = await ProfessorRequests.ListagemProfessores();
+                const professor = await ProfessorRequests.listarProfessor();
                 setProfessores(professor); // Atualiza o estado com a lista completa
                 setFilteredProfessores(professor); // Inicializa os filtrados com a lista completa
             } catch (error) {

@@ -1,121 +1,111 @@
-import { SERVER_ROUTES } from "../appconfig";
-
 class AlunoRequests {
     constructor() {
+        // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAlunos = SERVER_ROUTES.LISTAR_ALUNOS;
-        this.routeCadastrarAluno = SERVER_ROUTES.CADASTRAR_ALUNO;
-        this.routeRemoverAluno = SERVER_ROUTES.REMOVER_ALUNO;
-        this.routeAtualizarAluno = SERVER_ROUTES.ATUALIZAR_ALUNO;
+        this.routeListarAluno = '/listar/alunos';
+        this.routeCadastrarAluno = '/novo/aluno';
+        this.routeDeletarAluno = '/remover/aluno';
+        this.routeAtualizarAluno = '/atualizar/aluno';
     }
-
-    getToken() {
+    getAuthToken() {
         return localStorage.getItem('token');
     }
-
-    async listarAlunos() {
-        const token = localStorage.getItem('token');
+    async listarAlunos() { // Método assíncrono para listar alunos
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListarAlunos}`,
-                { headers: 
-                    { 'x-access-token': `${token}`, 
-                    'Content-Type': 'application/json' 
-                }, }); 
-                if (!response.ok) { 
-                    onsole.info("Verifque se o servidor está ligado e se o token é válido."); 
-                    throw new Error('Erro ao buscar dados dos professores'); } 
-                    return await response.json();
-        } catch (error) { 
-            console.error('Erro ao buscar dados dos professores:', error); 
-            console.info("Verifque se o servidor está ligado e se o token é válido."); 
-            return null; 
+            const token = this.getAuthToken();
+            // Realiza uma requisição GET para obter a lista de alunos
+            const response = await fetch(`${this.serverUrl}${this.routeListarAluno}`, {
+                headers: {
+                    'x-access-token': `${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao buscar alunos');
+            }
+            // Converte a resposta para JSON
+            const data = await response.json();
+            // Verifica se a resposta é um array JSON
+            if (!Array.isArray(data)) {
+                throw new Error('Resposta inválida: não é um array JSON');
+            }
+            // Retorna os dados
+            return data;
+        } catch (error) {
+            // Em caso de erro, exibe e relança o erro
+            console.error('Erro: ', error);
+            throw error;
         }
     }
 
-    async cadastrarAluno(aluno) {
-        const token = this.getToken();
-        console.log(token);
-        if (!token) {
-            console.error("Token não encontrado no localStorage");
-            return null;
-        }
-
+    async cadastrarAluno(aluno) { // Método assíncrono para cadastrar um aluno
         try {
+            const token = this.getAuthToken();
+            // Realiza uma requisição POST para cadastrar um aluno
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarAluno}`, {
                 method: 'POST',
                 headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
                 },
                 body: JSON.stringify(aluno)
             });
-
             if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Erro na resposta:', errorData);
-                throw new Error(`Erro ao adicionar aluno: ${errorData.message || response.statusText}`);
+                throw new Error('Erro ao cadastrar aluno');
             }
 
+            // Se o cadastro for bem-sucedido, exibe uma mensagem no console
+            console.log('Aluno cadastrado com sucesso!');
+
+            // Retorna os dados do aluno cadastrado
             return await response.json();
         } catch (error) {
-            console.error('Erro ao adicionar aluno:', error);
-            return null;
+            // Em caso de erro, exibe e relança o erro
+            console.error('Erro: ', error);
+            throw error;
         }
     }
-
-    async deletarAluno(idAluno) {
-        const token = this.getToken();
-        if (!token) {
-            console.error("Token não encontrado no localStorage");
-            return false;
-        }
-
-        console.log(`${this.serverUrl}${this.routeRemoverAluno}?idAluno=${idAluno}`);
+    async deletarAluno(idAluno) {  // Define um método assíncrono chamado deletarAluno, que recebe um id_aluno como parâmetro
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverAluno}?idAluno=${idAluno}`, {
+            const token = this.getAuthToken();
+
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarAluno}?idAluno=${idAluno}`, {
                 method: 'PUT',
                 headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
-                },
+                    'x-access-token': `${token}`
+                }
             });
+
             if (!response.ok) {
-                console.error("Erro ao deletar aluno. Verifique se o token é válido.");
-                throw new Error('Erro ao deletar aluno');
+                throw new Error('Erro ao enviar formulário');
             }
             return true;
         } catch (error) {
-            console.error('Erro ao deletar aluno:', error);
+            console.error('Erro: ', error);
             return false;
         }
     }
-
     async atualizarAluno(aluno) {
-        const token = this.getToken();
-        if (!token) {
-            console.error("Token não encontrado no localStorage");
-            return null;
-        }
-
         try {
+            const token = this.getAuthToken();
             const response = await fetch(`${this.serverUrl}${this.routeAtualizarAluno}?idAluno=${aluno.idAluno}`, {
                 method: 'PUT',
                 headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
                 },
                 body: JSON.stringify(aluno)
             });
             if (!response.ok) {
-                console.error("Erro ao atualizar aluno. Verifique se o token é válido.");
-                throw new Error('Erro ao atualizar aluno');
+                throw new Error('Erro ao enviar formulário');
             }
             return true;
         } catch (error) {
-            console.error('Erro ao atualizar aluno:', error);
+            console.error('Erro: ', error);
+            window.alert('Erro ao atualizar aluno');
             return null;
         }
     }
 }
 
+// Exporta uma instância da classe AlunoRequests para ser utilizada em outras partes do código
 export default new AlunoRequests();

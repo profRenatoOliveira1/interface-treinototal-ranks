@@ -1,107 +1,108 @@
-import { SERVER_ROUTES } from "../appconfig";
-
-class ProfessorRequests {
+class ProfessoresRequests {
     constructor() {
+        // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListagemProfessores = SERVER_ROUTES.LISTAR_PROFESSORES;
-        this.routeCadastrarProfessor = SERVER_ROUTES.CADASTRAR_PROFESSOR;
-        this.routeRemoverProfessor = SERVER_ROUTES.REMOVER_PROFESSOR;
-        this.routeAtualizarProfessor = SERVER_ROUTES.ATUALIZAR_PROFESSOR;
+        this.routeListarProfessor = '/listar/professores';
+        this.routeCadastrarProfessor = '/novo/professor';
+        this.routeDeletarProfessor = '/remover/professor';
+        this.routeAtualizarProfessor = '/atualizar/professor';
     }
-
-    getToken() {
+    getAuthToken() {
         return localStorage.getItem('token');
     }
-
-    async ListagemProfessores() {
-        const token = localStorage.getItem('token');
+    async listarProfessor() { // Método assíncrono para listar professores
         try {
-            const response = await fetch(`${this.serverUrl}${this.routeListagemProfessores}`, {
+            const token = this.getAuthToken();
+            // Realiza uma requisição GET para obter a lista de professores
+            const response = await fetch(`${this.serverUrl}${this.routeListarProfessor}`, {
                 headers: {
                     'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
-                },
+                }
             });
             if (!response.ok) {
-                console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao buscar dados dos professores');
+                throw new Error('Erro ao buscar professores');
             }
+            // Converte a resposta para JSON e a retorna
             return await response.json();
         } catch (error) {
-            console.error('Erro ao buscar dados dos professores:', error);
-            console.info("Verifque se o servidor está ligado e se o token é válido.");
-            return null;
+            // Em caso de erro, exibe o erro no console
+            console.error('Erro: ', error);
         }
     }
 
-    async cadastrarProfessor(professorData) {
-        const token = this.getToken();
+    async cadastrarProfessor(professor) { // Método assíncrono para cadastrar um professor
         try {
+            const token = this.getAuthToken();
+            // Realiza uma requisição POST para cadastrar um professor
             const response = await fetch(`${this.serverUrl}${this.routeCadastrarProfessor}`, {
                 method: 'POST',
                 headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(professorData)
-            });
-            if (!response.ok) {
-                console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao adicionar professor');
-            }
-            return await response.json();
-        } catch (error) {
-            console.error('Erro ao adicionar professor:', error);
-            console.info("Verifque se o servidor está ligado e se o token é válido.");
-            return null;
-        }
-    }
-
-    async deletarProfessor(idProfessor) {
-        const token = this.getToken();
-        try {
-            const response = await fetch(`${this.serverUrl}${this.routeRemoverProfessor}?idProfessor=${idProfessor}`, {
-                method: 'PUT',
-                headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
-                },
-            });
-            if (!response.ok) {
-                console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao deletar professor');
-            }
-            return true;
-        } catch (error) {
-            console.error('Erro ao deletar professor:', error);
-            console.info("Verifque se o servidor está ligado e se o token é válido.");
-            return false;
-        }
-    }
-
-    async atualizarProfessor(professor) {
-        const token = localStorage.getItem('token');
-        try {
-            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?idProfessor=${professor.idProfessor}`, {
-                method: 'PUT',
-                headers: {
-                    'x-access-token': `${token}`,
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
                 },
                 body: JSON.stringify(professor)
             });
             if (!response.ok) {
-                console.info("Verifque se o servidor está ligado e se o token é válido.");
-                throw new Error('Erro ao atualizar professor');
+                throw new Error('Erro ao cadastrar professor');
+            }
+            // Retorna os dados do professor cadastrado
+            return await response.json();
+        } catch (error) {
+            // Em caso de erro, exibe o erro no console
+            console.error('Erro: ', error);
+        }
+    }
+    async deletarProfessor(idProfessor) {
+        try {
+            const token = this.getAuthToken();
+            const response = await fetch(`${this.serverUrl}${this.routeDeletarProfessor}?idProfessor=${idProfessor}`, {
+                // Informa o verbo a ser acessado
+                method: 'PUT',
+                headers: {
+                    'x-access-token': `${token}`
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao deletar professor');
             }
             return true;
         } catch (error) {
-            console.error('Erro ao atualizar professor:', error);
+            console.error('Erro: ', error);
+            return false; // Retorna false em caso de erro
+        }
+    }
+    /**
+ * Atualiza o registro de um professor no servidor
+ * 
+ * @param {*} professor animal Objeto com as informações do animal
+ * @returns **verdadeiro (true)** caso o animal tenha sido deletado, **null (nulo)** caso tenha acontecido algum erro
+ */
+    async atualizarProfessor(professor) {
+        try {
+            const token = this.getAuthToken();
+            // Faz a requisição para o servidor, passando o endereço, a rota e a query com o ID do animal
+            const response = await fetch(`${this.serverUrl}${this.routeAtualizarProfessor}?idProfessor=${professor.idProfessor}`, {
+                // Informa o verbo a ser acessado
+                method: 'PUT',
+                // informa os cabeçalhos da requisição
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-access-token': `${token}`
+                },
+                // informa o corpo da requisição, contendo as informações do aluno
+                body: JSON.stringify(professor)
+            });
+            if (!response.ok) {
+                throw new Error('Erro ao enviar formulário');
+            }
+            return true;
+        } catch (error) {
+            console.error('Erro: ', error);
             window.alert('Erro ao atualizar professor');
-            console.info("Verifque se o servidor está ligado e se o token é válido.");
             return null;
         }
     }
 }
 
-export default new ProfessorRequests();
+// Exporta uma instância da classe ProfessoresRequests para ser utilizada em outras partes do código
+export default new ProfessoresRequests();

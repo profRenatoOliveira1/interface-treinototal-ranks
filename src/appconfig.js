@@ -1,33 +1,22 @@
 export const SERVER_ROUTES = {
     LOGIN: '/login',
-
-    // ALUNOS
-    LISTAR_ALUNOS: '/listar/alunos',
-    CADASTRAR_ALUNO: '/novo/aluno',
-    REMOVER_ALUNO: '/remover/aluno',
-    ATUALIZAR_ALUNO: '/atualizar/aluno',
-
-    // PROFESSORES
-    LISTAR_PROFESSORES: '/listar/professores',
-    CADASTRAR_PROFESSOR: '/novo/professor',
-    REMOVER_PROFESSOR: '/remover/professor',
-    ATUALIZAR_PROFESSOR: '/atualizar/professor',
-
-    // APARELHOS
-    LISTAR_APARELHOS: '/listar/aparelhos',
-    CADASTRAR_APARELHO: '/novo/aparelho',
-    REMOVER_APARELHO: '/remover/aparelho',
-    ATUALIZAR_APARELHO: '/atualizar/aparelho',
-
-    // EXERCICIOS
-    LISTAR_EXERCICIOS: '/listar/exercicios',
-    CADASTRAR_EXERCICIO: '/novo/exercicio',
-    REMOVER_EXERCICIO: '/remover/exercicio',
-    ATUALIZAR_EXERCICIO: '/atualizar/exercicio',
-    
-    // TREINOS
-    LISTAR_TREINO: '/listar/treino',
-    CADASTRAR_TREINO: '/novo/treino',
-    REMOVER_TREINO: '/remover/treino',
-    ATUALIZAR_TREINO: '/atualizar/treino'
+    HOME: '/',
+    IMC: '/imc',
+    CADASTRO_ALUNO: '/Cadastro/Aluno',
+    LISTAGEM_ALUNO: '/Listagem/Aluno',
+    ATUALIZAR_ALUNO: '/update/aluno',
+    CARD_ALUNO: '/card/aluno',
+    CADASTRO_PROFESSOR: '/Cadastro/Professor',
+    LISTAGEM_PROFESSOR: '/Listagem/Professor',
+    ATUALIZAR_PROFESSOR: '/update/professor',
+    CARD_PROFESSOR: '/card/professor',
+    ATUALIZAR_SENHA_PROFESSOR: '/atualizar/senha/professor',
+    CADASTRO_EXERCICIO: '/Cadastro/Exercicio',
+    LISTAGEM_EXERCICIO: '/Listagem/Exercicio',
+    ATUALIZAR_EXERCICIO: '/update/exercicio',
+    CADASTRO_APARELHO: '/Cadastro/Aparelho',
+    LISTAGEM_APARELHO: '/Listagem/Aparelho',
+    ATUALIZAR_APARELHO: '/update/aparelho',
+    CADASTRO_TREINO: '/cadastro/treino',
+    LISTAGEM_TREINO: '/listagem/treino',
 }

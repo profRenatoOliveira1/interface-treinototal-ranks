@@ -76,7 +76,7 @@ function AlunoModal({ show, handleClose, onSelectAluno }) {
                                     <td>{aluno.nome}</td>
                                     <td>
                                         <Button
-                                            style={{ backgroundColor: 'var(--amareloClaro)', color: 'var(--branco)' }}
+                                            style={{ backgroundColor: 'var(--cinzaAzulado)', color: 'var(--branco)', border: 'solid var(--amareloClaro)'  }}
                                             onClick={() => {onSelectAluno(aluno), limpaFiltro()}}
                                         >
                                             Selecionar

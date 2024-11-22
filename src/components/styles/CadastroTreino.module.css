@@ -52,14 +52,12 @@ td  {
     margin: 0;
     border: 2px solid var(--amareloClaro) !important;
 }
-
 th {
+    color: var(--branco) !important;
     font-size: 1.2rem !important;
-    background-color: var(--amareloClaro) !important;
     margin: 0;
     border: 2px solid var(--cinzaAzulado) !important;
 }
-
 .selected {
     padding: 10px 15px;
     /* border-radius: 5px; */
