@@ -152,7 +152,7 @@ function Navegacao() {
                             </>
                         ) : (
                             // Botão de login exibido quando o usuário não está autenticado
-                            <Button onClick={handleLogin} className={styles.botao} variant="primary">Login</Button>
+                            <Button onClick={handleLogin} className={styles.loginbutton} variant="primary">Login</Button>
                         )}
                     </Nav>
                 </Navbar.Collapse>
