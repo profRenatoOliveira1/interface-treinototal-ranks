@@ -4,6 +4,7 @@ import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importação das
 import { FaTrash, FaRegEdit } from "react-icons/fa"; // Ícones de edição e exclusão
 import { useNavigate } from 'react-router-dom'; // Hook para navegação
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md"; // Ícones de paginação
+import { SERVER_ROUTES } from '../../appconfig';
 
 function ListagemAparelho() {
     // Estados para armazenar e gerenciar dados, busca e paginação
@@ -63,7 +64,7 @@ function ListagemAparelho() {
 
     // Função para navegar até a página de atualização com o aparelho selecionado
     const updateAparelho = (aparelho) => {
-        navigate(`/update/aparelho`, { state: { objeto: aparelho }, replace: true });
+        navigate(SERVER_ROUTES.ATUALIZAR_APARELHO, { state: { objeto: aparelho }, replace: true });
     };
 
     // Cálculos para paginação
@@ -89,7 +90,7 @@ function ListagemAparelho() {
                             </div>
                             <a
                                 style={{ textDecoration: "none" }}
-                                href="/Cadastro/Aparelho"
+                                href={SERVER_ROUTES.CADASTRO_APARELHO}
                                 className={styles.btn}
                             >
                                 Novo Aparelho

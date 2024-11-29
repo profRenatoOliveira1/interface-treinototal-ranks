@@ -3,6 +3,7 @@ import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS 
 import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de requisições para a API de Alunos
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import { calcularIMC } from '../../../util/Utilitarios';
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Componente funcional para o cadastro de alunos.
@@ -137,7 +138,7 @@ function CadastroAluno() {
                 window.alert(cleanData.nome + ': foi cadastrado com sucesso');
 
                 if (window.confirm(`Deseja ir para a listagem?`))
-                    window.location.href = 'http://localhost:5173/Listagem/Aluno';
+                    window.location.href = SERVER_ROUTES.LISTAGEM_ALUNO;
                 else
                     window.location.reload();
             } else {
@@ -329,7 +330,7 @@ function CadastroAluno() {
                     <a
                         className={styles.btnListagem}
                         style={{ textDecoration: "none", marginLeft: '5%' }}
-                        href="http://localhost:5173/Listagem/Aluno"
+                        href={SERVER_ROUTES.LISTAGEM_ALUNO}
                     >
                         Alunos
                     </a>

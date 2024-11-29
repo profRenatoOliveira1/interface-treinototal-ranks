@@ -1,6 +1,8 @@
 /**
  * Classe para requisição de treino
  */
+import { SERVER_ROUTES } from "../appconfig";
+
 class TreinoRequests {
 
     /**
@@ -8,8 +10,8 @@ class TreinoRequests {
      */
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeCadastrarTreino = '/novo/treino';
-        this.routeListarTreino = '/listar/treino';
+        this.routeCadastrarTreino = SERVER_ROUTES.CADASTRO_TREINO;
+        this.routeListarTreino = SERVER_ROUTES.LISTAGEM_TREINO;
     }
 
     /**

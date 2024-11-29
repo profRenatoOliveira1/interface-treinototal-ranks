@@ -5,6 +5,7 @@ import styles from '../styles/StyleCard.module.css'; // Importa os estilos espec
 import FotoPadrao from '../../assets/FotoPadrao.png'; // Importa uma imagem padrão para o avatar
 import { useNavigate } from "react-router-dom"; // Importa o hook 'useNavigate' do react-router-dom para navegação programática
 import { formatarData, formatarCPF, formatadorDataCard } from "../../../util/Utilitarios";// Importa funções utilitárias para formatação de dados
+import { SERVER_ROUTES } from '../../appconfig';
 
 // Definição do componente funcional 'CardProfessor'
 function CardProfessor() {
@@ -30,7 +31,7 @@ function CardProfessor() {
 
     // Função para voltar à página de listagem de professores
     const voltar = () => {
-        navigate(`/Listagem/Professor`, { replace: true });
+        navigate(SERVER_ROUTES.LISTAGEM_PROFESSOR, { replace: true });
     };
 
     // Função para formatar o telefone no padrão '(XX) XXXXX-XXXX'

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; // Importa React e o hook useState para gerenciar o estado do componente
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importa o módulo de requisições para a API
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Função `CadastroAparelho` responsável por definir o estado inicial do formulário de cadastro de aparelho,
@@ -75,7 +76,7 @@ function CadastroAparelho() {
                 console.log('Aparelho cadastrado com sucesso:');
                 window.alert(formData.nomeAparelho + ': foi cadastrado com sucesso');
                 if (window.confirm(`Deseja ir para a listagem?`)) 
-                    window.location.href = 'http://localhost:5173/Listagem/Aparelho';
+                    window.location.href = SERVER_ROUTES.LISTAGEM_APARELHO;
                 else
                     window.location.reload();
             } else {
@@ -131,7 +132,7 @@ function CadastroAparelho() {
                         Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Aparelho">
+                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href={SERVER_ROUTES.LISTAGEM_APARELHO}>
                         Aparelhos
                     </a>
                 </form>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'; // Importa React e o hook us
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import ExercicioRequests from '../../fetch/ExercicioRequests'; // Importa o módulo de requisições para a API de Exercícios
 import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importa o módulo de requisições para a API de Aparelhos
-
+import { SERVER_ROUTES } from '../../appconfig';
 
 function CadastroExercicio() {
 
@@ -136,7 +136,7 @@ function CadastroExercicio() {
                 window.alert(exercicio.exercicio + ': foi cadastrado com sucesso'); // Exibe uma mensagem de sucesso
 
                 if (window.confirm(`Deseja ir para a listagem?`))
-                    window.location.href = 'http://localhost:5173/Listagem/Exercicio';
+                    window.location.href = SERVER_ROUTES.LISTAGEM_EXERCICIO;
                 else
                     window.location.reload();
             } else {
@@ -199,7 +199,7 @@ function CadastroExercicio() {
                         Cadastrar
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="http://localhost:5173/Listagem/Exercicio">
+                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href={SERVER_ROUTES.LISTAGEM_EXERCICIO}>
                         Listagem
                     </a>
                 </form>

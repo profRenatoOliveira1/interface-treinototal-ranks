@@ -2,6 +2,7 @@ import React, { useState } from 'react'; // Importa React e o hook useState para
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import ProfessorRequests from '../../fetch/ProfessorRequests'; // Importa o módulo de requisições para a API de Professores
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Componente para o cadastro de professores.
@@ -49,7 +50,6 @@ function CadastroProfessor() {
         celular: '',                // Campo para o celular do professor
         endereco: '',               // Campo para o endereço do professor
         email: '',                  // Campo para o email do professor
-        // senha: '',                  // Campo para o senha do professor
         dataContratacao: '',        // Campo para o data de contratação do professor
         formacao: '',               // Campo para a formação do professor
         especialidade: ''           // Campo para a especialidade do professor
@@ -128,7 +128,7 @@ function CadastroProfessor() {
                 console.log('Professor cadastrado com sucesso:');
                 window.alert(cleanData.nome + ': foi cadastrado com sucesso');
                 if (window.confirm(`Deseja ir para a listagem?`))
-                    window.location.href = '/Listagem/Professor';
+                    window.location.href = SERVER_ROUTES.LISTAGEM_PROFESSOR;
                 else
                     window.location.reload();
             } else {
@@ -295,7 +295,7 @@ function CadastroProfessor() {
                         Cadastro
                     </button>
                     {/* Botão para acessar a respectiva lista */}
-                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href="/Listagem/Professor">
+                    <a className={styles.btnListagem} style={{ textDecoration: "none", marginLeft: '5%' }} href={SERVER_ROUTES.LISTAGEM_PROFESSOR}>
                         Professores
                     </a>
                 </form>

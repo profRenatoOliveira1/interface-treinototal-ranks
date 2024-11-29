@@ -5,6 +5,7 @@ import styles from '../styles/StyleCard.module.css'; // Importa o arquivo CSS pa
 import FotoPadrao from '../../assets/FotoPadrao.png'; // Imagem padrão para o avatar do aluno
 import { useNavigate } from "react-router-dom"; // Hook para navegação entre rotas
 import { formatarData, formatarCPF, formatadorDataCard, calcularIMC } from "../../../util/Utilitarios"; // Funções utilitárias
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente CardAluno
@@ -51,7 +52,7 @@ function CardAluno() {
      * Função para navegar de volta à página de listagem de alunos.
      */
     const voltar = () => {
-        navigate(`/Listagem/Aluno`, { replace: true }); // Navega de volta para a página de listagem
+        navigate(SERVER_ROUTES.LISTAGEM_ALUNO, { replace: true }); // Navega de volta para a página de listagem
     };
 
     /**

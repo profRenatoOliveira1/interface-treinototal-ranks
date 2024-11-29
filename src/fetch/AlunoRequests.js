@@ -1,11 +1,13 @@
+import { SERVER_ROUTES } from '../appconfig';
+
 class AlunoRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAluno = '/listar/alunos';
-        this.routeCadastrarAluno = '/novo/aluno';
-        this.routeDeletarAluno = '/remover/aluno';
-        this.routeAtualizarAluno = '/atualizar/aluno';
+        this.routeListarAluno = SERVER_ROUTES.LISTAGEM_ALUNO;
+        this.routeCadastrarAluno = SERVER_ROUTES.CADASTRO_ALUNO;
+        this.routeDeletarAluno = SERVER_ROUTES.REMOVER_ALUNO;
+        this.routeAtualizarAluno = SERVER_ROUTES.ATUALIZAR_ALUNO;
     }
     getAuthToken() {
         return localStorage.getItem('token');

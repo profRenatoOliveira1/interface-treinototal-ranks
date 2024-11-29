@@ -1,11 +1,13 @@
+import { SERVER_ROUTES } from '../appconfig';
+
 class ExerciciosRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarExercicio = '/listar/exercicios';
-        this.routeCadastrarExercicio = '/novo/exercicio';
-        this.routeDeletarExercicio = '/remover/exercicio';
-        this.routeAtualizarExercicio = '/atualizar/exercicio';
+        this.routeListarExercicio = SERVER_ROUTES.LISTAGEM_EXERCICIO;
+        this.routeCadastrarExercicio = SERVER_ROUTES.CADASTRO_EXERCICIO;
+        this.routeDeletarExercicio = SERVER_ROUTES.REMOVER_EXERCICIO;
+        this.routeAtualizarExercicio = SERVER_ROUTES.ATUALIZAR_EXERCICIO;
     }
     getAuthToken() {
         return localStorage.getItem('token');

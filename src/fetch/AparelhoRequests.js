@@ -1,11 +1,12 @@
+import { SERVER_ROUTES } from '../appconfig';
 
 class AparelhoRequests {
     constructor() {
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarAparelho = '/listar/aparelhos';
-        this.routeCadastrarAparelho = '/novo/aparelho';
-        this.routeDeletarAparelho = '/remover/aparelho';
-        this.routeUpdateAparelho = '/atualizar/aparelho';
+        this.routeListarAparelho = SERVER_ROUTES.LISTAGEM_APARELHO;
+        this.routeCadastrarAparelho = SERVER_ROUTES.CADASTRO_APARELHO;
+        this.routeDeletarAparelho = SERVER_ROUTES.REMOVER_APARELHO;
+        this.routeUpdateAparelho = SERVER_ROUTES.ATUALIZAR_APARELHO;
     }
 
     getToken() {

@@ -5,6 +5,7 @@ import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import { formatadorData } from "../../../util/Utilitarios";
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md";
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente funcional para listar professores.
@@ -80,12 +81,12 @@ function ListagemProfessor() {
 
     // Função para redirecionar para a página de edição de professor
     const updateProfessor = (professor) => {
-        navigate(`/update/professor`, { state: { objeto: professor }, replace: true });
+        navigate(SERVER_ROUTES.ATUALIZAR_PROFESSOR, { state: { objeto: professor }, replace: true });
     };
 
     // Função para visualizar mais informações sobre um professor
     const handleProfessorClick = (professor) => {
-        navigate(`/card/professor`, { state: { objeto: professor }, replace: true });
+        navigate(SERVER_ROUTES.CARD_PROFESSOR, { state: { objeto: professor }, replace: true });
     };
 
     // Variáveis para calcular a paginação
@@ -109,7 +110,7 @@ function ListagemProfessor() {
                                 <h1 className={styles.titulo}>Tabela Professores</h1> {/* Título */}
                             </div>
                             {/* Link para cadastro de novo professor */}
-                            <a style={{ textDecoration: "none" }} href="/Cadastro/Professor" className={styles.btn}>
+                            <a style={{ textDecoration: "none" }} href={SERVER_ROUTES.CADASTRO_PROFESSOR} className={styles.btn}>
                                 Novo Professor
                             </a>
                         </div>

@@ -8,6 +8,7 @@ import styles from './Navegacao.module.css'; // Importa os estilos CSS específi
 import imagemLogo from '../../assets/imgLogoProSaude.png'; // Importa a imagem do logo
 import AuthRequests from '../../fetch/AuthRequests'; // Importa funções relacionadas à autenticação
 import { MdLogout } from "react-icons/md"; // Importa o ícone de logout do pacote react-icons
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente Navegacao
@@ -53,7 +54,7 @@ function Navegacao() {
      * Função para redirecionar o usuário para a página de login.
      */
     const handleLogin = () => {
-        window.location.href = '/login'; // Redireciona para a página de login
+        window.location.href = SERVER_ROUTES.LOGIN; // Redireciona para a página de login
     };
 
     /**
@@ -63,7 +64,7 @@ function Navegacao() {
     const handleLogout = () => {
         AuthRequests.removeToken(); // Remove o token do localStorage
         setIsAuthenticated(false); // Atualiza o estado para não autenticado
-        window.location.href = '/'; // Redireciona para a página inicial
+        window.location.href = SERVER_ROUTES.HOME; // Redireciona para a página inicial
     };
 
     return (
@@ -78,11 +79,11 @@ function Navegacao() {
                 {/* Itens da barra de navegação que serão exibidos ou escondidos com base no tamanho da tela */}
                 <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                     <Nav>
-                        <Nav.Link href="/" className={styles.navbar}>Home</Nav.Link> {/* Link para a página inicial */}
+                        <Nav.Link href={SERVER_ROUTES.HOME} className={styles.navbar}>Home</Nav.Link> {/* Link para a página inicial */}
                         {isAuthenticated ? (
                             <>
                                 {/* Links e menus exibidos apenas quando o usuário está autenticado */}
-                                <Nav.Link href="/imc" className={styles.navbar}>IMC</Nav.Link>
+                                <Nav.Link href={SERVER_ROUTES.IMC} className={styles.navbar}>IMC</Nav.Link>
                                 <NavDropdown
                                     title="Aluno"
                                     id="collapsible-nav-dropdown"
@@ -91,8 +92,8 @@ function Navegacao() {
                                     onMouseEnter={() => setVizualizacaoAluno(true)}
                                     onMouseLeave={() => setVizualizacaoAluno(false)}
                                 >
-                                    <NavDropdown.Item href="/Cadastro/Aluno" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Aluno" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.CADASTRO_ALUNO} className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.LISTAGEM_ALUNO} className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title="Professor"
@@ -102,8 +103,8 @@ function Navegacao() {
                                     onMouseEnter={() => setVizualizacaoProfessor(true)}
                                     onMouseLeave={() => setVizualizacaoProfessor(false)}
                                 >
-                                    <NavDropdown.Item href="/Cadastro/Professor" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Professor" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.CADASTRO_PROFESSOR} className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.LISTAGEM_PROFESSOR} className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title="Exercício"
@@ -113,8 +114,8 @@ function Navegacao() {
                                     onMouseEnter={() => setVizualizacaoExercicio(true)}
                                     onMouseLeave={() => setVizualizacaoExercicio(false)}
                                 >
-                                    <NavDropdown.Item href="/Cadastro/Exercicio" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Exercicio" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.CADASTRO_EXERCICIO} className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.LISTAGEM_EXERCICIO} className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title="Aparelho"
@@ -124,8 +125,8 @@ function Navegacao() {
                                     onMouseEnter={() => setVizualizacaoAparelho(true)}
                                     onMouseLeave={() => setVizualizacaoAparelho(false)}
                                 >
-                                    <NavDropdown.Item href="/Cadastro/Aparelho" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Aparelho" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.CADASTRO_APARELHO} className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.LISTAGEM_APARELHO} className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
                                 <NavDropdown
                                     title="Treino"
@@ -135,8 +136,8 @@ function Navegacao() {
                                     onMouseEnter={() => setVizualizacaoTreino(true)}
                                     onMouseLeave={() => setVizualizacaoTreino(false)}
                                 >
-                                    <NavDropdown.Item href="/Cadastro/Treino" className={styles.navDropdown}>Cadastro</NavDropdown.Item>
-                                    <NavDropdown.Item href="/Listagem/Treino" className={styles.navDropdown}>Listagem</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.CADASTRO_TREINO} className={styles.navDropdown}>Cadastro</NavDropdown.Item>
+                                    <NavDropdown.Item href={SERVER_ROUTES.LISTAGEM_TREINO} className={styles.navDropdown}>Listagem</NavDropdown.Item>
                                 </NavDropdown>
 
                                 {/* Menu dropdown para o usuário autenticado com opção de atualizar senha e fazer logout */}

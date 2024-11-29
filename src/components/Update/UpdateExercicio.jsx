@@ -6,6 +6,7 @@ import Navegacao from "../Navegacao/Navegacao";
 import AparelhoRequests from "../../fetch/AparelhoRequests";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Componente funcional para atualizar os dados de um exercício.
@@ -108,37 +109,17 @@ function UpdateExercicio() {
     const handleSubmit = async (e) => {
         // evita o recarregamento da página
         e.preventDefault();
-        // chama a função atualizarAparelho do arquivo aparelhoAPIService
+        // chama a função atualizarExercicio do arquivo ExercicioAPIService
         if (await ExercicioRequests.atualizarExercicio(exercicio)) {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`O exercício ${exercicio.exercicio} foi atualizado com sucesso.`);
-            // redireciona o usuário para a página de listagem de aparelhos
-            navigate(`/Listagem/exercicio`, { replace: true });
+            // redireciona o usuário para a página de listagem de exercicios
+            navigate(SERVER_ROUTES.LISTAGEM_EXERCICIO, { replace: true });
         } else {
-            // caso a funçao atualizaraparelho retorne algum erro, é exibido um log
+            // caso a funçao atualizarExercicio retorne algum erro, é exibido um log
             console.log('Erro ao atualizar dados do aparelho');
         }
     }
-
-    /**
-        * Cria um novo objeto de data para representar a data atual.
-        * 
-        * - A função `new Date()` obtém a data e hora atuais no momento de execução.
-        * 
-        * @constant {Date} hoje - Objeto de data que representa a data de hoje.
-        */
-    const hoje = new Date();
-
-    /**
-     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
-     * (dia, mês e ano) seja considerada nas operações subsequentes.
-     * 
-     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
-     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
-     * 
-     * @method setHours
-     */
-    hoje.setHours(0, 0, 0, 0);
 
     return (
         <>

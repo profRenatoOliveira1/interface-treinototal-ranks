@@ -5,6 +5,7 @@ import AlunoRequests from '../../fetch/AlunoRequests'; // Importa o módulo de r
 import InputMask from "react-input-mask"; // Importa a biblioteca para criar máscaras de input
 import Navegacao from "../Navegacao/Navegacao"
 import { formatarData, calcularIMC } from "../../../util/Utilitarios";
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Componente funcional para atualizar os dados de um aluno.
@@ -112,7 +113,7 @@ function UpdateAluno() {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`O aluno ${aluno.nome} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de alunos
-            navigate(`/Listagem/Aluno`, { replace: true });
+            navigate(SERVER_ROUTES.LISTAGEM_ALUNO, { replace: true });
         } else {
             // caso a funçao atualizarAluno retorne algum erro, é exibido um log
             console.log('Erro ao atualizar dados do aluno');
@@ -243,18 +244,6 @@ function UpdateAluno() {
                                 <label htmlFor="labelEmail">E-mail</label>
                             </div>
                         </div>
-                        {/* Campo para senha
-                    <div className={styles.formGroup}>
-                        <input
-                            type="password"
-                            className={styles.formStyle}
-                            placeholder="Senha"
-                            value={aluno.senha}
-                            onChange={handleChange}
-                            name="senha"
-                            required
-                        />
-                    </div> */}
                         {/* Campo para altura e peso */}
                         <div className={styles.formGroup}>
                             <div className="form-floating mb-3 input">

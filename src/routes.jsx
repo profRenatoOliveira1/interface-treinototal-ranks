@@ -59,7 +59,7 @@ export default function AppRouter() {
                 <Route path={SERVER_ROUTES.LISTAGEM_TREINO} element={<ProtectedRoute element={ListarTreino} />} />
 
                 {/* Página de acesso negado */}
-                <Route path="/unauthorized" element={<h1>Acesso negado</h1>} />
+                <Route path={SERVER_ROUTES.NAO_AUTORIZADO} element={<h1>Acesso negado</h1>} />
             </Routes>
         </BrowserRouter>
     );

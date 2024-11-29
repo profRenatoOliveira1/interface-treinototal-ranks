@@ -3,6 +3,7 @@ import { useState } from "react";
 import styles from '../styles/StyleCadastro.module.css'; // Importa estilos CSS específicos para este componente
 import AparelhoRequests from "../../fetch/AparelhoRequests"; // Importa o módulo de requisições para a API de Aparelhos
 import Navegacao from "../Navegacao/Navegacao"
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente funcional para atualizar os dados de um aparelho.
@@ -77,32 +78,12 @@ function UpdateAparelho() {
             // se a função executou sem nenhum problema, é exibido um alerta confirmando a alteração para o usuário
             window.alert(`O aparelho ${aparelho.nomeAparelho} foi atualizado com sucesso.`);
             // redireciona o usuário para a página de listagem de aparelhos
-            navigate(`/Listagem/aparelho`, { replace: true });
+            navigate(SERVER_ROUTES.LISTAGEM_APARELHO, { replace: true });
         } else {
             // caso a funçao atualizaraparelho retorne algum erro, é exibido um log
             console.log('Erro ao atualizar dados do aparelho');
         }
     }
-
-    /**
-        * Cria um novo objeto de data para representar a data atual.
-        * 
-        * - A função `new Date()` obtém a data e hora atuais no momento de execução.
-        * 
-        * @constant {Date} hoje - Objeto de data que representa a data de hoje.
-        */
-    const hoje = new Date();
-
-    /**
-     * Ajusta a hora da data atual para 00:00:00, garantindo que apenas a data
-     * (dia, mês e ano) seja considerada nas operações subsequentes.
-     * 
-     * - O método `setHours(0, 0, 0, 0)` define a hora, minuto, segundo e milissegundo para zero.
-     * - Esse ajuste é útil quando você quer comparar apenas as datas sem considerar a hora exata.
-     * 
-     * @method setHours
-     */
-    hoje.setHours(0, 0, 0, 0);
 
     return (
         <>

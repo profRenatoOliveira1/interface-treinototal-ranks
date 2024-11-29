@@ -4,6 +4,7 @@ import ProfessorRequest from '../../fetch/ProfessorRequests';
 import InputMask from "react-input-mask";
 import { formatarData } from "../../../util/Utilitarios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
     * Componente `UpdateProfessor` para atualizar os dados de um professor existente.
@@ -54,7 +55,7 @@ function UpdateProfessor() {
 
         if (await ProfessorRequest.atualizarProfessor(cleanData)) {
             window.alert(`O professor ${professor.nome} foi atualizado com sucesso.`);
-            navigate(`/Listagem/Professor`, { replace: true });
+            navigate(SERVER_ROUTES.LISTAGEM_PROFESSOR, { replace: true });
         } else {
             console.log('Erro ao atualizar dados do professor');
         }

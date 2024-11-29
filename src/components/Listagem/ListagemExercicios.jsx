@@ -6,6 +6,7 @@ import AparelhoRequests from '../../fetch/AparelhoRequests'; // Importação do 
 import { FaTrash, FaRegEdit } from "react-icons/fa"; // Importação de ícones da biblioteca react-icons
 import { MdOutlineArrowBackIos, MdOutlineArrowForwardIos } from "react-icons/md"; // Ícones de navegação
 import { useNavigate } from 'react-router-dom'; // Importa hook para navegação entre rotas
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente para listar exercícios com paginação
@@ -90,7 +91,7 @@ function ListagemExercicios() {
      * @param {Object} exercicio - O objeto do exercício a ser atualizado
      */
     const UpdateExercicio = (exercicio) => {
-        navigate(`/update/exercicio`, { state: { objeto: exercicio }, replace: true }); // Navega para a página de atualização
+        navigate(SERVER_ROUTES.ATUALIZAR_EXERCICIO, { state: { objeto: exercicio }, replace: true }); // Navega para a página de atualização
     };
 
     // Cálculos para a paginação
@@ -111,7 +112,7 @@ function ListagemExercicios() {
         <>
             {/* Título da tabela de exercícios */}
             <h1 className={styles.titulo}>Tabela de Exercícios</h1>
-            <a style={{ textDecoration: "none" }} href="/Cadastro/Exercicio" className={styles.btn}>
+            <a style={{ textDecoration: "none" }} href={SERVER_ROUTES.CADASTRO_EXERCICIO} className={styles.btn}>
                 Novo Exercicio {/* Link para adicionar novo exercício */}
             </a>
 

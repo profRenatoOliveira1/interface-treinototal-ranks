@@ -5,6 +5,7 @@ import { FaTrash, FaRegEdit, FaInfoCircle } from "react-icons/fa"; // Importa í
 import { useNavigate } from 'react-router-dom'; // Importa hook para navegação entre páginas
 import { formatadorData } from "../../../util/Utilitarios"; // Importa função para formatar datas
 import { MdOutlineArrowForwardIos, MdOutlineArrowBackIos } from "react-icons/md"; // Importa ícones de navegação
+import { SERVER_ROUTES } from '../../appconfig';
 
 /**
  * Componente funcional para listar alunos
@@ -80,7 +81,7 @@ function ListarAluno() {
      * @param {Object} aluno - Objeto do aluno a ser atualizado
      */
     const updateAluno = (aluno) => {
-        navigate(`/update/aluno`, { state: { objeto: aluno }, replace: true }); // Navega para a página de atualização
+        navigate(SERVER_ROUTES.ATUALIZAR_ALUNO, { state: { objeto: aluno }, replace: true }); // Navega para a página de atualização
     };
 
     /**
@@ -88,7 +89,7 @@ function ListarAluno() {
      * @param {Object} aluno - Objeto do aluno a ser detalhado
      */
     const handleAlunoClick = (aluno) => {
-        navigate(`/card/aluno`, { state: { objeto: aluno }, replace: true }); // Navega para a página de detalhes
+        navigate(SERVER_ROUTES.CARD_ALUNO, { state: { objeto: aluno }, replace: true }); // Navega para a página de detalhes
     };
 
     // Cálculos para a paginação
@@ -114,7 +115,7 @@ function ListarAluno() {
                             <div className={styles.section}>
                                 <h1 className={styles.titulo}>Tabela Alunos</h1> {/* Título da tabela */}
                             </div>
-                            <a style={{ textDecoration: "none" }} href="http://localhost:5173/Cadastro/Aluno" className={styles.btn}>
+                            <a style={{ textDecoration: "none" }} href={SERVER_ROUTES.CADASTRO_ALUNO} className={styles.btn}>
                                 Novo Aluno {/* Link para adicionar novo aluno */}
                             </a>
                         </div>

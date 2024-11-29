@@ -1,11 +1,13 @@
+import { SERVER_ROUTES } from '../appconfig';
+
 class ProfessoresRequests {
     constructor() {
         // Inicializa as rotas e o URL do servidor
         this.serverUrl = import.meta.env.VITE_API_URL;
-        this.routeListarProfessor = '/listar/professores';
-        this.routeCadastrarProfessor = '/novo/professor';
-        this.routeDeletarProfessor = '/remover/professor';
-        this.routeAtualizarProfessor = '/atualizar/professor';
+        this.routeListarProfessor = SERVER_ROUTES.LISTAGEM_PROFESSOR;
+        this.routeCadastrarProfessor = SERVER_ROUTES.CADASTRO_PROFESSOR;
+        this.routeDeletarProfessor = SERVER_ROUTES.REMOVER_PROFESSOR;
+        this.routeAtualizarProfessor = SERVER_ROUTES.ATUALIZAR_PROFESSOR;
     }
     getAuthToken() {
         return localStorage.getItem('token');
