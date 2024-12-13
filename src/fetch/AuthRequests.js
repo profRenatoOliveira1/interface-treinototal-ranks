@@ -20,7 +20,8 @@ class AuthRequests {
      * @param {*} login - email e senha
      * @returns **true** caso sucesso, **false** caso erro
      */
-    async login(login) {    
+    async login(login) {
+        console.log(login);    
         try {
             // faz a requisição POST ao servidor
             const response = await fetch(`${this.serverUrl}${this.routeLogin}`, {
@@ -94,31 +95,34 @@ class AuthRequests {
      * @returns **true** caso token válido, **false** caso token inválido
      */
     checkTokenExpiry() {
-        // recupera o valor do token no localStorage
+        // Retrieve the token from localStorage
         const token = localStorage.getItem('token');
         
-        // verifica se o valor é diferente de vazio
-        if (token) {
-            // recupera a data de expiração do token
-            const payload = JSON.parse(atob(token.split('.')[1]));
-            // recupera a hora de expiração do token
-            const expiry = payload.exp;
-            // pega a data e hora atual
-            const now = Math.floor(Date.now() / 1000);
-
-            // verifica se o token está expirado
-            if (expiry < now) {
-                // invoca a função para remover o token do localStorage
+        // Check if token exists and is in the correct format
+        if (token && token.split('.').length === 3) {
+            try {
+                // Decode the payload using atob
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                const expiry = payload.exp;  // Get the expiration time from the payload
+                const now = Math.floor(Date.now() / 1000);  // Get the current time in seconds
+    
+                // Check if the token is expired
+                if (expiry < now) {
+                    this.removeToken();
+                    return false;
+                }
+                return true;  // Token is valid
+            } catch (error) {
+                console.error('Error decoding token:', error);
                 this.removeToken();
-                // retorna false
                 return false;
             }
-            // caso o token não esteja expirado, retorna true
-            return true;
+        } else {
+            // Token is invalid or missing
+            return false;
         }
-        // caso o token esteja vazio, retorna false
-        return false;
     }
+    
 }
 
 export default new AuthRequests();
